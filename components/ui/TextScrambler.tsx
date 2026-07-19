@@ -43,6 +43,9 @@ function ScrambleText({
     let iteration = 0;
     const maxIterations = iterations;
 
+    // Get unique letters from the original word
+    const wordLetters = [...new Set(text.split(""))];
+
     if (intervalRef.current) clearInterval(intervalRef.current);
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
@@ -55,7 +58,8 @@ function ScrambleText({
             if (i < iteration / (maxIterations / text.length)) {
               return text[i];
             }
-            return chars[Math.floor(Math.random() * chars.length)];
+            // Use only letters from the original word
+            return wordLetters[Math.floor(Math.random() * wordLetters.length)];
           })
           .join("")
       );
