@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { ScrambleText } from "@/components/ui/TextScrambler";
 
 const navLinks = [
   { href: "/work", label: "work" },
@@ -61,7 +62,7 @@ export function Header() {
                   className="font-mono text-3xl font-medium tracking-tight transition-colors hover:text-[var(--accent)]"
                   style={{ color: scrolled ? "var(--text-primary)" : "var(--text-inverse)" }}
                 >
-                  {link.label}
+                  <ScrambleText text={link.label} speed={25} iterations={8} />
                 </Link>
                 {i < navLinks.length - 1 && (
                   <span
