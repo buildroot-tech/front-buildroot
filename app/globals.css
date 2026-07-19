@@ -1,0 +1,268 @@
+@import "tailwindcss";
+
+/* ============================================
+   BUILDROOT DESIGN SYSTEM
+   Brutalist hybrid: raw structure, elegant execution
+   ============================================ */
+
+:root {
+  /* ---- Colors: Light Mode ---- */
+  --bg-hero: #0f172a;
+  --bg-primary: #f8fafc;
+  --bg-secondary: #e2e8f0;
+
+  --text-primary: #0f172a;
+  --text-muted: #64748b;
+  --text-inverse: #f8fafc;
+
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+
+  --border: #0f172a;
+  --border-muted: #cbd5e1;
+
+  /* ---- Typography ---- */
+  --text-display: clamp(72px, 10vw, 180px);
+  --text-h1: clamp(48px, 6vw, 72px);
+  --text-h2: clamp(32px, 4vw, 48px);
+  --text-h3: clamp(24px, 3vw, 32px);
+  --text-body: 18px;
+  --text-small: 14px;
+  --text-caption: 12px;
+
+  /* ---- Spacing: Tight ---- */
+  --space-tight-sm: 8px;
+  --space-tight-md: 16px;
+  --space-tight-lg: 32px;
+
+  /* ---- Spacing: Normal ---- */
+  --space-normal-sm: 48px;
+  --space-normal-md: 64px;
+  --space-normal-lg: 96px;
+
+  /* ---- Spacing: Generous ---- */
+  --space-generous-sm: 128px;
+  --space-generous-md: 192px;
+  --space-generous-lg: 256px;
+
+  /* ---- Spacing: Hero ---- */
+  --space-hero: clamp(128px, 20vh, 320px);
+
+  /* ---- Spacing: Legacy 8-point grid (kept for compat) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+  --space-11: 192px;
+  --space-12: 256px;
+
+  /* ---- Shadows ---- */
+  --shadow-brutalist: 4px 4px 0 var(--border);
+  --shadow-brutalist-hover: 2px 2px 0 var(--border);
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.15);
+
+  /* ---- Animation ---- */
+  --ease-brutalist: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --duration-hover: 150ms;
+  --duration-page: 350ms;
+  --duration-reveal: 700ms;
+  --spring-config: 300;
+  --spring-damping: 20;
+}
+
+/* ============================================
+   TAILWIND THEME EXTENSION
+   ============================================ */
+
+@theme inline {
+  --color-hero: var(--bg-hero);
+  --color-primary: var(--bg-primary);
+  --color-secondary: var(--bg-secondary);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-text: var(--text-primary);
+  --color-text-muted: var(--text-muted);
+  --color-text-inverse: var(--text-inverse);
+  --color-border: var(--border);
+  --color-border-muted: var(--border-muted);
+
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   TYPOGRAPHY UTILITIES
+   ============================================ */
+
+.headline {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.heading {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.text-display {
+  font-size: var(--text-display);
+}
+
+.text-h1 {
+  font-size: var(--text-h1);
+}
+
+.text-h2 {
+  font-size: var(--text-h2);
+}
+
+.text-h3 {
+  font-size: var(--text-h3);
+}
+
+.text-mono {
+  font-family: var(--font-mono), monospace;
+}
+
+/* ============================================
+   BRUTALIST COMPONENTS
+   ============================================ */
+
+/* Card */
+.brutalist-card {
+  border: 2px solid var(--border);
+  box-shadow: var(--shadow-brutalist);
+  background: var(--bg-secondary);
+  transition: box-shadow var(--duration-hover) ease,
+    transform var(--duration-hover) ease;
+}
+
+.brutalist-card:hover {
+  box-shadow: var(--shadow-brutalist-hover);
+  transform: translate(2px, 2px);
+}
+
+/* Button */
+.brutalist-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: 2px solid var(--border);
+  box-shadow: var(--shadow-brutalist);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: var(--text-small);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: box-shadow var(--duration-hover) ease,
+    transform var(--duration-hover) ease;
+}
+
+.brutalist-button:hover {
+  box-shadow: var(--shadow-brutalist-hover);
+  transform: translate(2px, 2px);
+}
+
+.brutalist-button:active {
+  box-shadow: none;
+  transform: translate(4px, 4px);
+}
+
+/* Accent button */
+.brutalist-button-accent {
+  background: var(--accent);
+  color: var(--text-inverse);
+  border-color: var(--accent);
+}
+
+.brutalist-button-accent:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+/* ============================================
+   LAYOUT UTILITIES
+   ============================================ */
+
+.container-padded {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: var(--space-normal-md);
+  padding-right: var(--space-normal-md);
+}
+
+.section-generous {
+  padding-top: var(--space-generous-md);
+  padding-bottom: var(--space-generous-md);
+}
+
+.section-normal {
+  padding-top: var(--space-normal-lg);
+  padding-bottom: var(--space-normal-lg);
+}
+
+.section-bleed {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* ============================================
+   SCROLLBAR (brutalist)
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border: 1px solid var(--bg-primary);
+}
+
+/* ============================================
+   SELECTION
+   ============================================ */
+
+::selection {
+  background: var(--accent);
+  color: var(--text-inverse);
+}
