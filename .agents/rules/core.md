@@ -10,7 +10,7 @@ description: Core project instructions for buildroot_ website
 - **Company**: buildroot_ (tech venture, 2-3 people)
 - **Services**: Web development, technical consulting, SaaS products
 - **Style**: Brutalist hybrid (raw + elegant)
-- **Mode**: Light mode, dark hero
+- **Mode**: Light mode, dark hero (blue)
 
 ## Tech Stack (Non-negotiable)
 
@@ -29,10 +29,14 @@ description: Core project instructions for buildroot_ website
 
 - **Font Display**: Space Grotesk
 - **Font Mono**: JetBrains Mono
-- **Hero Dark**: `#0A0A0A`
-- **Body Light**: `#F5F5F0`
-- **Accent**: `#FF4500` (orange, used sparingly)
-- **Border**: Hard brutalist borders (2-3px solid black)
+- **Hero**: `#0F172A` (azul marino)
+- **Body**: `#F8FAFC` (off-white frío)
+- **Secondary**: `#E2E8F0` (gris azulado)
+- **Accent**: `#2563EB` (azul vibrante)
+- **Border**: `#0F172A` (azul oscuro)
+- **Text Primary**: `#0F172A`
+- **Text Muted**: `#64748B`
+- **Text Inverse**: `#F8FAFC`
 
 ## Performance Targets
 
@@ -57,6 +61,15 @@ buildroot/
 └── .agents/          # AI configuration
 ```
 
+## Git Workflow
+
+See: `.agents/rules/git-workflow.md`
+
+- **Main branches**: `main` (production), `develop` (integration)
+- **Feature branches**: `feature/<name>`, `fix/<name>`, `chore/<name>`
+- **Commits**: Conventional commits format
+- **PRs**: Required for all changes to `main` and `develop`
+
 ## Constraints
 
 - NO runtime chat agents on the site
@@ -64,3 +77,5 @@ buildroot/
 - ALL content in English
 - EVERY page must be accessible (WCAG 2.1 AA)
 - EVERY component must be responsive
+- ALWAYS use conventional commits
+- ALWAYS create feature branches for new work
