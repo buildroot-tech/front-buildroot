@@ -53,7 +53,7 @@ export function Header() {
           </Link>
 
           {/* Center nav */}
-          <nav className="hidden items-center gap-0 md:flex">
+          <nav className="hidden items-center gap-0 md:flex md:ml-40">
             {navLinks.map((link, i) => (
               <span key={link.href} className="flex items-center">
                 <Link
