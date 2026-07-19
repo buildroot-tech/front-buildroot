@@ -30,3 +30,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# external skills (clone separately)
+.agents/skills/addyosmani/
+.agents/skills/marketing/
+.agents/skills/mattpocock/
+.agents/skills/seo-geo/
+.agents/skills/vercel-labs/
+.agents/skills/web-quality/
