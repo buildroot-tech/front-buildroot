@@ -42,7 +42,7 @@ export function Header() {
             : "bg-transparent"
         )}
       >
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5">
+        <div className="flex items-center justify-between px-6 py-5">
           {/* Logo */}
           <Link
             href="/"
@@ -53,7 +53,7 @@ export function Header() {
           </Link>
 
           {/* Center nav */}
-          <nav className="hidden items-center gap-0 md:flex md:ml-40">
+          <nav className="hidden items-center gap-0 md:flex">
             {navLinks.map((link, i) => (
               <span key={link.href} className="flex items-center">
                 <Link
