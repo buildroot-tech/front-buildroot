@@ -8,7 +8,6 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { href: "/work", label: "work" },
   { href: "/about", label: "about" },
-  { href: "/process", label: "process" },
 ];
 
 export function Header() {
@@ -65,7 +64,7 @@ export function Header() {
                 </Link>
                 {i < navLinks.length - 1 && (
                   <span
-                    className="ml-4 text-2xl"
+                    className="ml-1 text-2xl"
                     style={{ color: scrolled ? "var(--text-muted)" : "var(--text-inverse)", opacity: 0.4 }}
                   >
                     ,
