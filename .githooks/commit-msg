@@ -1,0 +1,25 @@
+#!/bin/sh
+# commit-msg: Validate conventional commit format
+
+commit_msg=$(cat "$1")
+
+# Pattern: type(scope): description
+pattern="^(feat|fix|chore|docs|style|refactor|test|perf|ci)(\([a-z0-9-]+\))?: .{1,72}"
+
+if ! echo "$commit_msg" | grep -qE "$pattern"; then
+  echo ""
+  echo "❌ Invalid commit message format!"
+  echo ""
+  echo "Expected: <type>(<scope>): <description>"
+  echo ""
+  echo "Types: feat, fix, chore, docs, style, refactor, test, perf, ci"
+  echo "Scope: lowercase, matches directory (home, layout, ui, agents)"
+  echo "Description: imperative mood, max 72 chars"
+  echo ""
+  echo "Examples:"
+  echo "  feat(work): add project grid"
+  echo "  fix(header): resolve scroll issue"
+  echo "  chore(deps): update framer-motion"
+  echo ""
+  exit 1
+fi
