@@ -47,7 +47,7 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-mono text-sm font-bold uppercase tracking-widest"
+            className="font-mono text-lg font-bold tracking-tight"
             style={{ color: scrolled ? "var(--text-primary)" : "var(--text-inverse)" }}
           >
             buildroot_
@@ -59,7 +59,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-mono text-xs uppercase tracking-widest transition-colors hover:text-[var(--accent)]"
+                className="font-mono text-sm tracking-wide transition-colors hover:text-[var(--accent)]"
                 style={{ color: scrolled ? "var(--text-primary)" : "var(--text-inverse)" }}
               >
                 {link.label}
@@ -67,7 +67,7 @@ export function Header() {
             ))}
             <a
               href="mailto:hello@buildroot.dev"
-              className="brutalist-button text-xs"
+              className="brutalist-button text-sm"
               style={{
                 borderColor: scrolled ? "var(--border)" : "var(--text-inverse)",
                 color: scrolled ? "var(--text-primary)" : "var(--text-inverse)",
