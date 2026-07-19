@@ -6,10 +6,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/work", label: "Work" },
-  { href: "/about", label: "About" },
-  { href: "/process", label: "Process" },
+  { href: "/work", label: "work" },
+  { href: "/about", label: "about" },
+  { href: "/process", label: "process" },
 ];
 
 export function Header() {
@@ -54,20 +53,29 @@ export function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden items-center gap-8 md:flex">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-mono text-sm tracking-wide transition-colors hover:text-[var(--accent)]"
-                style={{ color: scrolled ? "var(--text-primary)" : "var(--text-inverse)" }}
-              >
-                {link.label}
-              </Link>
+          <nav className="hidden items-center gap-0 md:flex">
+            {navLinks.map((link, i) => (
+              <span key={link.href} className="flex items-center">
+                <Link
+                  href={link.href}
+                  className="font-mono text-2xl font-medium tracking-tight transition-colors hover:text-[var(--accent)]"
+                  style={{ color: scrolled ? "var(--text-primary)" : "var(--text-inverse)" }}
+                >
+                  {link.label}
+                </Link>
+                {i < navLinks.length - 1 && (
+                  <span
+                    className="ml-4 text-2xl"
+                    style={{ color: scrolled ? "var(--text-muted)" : "var(--text-inverse)", opacity: 0.4 }}
+                  >
+                    ,
+                  </span>
+                )}
+              </span>
             ))}
             <a
               href="mailto:hello@buildroot.dev"
-              className="brutalist-button text-sm"
+              className="brutalist-button ml-8 text-base"
               style={{
                 borderColor: scrolled ? "var(--border)" : "var(--text-inverse)",
                 color: scrolled ? "var(--text-primary)" : "var(--text-inverse)",
