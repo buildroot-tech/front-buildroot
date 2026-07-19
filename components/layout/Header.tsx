@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/work", label: "work" },
+  { href: "/services", label: "services" },
   { href: "/about", label: "about" },
 ];
 
@@ -41,30 +42,30 @@ export function Header() {
             : "bg-transparent"
         )}
       >
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5">
           {/* Logo */}
           <Link
             href="/"
-            className="font-mono text-lg font-bold tracking-tight"
+            className="font-mono text-3xl font-bold tracking-tight"
             style={{ color: scrolled ? "var(--text-primary)" : "var(--text-inverse)" }}
           >
             buildroot_
           </Link>
 
-          {/* Desktop Nav */}
+          {/* Center nav */}
           <nav className="hidden items-center gap-0 md:flex">
             {navLinks.map((link, i) => (
               <span key={link.href} className="flex items-center">
                 <Link
                   href={link.href}
-                  className="font-mono text-2xl font-medium tracking-tight transition-colors hover:text-[var(--accent)]"
+                  className="font-mono text-3xl font-medium tracking-tight transition-colors hover:text-[var(--accent)]"
                   style={{ color: scrolled ? "var(--text-primary)" : "var(--text-inverse)" }}
                 >
                   {link.label}
                 </Link>
                 {i < navLinks.length - 1 && (
                   <span
-                    className="ml-1 text-2xl"
+                    className="ml-1 text-3xl"
                     style={{ color: scrolled ? "var(--text-muted)" : "var(--text-inverse)", opacity: 0.4 }}
                   >
                     ,
@@ -72,10 +73,13 @@ export function Header() {
                 )}
               </span>
             ))}
-            <a
-              href="mailto:hello@buildroot.dev"
-              className="brutalist-button ml-8 text-base"
-              style={{
+          </nav>
+
+          {/* Contact button */}
+          <a
+            href="mailto:hello@buildroot.dev"
+            className="brutalist-button text-lg"
+            style={{
                 borderColor: scrolled ? "var(--border)" : "var(--text-inverse)",
                 color: scrolled ? "var(--text-primary)" : "var(--text-inverse)",
                 boxShadow: scrolled
@@ -85,7 +89,6 @@ export function Header() {
             >
               Contact
             </a>
-          </nav>
 
           {/* Mobile Burger */}
           <button
