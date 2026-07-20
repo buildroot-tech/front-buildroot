@@ -340,19 +340,16 @@ export default function StyleGuidePage() {
                   text="work"
                   className="font-mono text-3xl font-medium cursor-pointer hover:text-[var(--accent)] transition-colors"
                   speed={55}
-                  iterations={8}
                 />
                 <ScrambleText
                   text="services"
                   className="font-mono text-3xl font-medium cursor-pointer hover:text-[var(--accent)] transition-colors"
                   speed={55}
-                  iterations={8}
                 />
                 <ScrambleText
                   text="about"
                   className="font-mono text-3xl font-medium cursor-pointer hover:text-[var(--accent)] transition-colors"
                   speed={55}
-                  iterations={8}
                 />
               </div>
               <p className="mt-4 font-mono text-xs text-[var(--text-muted)]">
