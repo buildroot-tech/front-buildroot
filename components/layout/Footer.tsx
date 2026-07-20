@@ -13,9 +13,9 @@ const navLinks = [
 ];
 
 const socialLinks = [
-  { href: "https://instagram.com/buildroot", label: "ig/buildroot" },
-  { href: "https://twitter.com/buildroot_dev", label: "tw/buildroot_dev" },
-  { href: "https://linkedin.com/company/buildroot", label: "li/buildroot" },
+  { href: "https://instagram.com/buildroot", label: "instagram" },
+  { href: "https://twitter.com/buildroot_dev", label: "twitter" },
+  { href: "https://linkedin.com/company/buildroot", label: "linkedin" },
 ];
 
 const legalLinks = [
