@@ -22,7 +22,7 @@ export function Header() {
     const HEADER_H = 80;
 
     const check = () => {
-      const sections = document.querySelectorAll<HTMLElement>("section[id]");
+      const sections = document.querySelectorAll<HTMLElement>("section[id], footer[id]");
       let found = false;
       for (const section of sections) {
         const rect = section.getBoundingClientRect();
