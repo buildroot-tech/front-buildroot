@@ -73,7 +73,8 @@ export function Header() {
               color: isDarkSection ? "var(--text-inverse)" : "var(--text-primary)",
             }}
           >
-            <ScrambleText text="buildroot_" speed={80} />
+            <ScrambleText text="buildroot" speed={80} />
+            <span className="cursor-blink inline-block scale-y-75 origin-bottom">_</span>
           </Link>
 
           {/* Center nav */}
