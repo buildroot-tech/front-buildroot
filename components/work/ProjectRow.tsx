@@ -17,31 +17,31 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
   const primaryMetric = project.metrics[0];
 
   return (
-    <div className="w-full bg-[var(--bg-primary)] transition-colors duration-200 my-2">
-      {/* Horizontal Row Header without numbers or years */}
+    <div className="w-full bg-[var(--bg-primary)] transition-colors duration-200 my-1">
+      {/* Balanced Locomotive-Style Horizontal Row Header */}
       <div
         onClick={() => setIsExpanded(!isExpanded)}
-        className="group relative flex cursor-pointer flex-col justify-between gap-6 py-8 px-6 sm:px-10 md:px-14 lg:flex-row lg:items-center hover:bg-[var(--bg-secondary)]/70 transition-colors"
+        className="group relative flex cursor-pointer flex-col justify-between gap-4 py-7 px-6 sm:px-8 md:px-12 lg:flex-row lg:items-center hover:bg-[var(--bg-secondary)]/70 transition-colors"
       >
-        {/* Left: Title */}
-        <div className="flex items-center gap-6 md:gap-12">
+        {/* Left: Balanced Title (text-xl md:text-2xl lg:text-3xl) */}
+        <div className="flex items-center gap-4 md:gap-8">
           <div>
-            <h3 className="heading text-h2 text-[var(--text-primary)] transition-colors group-hover:text-[var(--accent)] tracking-tight">
+            <h3 className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-[var(--text-primary)] transition-colors group-hover:text-[var(--accent)] tracking-tight">
               <ScrambleText text={project.title} trigger="hover" speed={45} />
             </h3>
-            <p className="font-mono text-xs text-[var(--text-muted)] lg:hidden mt-2">
+            <p className="font-mono text-xs text-[var(--text-muted)] lg:hidden mt-1.5">
               {project.client} // {project.category}
             </p>
           </div>
         </div>
 
         {/* Right: Client, Category & Expand Toggle */}
-        <div className="flex items-center justify-between gap-8 font-mono text-xs sm:gap-16">
-          <div className="hidden lg:flex items-center gap-12">
+        <div className="flex items-center justify-between gap-8 font-mono text-xs sm:gap-12">
+          <div className="hidden lg:flex items-center gap-10">
             <span className="uppercase text-[var(--text-muted)] tracking-wider">
               CLIENT :: <strong className="text-[var(--text-primary)]">{project.client}</strong>
             </span>
-            <span className="bg-[var(--bg-secondary)] px-3 py-1 font-semibold uppercase text-[var(--accent)]">
+            <span className="bg-[var(--bg-secondary)] px-3.5 py-1 font-semibold uppercase text-[var(--accent)] text-xs">
               {project.category}
             </span>
           </div>
