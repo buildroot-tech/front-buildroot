@@ -43,7 +43,7 @@ export function Header() {
             : "bg-transparent",
         )}
       >
-        <div className="flex items-center justify-between px-6 py-5">
+        <div className="flex items-center justify-between px-6 py-5 overflow-hidden">
           {/* Logo */}
           <Link
             href="/"
@@ -61,7 +61,7 @@ export function Header() {
               <span key={link.href} className="flex items-center">
                 <Link
                   href={link.href}
-                  className="group relative font-mono text-3xl font-medium tracking-tight transition-colors hover:text-[var(--accent)]"
+                  className="group relative font-mono text-3xl font-medium transition-colors hover:text-[var(--accent)]"
                   style={{
                     color: scrolled
                       ? "var(--text-primary)"
@@ -90,17 +90,17 @@ export function Header() {
           </nav>
 
           {/* Contact link */}
-          <a
-            href="mailto:hello@buildroot.dev"
-            className="group relative font-mono text-3xl font-medium tracking-tight transition-colors hover:text-[var(--accent)] ml-8"
+          <Link
+            href="/contact"
+            className="group relative font-mono text-3xl font-medium transition-colors hover:text-[var(--accent)] ml-8"
             style={{
               color: scrolled ? "var(--text-primary)" : "var(--text-inverse)",
               minWidth: "9ch",
             }}
           >
-            <ScrambleText text="let's talk" speed={55} />
+            <ScrambleText text="let_s talk" speed={55} />
             <span className="absolute bottom-0 left-0 h-[3px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
-          </a>
+          </Link>
 
           {/* Mobile Burger */}
           <button
