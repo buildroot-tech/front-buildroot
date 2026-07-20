@@ -18,7 +18,7 @@ interface TextScramblerProps {
 function ScrambleText({
   text,
   className,
-  speed = 40,
+  speed = 60,
   trigger = "hover",
   active = true,
   as: Tag = "span",
@@ -29,55 +29,59 @@ function ScrambleText({
 }: TextScramblerProps) {
   const [display, setDisplay] = useState(text);
   const timersRef = useRef<NodeJS.Timeout[]>([]);
-  const isAnimatingRef = useRef(false);
 
   const clearAll = useCallback(() => {
     timersRef.current.forEach(clearTimeout);
     timersRef.current = [];
   }, []);
 
-  const travelFrame = useCallback((word: string, step: number): string => {
-    const letters = word.split("");
-    if (step >= letters.length) return word;
-
-    // Keep first `step` letters fixed, shuffle the rest
-    const fixed = letters.slice(0, step);
-    const remaining = letters.slice(step);
-
-    // Fisher-Yates shuffle for smoother transitions
-    for (let i = remaining.length - 1; i > 0; i--) {
+  const shuffleWord = useCallback((word: string): string => {
+    const arr = word.split("");
+    for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
+      [arr[i], arr[j]] = [arr[j], arr[i]];
     }
-
-    return [...fixed, ...remaining].join("");
+    return arr.join("");
   }, []);
 
   const scramble = useCallback(() => {
-    if (isAnimatingRef.current) return;
-
     clearAll();
-    isAnimatingRef.current = true;
-    setDisplay(text);
-
     const words = text.split(" ");
-    const maxLen = Math.max(...words.map((w) => w.length));
+    const wordLengths = words.map((w) => w.length);
+    const maxLen = Math.max(...wordLengths);
 
-    for (let step = 0; step <= maxLen; step++) {
+    // Generate frames: multiple shuffles per word, then settle
+    const totalFrames = maxLen * 3 + 1;
+
+    for (let frame = 0; frame < totalFrames; frame++) {
       const t = setTimeout(() => {
-        if (step >= maxLen) {
+        const isLastFrame = frame === totalFrames - 1;
+
+        if (isLastFrame) {
           setDisplay(text);
-          isAnimatingRef.current = false;
-        } else {
-          const result = words
-            .map((word) => travelFrame(word, Math.min(step, word.length)))
-            .join(" ");
-          setDisplay(result);
+          return;
         }
-      }, step * speed);
+
+        const result = words.map((word, wIdx) => {
+          const wordLen = word.length;
+          // How many letters are "locked" (correct position)
+          const lockedCount = Math.floor((frame / totalFrames) * wordLen);
+
+          if (lockedCount >= wordLen) return word;
+
+          // Take correct letters + shuffle the rest
+          const correct = word.slice(0, lockedCount);
+          const remaining = word.slice(lockedCount);
+          const shuffled = shuffleWord(remaining);
+
+          return correct + shuffled;
+        });
+
+        setDisplay(result.join(" "));
+      }, frame * speed);
       timersRef.current.push(t);
     }
-  }, [text, speed, clearAll, travelFrame]);
+  }, [text, speed, clearAll, shuffleWord]);
 
   useEffect(() => {
     return () => clearAll();
