@@ -1,47 +1,8 @@
 "use client";
 
-import { motion, useScroll, useTransform, useMotionValue, useSpring, animate } from "framer-motion";
-import { useRef, useEffect, useState, useCallback } from "react";
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
+import { useRef, useCallback } from "react";
 import { ArrowUpRight } from "lucide-react";
-
-function useCountUp(target: number, duration: number = 1.5, start: boolean = false) {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    if (!start) return;
-    const controls = animate(0, target, {
-      duration,
-      ease: "easeOut",
-      onUpdate: (v) => setCount(Math.round(v)),
-    });
-    return controls.stop;
-  }, [start, target, duration]);
-  return count;
-}
-
-function AnimatedStat({ value, label, suffix = "", delay = 0, trigger }: {
-  value: number;
-  label: string;
-  suffix?: string;
-  delay?: number;
-  trigger: boolean;
-}) {
-  const count = useCountUp(value, 1.8, trigger);
-  return (
-    <motion.div
-      className="flex flex-col"
-      initial={{ opacity: 0, y: 20 }}
-      animate={trigger ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay, duration: 0.5 }}
-    >
-      <span className="font-display text-4xl font-bold tabular-nums text-[var(--text-inverse)] leading-none">
-        {count}{suffix}
-      </span>
-      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-inverse)] opacity-40 mt-1">
-        {label}
-      </span>
-    </motion.div>
-  );
-}
 
 function MagneticButton({ href, children, variant = "default", id }: {
   href: string;
@@ -70,7 +31,7 @@ function MagneticButton({ href, children, variant = "default", id }: {
   }, [x, y]);
 
   const base =
-    "relative inline-flex items-center gap-3 px-7 py-4 font-mono text-xs uppercase tracking-[0.12em] font-semibold border-2 transition-all duration-150 select-none cursor-pointer group overflow-hidden";
+    "relative inline-flex items-center gap-3 px-7 py-4 font-mono text-xs uppercase tracking-[0.12em] font-semibold border-2 transition-all duration-150 select-none cursor-pointer group";
   const styles =
     variant === "accent"
       ? "bg-[var(--accent)] border-[var(--accent)] text-white shadow-[4px_4px_0_#fff] hover:shadow-[2px_2px_0_#fff] hover:translate-x-[2px] hover:translate-y-[2px]"
@@ -98,62 +59,76 @@ function MagneticButton({ href, children, variant = "default", id }: {
   );
 }
 
-function DecorativeGrid() {
+function DriftingLines() {
+  const horizontalLines = [15, 32, 50, 68, 85];
+  const verticalLines = [18, 35, 52, 70, 87];
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Horizontal lines */}
-      {[20, 40, 60, 80].map((pct) => (
+      {/* Horizontal drifting lines */}
+      {horizontalLines.map((pct, i) => (
         <motion.div
           key={`h-${pct}`}
           className="absolute left-0 right-0 h-px bg-[var(--text-inverse)]"
-          style={{ top: `${pct}%`, opacity: 0.04 }}
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1.2, delay: 0.1 * (pct / 20), ease: "easeOut" }}
-        />
-      ))}
-      {/* Vertical lines */}
-      {[20, 40, 60, 80].map((pct) => (
-        <motion.div
-          key={`v-${pct}`}
-          className="absolute top-0 bottom-0 w-px bg-[var(--text-inverse)]"
-          style={{ left: `${pct}%`, opacity: 0.04 }}
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: 1 }}
-          transition={{ duration: 1.2, delay: 0.1 * (pct / 20), ease: "easeOut" }}
+          style={{ top: `${pct}%`, opacity: 0.06 }}
+          animate={{ x: ["-8%", "8%", "-8%"] }}
+          transition={{
+            duration: 18 + i * 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 1.2,
+          }}
         />
       ))}
 
-      {/* Large accent cross */}
+      {/* Vertical drifting lines */}
+      {verticalLines.map((pct, i) => (
+        <motion.div
+          key={`v-${pct}`}
+          className="absolute top-0 bottom-0 w-px bg-[var(--text-inverse)]"
+          style={{ left: `${pct}%`, opacity: 0.06 }}
+          animate={{ y: ["-6%", "6%", "-6%"] }}
+          transition={{
+            duration: 22 + i * 2.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 0.9,
+          }}
+        />
+      ))}
+
+      {/* Concentric squares — slow rotation */}
       <motion.div
-        className="absolute right-[8%] top-[15%] w-[380px] h-[380px] opacity-[0.06]"
-        initial={{ opacity: 0, rotate: -10 }}
-        animate={{ opacity: 0.06, rotate: 0 }}
-        transition={{ duration: 1.5, delay: 0.6 }}
+        className="absolute right-[8%] top-[12%] w-[340px] h-[340px] opacity-[0.055]"
+        animate={{ rotate: [0, 360] }}
+        transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
       >
         <div className="absolute inset-0 border border-[var(--text-inverse)]" />
-        <div className="absolute inset-6 border border-[var(--text-inverse)]" />
-        <div className="absolute inset-12 border border-[var(--text-inverse)]" />
+        <div className="absolute inset-8 border border-[var(--text-inverse)]" />
+        <div className="absolute inset-16 border border-[var(--text-inverse)]" />
         <div className="absolute top-1/2 left-0 right-0 h-px bg-[var(--text-inverse)]" />
         <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[var(--text-inverse)]" />
       </motion.div>
 
-      {/* Dot cluster top-right */}
+      {/* Dot cluster — slow drift */}
       <motion.div
         className="absolute top-10 right-10 grid grid-cols-5 gap-2.5"
+        animate={{ y: [0, -10, 0], x: [0, 4, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
       >
-        {Array.from({ length: 25 }).map((_, i) => (
-          <div
-            key={i}
-            className="w-1 h-1 rounded-full bg-[var(--text-inverse)] opacity-20"
-          />
-        ))}
+        <motion.div
+          className="contents"
+          animate={{ opacity: [0.15, 0.25, 0.15] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        >
+          {Array.from({ length: 25 }).map((_, i) => (
+            <div key={i} className="w-1 h-1 rounded-full bg-[var(--text-inverse)]" />
+          ))}
+        </motion.div>
       </motion.div>
 
-      {/* Bottom-left coordinates label */}
+      {/* Coordinates label */}
       <motion.div
         className="absolute bottom-24 left-6 font-mono text-[9px] uppercase tracking-[0.25em] text-[var(--text-inverse)] opacity-20"
         initial={{ opacity: 0 }}
@@ -165,7 +140,7 @@ function DecorativeGrid() {
         <div className="mt-1 text-[var(--accent)] opacity-70">// HERO v2.0</div>
       </motion.div>
 
-      {/* Accent corner bracket top-left */}
+      {/* Corner brackets */}
       <motion.div
         className="absolute top-8 left-8 w-12 h-12 border-l-2 border-t-2 border-[var(--accent)] opacity-60"
         initial={{ opacity: 0, scale: 0.5 }}
@@ -179,16 +154,22 @@ function DecorativeGrid() {
         transition={{ delay: 0.9, duration: 0.6, ease: "backOut" }}
       />
 
-      {/* Glowing accent blob */}
+      {/* Glow blob */}
       <div
-        className="absolute top-1/2 right-[15%] -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none"
+        className="absolute top-1/2 right-[12%] -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{
-          background: "radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(37,99,235,0.1) 0%, transparent 70%)",
         }}
       />
     </div>
   );
 }
+
+const SERVICES = [
+  { label: "Web Development", index: "01" },
+  { label: "Technical Consulting", index: "02" },
+  { label: "SaaS Products", index: "03" },
+];
 
 const HEADLINE_LINES = [
   { text: "We build", delay: 0.3 },
@@ -197,7 +178,6 @@ const HEADLINE_LINES = [
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
-  const [statsVisible, setStatsVisible] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -208,18 +188,13 @@ export function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.97]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setStatsVisible(true), 1400);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <section
       ref={ref}
       className="relative flex min-h-screen items-center overflow-hidden bg-[var(--bg-hero)]"
       aria-label="Hero section"
     >
-      {/* Grain texture overlay */}
+      {/* Grain */}
       <div
         className="absolute inset-0 opacity-[0.025] mix-blend-screen"
         style={{
@@ -227,13 +202,13 @@ export function Hero() {
         }}
       />
 
-      <DecorativeGrid />
+      <DriftingLines />
 
       {/* Main content */}
       <div className="relative mx-auto w-full max-w-[1400px] px-6 md:px-16 py-32">
         <motion.div style={{ y, opacity, scale }}>
 
-          {/* Eyebrow tag */}
+          {/* Eyebrow */}
           <motion.div
             className="mb-10 inline-flex items-center gap-3"
             initial={{ opacity: 0, x: -20 }}
@@ -242,16 +217,16 @@ export function Hero() {
           >
             <motion.span
               className="inline-block h-2 w-2 rounded-full bg-[var(--accent)]"
-              animate={{ scale: [1, 1.4, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
+              animate={{ scale: [1, 1.5, 1] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
             />
             <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--accent)]">
-              Digital Products &amp; Consulting
+              buildroot_
             </span>
             <span className="h-px w-8 bg-[var(--accent)] opacity-40" />
           </motion.div>
 
-          {/* Headline lines */}
+          {/* Headline */}
           <div className="mb-4">
             {HEADLINE_LINES.map(({ text, delay }) => (
               <div key={text} className="overflow-hidden">
@@ -265,7 +240,6 @@ export function Hero() {
                 </motion.h1>
               </div>
             ))}
-            {/* Third line with accent word */}
             <div className="overflow-hidden">
               <motion.h1
                 className="headline text-display leading-[0.92]"
@@ -275,7 +249,6 @@ export function Hero() {
               >
                 <span className="relative inline-block text-[var(--accent)]">
                   products
-                  {/* Underline accent */}
                   <motion.span
                     className="absolute bottom-1 left-0 right-0 h-1 bg-[var(--accent)] origin-left"
                     initial={{ scaleX: 0 }}
@@ -288,74 +261,57 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Sub-grid: description + stats */}
-          <div className="mt-12 flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
-            {/* Description + CTAs */}
-            <div className="max-w-md">
-              <motion.p
-                className="text-base text-[var(--text-inverse)] opacity-55 leading-relaxed"
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 0.55, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.95 }}
-              >
-                Web development, technical consulting, and SaaS products for
-                startups and enterprises that demand precision.
-              </motion.p>
+          {/* Services list + CTAs */}
+          <div className="mt-14 flex flex-col gap-12 md:flex-row md:items-end md:justify-between">
 
-              <motion.div
-                className="mt-8 flex flex-wrap gap-4"
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.1 }}
-              >
-                <MagneticButton href="/work" variant="accent" id="hero-cta-work">
-                  View Our Work
-                </MagneticButton>
-                <MagneticButton href="/contact" id="hero-cta-contact">
-                  Start a Project
-                </MagneticButton>
-              </motion.div>
+            {/* Services */}
+            <div className="flex flex-col gap-0">
+              {SERVICES.map(({ label, index }, i) => (
+                <motion.div
+                  key={index}
+                  className="flex items-baseline gap-4 py-3 border-b border-[var(--text-inverse)] border-opacity-[0.12] group cursor-default"
+                  style={{ borderColor: "rgba(248,250,252,0.1)" }}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.0 + i * 0.12, duration: 0.5, ease: "easeOut" }}
+                  whileHover={{ x: 6 }}
+                >
+                  <span className="font-mono text-[10px] text-[var(--accent)] opacity-60 tabular-nums">
+                    {index}
+                  </span>
+                  <span className="heading text-h3 text-[var(--text-inverse)]">
+                    {label}
+                  </span>
+                  <motion.span
+                    className="ml-auto font-mono text-[10px] text-[var(--accent)] opacity-0 group-hover:opacity-60"
+                    transition={{ duration: 0.2 }}
+                  >
+                    →
+                  </motion.span>
+                </motion.div>
+              ))}
             </div>
 
-            {/* Stats */}
+            {/* CTAs */}
             <motion.div
-              className="flex gap-10 md:gap-14 border-l-2 border-[var(--text-inverse)] border-opacity-10 pl-10 md:pl-14"
-              style={{ borderColor: "rgba(248,250,252,0.1)" }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.5 }}
+              className="flex flex-wrap gap-4"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.4 }}
             >
-              <AnimatedStat value={30} suffix="+" label="Projects" delay={1.3} trigger={statsVisible} />
-              <AnimatedStat value={4} suffix="+" label="Years" delay={1.45} trigger={statsVisible} />
-              <AnimatedStat value={100} suffix="%" label="Remote" delay={1.6} trigger={statsVisible} />
+              <MagneticButton href="/work" variant="accent" id="hero-cta-work">
+                View Our Work
+              </MagneticButton>
+              <MagneticButton href="/contact" id="hero-cta-contact">
+                Start a Project
+              </MagneticButton>
             </motion.div>
           </div>
+
         </motion.div>
       </div>
 
-      {/* Floating tech badge */}
-      <motion.div
-        className="absolute top-1/2 right-10 -translate-y-1/2 hidden lg:flex flex-col items-end gap-2"
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 1.6, duration: 0.7 }}
-        aria-hidden="true"
-      >
-        {["Next.js", "TypeScript", "Tailwind", "Framer"].map((tech, i) => (
-          <motion.div
-            key={tech}
-            className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--text-inverse)] opacity-30"
-            initial={{ opacity: 0, x: 10 }}
-            animate={{ opacity: 0.3, x: 0 }}
-            transition={{ delay: 1.6 + i * 0.08, duration: 0.4 }}
-          >
-            <span className="h-px w-4 bg-[var(--accent)]" />
-            {tech}
-          </motion.div>
-        ))}
-      </motion.div>
-
-      {/* Diagonal cut bottom */}
+      {/* Diagonal cut */}
       <div
         className="absolute bottom-0 left-0 right-0 h-20 bg-[var(--bg-primary)] pointer-events-none"
         style={{ clipPath: "polygon(0 100%, 100% 100%, 100% 0)" }}
