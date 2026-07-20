@@ -58,7 +58,7 @@ export function Footer(): React.ReactElement {
               {/* Navigation & Legal (2 columns inside Pages) */}
               <div className="flex flex-col">
                 <div className="border-b-2 border-[var(--border)] w-full pb-4 mb-5">
-                  <p className="font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] capitalize tracking-tight text-[var(--text-muted)]">
+                  <p className="font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] capitalize tracking-tight text-[var(--text-primary)]">
                     Menu
                   </p>
                 </div>
@@ -103,7 +103,7 @@ export function Footer(): React.ReactElement {
                           href={link.href}
                           className={cn(
                             "group inline-flex items-center gap-2 leading-none",
-                            "font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] tracking-tight text-[var(--text-muted)]",
+                            "font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] tracking-tight text-[var(--text-primary)]",
                             "transition-colors duration-150 hover:text-[var(--text-primary)]"
                           )}
                         >
@@ -118,7 +118,7 @@ export function Footer(): React.ReactElement {
               {/* Social */}
               <div className="flex flex-col">
                 <div className="border-b-2 border-[var(--border)] w-full pb-4 mb-5">
-                  <p className="font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] capitalize tracking-tight text-[var(--text-muted)]">
+                  <p className="font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] capitalize tracking-tight text-[var(--text-primary)]">
                     Elsewhere
                   </p>
                 </div>
@@ -139,7 +139,7 @@ export function Footer(): React.ReactElement {
                         className={cn(
                           "group inline-flex items-center gap-2 leading-none",
                           "font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] tracking-tight",
-                          "text-[var(--text-muted)] transition-colors duration-150 hover:text-[var(--accent)]"
+                          "text-[var(--text-primary)] transition-colors duration-150 hover:text-[var(--accent)]"
                         )}
                         aria-label={`Visita buildroot en ${link.label}`}
                       >
@@ -173,7 +173,7 @@ export function Footer(): React.ReactElement {
               {/* Left — Address + City */}
               <div className="flex flex-col gap-0 divide-y-2 divide-[var(--border)]">
                 <div className="px-8 py-10 md:px-12 md:py-14">
-                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-3">
+                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-primary)] mb-3">
                     Dirección
                   </p>
                   <p className="headline text-[var(--text-primary)] text-[clamp(1.75rem,3vw,3.5rem)] leading-[0.95]">
@@ -181,7 +181,7 @@ export function Footer(): React.ReactElement {
                   </p>
                 </div>
                 <div className="px-8 py-10 md:px-12 md:py-14">
-                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-3">
+                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-primary)] mb-3">
                     Ciudad / País
                   </p>
                   <p className="headline text-[var(--text-primary)] text-[clamp(1.75rem,3vw,3.5rem)] leading-[0.95]">
@@ -193,7 +193,7 @@ export function Footer(): React.ReactElement {
               {/* Right — Phone + Email */}
               <div className="flex flex-col gap-0 divide-y-2 divide-[var(--border)]">
                 <div className="px-8 py-10 md:px-12 md:py-14">
-                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-3">
+                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-primary)] mb-3">
                     Teléfono
                   </p>
                   <a
@@ -206,7 +206,7 @@ export function Footer(): React.ReactElement {
                 </div>
                 <div className="px-8 py-10 md:px-12 md:py-14 flex flex-col justify-between gap-6">
                   <div>
-                    <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-3">
+                    <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-primary)] mb-3">
                       Correo
                     </p>
                     <a
@@ -217,7 +217,7 @@ export function Footer(): React.ReactElement {
                       {contactInfo.email}
                     </a>
                   </div>
-                  <p className="font-mono text-[9px] text-[var(--text-muted)]">
+                  <p className="font-mono text-[9px] text-[var(--text-primary)]">
                     © {year} buildroot_ — All rights reserved
                   </p>
                 </div>
