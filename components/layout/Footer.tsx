@@ -25,7 +25,7 @@ const legalLinks = [
 ];
 
 const contactInfo = {
-  address: "Av Panamericana",
+  address: "Cl.7 Este",
   city: "Ipiales, Nariño",
   phone: "+57 310 0000000",
   email: "hello@buildroot.tech",
