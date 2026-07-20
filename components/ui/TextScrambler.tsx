@@ -6,7 +6,6 @@ interface TextScramblerProps {
   text: string;
   className?: string;
   speed?: number;
-  iterations?: number;
   trigger?: "hover" | "mount" | "manual";
   active?: boolean;
   as?: "span" | "div" | "p" | "h1" | "h2" | "h3";
@@ -16,13 +15,10 @@ interface TextScramblerProps {
   onClick?: () => void;
 }
 
-const chars = "abcdefghijklmnopqrstuvwxyz";
-
 function ScrambleText({
   text,
   className,
-  speed = 30,
-  iterations = 6,
+  speed = 50,
   trigger = "hover",
   active = true,
   as: Tag = "span",
@@ -31,60 +27,44 @@ function ScrambleText({
   onMouseLeave,
   onClick,
 }: TextScramblerProps) {
-  const [displayText, setDisplayText] = useState(text);
-  const [isScrambling, setIsScrambling] = useState(false);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [display, setDisplay] = useState(text);
+  const timersRef = useRef<NodeJS.Timeout[]>([]);
+
+  const clearAll = useCallback(() => {
+    timersRef.current.forEach(clearTimeout);
+    timersRef.current = [];
+  }, []);
+
+  const travelFrame = useCallback((word: string, step: number): string => {
+    const letters = word.split("");
+    // Shuffle the remaining letters (from step onwards)
+    const remaining = letters.slice(step).sort(() => Math.random() - 0.5);
+    return [...letters.slice(0, step), ...remaining].join("");
+  }, []);
 
   const scramble = useCallback(() => {
-    if (!active || isScrambling) return;
+    clearAll();
+    const words = text.split(" ");
+    const maxLen = Math.max(...words.map((w) => w.length));
 
-    setIsScrambling(true);
-    let iteration = 0;
-    const maxIterations = iterations;
-
-    if (intervalRef.current) clearInterval(intervalRef.current);
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-
-    // Create array of letter positions to shuffle
-    const letters = text.split("");
-    const positions = letters.map((_, i) => i);
-
-    intervalRef.current = setInterval(() => {
-      // Shuffle positions for this frame
-      const shuffled = [...positions].sort(() => Math.random() - 0.5);
-
-      setDisplayText(
-        shuffled
-          .map((pos, i) => {
-            if (i < iteration / (maxIterations / text.length)) {
-              return text[pos];
-            }
-            return letters[pos];
-          })
-          .join("")
-      );
-
-      iteration++;
-
-      if (iteration >= maxIterations) {
-        if (intervalRef.current) clearInterval(intervalRef.current);
-        setDisplayText(text);
-
-        // Small delay before allowing re-trigger
-        timeoutRef.current = setTimeout(() => {
-          setIsScrambling(false);
-        }, 100);
-      }
-    }, speed);
-  }, [text, speed, iterations, active, isScrambling]);
+    for (let step = 1; step <= maxLen; step++) {
+      const t = setTimeout(() => {
+        if (step >= maxLen) {
+          setDisplay(text);
+        } else {
+          const result = words
+            .map((word) => travelFrame(word, Math.min(step, word.length - 1)))
+            .join(" ");
+          setDisplay(result);
+        }
+      }, step * speed);
+      timersRef.current.push(t);
+    }
+  }, [text, speed, clearAll, travelFrame]);
 
   useEffect(() => {
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    };
-  }, []);
+    return () => clearAll();
+  }, [clearAll]);
 
   useEffect(() => {
     if (trigger === "mount" && active) {
@@ -105,7 +85,7 @@ function ScrambleText({
       onMouseLeave={onMouseLeave}
       onClick={onClick}
     >
-      {displayText}
+      {display}
     </Tag>
   );
 }
