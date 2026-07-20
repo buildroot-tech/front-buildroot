@@ -40,7 +40,7 @@ export function Footer(): React.ReactElement {
   return (
     <footer
       id="footer"
-      className="border-t-2 border-[var(--border)] bg-[var(--bg-primary)]"
+      className="bg-[var(--bg-primary)]"
       aria-label="Site footer"
     >
       <div className="flex flex-col">
