@@ -167,12 +167,13 @@ export function Footer(): React.ReactElement {
             <div className="flex flex-col gap-2">
               
               {/* Row 1: Location */}
-              <div className="flex flex-col xl:flex-row items-baseline justify-between px-2 py-1 gap-4 xl:gap-0">
+              <div className="flex flex-col xl:flex-row items-baseline justify-between px-2 py-1 gap-2 xl:gap-0">
                 <div className="flex flex-col md:flex-row items-baseline gap-1 md:gap-2 w-full xl:w-auto">
                   <span className="headline text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
                     {contactInfo.address}
                   </span>
-                  <div className="flex items-center gap-2 md:gap-3 font-mono text-[clamp(1.1rem,1.8vw,1.8rem)] uppercase font-bold tracking-tighter text-[var(--text-primary)]">
+                  
+                  <div className="flex items-center gap-1 md:gap-2 font-mono text-[clamp(1.1rem,1.8vw,1.8rem)] uppercase font-bold tracking-tighter text-[var(--text-primary)]">
                     <span className="text-[1.6em] leading-none font-normal">↗</span>
                     <div className="flex flex-col leading-[0.85]">
                       <span>00.827782</span>
@@ -180,13 +181,14 @@ export function Footer(): React.ReactElement {
                     </div>
                     <span className="text-[1.6em] leading-none font-normal">↘</span>
                   </div>
-                </div>
-                
-                <div className="flex items-end gap-3 w-full xl:w-auto justify-end">
+
                   <span className="headline text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
                     {contactInfo.city}
                   </span>
-                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[var(--text-primary)] shrink-0">
+                </div>
+                
+                <div className="flex items-end justify-end shrink-0 hidden xl:flex">
+                  <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[var(--text-primary)] shrink-0">
                     <path d="M3 20h18L15 8l-3 4-2-2-6 10z"/>
                     <path d="M12 3v3" />
                     <path d="M10 5l-1.5-1.5" />
