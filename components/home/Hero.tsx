@@ -204,7 +204,7 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-screen items-center overflow-hidden bg-[var(--bg-hero)]"
+      className="relative flex min-h-[115vh] items-center overflow-hidden bg-[var(--bg-hero)]"
       aria-label="Hero section"
     >
       {/* Grain */}
