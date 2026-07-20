@@ -210,16 +210,16 @@ export function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.05, duration: 0.45 }}
           >
-            {[0.16, 0.08, 0.04].map((opacity, i) => (
+            {[0.16, 0.06].map((opacity, i) => (
               <span
                 key={i}
                 className={`block font-display uppercase ${i === 0 ? "relative" : ""}`}
                 style={{
                   ...textBase,
-                  lineHeight: 0.74,
-                  marginTop: i === 0 ? "-0.14em" : 0,
+                  lineHeight: 0.55,
+                  marginTop: i === 0 ? "-0.2em" : 0,
                   zIndex: i === 0 ? -1 : "auto",
-                  WebkitTextStroke: `${i === 0 ? 2 : i === 1 ? 1.5 : 1}px rgba(248,250,252,${opacity})`,
+                  WebkitTextStroke: `${i === 0 ? 2 : 1.5}px rgba(248,250,252,${opacity})`,
                   color: "transparent",
                 }}
               >
