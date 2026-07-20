@@ -160,8 +160,6 @@ export function Footer(): React.ReactElement {
           </div>
         </div>
 
-        {/* ── LOWER HALF — Contact Info Box ── */}
-        <div className="flex justify-end px-4 md:px-6 pb-4 md:pb-6 pt-12 md:pt-8">
         {/* ── LOWER HALF (Contact Info) ── */}
         <div className="pt-12 md:pt-8 pb-4 md:pb-6 relative w-full overflow-hidden">
           {/* Main Info Box */}
