@@ -84,8 +84,8 @@ export function Footer(): React.ReactElement {
                           )}
                           style={{ minWidth: `${link.label.length}ch` }}
                         >
-                          <ScrambleText text={link.label} speed={75} />
-                          <span className="absolute -bottom-1 right-0 h-[2px] w-full bg-current scale-x-0 origin-right transition-transform duration-500 ease-out group-hover:scale-x-100" />
+                          <ScrambleText text={link.label} speed={55} />
+                          <span className="absolute -bottom-1 left-0 h-[2px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                         </Link>
                       </motion.div>
                     ))}
@@ -110,8 +110,8 @@ export function Footer(): React.ReactElement {
                           )}
                           style={{ minWidth: `${link.label.length}ch` }}
                         >
-                          <ScrambleText text={link.label} speed={75} />
-                          <span className="absolute -bottom-1 right-0 h-[2px] w-full bg-current scale-x-0 origin-right transition-transform duration-500 ease-out group-hover:scale-x-100" />
+                          <ScrambleText text={link.label} speed={55} />
+                          <span className="absolute -bottom-1 left-0 h-[2px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                         </Link>
                       </motion.div>
                     ))}
@@ -148,8 +148,8 @@ export function Footer(): React.ReactElement {
                         style={{ minWidth: `${link.label.length}ch` }}
                         aria-label={`Visita buildroot en ${link.label}`}
                       >
-                        <ScrambleText text={link.label} speed={75} />
-                        <span className="absolute -bottom-1 right-0 h-[2px] w-full bg-current scale-x-0 origin-right transition-transform duration-500 ease-out group-hover:scale-x-100" />
+                        <ScrambleText text={link.label} speed={55} />
+                        <span className="absolute -bottom-1 left-0 h-[2px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                       </a>
                     </motion.div>
                   ))}
