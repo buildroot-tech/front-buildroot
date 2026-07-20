@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { ScrambleText } from "@/components/ui/TextScrambler";
 
 const navLinks = [
   { href: "/work", label: "work" },
@@ -77,12 +78,14 @@ export function Footer(): React.ReactElement {
                         <Link
                           href={link.href}
                           className={cn(
-                            "group inline-flex items-center gap-2 leading-[0.8]",
+                            "group relative inline-flex items-center gap-2 leading-[0.8]",
                             "font-mono text-[clamp(1.35rem,1.6vw,1.8rem)] tracking-tight",
-                            "text-[var(--text-primary)] transition-colors duration-150 hover:text-[var(--accent)]"
+                            "text-[var(--text-primary)]"
                           )}
+                          style={{ minWidth: `${link.label.length}ch` }}
                         >
-                          {link.label}
+                          <ScrambleText text={link.label} speed={55} />
+                          <span className="absolute -bottom-1 left-0 h-[2px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                         </Link>
                       </motion.div>
                     ))}
@@ -102,12 +105,13 @@ export function Footer(): React.ReactElement {
                         <Link
                           href={link.href}
                           className={cn(
-                            "group inline-flex items-center gap-2 leading-[0.8]",
-                            "font-mono text-[clamp(1.35rem,1.6vw,1.8rem)] tracking-tight text-[var(--text-primary)]",
-                            "transition-colors duration-150 hover:text-[var(--text-primary)]"
+                            "group relative inline-flex items-center gap-2 leading-[0.8]",
+                            "font-mono text-[clamp(1.35rem,1.6vw,1.8rem)] tracking-tight text-[var(--text-primary)]"
                           )}
+                          style={{ minWidth: `${link.label.length}ch` }}
                         >
-                          {link.label}
+                          <ScrambleText text={link.label} speed={55} />
+                          <span className="absolute -bottom-1 left-0 h-[2px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                         </Link>
                       </motion.div>
                     ))}
@@ -137,13 +141,15 @@ export function Footer(): React.ReactElement {
                         target="_blank"
                         rel="noopener noreferrer"
                         className={cn(
-                          "group inline-flex items-center gap-2 leading-[0.8]",
+                          "group relative inline-flex items-center gap-2 leading-[0.8]",
                           "font-mono text-[clamp(1.35rem,1.6vw,1.8rem)] tracking-tight",
-                          "text-[var(--text-primary)] transition-colors duration-150 hover:text-[var(--accent)]"
+                          "text-[var(--text-primary)]"
                         )}
+                        style={{ minWidth: `${link.label.length}ch` }}
                         aria-label={`Visita buildroot en ${link.label}`}
                       >
-                        {link.label}
+                        <ScrambleText text={link.label} speed={55} />
+                        <span className="absolute -bottom-1 left-0 h-[2px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                       </a>
                     </motion.div>
                   ))}
