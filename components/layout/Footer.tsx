@@ -198,11 +198,11 @@ export function Footer(): React.ReactElement {
                     Teléfono
                   </span>
                 </div>
-                <div className="flex-1 flex flex-col w-full">
+                <div className="flex-1 flex flex-col w-full border-2 border-[var(--border)] divide-y-2 divide-[var(--border)]">
                   <div className="flex items-center justify-center font-mono text-[clamp(1.2rem,2vw,1.5rem)] font-bold bg-[var(--text-primary)] text-[var(--bg-primary)] py-1">
                     {contactInfo.phone.split(" ")[0]}
                   </div>
-                  <div className="flex">
+                  <div className="flex divide-x-2 divide-[var(--border)]">
                     <div className="flex-1 flex items-center justify-center font-mono text-[clamp(1.2rem,2vw,1.5rem)] font-bold bg-[var(--bg-primary)] text-[var(--text-primary)] py-1">
                       {contactInfo.phone.split(" ")[1]}
                     </div>
