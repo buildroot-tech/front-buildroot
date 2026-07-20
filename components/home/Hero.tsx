@@ -94,7 +94,7 @@ function Decorative() {
    Constants
 ───────────────────────────────────────────────────────── */
 const HEADER_H  = 80;
-const FS        = "clamp(64px, 13vw, 220px)";
+const FS        = "clamp(48px, min(13vw, 20vh), 220px)";
 const LH_MAIN   = 0.88;
 const LH_GHOST  = 0.50;
 
