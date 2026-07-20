@@ -6,19 +6,22 @@ import { Terminal } from "lucide-react";
 
 export function WorkSection() {
   return (
-    <section id="work" className="relative w-full bg-[var(--bg-primary)] pt-4 md:pt-6 pb-16 md:pb-24 overflow-hidden">
-      {/* Brutalist Marquee Ticker Strip */}
-      <div className="w-full bg-[var(--bg-hero)] py-2.5 text-[var(--text-inverse)] font-mono text-xs font-bold overflow-hidden select-none mb-8 md:mb-10">
+    <section id="work" className="relative w-full bg-white pt-4 md:pt-6 pb-16 md:pb-24 overflow-hidden">
+      {/* Terminal Telemetry Marquee Ticker Strip — Light Mode */}
+      <div className="w-full border-y border-[var(--text-primary)]/10 py-2.5 font-mono text-xs font-bold overflow-hidden select-none mb-8 md:mb-10">
         <div className="flex whitespace-nowrap animate-marquee gap-8">
-          <span className="text-[var(--accent)]">/// SYSTEM_LOGS: PHASE_WORK</span>
-          <span>● PRODUCTION_DEPLOYED</span>
-          <span className="text-slate-400">ARCH: NEXTJS_16_TURBOPACK</span>
-          <span className="text-[var(--accent)]">PERF_TARGET: 95+ LIGHTHOUSE</span>
-          <span>WCAG_2.1_AA_COMPLIANT</span>
-          <span className="text-slate-400">STRICT_TYPESCRIPT</span>
-          <span className="text-[var(--accent)]">/// SYSTEM_LOGS: PHASE_WORK</span>
-          <span>● PRODUCTION_DEPLOYED</span>
-          <span className="text-slate-400">ARCH: NEXTJS_16_TURBOPACK</span>
+          <span className="text-[var(--accent)]">/// SYSTEM_LOGS: WORK_MODULE_ACTIVE</span>
+          <span className="text-[var(--text-primary)]">● PRODUCTION_DEPLOYED</span>
+          <span className="text-[var(--text-muted)]">STATUS: 200_OK</span>
+          <span className="text-[var(--accent)]">LATENCY: &lt;15MS_EDGE</span>
+          <span className="text-[var(--text-primary)]">PIPELINE: CI_CD_VERIFIED</span>
+          <span className="text-[var(--text-muted)]">MEMORY: OPTIMIZED_ALLOC</span>
+          <span className="text-[var(--accent)]">SECURITY: HARDENED_SHIELD</span>
+          <span className="text-[var(--text-primary)]">BUILD: STABLE_RELEASE</span>
+          <span className="text-[var(--text-muted)]">ROUTING: DISTRIBUTED_NODES</span>
+          <span className="text-[var(--accent)]">/// SYSTEM_LOGS: WORK_MODULE_ACTIVE</span>
+          <span className="text-[var(--text-primary)]">● PRODUCTION_DEPLOYED</span>
+          <span className="text-[var(--text-muted)]">STATUS: 200_OK</span>
         </div>
       </div>
 
