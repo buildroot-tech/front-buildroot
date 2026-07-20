@@ -263,7 +263,7 @@ export function Hero() {
         }}
       >
         {/* ── Headline ── */}
-        <div className="flex-1 flex flex-col justify-center">
+        <div className="flex-1 flex flex-col justify-end pb-8">
 
           {/* We build */}
           <div className="overflow-hidden">
