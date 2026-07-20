@@ -181,8 +181,8 @@ function DecorativeDetails() {
         animate={{ opacity: 0.18 }}
         transition={{ delay: 1.4, duration: 0.8 }}
       >
-        <div>X: 00.00 N</div>
-        <div>Y: 90.00 W</div>
+        <div>LAT: 00.83 N</div>
+        <div>LON: 77.64 W</div>
       </motion.div>
     </div>
   );
