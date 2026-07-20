@@ -40,7 +40,7 @@ export function Header() {
           "fixed top-0 left-0 right-0 z-50 transition-colors duration-300",
           scrolled
             ? "border-b-2 border-[var(--border)] bg-[var(--bg-primary)]"
-            : "bg-transparent"
+            : "bg-transparent",
         )}
       >
         <div className="flex items-center justify-between px-6 py-5">
@@ -48,32 +48,39 @@ export function Header() {
           <Link
             href="/"
             className="font-mono text-3xl font-bold tracking-tight"
-            style={{ color: scrolled ? "var(--text-primary)" : "var(--text-inverse)" }}
+            style={{
+              color: scrolled ? "var(--text-primary)" : "var(--text-inverse)",
+            }}
           >
             <ScrambleText text="buildroot_" speed={80} />
           </Link>
 
           {/* Center nav */}
-          <nav className="hidden items-center gap-0 md:flex md:ml-40">
+          <nav className="hidden items-center gap-0 md:flex md:ml-40 overflow-hidden">
             {navLinks.map((link, i) => (
               <span key={link.href} className="flex items-center">
                 <Link
                   href={link.href}
                   className="group relative font-mono text-3xl font-medium tracking-tight transition-colors hover:text-[var(--accent)]"
                   style={{
-                    color: scrolled ? "var(--text-primary)" : "var(--text-inverse)",
+                    color: scrolled
+                      ? "var(--text-primary)"
+                      : "var(--text-inverse)",
                     minWidth: `${link.label.length}ch`,
                   }}
                 >
                   <ScrambleText text={link.label} speed={55} />
-                  <span
-                    className="absolute bottom-0 left-0 h-[3px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100"
-                  />
+                  <span className="absolute bottom-0 left-0 h-[3px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                 </Link>
                 {i < navLinks.length - 1 && (
                   <span
                     className="text-3xl"
-                    style={{ color: scrolled ? "var(--text-muted)" : "var(--text-inverse)", opacity: 0.4 }}
+                    style={{
+                      color: scrolled
+                        ? "var(--text-muted)"
+                        : "var(--text-inverse)",
+                      opacity: 0.4,
+                    }}
                   >
                     ,
                   </span>
@@ -88,13 +95,11 @@ export function Header() {
             className="group relative font-mono text-3xl font-medium tracking-tight transition-colors hover:text-[var(--accent)] ml-8"
             style={{
               color: scrolled ? "var(--text-primary)" : "var(--text-inverse)",
-              minWidth: "8ch",
+              minWidth: "9ch",
             }}
           >
             <ScrambleText text="let's talk" speed={55} />
-            <span
-              className="absolute bottom-0 left-0 h-[3px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100"
-            />
+            <span className="absolute bottom-0 left-0 h-[3px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
           </a>
 
           {/* Mobile Burger */}
@@ -105,20 +110,34 @@ export function Header() {
           >
             <motion.span
               className="block h-0.5 w-6"
-              style={{ background: scrolled ? "var(--text-primary)" : "var(--text-inverse)" }}
+              style={{
+                background: scrolled
+                  ? "var(--text-primary)"
+                  : "var(--text-inverse)",
+              }}
               animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.2 }}
             />
             <motion.span
               className="block h-0.5 w-6"
-              style={{ background: scrolled ? "var(--text-primary)" : "var(--text-inverse)" }}
+              style={{
+                background: scrolled
+                  ? "var(--text-primary)"
+                  : "var(--text-inverse)",
+              }}
               animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
               transition={{ duration: 0.2 }}
             />
             <motion.span
               className="block h-0.5 w-6"
-              style={{ background: scrolled ? "var(--text-primary)" : "var(--text-inverse)" }}
-              animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+              style={{
+                background: scrolled
+                  ? "var(--text-primary)"
+                  : "var(--text-inverse)",
+              }}
+              animate={
+                mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }
+              }
               transition={{ duration: 0.2 }}
             />
           </button>
