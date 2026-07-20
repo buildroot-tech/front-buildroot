@@ -156,15 +156,7 @@ export function Footer(): React.ReactElement {
               </div>
             </div>
 
-            {/* Brand stamp */}
-            <div className="mt-10">
-              <Link
-                href="/"
-                className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors"
-              >
-                buildroot_ — digital ventures
-              </Link>
-            </div>
+
           </div>
         </div>
 
