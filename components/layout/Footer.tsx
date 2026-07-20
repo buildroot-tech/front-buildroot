@@ -53,7 +53,7 @@ export function Footer(): React.ReactElement {
               {/* Navigation */}
               <div className="flex flex-col">
                 <div className="border-b-2 border-[var(--border)] w-full pb-4 mb-5">
-                  <p className="font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] uppercase tracking-tight text-[var(--text-muted)]">
+                  <p className="font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] capitalize tracking-tight text-[var(--text-muted)]">
                     Pages
                   </p>
                 </div>
@@ -88,7 +88,7 @@ export function Footer(): React.ReactElement {
               {/* Social */}
               <div className="flex flex-col">
                 <div className="border-b-2 border-[var(--border)] w-full pb-4 mb-5">
-                  <p className="font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] uppercase tracking-tight text-[var(--text-muted)]">
+                  <p className="font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] capitalize tracking-tight text-[var(--text-muted)]">
                     Presencia
                   </p>
                 </div>
@@ -127,7 +127,7 @@ export function Footer(): React.ReactElement {
               {/* Legal / Cookies */}
               <div className="flex flex-col">
                 <div className="border-b-2 border-[var(--border)] w-full pb-4 mb-5">
-                  <p className="font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] uppercase tracking-tight text-[var(--text-muted)]">
+                  <p className="font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] capitalize tracking-tight text-[var(--text-muted)]">
                     Legal
                   </p>
                 </div>
