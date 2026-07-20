@@ -46,18 +46,18 @@ export function Footer(): React.ReactElement {
       <div className="flex flex-col">
 
         {/* ── UPPER HALF ── */}
-        <div className="border-b-2 border-[var(--border)] px-6 md:px-16 py-12 md:py-14">
-          <div className="mx-auto max-w-[1400px]">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+        <div className="border-b-2 border-[var(--border)] px-4 md:px-12 py-12 md:py-16">
+          <div className="w-[95%] mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-24">
 
               {/* Navigation */}
               <div className="flex flex-col">
-                <div className="border-b-2 border-[var(--border)] w-full pb-4 mb-6">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                <div className="border-b-2 border-[var(--border)] w-full pb-6 mb-8">
+                  <p className="font-mono text-[clamp(1.5rem,2vw,2.5rem)] uppercase tracking-tight text-[var(--text-muted)]">
                     Pages
                   </p>
                 </div>
-                <nav className="flex flex-col gap-0.5" aria-label="Footer navigation">
+                <nav className="flex flex-col gap-4" aria-label="Footer navigation">
                   {navLinks.map((link, i) => (
                     <motion.div
                       key={link.href}
@@ -70,13 +70,12 @@ export function Footer(): React.ReactElement {
                       <Link
                         href={link.href}
                         className={cn(
-                          "group inline-flex items-center gap-2.5",
-                          "font-display text-[clamp(1.4rem,2vw,2rem)] font-bold",
-                          "leading-tight tracking-tight text-[var(--text-primary)]",
-                          "transition-colors duration-150 hover:text-[var(--accent)]"
+                          "group inline-flex items-center gap-4",
+                          "font-mono text-[clamp(1.5rem,2vw,2.5rem)] tracking-tight",
+                          "text-[var(--text-primary)] transition-colors duration-150 hover:text-[var(--accent)]"
                         )}
                       >
-                        <span className="font-mono text-[9px] text-[var(--text-muted)] group-hover:text-[var(--accent)] transition-colors tabular-nums">
+                        <span className="text-[var(--text-muted)] group-hover:text-[var(--accent)] transition-colors tabular-nums opacity-50">
                           0{i + 1}
                         </span>
                         {link.label}
@@ -88,12 +87,12 @@ export function Footer(): React.ReactElement {
 
               {/* Social */}
               <div className="flex flex-col">
-                <div className="border-b-2 border-[var(--border)] w-full pb-4 mb-6">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                <div className="border-b-2 border-[var(--border)] w-full pb-6 mb-8">
+                  <p className="font-mono text-[clamp(1.5rem,2vw,2.5rem)] uppercase tracking-tight text-[var(--text-muted)]">
                     Presencia
                   </p>
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-4">
                   {socialLinks.map((link, i) => (
                     <motion.div
                       key={link.href}
@@ -108,15 +107,14 @@ export function Footer(): React.ReactElement {
                         target="_blank"
                         rel="noopener noreferrer"
                         className={cn(
-                          "group inline-flex items-center gap-3",
-                          "font-mono text-[clamp(0.85rem,1.2vw,1.1rem)]",
-                          "text-[var(--text-muted)] transition-colors duration-150",
-                          "hover:text-[var(--accent)]"
+                          "group inline-flex items-center gap-4",
+                          "font-mono text-[clamp(1.5rem,2vw,2.5rem)] tracking-tight",
+                          "text-[var(--text-muted)] transition-colors duration-150 hover:text-[var(--accent)]"
                         )}
                         aria-label={`Visita buildroot en ${link.label}`}
                       >
                         <span
-                          className="block h-[1.5px] bg-current transition-all duration-300 w-4 group-hover:w-8"
+                          className="block h-[2px] bg-current transition-all duration-300 w-6 group-hover:w-12"
                           aria-hidden="true"
                         />
                         {link.label}
@@ -128,16 +126,16 @@ export function Footer(): React.ReactElement {
 
               {/* Legal / Cookies */}
               <div className="flex flex-col">
-                <div className="border-b-2 border-[var(--border)] w-full pb-4 mb-6">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                <div className="border-b-2 border-[var(--border)] w-full pb-6 mb-8">
+                  <p className="font-mono text-[clamp(1.5rem,2vw,2.5rem)] uppercase tracking-tight text-[var(--text-muted)]">
                     Legal
                   </p>
                 </div>
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col gap-4">
                   {[
-                    { href: "/privacy", label: "Política de privacidad" },
+                    { href: "/privacy", label: "Privacidad" },
                     { href: "/cookies", label: "Cookies" },
-                    { href: "/terms", label: "Términos de uso" },
+                    { href: "/terms", label: "Términos" },
                   ].map((link, i) => (
                     <motion.div
                       key={link.href}
@@ -150,7 +148,7 @@ export function Footer(): React.ReactElement {
                       <Link
                         href={link.href}
                         className={cn(
-                          "font-mono text-sm text-[var(--text-muted)]",
+                          "font-mono text-[clamp(1.5rem,2vw,2.5rem)] tracking-tight text-[var(--text-muted)]",
                           "transition-colors duration-150 hover:text-[var(--text-primary)]"
                         )}
                       >
@@ -161,8 +159,6 @@ export function Footer(): React.ReactElement {
                 </div>
               </div>
             </div>
-
-
           </div>
         </div>
 
