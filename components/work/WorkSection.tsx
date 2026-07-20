@@ -36,15 +36,15 @@ export function WorkSection() {
           className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-10"
         >
           <div>
-            <div className="inline-flex items-center gap-2 bg-[var(--bg-secondary)] px-3.5 py-1.5 font-mono text-xs font-bold uppercase text-[var(--accent)] tracking-widest">
+            <div className="inline-flex items-center gap-2 border border-[var(--text-primary)]/10 px-3.5 py-1.5 font-mono text-xs font-bold uppercase text-[var(--accent)] tracking-widest">
               <Terminal className="h-3.5 w-3.5" />
               <span>// Selected Works</span>
             </div>
             <h2 className="headline text-h1 mt-4 text-[var(--text-primary)] tracking-tight">
               Featured Projects & Architecture
             </h2>
-            <p className="mt-3 text-base md:text-lg text-[var(--text-muted)] max-w-3xl leading-relaxed font-sans">
-              Engineering high-performance SaaS applications, custom web platforms, and modern cloud architectures built with technical precision, scalability, and design craftsmanship.
+            <p className="mt-3 text-base md:text-lg text-[var(--text-primary)] max-w-3xl leading-relaxed font-sans">
+              Engineering high-performance digital products, custom web platforms, and modern cloud architectures built with technical precision, scalability, and design craftsmanship.
             </p>
           </div>
         </motion.div>
