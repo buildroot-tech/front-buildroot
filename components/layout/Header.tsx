@@ -84,8 +84,8 @@ export function Header() {
                     minWidth: `${link.label.length}ch`,
                   }}
                 >
-                  <ScrambleText text={link.label} speed={55} />
-                  <span className="absolute bottom-0 left-0 h-[3px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+                  <ScrambleText text={link.label} speed={75} />
+                  <span className="absolute bottom-0 right-0 h-[3px] w-full bg-current scale-x-0 origin-right transition-transform duration-500 ease-out group-hover:scale-x-100" />
                 </Link>
                 {i < navLinks.length - 1 && (
                   <span
@@ -111,8 +111,8 @@ export function Header() {
               minWidth: "9ch",
             }}
           >
-            <ScrambleText text="let_s talk" speed={55} />
-            <span className="absolute bottom-0 left-0 h-[3px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+            <ScrambleText text="let_s talk" speed={75} />
+            <span className="absolute bottom-0 right-0 h-[3px] w-full bg-current scale-x-0 origin-right transition-transform duration-500 ease-out group-hover:scale-x-100" />
           </Link>
 
           {/* Mobile Burger */}
