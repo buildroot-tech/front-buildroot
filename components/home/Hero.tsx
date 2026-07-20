@@ -154,13 +154,7 @@ function DecorativeDetails() {
         ))}
       </motion.div>
 
-      {/* Corner brackets */}
-      <motion.div
-        className="absolute top-8 left-8 w-10 h-10 border-l-2 border-t-2 border-[var(--accent)]"
-        initial={{ opacity: 0, scale: 0.6 }}
-        animate={{ opacity: 0.5, scale: 1 }}
-        transition={{ delay: 0.8, duration: 0.6, ease: "backOut" }}
-      />
+
       <motion.div
         className="absolute bottom-8 right-8 w-10 h-10 border-r-2 border-b-2 border-[var(--accent)]"
         initial={{ opacity: 0, scale: 0.6 }}
