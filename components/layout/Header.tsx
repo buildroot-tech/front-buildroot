@@ -66,7 +66,7 @@ export function Header() {
                 </Link>
                 {i < navLinks.length - 1 && (
                   <span
-                    className="ml-1 text-3xl"
+                    className="text-3xl"
                     style={{ color: scrolled ? "var(--text-muted)" : "var(--text-inverse)", opacity: 0.4 }}
                   >
                     ,
