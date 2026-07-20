@@ -119,7 +119,7 @@ export function Footer(): React.ReactElement {
               <div className="flex flex-col">
                 <div className="border-b-2 border-[var(--border)] w-full pb-4 mb-5">
                   <p className="font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] capitalize tracking-tight text-[var(--text-muted)]">
-                    Presencia
+                    Socials
                   </p>
                 </div>
                 <div className="flex flex-col gap-1">
