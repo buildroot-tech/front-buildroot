@@ -168,7 +168,7 @@ export function Footer(): React.ReactElement {
               
               {/* Row 1: Location */}
               <div className="flex flex-col xl:flex-row items-center justify-between px-2 py-1 gap-4 xl:gap-0">
-                <div className="flex flex-col md:flex-row items-baseline gap-4 md:gap-8 w-full xl:w-auto">
+                <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full xl:w-auto">
                   <span className="headline text-[var(--text-primary)] text-[clamp(2rem,3.5vw,4.5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
                     {contactInfo.address}
                   </span>
