@@ -202,9 +202,9 @@ export function Footer(): React.ReactElement {
                 </svg>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--text-primary)] shrink-0 w-[clamp(2.5rem,4.5vw,6rem)] h-[clamp(2.5rem,4.5vw,6rem)] translate-y-1 md:translate-y-2 ml-[-1vw]">
                   {/* Single continuous elegant line for the silhouette and ear */}
-                  <path d="M20 15C20 11 17 8 15 8C15 5 13 5 13 8C9 8 4 11 4 15V18H18C20 18 20 16 20 15Z" />
+                  <path d="M20 17C20 13 17 10 15 10C15 7 13 7 13 10C9 10 4 13 4 17V20H18C20 20 20 18 20 17Z" />
                   {/* Minimalist eye */}
-                  <circle cx="16" cy="12" r="1" fill="currentColor" stroke="none" />
+                  <circle cx="16" cy="14" r="1" fill="currentColor" stroke="none" />
                 </svg>
               </div>
 
