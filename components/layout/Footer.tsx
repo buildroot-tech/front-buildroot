@@ -172,10 +172,9 @@ export function Footer(): React.ReactElement {
                   <span className="headline text-[var(--text-primary)] text-[clamp(2rem,3.5vw,4.5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
                     {contactInfo.address}
                   </span>
-                  <div className="flex gap-4 font-mono text-[10px] md:text-[12px] uppercase opacity-60">
+                  <div className="flex flex-col font-mono text-[10px] md:text-[12px] uppercase opacity-60 leading-tight">
                     <span>0°49'39"N</span>
                     <span>77°38'24"W</span>
-                    <span>ALT_2898M</span>
                   </div>
                 </div>
                 
