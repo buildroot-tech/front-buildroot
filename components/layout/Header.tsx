@@ -50,7 +50,7 @@ export function Header() {
             className="font-mono text-3xl font-bold tracking-tight"
             style={{ color: scrolled ? "var(--text-primary)" : "var(--text-inverse)" }}
           >
-            buildroot_
+            <ScrambleText text="buildroot_" speed={80} />
           </Link>
 
           {/* Center nav */}
