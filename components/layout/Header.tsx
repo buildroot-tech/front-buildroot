@@ -59,10 +59,13 @@ export function Header() {
               <span key={link.href} className="flex items-center">
                 <Link
                   href={link.href}
-                  className="font-mono text-3xl font-medium tracking-tight transition-colors hover:text-[var(--accent)]"
+                  className="group relative font-mono text-3xl font-medium tracking-tight transition-colors hover:text-[var(--accent)]"
                   style={{ color: scrolled ? "var(--text-primary)" : "var(--text-inverse)" }}
                 >
                   <ScrambleText text={link.label} speed={55} />
+                  <span
+                    className="absolute bottom-0 left-0 h-[3px] w-0 bg-current transition-all duration-300 ease-out group-hover:w-full"
+                  />
                 </Link>
                 {i < navLinks.length - 1 && (
                   <span
@@ -79,10 +82,13 @@ export function Header() {
           {/* Contact link */}
           <a
             href="mailto:hello@buildroot.dev"
-            className="font-mono text-3xl font-medium tracking-tight transition-colors hover:text-[var(--accent)] ml-8"
+            className="group relative font-mono text-3xl font-medium tracking-tight transition-colors hover:text-[var(--accent)] ml-8"
             style={{ color: scrolled ? "var(--text-primary)" : "var(--text-inverse)" }}
           >
             let's talk
+            <span
+              className="absolute bottom-0 left-0 h-[3px] w-0 bg-current transition-all duration-300 ease-out group-hover:w-full"
+            />
           </a>
 
           {/* Mobile Burger */}
