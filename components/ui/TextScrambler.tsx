@@ -43,23 +43,24 @@ function ScrambleText({
     let iteration = 0;
     const maxIterations = iterations;
 
-    // Get unique letters from the original word
-    const wordLetters = [...new Set(text.split(""))];
-
     if (intervalRef.current) clearInterval(intervalRef.current);
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
+    // Create array of letter positions to shuffle
+    const letters = text.split("");
+    const positions = letters.map((_, i) => i);
+
     intervalRef.current = setInterval(() => {
+      // Shuffle positions for this frame
+      const shuffled = [...positions].sort(() => Math.random() - 0.5);
+
       setDisplayText(
-        text
-          .split("")
-          .map((char, i) => {
-            if (char === " ") return " ";
+        shuffled
+          .map((pos, i) => {
             if (i < iteration / (maxIterations / text.length)) {
-              return text[i];
+              return text[pos];
             }
-            // Use only letters from the original word
-            return wordLetters[Math.floor(Math.random() * wordLetters.length)];
+            return letters[pos];
           })
           .join("")
       );
