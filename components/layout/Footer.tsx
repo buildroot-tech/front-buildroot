@@ -57,14 +57,14 @@ export function Footer(): React.ReactElement {
 
               {/* Navigation & Legal (2 columns inside Pages) */}
               <div className="flex flex-col">
-                <div className="border-b-2 border-[var(--border)] w-full pb-4 mb-5">
-                  <p className="font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] capitalize tracking-tight text-[var(--text-primary)]">
+                <div className="border-b-2 border-[var(--border)] w-full pb-2 mb-3">
+                  <p className="font-mono text-[clamp(1.5rem,1.8vw,2rem)] capitalize tracking-tight text-[var(--text-primary)]">
                     Menu
                   </p>
                 </div>
                 <div className="grid grid-cols-2 gap-8">
                   {/* Sub-column 1: Nav */}
-                  <nav className="flex flex-col gap-1" aria-label="Footer navigation">
+                  <nav className="flex flex-col gap-0" aria-label="Footer navigation">
                     {navLinks.map((link, i) => (
                       <motion.div
                         key={link.href}
@@ -77,8 +77,8 @@ export function Footer(): React.ReactElement {
                         <Link
                           href={link.href}
                           className={cn(
-                            "group inline-flex items-center gap-2 leading-none",
-                            "font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] tracking-tight",
+                            "group inline-flex items-center gap-2 leading-[0.9]",
+                            "font-mono text-[clamp(1.5rem,1.8vw,2rem)] tracking-tight",
                             "text-[var(--text-primary)] transition-colors duration-150 hover:text-[var(--accent)]"
                           )}
                         >
@@ -89,7 +89,7 @@ export function Footer(): React.ReactElement {
                   </nav>
 
                   {/* Sub-column 2: Legal & Extras */}
-                  <nav className="flex flex-col gap-1" aria-label="Legal navigation">
+                  <nav className="flex flex-col gap-0" aria-label="Legal navigation">
                     {legalLinks.map((link, i) => (
                       <motion.div
                         key={link.href}
@@ -102,8 +102,8 @@ export function Footer(): React.ReactElement {
                         <Link
                           href={link.href}
                           className={cn(
-                            "group inline-flex items-center gap-2 leading-none",
-                            "font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] tracking-tight text-[var(--text-primary)]",
+                            "group inline-flex items-center gap-2 leading-[0.9]",
+                            "font-mono text-[clamp(1.5rem,1.8vw,2rem)] tracking-tight text-[var(--text-primary)]",
                             "transition-colors duration-150 hover:text-[var(--text-primary)]"
                           )}
                         >
@@ -117,12 +117,12 @@ export function Footer(): React.ReactElement {
 
               {/* Social */}
               <div className="flex flex-col">
-                <div className="border-b-2 border-[var(--border)] w-full pb-4 mb-5">
-                  <p className="font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] capitalize tracking-tight text-[var(--text-primary)]">
+                <div className="border-b-2 border-[var(--border)] w-full pb-2 mb-3">
+                  <p className="font-mono text-[clamp(1.5rem,1.8vw,2rem)] capitalize tracking-tight text-[var(--text-primary)]">
                     Elsewhere
                   </p>
                 </div>
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-0">
                   {socialLinks.map((link, i) => (
                     <motion.div
                       key={link.href}
@@ -137,8 +137,8 @@ export function Footer(): React.ReactElement {
                         target="_blank"
                         rel="noopener noreferrer"
                         className={cn(
-                          "group inline-flex items-center gap-2 leading-none",
-                          "font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] tracking-tight",
+                          "group inline-flex items-center gap-2 leading-[0.9]",
+                          "font-mono text-[clamp(1.5rem,1.8vw,2rem)] tracking-tight",
                           "text-[var(--text-primary)] transition-colors duration-150 hover:text-[var(--accent)]"
                         )}
                         aria-label={`Visita buildroot en ${link.label}`}
