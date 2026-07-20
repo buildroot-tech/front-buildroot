@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ScrambleText } from "@/components/ui/TextScrambler";
 
 /* ============================================================
    BUILDROOT — STYLE GUIDE
@@ -328,6 +329,33 @@ export default function StyleGuidePage() {
                 </motion.div>
               ))}
             </motion.div>
+          </div>
+
+          {/* Text Scrambler */}
+          <div>
+            <SubHeading>Text Scrambler (Hover)</SubHeading>
+            <div className="mt-4 border-2 border-[var(--border)] p-6">
+              <div className="flex flex-wrap gap-6">
+                <ScrambleText
+                  text="work"
+                  className="font-mono text-3xl font-medium cursor-pointer hover:text-[var(--accent)] transition-colors"
+                  speed={55}
+                />
+                <ScrambleText
+                  text="services"
+                  className="font-mono text-3xl font-medium cursor-pointer hover:text-[var(--accent)] transition-colors"
+                  speed={55}
+                />
+                <ScrambleText
+                  text="about"
+                  className="font-mono text-3xl font-medium cursor-pointer hover:text-[var(--accent)] transition-colors"
+                  speed={55}
+                />
+              </div>
+              <p className="mt-4 font-mono text-xs text-[var(--text-muted)]">
+                Hover over the text to see the scramble effect
+              </p>
+            </div>
           </div>
         </div>
       </section>
