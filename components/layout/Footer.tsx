@@ -167,8 +167,8 @@ export function Footer(): React.ReactElement {
             <div className="flex flex-col gap-2">
               
               {/* Row 1: Location */}
-              <div className="flex flex-col xl:flex-row items-end justify-between px-2 py-1 gap-4 xl:gap-0">
-                <div className="flex flex-col md:flex-row items-end gap-4 md:gap-8 w-full xl:w-auto">
+              <div className="flex flex-col xl:flex-row items-baseline justify-between px-2 py-1 gap-4 xl:gap-0">
+                <div className="flex flex-col md:flex-row items-baseline gap-4 md:gap-8 w-full xl:w-auto">
                   <span className="headline text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
                     {contactInfo.address}
                   </span>
@@ -178,7 +178,7 @@ export function Footer(): React.ReactElement {
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-3 w-full xl:w-auto justify-end">
+                <div className="flex items-baseline gap-3 w-full xl:w-auto justify-end">
                   <span className="headline text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
                     {contactInfo.city}
                   </span>
