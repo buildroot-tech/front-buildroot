@@ -72,7 +72,7 @@ function MagneticButton({
 }
 
 /* ─────────────────────────────────────────────────────────
-   Interweaving diagonal lines — SVG
+   Interweaving diagonal lines
 ───────────────────────────────────────────────────────── */
 function InterweavingLines() {
   const down = [
@@ -117,18 +117,14 @@ function InterweavingLines() {
           transition={{ duration: l.d, repeat: Infinity, ease: "easeInOut", delay: l.dl }}
         />
       ))}
-      <motion.line
-        x1="8%" y1="0%" x2="92%" y2="100%"
+      <motion.line x1="8%" y1="0%" x2="92%" y2="100%"
         stroke="rgba(37,99,235,0.13)" strokeWidth="1"
         animate={{ x: ["-18%", "18%", "-18%"] }}
-        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.line
-        x1="92%" y1="0%" x2="8%" y2="100%"
+        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }} />
+      <motion.line x1="92%" y1="0%" x2="8%" y2="100%"
         stroke="rgba(37,99,235,0.08)" strokeWidth="1"
         animate={{ x: ["18%", "-18%", "18%"] }}
-        transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
-      />
+        transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }} />
     </svg>
   );
 }
@@ -141,7 +137,7 @@ function Decorative() {
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       <motion.div
         className="absolute top-8 right-8 grid grid-cols-5 gap-2.5"
-        animate={{ y: [0, -7, 0], opacity: [0.13, 0.2, 0.13] }}
+        animate={{ y: [0, -7, 0], opacity: [0.12, 0.19, 0.12] }}
         transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
       >
         {Array.from({ length: 25 }).map((_, i) => (
@@ -150,23 +146,19 @@ function Decorative() {
       </motion.div>
 
       <motion.div
-        className="absolute bottom-8 right-8 w-9 h-9 border-r-2 border-b-2 border-[var(--accent)]"
+        className="absolute bottom-6 right-6 w-8 h-8 border-r-2 border-b-2 border-[var(--accent)]"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 0.4, scale: 1 }}
         transition={{ delay: 1, duration: 0.5, ease: "backOut" }}
       />
 
       <div
-        className="absolute top-1/2 right-[8%] -translate-y-1/2 w-[600px] h-[600px] rounded-full"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%)",
-        }}
+        className="absolute top-1/2 right-[8%] -translate-y-1/2 w-[500px] h-[500px] rounded-full"
+        style={{ background: "radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%)" }}
       />
 
       <motion.div
-        className="absolute bottom-20 left-5 font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-inverse)]"
-        style={{ opacity: 0.16 }}
+        className="absolute bottom-16 left-5 font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-inverse)]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.16 }}
         transition={{ delay: 1.6, duration: 0.8 }}
@@ -180,20 +172,37 @@ function Decorative() {
 
 /* ─────────────────────────────────────────────────────────
    Constants
+   ──────────────────────────────────────────────────────
+   Header is fixed, height = 80px (py-5 × 2 + logo line).
+   Hero fills the remaining 100vh - 80px with:
+     · 3 headline lines
+     · ghost echoes peeling below PRODUCTS.
+     · services + CTAs pinned to bottom
 ───────────────────────────────────────────────────────── */
+const HEADER_H = 80;
 
-/* Font size: big enough to fill most of the screen height across 3 lines */
-const FS = "clamp(72px, 17vw, 280px)";
+/*
+  Font-size: at 1280px → 13vw ≈ 166px
+  3 main lines at lh 0.88 → ~440px height
+  Ghost lines follow immediately below (lh 0.70)
+  Total content fills the available viewport.
+*/
+const FS = "clamp(64px, 13vw, 220px)";
 
-/* Leading for main lines */
+/*
+  Main headline line-height.
+  0.88 = tight, brutalist, no air between lines.
+*/
 const LH_MAIN = 0.88;
 
 /*
-  Leading for ghost lines: tighter than cap-height ratio (~0.70 of font-size)
-  so each ghost line starts right at the bottom edge of the previous text,
-  creating the "peeling off / attached" effect.
+  Ghost line-height.
+  0.70 ≈ cap-height ratio of Space Grotesk Bold.
+  This places each ghost line so its TOP aligns
+  exactly with the BOTTOM of the uppercase letters
+  in the line above — zero visible gap → "pegado".
 */
-const LH_GHOST = 0.74;
+const LH_GHOST = 0.70;
 
 const SERVICES = ["System", "Product", "Infrastructure"];
 
@@ -208,21 +217,24 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const y       = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
-  /* Shared text style */
-  const textStyle = (lh: number): React.CSSProperties => ({
+  const textBase: React.CSSProperties = {
     fontSize: FS,
-    lineHeight: lh,
-    fontWeight: 700,
     letterSpacing: "-0.03em",
-  });
+    fontWeight: 700,
+  };
 
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[115vh] flex-col overflow-hidden bg-[var(--bg-hero)]"
+      /*
+        h-[100vh] — fills the full viewport (navbar is fixed on top,
+        so section starts at y=0 and spans the whole screen height).
+        overflow-hidden clips the deepest ghost lines naturally.
+      */
+      className="relative flex h-[100vh] flex-col overflow-hidden bg-[var(--bg-hero)]"
       aria-label="Hero section"
     >
       {/* Grain */}
@@ -236,18 +248,28 @@ export function Hero() {
       <InterweavingLines />
       <Decorative />
 
-      {/* ── Content ── */}
+      {/* ── Content — flex-col fills the full 100vh ── */}
       <motion.div
-        className="relative flex flex-1 flex-col justify-between px-6 md:px-12 pt-28 pb-12"
-        style={{ y, opacity }}
+        className="relative flex flex-1 flex-col justify-between px-6 md:px-12"
+        /*
+          pt accounts for the fixed navbar (80px) + 16px breathing room.
+          pb gives room for the bottom bar and the diagonal cut.
+        */
+        style={{
+          paddingTop:    `${HEADER_H + 16}px`,
+          paddingBottom: "56px",
+          y,
+          opacity,
+        }}
       >
         {/* ── Headline ── */}
-        <div>
-          {/* WE BUILD */}
+        <div className="flex-1 flex flex-col justify-center">
+
+          {/* We build */}
           <div className="overflow-hidden">
             <motion.h1
               className="block font-display text-[var(--text-inverse)] uppercase"
-              style={textStyle(LH_MAIN)}
+              style={{ ...textBase, lineHeight: LH_MAIN }}
               initial={{ y: "106%" }}
               animate={{ y: 0 }}
               transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
@@ -256,11 +278,11 @@ export function Hero() {
             </motion.h1>
           </div>
 
-          {/* DIGITAL */}
+          {/* Digital */}
           <div className="overflow-hidden">
             <motion.h1
               className="block font-display text-[var(--text-inverse)] uppercase"
-              style={textStyle(LH_MAIN)}
+              style={{ ...textBase, lineHeight: LH_MAIN }}
               initial={{ y: "106%" }}
               animate={{ y: 0 }}
               transition={{ duration: 1, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
@@ -269,11 +291,11 @@ export function Hero() {
             </motion.h1>
           </div>
 
-          {/* PRODUCTS. — solid accent */}
+          {/* Products. — solid accent */}
           <div className="overflow-hidden">
             <motion.h1
               className="block font-display text-[var(--accent)] uppercase"
-              style={textStyle(LH_MAIN)}
+              style={{ ...textBase, lineHeight: LH_MAIN }}
               initial={{ y: "106%" }}
               animate={{ y: 0 }}
               transition={{ duration: 1, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
@@ -283,46 +305,47 @@ export function Hero() {
           </div>
 
           {/*
-            Ghost echo lines — NO overflow-hidden so they bleed downward.
-            LH_GHOST (0.74) ≈ cap-height ratio, so each echo starts
-            right at the bottom edge of the word above it → "pegado".
+            Ghost echoes — LH_GHOST=0.70 so each echo's top edge
+            sits at the cap-height baseline of the line above.
+            No overflow-hidden: they bleed downward and the section
+            clips the deepest one → peeling / detaching effect.
           */}
           <motion.div
             aria-hidden="true"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.05, duration: 0.5 }}
+            transition={{ delay: 1.05, duration: 0.45 }}
           >
-            {/* Echo 1 */}
             <span
               className="block font-display uppercase"
               style={{
-                ...textStyle(LH_GHOST),
-                WebkitTextStroke: "2px rgba(248,250,252,0.14)",
+                ...textBase,
+                lineHeight: LH_GHOST,
+                WebkitTextStroke: "2px rgba(248,250,252,0.16)",
                 color: "transparent",
               }}
             >
               Products.
             </span>
 
-            {/* Echo 2 */}
             <span
               className="block font-display uppercase"
               style={{
-                ...textStyle(LH_GHOST),
-                WebkitTextStroke: "1.5px rgba(248,250,252,0.07)",
+                ...textBase,
+                lineHeight: LH_GHOST,
+                WebkitTextStroke: "1.5px rgba(248,250,252,0.08)",
                 color: "transparent",
               }}
             >
               Products.
             </span>
 
-            {/* Echo 3 — barely visible, fades into background */}
             <span
               className="block font-display uppercase"
               style={{
-                ...textStyle(LH_GHOST),
-                WebkitTextStroke: "1px rgba(248,250,252,0.03)",
+                ...textBase,
+                lineHeight: LH_GHOST,
+                WebkitTextStroke: "1px rgba(248,250,252,0.04)",
                 color: "transparent",
               }}
             >
@@ -331,14 +354,13 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* ── Bottom bar: services + CTAs ── */}
+        {/* ── Bottom bar ── */}
         <motion.div
-          className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between"
+          className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.3, duration: 0.6 }}
         >
-          {/* Services */}
           <div className="flex items-center gap-5 flex-wrap">
             {SERVICES.map((s, i) => (
               <span key={s} className="flex items-center gap-5">
@@ -352,7 +374,6 @@ export function Hero() {
             ))}
           </div>
 
-          {/* CTAs */}
           <div className="flex gap-4">
             <MagneticButton href="/work" variant="accent" id="hero-cta-work">
               View Our Work
@@ -366,19 +387,19 @@ export function Hero() {
 
       {/* Diagonal cut */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-20 bg-[var(--bg-primary)] pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 h-16 bg-[var(--bg-primary)] pointer-events-none"
         style={{ clipPath: "polygon(0 100%, 100% 100%, 100% 0)" }}
       />
 
       {/* Scroll line */}
       <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 0.6 }}
         aria-hidden="true"
       >
-        <div className="relative h-10 w-px overflow-hidden">
+        <div className="relative h-8 w-px overflow-hidden">
           <motion.div
             className="absolute inset-x-0 bg-[var(--accent)] opacity-60"
             animate={{ top: ["-100%", "100%"] }}
