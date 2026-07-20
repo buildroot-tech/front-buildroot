@@ -202,7 +202,7 @@ const LH_MAIN = 0.88;
   exactly with the BOTTOM of the uppercase letters
   in the line above — zero visible gap → "pegado".
 */
-const LH_GHOST = 0.64;
+const LH_GHOST = 0.50;
 
 const SERVICES = ["System", "Product", "Infrastructure"];
 
