@@ -175,7 +175,7 @@ export function Footer(): React.ReactElement {
                   <div className="flex items-center gap-2 font-mono text-[clamp(1rem,1.5vw,1.5rem)] uppercase font-bold tracking-tighter">
                     <span className="text-[1.8em] leading-none font-normal">↗</span>
                     <div className="flex flex-col leading-[0.8]">
-                      <span>0.827782</span>
+                      <span>+00.827782</span>
                       <span>-77.615538</span>
                     </div>
                     <span className="text-[1.8em] leading-none font-normal">↘</span>
