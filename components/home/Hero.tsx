@@ -234,7 +234,7 @@ export function Hero() {
         so section starts at y=0 and spans the whole screen height).
         overflow-hidden clips the deepest ghost lines naturally.
       */
-      className="relative flex h-[100vh] flex-col overflow-hidden bg-[var(--bg-hero)]"
+      className="relative flex min-h-[calc(100vh+80px)] flex-col overflow-hidden bg-[var(--bg-hero)]"
       aria-label="Hero section"
     >
       {/* Grain */}
@@ -385,6 +385,12 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
+
+      {/* Diagonal cut — sits 80px below viewport fold, visible only on scroll */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-20 bg-[var(--bg-primary)] pointer-events-none"
+        style={{ clipPath: "polygon(0 100%, 100% 100%, 100% 0)" }}
+      />
 
       {/* Scroll line */}
       <motion.div
