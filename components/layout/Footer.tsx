@@ -169,7 +169,7 @@ export function Footer(): React.ReactElement {
               {/* Row 1: Location */}
               <div className="flex flex-col xl:flex-row items-end justify-between px-2 py-1 gap-4 xl:gap-0">
                 <div className="flex flex-col md:flex-row items-end gap-4 md:gap-8 w-full xl:w-auto">
-                  <span className="headline text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
+                  <span className="headline text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
                     {contactInfo.address}
                   </span>
                   <div className="flex flex-col font-mono text-[clamp(1rem,1.5vw,1.5rem)] uppercase font-bold leading-[0.8] tracking-tighter">
@@ -179,7 +179,7 @@ export function Footer(): React.ReactElement {
                 </div>
                 
                 <div className="flex items-end gap-3 w-full xl:w-auto justify-end">
-                  <span className="headline text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
+                  <span className="headline text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
                     {contactInfo.city}
                   </span>
                   <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[var(--text-primary)] shrink-0">
