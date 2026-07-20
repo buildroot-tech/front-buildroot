@@ -26,7 +26,7 @@ const legalLinks = [
 
 const contactInfo = {
   address: "Cl.7 Este",
-  city: "Ipiales",
+  city: "Ipiales, Colombia",
   zip: "524060",
   phone: "+57 310 0000000",
   email: "hello@buildroot.tech",
