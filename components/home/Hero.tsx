@@ -292,7 +292,8 @@ export function Hero() {
           </div>
 
           {/* Products. — solid accent */}
-          <div className="overflow-hidden">
+          {/* Products. — solid accent, z-10 so ghosts can go behind */}
+          <div className="overflow-hidden relative z-10">
             <motion.h1
               className="block font-display text-[var(--accent)] uppercase"
               style={{ ...textBase, lineHeight: LH_MAIN }}
@@ -316,11 +317,13 @@ export function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.05, duration: 0.45 }}
           >
+            {/* Echo 1 — high overlap (lh 0.35), behind the solid word */}
             <span
-              className="block font-display uppercase"
+              className="relative block font-display uppercase"
               style={{
                 ...textBase,
-                lineHeight: LH_GHOST,
+                lineHeight: 0.35,
+                zIndex: -1,
                 WebkitTextStroke: "2px rgba(248,250,252,0.16)",
                 color: "transparent",
               }}
@@ -328,6 +331,7 @@ export function Hero() {
               Products.
             </span>
 
+            {/* Echo 2 */}
             <span
               className="block font-display uppercase"
               style={{
@@ -340,6 +344,7 @@ export function Hero() {
               Products.
             </span>
 
+            {/* Echo 3 */}
             <span
               className="block font-display uppercase"
               style={{
