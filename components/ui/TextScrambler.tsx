@@ -18,7 +18,7 @@ interface TextScramblerProps {
 function ScrambleText({
   text,
   className,
-  speed = 60,
+  speed = 80,
   trigger = "hover",
   active = true,
   as: Tag = "span",
@@ -35,53 +35,37 @@ function ScrambleText({
     timersRef.current = [];
   }, []);
 
-  const shuffleWord = useCallback((word: string): string => {
-    const arr = word.split("");
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr.join("");
-  }, []);
-
   const scramble = useCallback(() => {
     clearAll();
-    const words = text.split(" ");
-    const wordLengths = words.map((w) => w.length);
-    const maxLen = Math.max(...wordLengths);
+    setDisplay(text);
 
-    // Generate frames: multiple shuffles per word, then settle
-    const totalFrames = maxLen * 3 + 1;
+    const letters = text.split("");
+    const len = letters.length;
 
-    for (let frame = 0; frame < totalFrames; frame++) {
+    // Step 1: Reverse the word
+    const reversed = [...letters].reverse().join("");
+    const t0 = setTimeout(() => setDisplay(reversed), 0);
+    timersRef.current.push(t0);
+
+    // Step 2: Rotate letters one by one from the end back to original
+    for (let i = 1; i < len; i++) {
       const t = setTimeout(() => {
-        const isLastFrame = frame === totalFrames - 1;
-
-        if (isLastFrame) {
-          setDisplay(text);
-          return;
-        }
-
-        const result = words.map((word, wIdx) => {
-          const wordLen = word.length;
-          // How many letters are "locked" (correct position)
-          const lockedCount = Math.floor((frame / totalFrames) * wordLen);
-
-          if (lockedCount >= wordLen) return word;
-
-          // Take correct letters + shuffle the rest
-          const correct = word.slice(0, lockedCount);
-          const remaining = word.slice(lockedCount);
-          const shuffled = shuffleWord(remaining);
-
-          return correct + shuffled;
-        });
-
-        setDisplay(result.join(" "));
-      }, frame * speed);
+        // Take last i letters and move them to front
+        const rotated = [
+          ...letters.slice(len - i),
+          ...letters.slice(0, len - i),
+        ].join("");
+        setDisplay(rotated);
+      }, i * speed);
       timersRef.current.push(t);
     }
-  }, [text, speed, clearAll, shuffleWord]);
+
+    // Final: back to original
+    const tFinal = setTimeout(() => {
+      setDisplay(text);
+    }, len * speed);
+    timersRef.current.push(tFinal);
+  }, [text, speed, clearAll]);
 
   useEffect(() => {
     return () => clearAll();
