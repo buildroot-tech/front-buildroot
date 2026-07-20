@@ -202,7 +202,7 @@ const LH_MAIN = 0.88;
   exactly with the BOTTOM of the uppercase letters
   in the line above — zero visible gap → "pegado".
 */
-const LH_GHOST = 0.70;
+const LH_GHOST = 0.64;
 
 const SERVICES = ["System", "Product", "Infrastructure"];
 
@@ -305,8 +305,8 @@ export function Hero() {
           </div>
 
           {/*
-            Ghost echoes — LH_GHOST=0.70 so each echo's top edge
-            sits at the cap-height baseline of the line above.
+            Ghost echoes — LH_GHOST=0.64 so each echo sits
+            virtually touching the bottom of the caps above.
             No overflow-hidden: they bleed downward and the section
             clips the deepest one → peeling / detaching effect.
           */}
