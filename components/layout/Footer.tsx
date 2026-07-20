@@ -143,10 +143,6 @@ export function Footer(): React.ReactElement {
                         )}
                         aria-label={`Visita buildroot en ${link.label}`}
                       >
-                        <span
-                          className="block h-[2px] bg-current transition-all duration-300 w-6 group-hover:w-12"
-                          aria-hidden="true"
-                        />
                         {link.label}
                       </a>
                     </motion.div>
