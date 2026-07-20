@@ -220,23 +220,6 @@ export function Hero() {
       <div className="relative mx-auto w-full max-w-[1400px] px-6 md:px-16 py-32">
         <motion.div style={{ y, opacity, scale }}>
 
-          {/* Eyebrow */}
-          <motion.div
-            className="mb-10 inline-flex items-center gap-3"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <motion.span
-              className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--accent)]"
-              animate={{ scale: [1, 1.6, 1] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--accent)]">
-              buildroot_
-            </span>
-          </motion.div>
-
           {/* Headline */}
           <div className="mb-4">
             {HEADLINE_LINES.map(({ text, delay }) => (
