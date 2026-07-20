@@ -25,10 +25,10 @@ const legalLinks = [
 ];
 
 const contactInfo = {
-  address: "Calle Principal 42",
-  city: "Bogotá, Colombia",
-  phone: "+57 300 000 0000",
-  email: "hello@buildroot.dev",
+  address: "Av Panamericana",
+  city: "Ipiales, Nariño",
+  phone: "+57 310 0000000",
+  email: "hello@buildroot.tech",
 };
 
 const fadeUp = {
@@ -167,88 +167,66 @@ export function Footer(): React.ReactElement {
             <div className="flex flex-col divide-y-2 divide-[var(--border)]">
               
               {/* Row 1: Location */}
-              <div className="flex flex-col md:flex-row items-center justify-between px-6 md:px-10 py-8 md:py-12 relative overflow-hidden group">
-                <div className="flex flex-col md:flex-row items-start md:items-center gap-6 z-10 w-full">
-                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-primary)]">
-                    Ubicación
-                  </p>
-                  <div className="p-2 border-2 border-[var(--border)] rounded-sm bg-transparent group-hover:bg-[var(--text-primary)] group-hover:text-[var(--bg-primary)] transition-colors duration-300 ml-0 md:ml-4">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter">
-                      <path d="M3 20h18L15 8l-3 4-2-2-6 10z"/>
-                      <path d="M12 3v3" className="animate-pulse" />
-                      <path d="M10 5l-1.5-1.5" />
-                      <path d="M14 5l1.5-1.5" />
-                    </svg>
-                  </div>
-                  <div className="mt-6 md:mt-0 md:ml-auto text-left md:text-right">
-                    <p className="headline text-[var(--text-primary)] text-[clamp(1.2rem,2vw,2.5rem)] md:text-[clamp(1.5rem,2.5vw,3rem)] leading-[0.95]">
-                      {contactInfo.address}, {contactInfo.city}
-                    </p>
-                    <div className="inline-flex mt-4 font-mono text-[9px] text-[var(--bg-primary)] bg-[var(--text-primary)] border border-[var(--border)] px-3 py-1.5 rounded-full items-center gap-2">
-                      <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
-                      4°35'56"N 74°04'51"W
-                    </div>
+              <div className="flex flex-col xl:flex-row items-center justify-between px-6 py-6 md:px-8 md:py-8 gap-4 xl:gap-0">
+                <div className="flex flex-col md:flex-row items-baseline gap-4 md:gap-8 w-full xl:w-auto">
+                  <span className="headline text-[var(--text-primary)] text-[clamp(2rem,3.5vw,4.5rem)] uppercase leading-[0.85] tracking-tighter whitespace-nowrap">
+                    {contactInfo.address}
+                  </span>
+                  <div className="flex gap-4 font-mono text-[10px] md:text-[12px] uppercase opacity-60">
+                    <span>0°49'39"N</span>
+                    <span>77°38'24"W</span>
+                    <span>ALT_2898M</span>
                   </div>
                 </div>
-                {/* Abstract Grid background */}
-                <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none w-48 h-48 md:w-64 md:h-64">
-                   <svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                     <defs>
-                       <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                         <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="1"/>
-                       </pattern>
-                     </defs>
-                     <rect width="100" height="100" fill="url(#grid)" />
-                   </svg>
+                
+                <div className="flex items-center gap-3 w-full xl:w-auto justify-end">
+                  <span className="headline text-[var(--text-primary)] text-[clamp(2rem,3.5vw,4.5rem)] uppercase leading-[0.85] tracking-tighter whitespace-nowrap">
+                    {contactInfo.city}
+                  </span>
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[var(--text-primary)] shrink-0">
+                    <path d="M3 20h18L15 8l-3 4-2-2-6 10z"/>
+                    <path d="M12 3v3" />
+                    <path d="M10 5l-1.5-1.5" />
+                    <path d="M14 5l1.5-1.5" />
+                  </svg>
                 </div>
               </div>
 
               {/* Row 2: Phone */}
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-between px-6 md:px-10 py-8 md:py-12">
-                <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-primary)] mb-6 md:mb-0">
-                  Teléfono
-                </p>
-                
-                <div className="w-full md:w-auto md:ml-auto">
-                  <div className="grid grid-cols-3 border-2 border-[var(--border)] divide-x-2 divide-[var(--border)] text-center h-20 md:h-24 md:w-[400px]">
-                    <div className="flex items-center justify-center font-mono text-[clamp(1rem,2vw,1.5rem)] font-bold bg-[var(--text-primary)] text-[var(--bg-primary)]">
-                      {contactInfo.phone.split(" ")[0]}
-                    </div>
-                    <div className="flex items-center justify-center font-mono text-[clamp(1rem,2vw,1.5rem)] font-bold bg-transparent">
+              <div className="flex flex-col md:flex-row divide-y-2 md:divide-y-0 md:divide-x-2 divide-[var(--border)] h-auto md:h-32">
+                <div className="flex-1 px-6 py-6 md:px-8 flex items-center justify-center md:justify-start overflow-hidden">
+                  <span className="headline text-[var(--text-primary)] text-[clamp(3.5rem,6vw,7rem)] leading-[0.8] uppercase tracking-tighter">
+                    Teléfono
+                  </span>
+                </div>
+                <div className="flex-1 grid grid-rows-2 divide-y-2 divide-[var(--border)]">
+                  <div className="flex items-center justify-center font-mono text-[clamp(1.2rem,2vw,1.5rem)] font-bold bg-[var(--text-primary)] text-[var(--bg-primary)]">
+                    {contactInfo.phone.split(" ")[0]}
+                  </div>
+                  <div className="grid grid-cols-2 divide-x-2 divide-[var(--border)]">
+                    <div className="flex items-center justify-center font-mono text-[clamp(1.2rem,2vw,1.5rem)] font-bold bg-[var(--bg-primary)]">
                       {contactInfo.phone.split(" ")[1]}
                     </div>
-                    <div className="flex items-center justify-center font-mono text-[clamp(1rem,1.5vw,1.5rem)] font-bold bg-transparent px-2 tracking-[0.1em]">
-                      {contactInfo.phone.split(" ").slice(2).join("")}
+                    <div className="flex items-center justify-center font-mono text-[clamp(1.2rem,2vw,1.5rem)] font-bold bg-[var(--bg-primary)]">
+                      {contactInfo.phone.split(" ")[2]}
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Row 3: Email & System Status */}
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-between px-6 md:px-10 py-8 md:py-12 gap-8 md:gap-0">
-                <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-8 w-full md:w-auto">
-                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-primary)]">
-                    Correo
-                  </p>
-                  <a
-                    href={`mailto:${contactInfo.email}`}
-                    className="inline-block font-mono text-[clamp(1.2rem,2vw,2.5rem)] md:text-[clamp(1.5rem,2.5vw,3rem)] text-[var(--text-primary)] transition-colors hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] break-all border-b-2 border-transparent hover:border-[var(--text-primary)] py-1 px-2 -ml-2 md:ml-0"
-                  >
-                    {contactInfo.email}
-                  </a>
-                </div>
-                
-                <div className="flex flex-row md:flex-col items-center md:items-end justify-between w-full md:w-auto gap-4">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-none animate-pulse" />
-                    <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-primary)]">
-                      SYS_ONLINE
-                    </p>
-                  </div>
-                  <p className="font-mono text-[9px] text-[var(--text-primary)]">
-                    © {year} buildroot_
-                  </p>
-                </div>
+              {/* Row 3: Email */}
+              <div className="group flex items-center justify-center overflow-hidden py-4 px-4 bg-[var(--bg-primary)] hover:bg-[var(--text-primary)] transition-colors duration-300">
+                <a href={`mailto:${contactInfo.email}`} className="flex items-center justify-between w-full">
+                  <span className="headline text-[var(--text-primary)] text-[clamp(3rem,8vw,11rem)] leading-[0.75] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 uppercase">
+                    {contactInfo.email.split("@")[0]}
+                  </span>
+                  <span className="font-mono text-[clamp(4rem,10vw,14rem)] leading-[0.75] text-[var(--accent)] font-bold mx-[-2vw] z-10 scale-125 md:scale-100 group-hover:scale-110 transition-transform duration-300">
+                    @
+                  </span>
+                  <span className="headline text-[var(--text-primary)] text-[clamp(3rem,8vw,11rem)] leading-[0.75] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 uppercase">
+                    {contactInfo.email.split("@")[1]}
+                  </span>
+                </a>
               </div>
 
             </div>
