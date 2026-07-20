@@ -94,7 +94,7 @@ function Decorative() {
    Constants
 ───────────────────────────────────────────────────────── */
 const HEADER_H  = 80;
-const FS        = "clamp(48px, min(13vw, 15vh), 220px)";
+const FS        = "clamp(64px, 13vw, 220px)";
 const LH_MAIN   = 0.88;
 const LH_GHOST  = 0.50;
 
@@ -202,9 +202,10 @@ export function Hero() {
             </motion.h1>
           </div>
 
-          {/* Ghost echoes — bleed downward, section clips the deepest */}
+          {/* Ghost echoes — h-0 so they don't consume space, bleed downward */}
           <motion.div
             aria-hidden="true"
+            className="h-0"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.05, duration: 0.45 }}
