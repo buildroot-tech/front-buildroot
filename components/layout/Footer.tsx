@@ -172,14 +172,14 @@ export function Footer(): React.ReactElement {
                   <span className="headline text-[var(--text-primary)] text-[clamp(2rem,3.5vw,4.5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
                     {contactInfo.address}
                   </span>
-                  <div className="flex flex-col font-mono text-[10px] md:text-[12px] uppercase opacity-60 leading-tight">
+                  <div className="flex flex-col font-mono text-[12px] md:text-[16px] uppercase font-bold leading-tight">
                     <span>0°49'39"N</span>
                     <span>77°38'24"W</span>
                   </div>
                 </div>
                 
                 <div className="flex items-center gap-3 w-full xl:w-auto justify-end">
-                  <span className="headline text-[var(--text-primary)] text-[clamp(2rem,3.5vw,4.5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
+                  <span className="headline text-[var(--text-primary)] text-[clamp(1.5rem,2vw,2.5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
                     {contactInfo.city}
                   </span>
                   <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[var(--text-primary)] shrink-0">
@@ -216,13 +216,13 @@ export function Footer(): React.ReactElement {
               {/* Row 3: Email */}
               <div className="group flex items-center justify-center overflow-hidden py-1 px-2 bg-[var(--bg-primary)] hover:bg-[var(--text-primary)] transition-colors duration-300">
                 <a href={`mailto:${contactInfo.email}`} className="flex items-center justify-between w-full">
-                  <span className="headline text-[var(--text-primary)] text-[clamp(3rem,8vw,11rem)] leading-[0.75] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
+                  <span className="headline text-[var(--text-primary)] text-[clamp(2rem,5vw,7rem)] leading-[0.75] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
                     {contactInfo.email.split("@")[0]}
                   </span>
-                  <span className="font-mono text-[clamp(4rem,10vw,14rem)] leading-[0.75] text-[var(--accent)] font-bold mx-[-2vw] z-10 scale-125 md:scale-100 group-hover:scale-110 transition-transform duration-300">
+                  <span className="font-mono text-[clamp(3rem,7vw,9rem)] leading-[0.75] text-[var(--accent)] font-bold mx-[-2vw] z-10 scale-125 md:scale-100 group-hover:scale-110 transition-transform duration-300">
                     @
                   </span>
-                  <span className="headline text-[var(--text-primary)] text-[clamp(3rem,8vw,11rem)] leading-[0.75] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
+                  <span className="headline text-[var(--text-primary)] text-[clamp(2rem,5vw,7rem)] leading-[0.75] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
                     {contactInfo.email.split("@")[1]}
                   </span>
                 </a>
