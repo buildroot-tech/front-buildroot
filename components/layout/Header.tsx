@@ -76,20 +76,14 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Contact button */}
+          {/* Contact link */}
           <a
             href="mailto:hello@buildroot.dev"
-            className="brutalist-button text-lg"
-            style={{
-                borderColor: scrolled ? "var(--border)" : "var(--text-inverse)",
-                color: scrolled ? "var(--text-primary)" : "var(--text-inverse)",
-                boxShadow: scrolled
-                  ? "4px 4px 0 var(--border)"
-                  : "4px 4px 0 var(--text-inverse)",
-              }}
-            >
-              Contact
-            </a>
+            className="font-mono text-3xl font-medium tracking-tight transition-colors hover:text-[var(--accent)] ml-8"
+            style={{ color: scrolled ? "var(--text-primary)" : "var(--text-inverse)" }}
+          >
+            let's talk
+          </a>
 
           {/* Mobile Burger */}
           <button
