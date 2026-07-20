@@ -2,13 +2,13 @@
 
 import { motion } from "framer-motion";
 import { ProjectsGrid } from "@/components/work/ProjectsGrid";
-import { Cpu, Terminal, Zap, Gauge } from "lucide-react";
+import { Terminal } from "lucide-react";
 
 export function WorkSection() {
   return (
-    <section id="work" className="relative w-full bg-[var(--bg-primary)] py-16 md:py-24 overflow-hidden">
-      {/* Restored Brutalist Marquee Ticker Strip */}
-      <div className="w-full bg-[var(--bg-hero)] py-2.5 text-[var(--text-inverse)] font-mono text-xs font-bold overflow-hidden select-none mb-12">
+    <section id="work" className="relative w-full bg-[var(--bg-primary)] pt-4 md:pt-6 pb-16 md:pb-24 overflow-hidden">
+      {/* Brutalist Marquee Ticker Strip */}
+      <div className="w-full bg-[var(--bg-hero)] py-2.5 text-[var(--text-inverse)] font-mono text-xs font-bold overflow-hidden select-none mb-8 md:mb-10">
         <div className="flex whitespace-nowrap animate-marquee gap-8">
           <span className="text-[var(--accent)]">/// SYSTEM_LOGS: PHASE_WORK</span>
           <span>● PRODUCTION_DEPLOYED</span>
@@ -35,58 +35,19 @@ export function WorkSection() {
           <div>
             <div className="inline-flex items-center gap-2 bg-[var(--bg-secondary)] px-3.5 py-1.5 font-mono text-xs font-bold uppercase text-[var(--accent)] tracking-widest">
               <Terminal className="h-3.5 w-3.5" />
-              <span>// SELECTED_WORKS</span>
+              <span>// Selected Works</span>
             </div>
             <h2 className="headline text-h1 mt-4 text-[var(--text-primary)] tracking-tight">
-              PRODUCTION_SHIPPED // LOGS
+              Featured Projects & Architecture
             </h2>
-            <p className="mt-3 font-mono text-sm text-[var(--text-muted)] max-w-3xl leading-relaxed">
-              [ REAL_WORLD_ENGINEERING ]: High-throughput SaaS applications, brutalist web platforms, and edge cloud architectures shipped with zero bloat.
+            <p className="mt-3 text-base md:text-lg text-[var(--text-muted)] max-w-3xl leading-relaxed font-sans">
+              Engineering high-performance SaaS applications, custom web platforms, and modern cloud architectures built with technical precision, scalability, and design craftsmanship.
             </p>
           </div>
         </motion.div>
 
-        {/* Structural Blueprint Metrics Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="my-10 grid grid-cols-1 gap-4 sm:grid-cols-3 font-mono"
-        >
-          <div className="flex items-center gap-4 bg-[var(--bg-secondary)] p-5">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[var(--accent)] text-white">
-              <Zap className="h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-xs font-extrabold uppercase text-[var(--text-primary)]">95+ LIGHTHOUSE</p>
-              <p className="text-[11px] text-[var(--text-muted)]">Sub-second LCP & TBT &lt;100ms</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 bg-[var(--bg-secondary)] p-5">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[var(--bg-primary)] text-[var(--accent)]">
-              <Gauge className="h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-xs font-extrabold uppercase text-[var(--text-primary)]">SUB-50MS LATENCY</p>
-              <p className="text-[11px] text-[var(--text-muted)]">Streaming SSR + Edge cache</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 bg-[var(--bg-secondary)] p-5">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[var(--bg-primary)] text-[var(--text-primary)]">
-              <Cpu className="h-5 w-5 text-[var(--accent)]" />
-            </div>
-            <div>
-              <p className="text-xs font-extrabold uppercase text-[var(--text-primary)]">STRICT TYPE-SAFE</p>
-              <p className="text-[11px] text-[var(--text-muted)]">Zero any / full runtime checks</p>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Projects Structural Grid */}
-        <div className="mt-8">
+        {/* Projects Grid */}
+        <div className="mt-4">
           <ProjectsGrid />
         </div>
       </div>

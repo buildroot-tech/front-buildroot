@@ -18,31 +18,29 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
 
   return (
     <div className="w-full bg-[var(--bg-primary)] my-3">
-      {/* Locomotive-Style Horizontal Row Header with Generous Vertical & Horizontal Padding */}
+      {/* Horizontal Row Header */}
       <div
         onClick={() => setIsExpanded(!isExpanded)}
-        className="group relative flex cursor-pointer items-center justify-between gap-8 py-10 px-6 sm:px-10 md:px-14"
+        className="group relative flex cursor-pointer items-center justify-between gap-8 py-8 px-6 sm:px-10 md:px-14"
       >
         {/* Title & Client Metadata Container */}
-        <div className="flex flex-1 items-baseline justify-between gap-8 min-w-0 pr-6 sm:pr-10">
-          {/* Left: Title */}
-          <h3 className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-[var(--text-primary)] tracking-tight shrink-0">
+        <div className="flex flex-1 items-baseline justify-between gap-6 min-w-0 pr-6 sm:pr-10 py-0.5">
+          {/* Left: Title (Black) */}
+          <h3 className="font-display text-lg md:text-xl font-medium text-[var(--text-primary)] shrink-0">
             <ScrambleText text={project.title} trigger="hover" speed={45} />
           </h3>
 
-          {/* Right Metadata Info (Only Client Name - CLIENT :: Removed) */}
-          <div className="hidden lg:flex items-center font-mono text-xs shrink-0">
-            <span className="uppercase font-semibold text-[var(--text-muted)] tracking-wider">
-              {project.client}
-            </span>
+          {/* Right: Client Name (Black) */}
+          <div className="hidden lg:flex items-center font-display text-lg md:text-xl font-medium text-[var(--text-primary)] shrink-0">
+            <span>{project.client}</span>
           </div>
         </div>
 
-        {/* Far Right: Interactive Swap (Category Badge in Normal State -> (+) Icon on Hover) */}
-        <div className="relative flex items-center justify-end font-mono text-xs shrink-0 min-w-[120px] h-11">
-          {/* Category Badge (Visible by default, vanishes on hover) */}
+        {/* Far Right: Category & (+) Icon (Black) */}
+        <div className="relative flex items-center justify-end font-display text-lg md:text-xl font-medium shrink-0 min-w-[120px] h-11">
+          {/* Category Label (Black) */}
           <span
-            className={`bg-[var(--bg-secondary)] px-4 py-2 font-semibold uppercase text-[var(--accent)] text-xs tracking-wider transition-all duration-200 ${
+            className={`text-[var(--text-primary)] font-medium transition-all duration-200 ${
               isExpanded
                 ? "opacity-0 scale-95 pointer-events-none"
                 : "opacity-100 group-hover:opacity-0 group-hover:scale-95"
@@ -51,23 +49,23 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
             {project.category}
           </span>
 
-          {/* (+) / (-) Icon Button (Hidden by default, appears on hover) */}
+          {/* (+) / (-) Icon Button centered in original position */}
           <button
             type="button"
-            className={`absolute right-0 flex h-11 w-11 shrink-0 items-center justify-center font-mono text-sm font-bold transition-all duration-200 ${
+            className={`absolute right-0 top-1/2 -translate-y-1/2 flex items-center justify-center p-1 text-[var(--text-primary)] transition-all duration-200 ${
               isExpanded
-                ? "opacity-100 scale-100 bg-[var(--accent)] text-white shadow-sm"
-                : "opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 bg-[var(--bg-secondary)] text-[var(--text-primary)]"
+                ? "opacity-100 text-[var(--text-primary)]"
+                : "opacity-0 group-hover:opacity-100"
             }`}
             aria-expanded={isExpanded}
             aria-label={isExpanded ? "Collapse project" : "Expand project"}
           >
-            {isExpanded ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+            {isExpanded ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
           </button>
         </div>
 
-        {/* UNIFORM FULL-WIDTH CONTINUOUS UNDERLINE ON HOVER - Same length & margin for all rows */}
-        <span className="absolute bottom-2 left-6 right-6 sm:left-10 sm:right-10 md:left-14 md:right-14 h-[2.5px] bg-transparent group-hover:bg-[var(--text-primary)] transition-colors pointer-events-none" />
+        {/* SINGLE UNBROKEN CONTINUOUS LINE AT OUTER CONTAINER LEVEL SPANNING 100% FULL WIDTH */}
+        <span className="absolute bottom-[22px] left-6 right-6 sm:left-10 sm:right-10 md:left-14 md:right-14 h-[2.5px] bg-transparent group-hover:bg-[var(--text-primary)] transition-colors pointer-events-none" />
       </div>
 
       {/* Expandable Accordion Drawer Content */}
@@ -90,8 +88,8 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
                 {/* Details & Specs (Right 7 Cols) */}
                 <div className="flex flex-col justify-between lg:col-span-7 space-y-8">
                   <div>
-                    <div className="font-mono text-xs uppercase text-[var(--accent)] font-bold tracking-widest">
-                      /// PROJECT_OVERVIEW
+                    <div className="font-mono text-xs text-[var(--accent)] font-semibold tracking-wider">
+                      /// Project Overview
                     </div>
                     <p className="mt-4 text-base text-[var(--text-primary)] leading-relaxed font-sans max-w-2xl">
                       {project.description}
@@ -100,8 +98,8 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
                     {/* Metric Box */}
                     {primaryMetric && (
                       <div className="mt-8 flex items-center justify-between bg-[var(--bg-primary)] p-5 font-mono text-xs">
-                        <span className="uppercase tracking-wider font-bold text-[var(--text-muted)]">
-                          /// KEY_IMPACT: {primaryMetric.label}
+                        <span className="font-semibold text-[var(--text-muted)]">
+                          /// Key Impact: {primaryMetric.label}
                         </span>
                         <span className="text-lg font-black text-[var(--accent)]">
                           {primaryMetric.value}
@@ -111,8 +109,8 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
 
                     {/* Tech Stack Badges */}
                     <div className="mt-8 font-mono">
-                      <p className="text-[11px] uppercase font-bold text-[var(--text-muted)] mb-3 tracking-wider">
-                        MODULES_LOADED:
+                      <p className="text-[11px] font-semibold text-[var(--text-muted)] mb-3 tracking-wider">
+                        Modules Loaded:
                       </p>
                       <div className="flex flex-wrap gap-2 text-xs">
                         {project.tags.map((tag) => (
@@ -134,7 +132,7 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
                       className="brutalist-button brutalist-button-accent text-xs py-3 px-6"
                     >
                       <Terminal className="h-4 w-4" />
-                      <span>INSPECT CASE STUDY</span>
+                      <span>Inspect Case Study</span>
                       <ArrowUpRight className="h-4 w-4" />
                     </button>
 
@@ -145,7 +143,7 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
                         rel="noopener noreferrer"
                         className="brutalist-button text-xs py-3 px-6"
                       >
-                        <span>LIVE DEMO</span>
+                        <span>Live Demo</span>
                         <ExternalLink className="h-4 w-4" />
                       </a>
                     )}
