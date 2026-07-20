@@ -5,9 +5,10 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/work", label: "Work" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/work", label: "work" },
+  { href: "/services", label: "services" },
+  { href: "/about", label: "about" },
+  { href: "/contact", label: "contact" },
 ];
 
 const socialLinks = [
