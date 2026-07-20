@@ -39,10 +39,7 @@ function MagneticButton({
     },
     [x, y]
   );
-  const onLeave = useCallback(() => {
-    x.set(0);
-    y.set(0);
-  }, [x, y]);
+  const onLeave = useCallback(() => { x.set(0); y.set(0); }, [x, y]);
 
   const base =
     "inline-flex items-center gap-2 px-6 py-3.5 font-mono text-[11px] uppercase tracking-[0.12em] font-semibold border-2 transition-all duration-150 select-none cursor-pointer group";
@@ -95,27 +92,18 @@ function InterweavingLines() {
   ];
 
   return (
-    <svg
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      aria-hidden="true"
-    >
+    <svg className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true">
       {down.map((l, i) => (
-        <motion.line
-          key={`d${i}`}
-          x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
+        <motion.line key={`d${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
           stroke="rgba(248,250,252,0.06)" strokeWidth="1"
           animate={{ x: ["-30%", "30%", "-30%"] }}
-          transition={{ duration: l.d, repeat: Infinity, ease: "easeInOut", delay: l.dl }}
-        />
+          transition={{ duration: l.d, repeat: Infinity, ease: "easeInOut", delay: l.dl }} />
       ))}
       {up.map((l, i) => (
-        <motion.line
-          key={`u${i}`}
-          x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
+        <motion.line key={`u${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
           stroke="rgba(248,250,252,0.04)" strokeWidth="1"
           animate={{ x: ["30%", "-30%", "30%"] }}
-          transition={{ duration: l.d, repeat: Infinity, ease: "easeInOut", delay: l.dl }}
-        />
+          transition={{ duration: l.d, repeat: Infinity, ease: "easeInOut", delay: l.dl }} />
       ))}
       <motion.line x1="8%" y1="0%" x2="92%" y2="100%"
         stroke="rgba(37,99,235,0.13)" strokeWidth="1"
@@ -130,7 +118,8 @@ function InterweavingLines() {
 }
 
 /* ─────────────────────────────────────────────────────────
-   Decorative details
+   Decorative details (dot grid + glow only — coordinates
+   moved to the top bar inside the content)
 ───────────────────────────────────────────────────────── */
 function Decorative() {
   return (
@@ -156,55 +145,19 @@ function Decorative() {
         className="absolute top-1/2 right-[8%] -translate-y-1/2 w-[500px] h-[500px] rounded-full"
         style={{ background: "radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%)" }}
       />
-
-      <motion.div
-        className="absolute bottom-16 left-5 font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-inverse)]"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.16 }}
-        transition={{ delay: 1.6, duration: 0.8 }}
-      >
-        <div>LAT: 00.83 N</div>
-        <div>LON: 77.64 W</div>
-      </motion.div>
     </div>
   );
 }
 
 /* ─────────────────────────────────────────────────────────
    Constants
-   ──────────────────────────────────────────────────────
-   Header is fixed, height = 80px (py-5 × 2 + logo line).
-   Hero fills the remaining 100vh - 80px with:
-     · 3 headline lines
-     · ghost echoes peeling below PRODUCTS.
-     · services + CTAs pinned to bottom
 ───────────────────────────────────────────────────────── */
-const HEADER_H = 80;
+const HEADER_H  = 80;
+const FS        = "clamp(64px, 13vw, 220px)";
+const LH_MAIN   = 0.88;
+const LH_GHOST  = 0.50;
 
-/*
-  Font-size: at 1280px → 13vw ≈ 166px
-  3 main lines at lh 0.88 → ~440px height
-  Ghost lines follow immediately below (lh 0.70)
-  Total content fills the available viewport.
-*/
-const FS = "clamp(64px, 13vw, 220px)";
-
-/*
-  Main headline line-height.
-  0.88 = tight, brutalist, no air between lines.
-*/
-const LH_MAIN = 0.88;
-
-/*
-  Ghost line-height.
-  0.70 ≈ cap-height ratio of Space Grotesk Bold.
-  This places each ghost line so its TOP aligns
-  exactly with the BOTTOM of the uppercase letters
-  in the line above — zero visible gap → "pegado".
-*/
-const LH_GHOST = 0.50;
-
-const SERVICES = ["System", "Product", "Infrastructure"];
+const SERVICES  = ["System", "Product", "Infrastructure"];
 
 /* ─────────────────────────────────────────────────────────
    Hero
@@ -229,11 +182,6 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      /*
-        h-[100vh] — fills the full viewport (navbar is fixed on top,
-        so section starts at y=0 and spans the whole screen height).
-        overflow-hidden clips the deepest ghost lines naturally.
-      */
       className="relative flex min-h-[calc(100vh+80px)] flex-col overflow-hidden bg-[var(--bg-hero)]"
       aria-label="Hero section"
     >
@@ -248,22 +196,60 @@ export function Hero() {
       <InterweavingLines />
       <Decorative />
 
-      {/* ── Content — flex-col fills the full 100vh ── */}
+      {/* ── Content ── */}
       <motion.div
-        className="relative flex flex-1 flex-col justify-between px-6 md:px-12"
-        /*
-          pt accounts for the fixed navbar (80px) + 16px breathing room.
-          pb gives room for the bottom bar and the diagonal cut.
-        */
+        className="relative flex flex-1 flex-col px-6 md:px-12"
         style={{
-          paddingTop:    `${HEADER_H + 16}px`,
-          paddingBottom: "56px",
+          paddingTop: `${HEADER_H + 20}px`,
+          paddingBottom: "28px",
           y,
           opacity,
         }}
       >
-        {/* ── Headline ── */}
-        <div className="flex-1 flex flex-col justify-end pb-8">
+        {/*
+          TOP BAR — visible immediately, right below the navbar.
+          Contains: services labels · coordinates · CTA buttons
+        */}
+        <motion.div
+          className="flex items-start justify-between"
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.6 }}
+        >
+          {/* Left: services + coordinates */}
+          <div className="flex flex-col gap-2.5">
+            <div className="flex items-center gap-4 flex-wrap">
+              {SERVICES.map((s, i) => (
+                <span key={s} className="flex items-center gap-4">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--text-inverse)] opacity-40">
+                    {s}
+                  </span>
+                  {i < SERVICES.length - 1 && (
+                    <span className="h-px w-3 bg-[var(--text-inverse)] opacity-20" />
+                  )}
+                </span>
+              ))}
+            </div>
+            <div className="font-mono text-[8px] uppercase tracking-[0.2em] text-[var(--text-inverse)] opacity-20 leading-relaxed">
+              <span>LAT: 00.83 N</span>
+              <span className="mx-3 opacity-50">·</span>
+              <span>LON: 77.64 W</span>
+            </div>
+          </div>
+
+          {/* Right: CTAs */}
+          <div className="flex gap-3">
+            <MagneticButton href="/work" variant="accent" id="hero-cta-work">
+              View Our Work
+            </MagneticButton>
+            <MagneticButton href="/contact" id="hero-cta-contact">
+              Start a Project
+            </MagneticButton>
+          </div>
+        </motion.div>
+
+        {/* ── Headline — fills remaining space, text anchored to bottom ── */}
+        <div className="flex-1 flex flex-col justify-end">
 
           {/* We build */}
           <div className="overflow-hidden">
@@ -291,8 +277,7 @@ export function Hero() {
             </motion.h1>
           </div>
 
-          {/* Products. — solid accent */}
-          {/* Products. — solid accent, z-10 so ghosts can go behind */}
+          {/* Products. — solid accent, z-10 so echo 1 can go behind */}
           <div className="overflow-hidden relative z-10">
             <motion.h1
               className="block font-display text-[var(--accent)] uppercase"
@@ -306,10 +291,8 @@ export function Hero() {
           </div>
 
           {/*
-            Ghost echoes — LH_GHOST=0.64 so each echo sits
-            virtually touching the bottom of the caps above.
-            No overflow-hidden: they bleed downward and the section
-            clips the deepest one → peeling / detaching effect.
+            Ghost echoes — no overflow-hidden, bleed downward.
+            Section overflow-hidden clips the deepest echo.
           */}
           <motion.div
             aria-hidden="true"
@@ -317,7 +300,7 @@ export function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.05, duration: 0.45 }}
           >
-            {/* Echo 1 — high overlap (lh 0.35), behind the solid word */}
+            {/* Echo 1 — lh 0.35 overlaps into solid, z-index -1 goes behind */}
             <span
               className="relative block font-display uppercase"
               style={{
@@ -344,7 +327,7 @@ export function Hero() {
               Products.
             </span>
 
-            {/* Echo 3 */}
+            {/* Echo 3 — faintest, gets clipped by section */}
             <span
               className="block font-display uppercase"
               style={{
@@ -358,40 +341,9 @@ export function Hero() {
             </span>
           </motion.div>
         </div>
-
-        {/* ── Bottom bar ── */}
-        <motion.div
-          className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.3, duration: 0.6 }}
-        >
-          <div className="flex items-center gap-5 flex-wrap">
-            {SERVICES.map((s, i) => (
-              <span key={s} className="flex items-center gap-5">
-                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--text-inverse)] opacity-35">
-                  {s}
-                </span>
-                {i < SERVICES.length - 1 && (
-                  <span className="h-px w-3 bg-[var(--text-inverse)] opacity-20" />
-                )}
-              </span>
-            ))}
-          </div>
-
-          <div className="flex gap-4">
-            <MagneticButton href="/work" variant="accent" id="hero-cta-work">
-              View Our Work
-            </MagneticButton>
-            <MagneticButton href="/contact" id="hero-cta-contact">
-              Start a Project
-            </MagneticButton>
-          </div>
-        </motion.div>
       </motion.div>
 
-
-      {/* Diagonal cut — sits 80px below viewport fold, visible only on scroll */}
+      {/* Diagonal cut — 80px below viewport fold, visible on scroll */}
       <div
         className="absolute bottom-0 left-0 right-0 h-20 bg-[var(--bg-primary)] pointer-events-none"
         style={{ clipPath: "polygon(0 100%, 100% 100%, 100% 0)" }}
@@ -399,7 +351,7 @@ export function Hero() {
 
       {/* Scroll line */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        className="absolute bottom-24 left-1/2 -translate-x-1/2 z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 0.6 }}
