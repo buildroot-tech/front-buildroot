@@ -6,19 +6,22 @@ import { Terminal } from "lucide-react";
 
 export function WorkSection() {
   return (
-    <section id="work" className="relative w-full bg-[var(--bg-primary)] pt-4 md:pt-6 pb-16 md:pb-24 overflow-hidden">
-      {/* Brutalist Marquee Ticker Strip */}
-      <div className="w-full bg-[var(--bg-hero)] py-2.5 text-[var(--text-inverse)] font-mono text-xs font-bold overflow-hidden select-none mb-8 md:mb-10">
+    <section id="work" className="relative w-full bg-white pt-4 md:pt-6 pb-16 md:pb-24 overflow-hidden">
+      {/* Terminal Telemetry Marquee Ticker Strip — Light Mode */}
+      <div className="w-full border-y border-[var(--text-primary)]/10 py-2.5 font-mono text-xs font-bold overflow-hidden select-none mb-8 md:mb-10">
         <div className="flex whitespace-nowrap animate-marquee gap-8">
-          <span className="text-[var(--accent)]">/// SYSTEM_LOGS: PHASE_WORK</span>
-          <span>● PRODUCTION_DEPLOYED</span>
-          <span className="text-slate-400">ARCH: NEXTJS_16_TURBOPACK</span>
-          <span className="text-[var(--accent)]">PERF_TARGET: 95+ LIGHTHOUSE</span>
-          <span>WCAG_2.1_AA_COMPLIANT</span>
-          <span className="text-slate-400">STRICT_TYPESCRIPT</span>
-          <span className="text-[var(--accent)]">/// SYSTEM_LOGS: PHASE_WORK</span>
-          <span>● PRODUCTION_DEPLOYED</span>
-          <span className="text-slate-400">ARCH: NEXTJS_16_TURBOPACK</span>
+          <span className="text-[var(--accent)]">/// SYSTEM_LOGS: WORK_MODULE_ACTIVE</span>
+          <span className="text-[var(--text-primary)]">● PRODUCTION_DEPLOYED</span>
+          <span className="text-[var(--text-muted)]">STATUS: 200_OK</span>
+          <span className="text-[var(--accent)]">LATENCY: &lt;15MS_EDGE</span>
+          <span className="text-[var(--text-primary)]">PIPELINE: CI_CD_VERIFIED</span>
+          <span className="text-[var(--text-muted)]">MEMORY: OPTIMIZED_ALLOC</span>
+          <span className="text-[var(--accent)]">SECURITY: HARDENED_SHIELD</span>
+          <span className="text-[var(--text-primary)]">BUILD: STABLE_RELEASE</span>
+          <span className="text-[var(--text-muted)]">ROUTING: DISTRIBUTED_NODES</span>
+          <span className="text-[var(--accent)]">/// SYSTEM_LOGS: WORK_MODULE_ACTIVE</span>
+          <span className="text-[var(--text-primary)]">● PRODUCTION_DEPLOYED</span>
+          <span className="text-[var(--text-muted)]">STATUS: 200_OK</span>
         </div>
       </div>
 
@@ -33,15 +36,15 @@ export function WorkSection() {
           className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-10"
         >
           <div>
-            <div className="inline-flex items-center gap-2 bg-[var(--bg-secondary)] px-3.5 py-1.5 font-mono text-xs font-bold uppercase text-[var(--accent)] tracking-widest">
+            <div className="inline-flex items-center gap-2 border border-[var(--text-primary)]/10 px-3.5 py-1.5 font-mono text-xs font-bold uppercase text-[var(--accent)] tracking-widest">
               <Terminal className="h-3.5 w-3.5" />
               <span>// Selected Works</span>
             </div>
             <h2 className="headline text-h1 mt-4 text-[var(--text-primary)] tracking-tight">
               Featured Projects & Architecture
             </h2>
-            <p className="mt-3 text-base md:text-lg text-[var(--text-muted)] max-w-3xl leading-relaxed font-sans">
-              Engineering high-performance SaaS applications, custom web platforms, and modern cloud architectures built with technical precision, scalability, and design craftsmanship.
+            <p className="mt-3 text-base md:text-lg text-[var(--text-primary)] max-w-3xl leading-relaxed font-sans">
+              Engineering high-performance digital products, custom web platforms, and modern cloud architectures built with technical precision, scalability, and design craftsmanship.
             </p>
           </div>
         </motion.div>

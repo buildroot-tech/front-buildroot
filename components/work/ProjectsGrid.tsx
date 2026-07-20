@@ -29,11 +29,11 @@ export function ProjectsGrid() {
               <Plus className="h-4 w-4" />
               <span>Next Project Slot</span>
             </div>
-            <h3 className="heading text-h2 mt-3 text-[var(--text-primary)]">
+            <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold mt-3 text-[var(--text-primary)] tracking-tight">
               Ready to build your digital product?
             </h3>
-            <p className="mt-2 text-base text-[var(--text-muted)] font-sans max-w-2xl leading-relaxed">
-              We engineer scalable SaaS platforms, high-performance web applications, and custom cloud architecture in 2-4 week sprints.
+            <p className="mt-3 text-base sm:text-lg text-[var(--text-primary)] font-sans max-w-4xl leading-relaxed">
+              We engineer scalable digital platforms, high-performance web applications, and custom cloud architecture in 2-4 week sprints.
             </p>
           </div>
 
