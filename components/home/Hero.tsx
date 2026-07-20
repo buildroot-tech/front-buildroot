@@ -139,7 +139,7 @@ export function Hero() {
 
       {/* ── Content ── */}
       <motion.div
-        className="relative flex flex-1 flex-col px-6 md:px-12"
+        className="relative flex h-[100vh] shrink-0 flex-col px-6 md:px-12"
         style={{
           paddingTop: `${HEADER_H + 20}px`,
           paddingBottom: "28px",
