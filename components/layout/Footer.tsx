@@ -161,7 +161,7 @@ export function Footer(): React.ReactElement {
         </div>
 
         {/* ── LOWER HALF — Contact Info Box ── */}
-        <div className="flex justify-start px-4 md:px-6 pb-4 md:pb-6 pt-12 md:pt-8">
+        <div className="flex justify-end px-4 md:px-6 pb-4 md:pb-6 pt-12 md:pt-8">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
