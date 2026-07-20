@@ -174,7 +174,7 @@ export function Footer(): React.ReactElement {
 
               {/* Left — Address + City */}
               <div className="flex flex-col gap-0 divide-y-2 divide-[var(--border)]">
-                <div className="p-8 md:p-10">
+                <div className="p-10 md:p-16">
                   <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-3">
                     Dirección
                   </p>
@@ -182,7 +182,7 @@ export function Footer(): React.ReactElement {
                     {contactInfo.address}
                   </p>
                 </div>
-                <div className="p-8 md:p-10">
+                <div className="p-10 md:p-16">
                   <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-3">
                     Ciudad / País
                   </p>
@@ -194,7 +194,7 @@ export function Footer(): React.ReactElement {
 
               {/* Right — Phone + Email */}
               <div className="flex flex-col gap-0 divide-y-2 divide-[var(--border)]">
-                <div className="p-8 md:p-10">
+                <div className="p-10 md:p-16">
                   <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-3">
                     Teléfono
                   </p>
@@ -206,7 +206,7 @@ export function Footer(): React.ReactElement {
                     {contactInfo.phone}
                   </a>
                 </div>
-                <div className="p-8 md:p-10 flex flex-col justify-between gap-6">
+                <div className="p-10 md:p-16 flex flex-col justify-between gap-10">
                   <div>
                     <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-3">
                       Correo
