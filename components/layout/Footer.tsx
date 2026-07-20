@@ -17,6 +17,12 @@ const socialLinks = [
   { href: "https://linkedin.com/company/buildroot", label: "li/buildroot" },
 ];
 
+const legalLinks = [
+  { href: "/privacy", label: "privacidad" },
+  { href: "/cookies", label: "cookies" },
+  { href: "/newsletter", label: "newsletter" },
+];
+
 const contactInfo = {
   address: "Calle Principal 42",
   city: "Bogotá, Colombia",
@@ -47,38 +53,66 @@ export function Footer(): React.ReactElement {
         {/* ── UPPER HALF ── */}
         <div className="px-4 md:px-12 py-6 md:py-8">
           <div className="w-[95%] mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
 
-              {/* Navigation */}
+              {/* Navigation & Legal (2 columns inside Pages) */}
               <div className="flex flex-col">
                 <div className="border-b-2 border-[var(--border)] w-full pb-4 mb-5">
                   <p className="font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] capitalize tracking-tight text-[var(--text-muted)]">
                     Pages
                   </p>
                 </div>
-                <nav className="flex flex-col gap-1" aria-label="Footer navigation">
-                  {navLinks.map((link, i) => (
-                    <motion.div
-                      key={link.href}
-                      custom={i}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                      variants={fadeUp}
-                    >
-                      <Link
-                        href={link.href}
-                        className={cn(
-                          "group inline-flex items-center gap-2 leading-none",
-                          "font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] tracking-tight",
-                          "text-[var(--text-primary)] transition-colors duration-150 hover:text-[var(--accent)]"
-                        )}
+                <div className="grid grid-cols-2 gap-8">
+                  {/* Sub-column 1: Nav */}
+                  <nav className="flex flex-col gap-1" aria-label="Footer navigation">
+                    {navLinks.map((link, i) => (
+                      <motion.div
+                        key={link.href}
+                        custom={i}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={fadeUp}
                       >
-                        {link.label}
-                      </Link>
-                    </motion.div>
-                  ))}
-                </nav>
+                        <Link
+                          href={link.href}
+                          className={cn(
+                            "group inline-flex items-center gap-2 leading-none",
+                            "font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] tracking-tight",
+                            "text-[var(--text-primary)] transition-colors duration-150 hover:text-[var(--accent)]"
+                          )}
+                        >
+                          {link.label}
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </nav>
+
+                  {/* Sub-column 2: Legal & Extras */}
+                  <nav className="flex flex-col gap-1" aria-label="Legal navigation">
+                    {legalLinks.map((link, i) => (
+                      <motion.div
+                        key={link.href}
+                        custom={i + navLinks.length}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={fadeUp}
+                      >
+                        <Link
+                          href={link.href}
+                          className={cn(
+                            "group inline-flex items-center gap-2 leading-none",
+                            "font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] tracking-tight text-[var(--text-muted)]",
+                            "transition-colors duration-150 hover:text-[var(--text-primary)]"
+                          )}
+                        >
+                          {link.label}
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </nav>
+                </div>
               </div>
 
               {/* Social */}
@@ -120,40 +154,6 @@ export function Footer(): React.ReactElement {
                 </div>
               </div>
 
-              {/* Legal / Cookies */}
-              <div className="flex flex-col">
-                <div className="border-b-2 border-[var(--border)] w-full pb-4 mb-5">
-                  <p className="font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] capitalize tracking-tight text-[var(--text-muted)]">
-                    Legal
-                  </p>
-                </div>
-                <div className="flex flex-col gap-1">
-                  {[
-                    { href: "/privacy", label: "Privacidad" },
-                    { href: "/cookies", label: "Cookies" },
-                    { href: "/terms", label: "Términos" },
-                  ].map((link, i) => (
-                    <motion.div
-                      key={link.href}
-                      custom={i}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                      variants={fadeUp}
-                    >
-                      <Link
-                        href={link.href}
-                        className={cn(
-                          "font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] tracking-tight text-[var(--text-muted)] leading-none",
-                          "transition-colors duration-150 hover:text-[var(--text-primary)]"
-                        )}
-                      >
-                        {link.label}
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </div>
