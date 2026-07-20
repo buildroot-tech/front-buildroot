@@ -201,11 +201,20 @@ export function Footer(): React.ReactElement {
                   <path d="M14 5l1.5-1.5" />
                 </svg>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--text-primary)] shrink-0 w-[clamp(2.5rem,4.5vw,6rem)] h-[clamp(2.5rem,4.5vw,6rem)] translate-y-1 md:translate-y-2 ml-[-1vw]">
-                  <path d="M3 18h18v-2a6 6 0 0 0-6-6H9a6 6 0 0 0-6 6v2z" />
-                  <path d="M15 10c0-1.5-1-2-2-2s-2 .5-2 2" />
-                  <circle cx="17.5" cy="13.5" r="1.5" fill="currentColor" stroke="none" />
-                  <path d="M7 18v2" />
-                  <path d="M17 18v2" />
+                  {/* Face Outline */}
+                  <path d="M7 10c-2-1-3-3-2-5 1-2 3-2 5-1 1-1 3-1 4 0 2-1 4-1 5 1 1 2 0 4-2 5 2 3 2 6 0 9-2 2-3 3-5 3-2 0-3-1-5-3-2-3-2-6 0-9z" />
+                  {/* Eyes */}
+                  <circle cx="9.5" cy="12" r="1.5" fill="currentColor" stroke="none" />
+                  <circle cx="14.5" cy="12" r="1.5" fill="currentColor" stroke="none" />
+                  {/* Nose */}
+                  <circle cx="12" cy="14" r="1" fill="currentColor" stroke="none" />
+                  {/* Mouth */}
+                  <path d="M12 15v1c-.5.5-1.5 1-2.5 1m2.5-1c.5.5 1.5 1 2.5 1" />
+                  {/* Whiskers */}
+                  <path d="M5 14H2" />
+                  <path d="M6 17H3" />
+                  <path d="M19 14h3" />
+                  <path d="M18 17h3" />
                 </svg>
               </div>
 
