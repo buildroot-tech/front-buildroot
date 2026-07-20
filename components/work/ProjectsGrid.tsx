@@ -11,7 +11,7 @@ export function ProjectsGrid() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <div className="w-full font-mono select-none space-y-2">
+    <div className="w-full font-mono select-none space-y-3">
       {/* Locomotive-Style Expandable List Rows */}
       {PROJECTS.map((project) => (
         <ProjectRow
@@ -21,18 +21,18 @@ export function ProjectsGrid() {
         />
       ))}
 
-      {/* Interactive "START YOUR PROJECT" Subtle Callout Row */}
-      <div className="w-full bg-[var(--bg-secondary)]/60 py-12 px-6 sm:px-8 md:px-12 mt-6">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 max-w-7xl">
+      {/* Interactive "Start Your Project" Callout Row */}
+      <div className="w-full bg-[var(--bg-secondary)]/60 py-16 px-6 sm:px-10 md:px-14 mt-8">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 max-w-7xl">
           <div>
             <div className="flex items-center gap-2 text-xs font-bold uppercase text-[var(--accent)] tracking-widest">
-              <Plus className="h-3.5 w-3.5" />
-              <span>NEXT_PROJECT_SLOT</span>
+              <Plus className="h-4 w-4" />
+              <span>Next Project Slot</span>
             </div>
-            <h3 className="font-display text-xl md:text-2xl font-bold mt-2 text-[var(--text-primary)]">
+            <h3 className="heading text-h2 mt-3 text-[var(--text-primary)]">
               Ready to build your digital product?
             </h3>
-            <p className="mt-1.5 text-sm text-[var(--text-muted)] font-sans max-w-2xl leading-relaxed">
+            <p className="mt-2 text-base text-[var(--text-muted)] font-sans max-w-2xl leading-relaxed">
               We engineer scalable SaaS platforms, high-performance web applications, and custom cloud architecture in 2-4 week sprints.
             </p>
           </div>
@@ -40,10 +40,10 @@ export function ProjectsGrid() {
           <div>
             <Link
               href="/#contact"
-              className="brutalist-button brutalist-button-accent text-xs font-bold tracking-wider py-3 px-6"
+              className="brutalist-button brutalist-button-accent text-xs font-bold tracking-wider py-4 px-8"
             >
-              <span>START A BUILD →</span>
-              <ArrowUpRight className="h-3.5 w-3.5" />
+              <span>Start a Build →</span>
+              <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
