@@ -53,7 +53,7 @@ export function Footer(): React.ReactElement {
               {/* Navigation */}
               <div className="flex flex-col">
                 <div className="border-b-2 border-[var(--border)] w-full pb-6 mb-8">
-                  <p className="font-mono text-[clamp(1.5rem,2vw,2.5rem)] uppercase tracking-tight text-[var(--text-muted)]">
+                  <p className="font-mono text-[clamp(1rem,1.2vw,1.25rem)] uppercase tracking-tight text-[var(--text-muted)]">
                     Pages
                   </p>
                 </div>
@@ -71,7 +71,7 @@ export function Footer(): React.ReactElement {
                         href={link.href}
                         className={cn(
                           "group inline-flex items-center gap-4",
-                          "font-mono text-[clamp(1.5rem,2vw,2.5rem)] tracking-tight",
+                          "font-mono text-[clamp(1rem,1.2vw,1.25rem)] tracking-tight",
                           "text-[var(--text-primary)] transition-colors duration-150 hover:text-[var(--accent)]"
                         )}
                       >
@@ -88,7 +88,7 @@ export function Footer(): React.ReactElement {
               {/* Social */}
               <div className="flex flex-col">
                 <div className="border-b-2 border-[var(--border)] w-full pb-6 mb-8">
-                  <p className="font-mono text-[clamp(1.5rem,2vw,2.5rem)] uppercase tracking-tight text-[var(--text-muted)]">
+                  <p className="font-mono text-[clamp(1rem,1.2vw,1.25rem)] uppercase tracking-tight text-[var(--text-muted)]">
                     Presencia
                   </p>
                 </div>
@@ -108,7 +108,7 @@ export function Footer(): React.ReactElement {
                         rel="noopener noreferrer"
                         className={cn(
                           "group inline-flex items-center gap-4",
-                          "font-mono text-[clamp(1.5rem,2vw,2.5rem)] tracking-tight",
+                          "font-mono text-[clamp(1rem,1.2vw,1.25rem)] tracking-tight",
                           "text-[var(--text-muted)] transition-colors duration-150 hover:text-[var(--accent)]"
                         )}
                         aria-label={`Visita buildroot en ${link.label}`}
@@ -127,7 +127,7 @@ export function Footer(): React.ReactElement {
               {/* Legal / Cookies */}
               <div className="flex flex-col">
                 <div className="border-b-2 border-[var(--border)] w-full pb-6 mb-8">
-                  <p className="font-mono text-[clamp(1.5rem,2vw,2.5rem)] uppercase tracking-tight text-[var(--text-muted)]">
+                  <p className="font-mono text-[clamp(1rem,1.2vw,1.25rem)] uppercase tracking-tight text-[var(--text-muted)]">
                     Legal
                   </p>
                 </div>
@@ -148,7 +148,7 @@ export function Footer(): React.ReactElement {
                       <Link
                         href={link.href}
                         className={cn(
-                          "font-mono text-[clamp(1.5rem,2vw,2.5rem)] tracking-tight text-[var(--text-muted)]",
+                          "font-mono text-[clamp(1rem,1.2vw,1.25rem)] tracking-tight text-[var(--text-muted)]",
                           "transition-colors duration-150 hover:text-[var(--text-primary)]"
                         )}
                       >
