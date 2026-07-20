@@ -164,109 +164,93 @@ export function Footer(): React.ReactElement {
         <div className="pt-12 md:pt-8 pb-4 md:pb-6 relative w-full overflow-hidden">
           {/* Main Info Box */}
           <div className="mx-auto w-[95%] max-w-6xl md:ml-auto md:mr-8 xl:mr-[5%] border-2 border-[var(--border)] bg-[var(--bg-primary)]">
-            <div className="grid grid-cols-1 md:grid-cols-2 divide-y-2 md:divide-y-0 md:divide-x-2 divide-[var(--border)]">
+            <div className="flex flex-col divide-y-2 divide-[var(--border)]">
               
-              {/* Left Column */}
-              <div className="flex flex-col gap-0 divide-y-2 divide-[var(--border)]">
-                
-                {/* Address Box */}
-                <div className="px-6 py-8 md:px-10 md:py-12 flex flex-col justify-between relative overflow-hidden group h-full">
-                  <div className="flex justify-between items-start mb-8 z-10 relative">
-                    <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-primary)]">
-                      Dirección
+              {/* Row 1: Location */}
+              <div className="flex flex-col md:flex-row items-center justify-between px-6 md:px-10 py-8 md:py-12 relative overflow-hidden group">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-6 z-10 w-full">
+                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-primary)]">
+                    Ubicación
+                  </p>
+                  <div className="p-2 border-2 border-[var(--border)] rounded-sm bg-transparent group-hover:bg-[var(--text-primary)] group-hover:text-[var(--bg-primary)] transition-colors duration-300 ml-0 md:ml-4">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter">
+                      <path d="M3 20h18L15 8l-3 4-2-2-6 10z"/>
+                      <path d="M12 3v3" className="animate-pulse" />
+                      <path d="M10 5l-1.5-1.5" />
+                      <path d="M14 5l1.5-1.5" />
+                    </svg>
+                  </div>
+                  <div className="mt-6 md:mt-0 md:ml-auto text-left md:text-right">
+                    <p className="headline text-[var(--text-primary)] text-[clamp(1.2rem,2vw,2.5rem)] md:text-[clamp(1.5rem,2.5vw,3rem)] leading-[0.95]">
+                      {contactInfo.address}, {contactInfo.city}
                     </p>
-                    <div className="font-mono text-[9px] text-[var(--bg-primary)] bg-[var(--text-primary)] border border-[var(--border)] px-3 py-1.5 rounded-full flex items-center gap-2">
+                    <div className="inline-flex mt-4 font-mono text-[9px] text-[var(--bg-primary)] bg-[var(--text-primary)] border border-[var(--border)] px-3 py-1.5 rounded-full items-center gap-2">
                       <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
                       4°35'56"N 74°04'51"W
                     </div>
                   </div>
-                  <p className="headline text-[var(--text-primary)] text-[clamp(1.5rem,2.5vw,3rem)] leading-[0.95] z-10 relative">
-                    {contactInfo.address}
-                  </p>
-                  {/* Abstract Grid background */}
-                  <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none w-32 h-32">
-                     <svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                       <defs>
-                         <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                           <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="1"/>
-                         </pattern>
-                       </defs>
-                       <rect width="100" height="100" fill="url(#grid)" />
-                     </svg>
-                  </div>
                 </div>
-
-                {/* City Box with Volcano */}
-                <div className="px-6 py-8 md:px-10 md:py-12 flex flex-col justify-between relative overflow-hidden group h-full">
-                  <div className="flex justify-between items-start mb-8 z-10 relative">
-                    <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-primary)]">
-                      Locación
-                    </p>
-                    <div className="p-2 border-2 border-[var(--border)] rounded-sm bg-transparent group-hover:bg-[var(--text-primary)] group-hover:text-[var(--bg-primary)] transition-colors duration-300">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter">
-                        <path d="M3 20h18L15 8l-3 4-2-2-6 10z"/>
-                        <path d="M12 3v3" className="animate-pulse" />
-                        <path d="M10 5l-1.5-1.5" />
-                        <path d="M14 5l1.5-1.5" />
-                      </svg>
-                    </div>
-                  </div>
-                  <p className="headline text-[var(--text-primary)] text-[clamp(1.5rem,2.5vw,3rem)] leading-[0.95] z-10 relative">
-                    {contactInfo.city}
-                  </p>
+                {/* Abstract Grid background */}
+                <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none w-48 h-48 md:w-64 md:h-64">
+                   <svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                     <defs>
+                       <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                         <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="1"/>
+                       </pattern>
+                     </defs>
+                     <rect width="100" height="100" fill="url(#grid)" />
+                   </svg>
                 </div>
-
               </div>
 
-              {/* Right Column */}
-              <div className="flex flex-col gap-0 divide-y-2 divide-[var(--border)]">
+              {/* Row 2: Phone */}
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between px-6 md:px-10 py-8 md:py-12">
+                <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-primary)] mb-6 md:mb-0">
+                  Teléfono
+                </p>
                 
-                {/* Phone Box */}
-                <div className="px-6 py-8 md:px-10 md:py-12 flex flex-col justify-between h-full">
-                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-primary)] mb-8">
-                    Teléfono
-                  </p>
-                  <div className="grid grid-cols-3 border-2 border-[var(--border)] divide-x-2 divide-[var(--border)] text-center h-20 md:h-24">
+                <div className="w-full md:w-auto md:ml-auto">
+                  <div className="grid grid-cols-3 border-2 border-[var(--border)] divide-x-2 divide-[var(--border)] text-center h-20 md:h-24 md:w-[400px]">
                     <div className="flex items-center justify-center font-mono text-[clamp(1rem,2vw,1.5rem)] font-bold bg-[var(--text-primary)] text-[var(--bg-primary)]">
                       {contactInfo.phone.split(" ")[0]}
                     </div>
                     <div className="flex items-center justify-center font-mono text-[clamp(1rem,2vw,1.5rem)] font-bold bg-transparent">
                       {contactInfo.phone.split(" ")[1]}
                     </div>
-                    <div className="flex items-center justify-center font-mono text-[clamp(1rem,1.5vw,1.5rem)] font-bold bg-transparent px-2">
+                    <div className="flex items-center justify-center font-mono text-[clamp(1rem,1.5vw,1.5rem)] font-bold bg-transparent px-2 tracking-[0.1em]">
                       {contactInfo.phone.split(" ").slice(2).join("")}
                     </div>
                   </div>
                 </div>
-
-                {/* Email & System Status */}
-                <div className="px-6 py-8 md:px-10 md:py-12 flex flex-col justify-between h-full">
-                  <div className="mb-8">
-                    <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-primary)] mb-4">
-                      Correo
-                    </p>
-                    <a
-                      href={`mailto:${contactInfo.email}`}
-                      className="inline-block font-mono text-[clamp(1.2rem,2vw,2.5rem)] text-[var(--text-primary)] transition-colors hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] break-all border-b-2 border-transparent hover:border-[var(--text-primary)] py-1 px-2 -ml-2"
-                    >
-                      {contactInfo.email}
-                    </a>
-                  </div>
-                  
-                  <div className="mt-auto flex justify-between items-end border-t-2 border-[var(--border)] pt-4">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-none animate-pulse" />
-                      <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-primary)]">
-                        SYS_ONLINE
-                      </p>
-                    </div>
-                    <p className="font-mono text-[9px] text-[var(--text-primary)]">
-                      © {year} buildroot_
-                    </p>
-                  </div>
-                </div>
-
               </div>
+
+              {/* Row 3: Email & System Status */}
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between px-6 md:px-10 py-8 md:py-12 gap-8 md:gap-0">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-8 w-full md:w-auto">
+                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-primary)]">
+                    Correo
+                  </p>
+                  <a
+                    href={`mailto:${contactInfo.email}`}
+                    className="inline-block font-mono text-[clamp(1.2rem,2vw,2.5rem)] md:text-[clamp(1.5rem,2.5vw,3rem)] text-[var(--text-primary)] transition-colors hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] break-all border-b-2 border-transparent hover:border-[var(--text-primary)] py-1 px-2 -ml-2 md:ml-0"
+                  >
+                    {contactInfo.email}
+                  </a>
+                </div>
+                
+                <div className="flex flex-row md:flex-col items-center md:items-end justify-between w-full md:w-auto gap-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-none animate-pulse" />
+                    <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-primary)]">
+                      SYS_ONLINE
+                    </p>
+                  </div>
+                  <p className="font-mono text-[9px] text-[var(--text-primary)]">
+                    © {year} buildroot_
+                  </p>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
