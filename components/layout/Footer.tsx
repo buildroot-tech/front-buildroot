@@ -27,6 +27,7 @@ const legalLinks = [
 const contactInfo = {
   address: "Cl.7 Este",
   city: "Ipiales, Nariño",
+  zip: "523001",
   phone: "+57 310 0000000",
   email: "hello@buildroot.tech",
 };
@@ -183,7 +184,7 @@ export function Footer(): React.ReactElement {
                   </div>
 
                   <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
-                    {contactInfo.city}
+                    {contactInfo.zip}
                   </span>
                 </div>
                 
@@ -195,6 +196,13 @@ export function Footer(): React.ReactElement {
                     <path d="M14 5l1.5-1.5" />
                   </svg>
                 </div>
+              </div>
+
+              {/* Row 1.5: City */}
+              <div className="flex px-2 py-1 items-baseline">
+                <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
+                  {contactInfo.city}
+                </span>
               </div>
 
               {/* Row 2: Phone */}
