@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -12,15 +12,36 @@ const navLinks = [
   { href: "/about", label: "about" },
 ];
 
+// Sections that have dark backgrounds (need light text)
+const darkSections = ["hero", "cta"];
+
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("hero");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const sections = document.querySelectorAll("section[id]");
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    sections.forEach((section) => observerRef.current?.observe(section));
+
+    return () => {
+      observerRef.current?.disconnect();
+    };
   }, []);
+
+  const isDarkSection = darkSections.includes(activeSection);
 
   useEffect(() => {
     if (mobileOpen) {
@@ -38,9 +59,9 @@ export function Header() {
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-colors duration-300",
-          scrolled
-            ? "bg-[var(--bg-primary)]"
-            : "bg-transparent",
+          isDarkSection
+            ? "bg-transparent"
+            : "bg-[var(--bg-primary)]",
         )}
       >
         <div className="flex items-center justify-between px-6 py-5 overflow-hidden">
@@ -49,7 +70,7 @@ export function Header() {
             href="/"
             className="font-mono text-3xl font-bold tracking-tight"
             style={{
-              color: scrolled ? "var(--text-primary)" : "var(--text-inverse)",
+              color: isDarkSection ? "var(--text-inverse)" : "var(--text-primary)",
             }}
           >
             <ScrambleText text="buildroot_" speed={80} />
@@ -63,9 +84,7 @@ export function Header() {
                   href={link.href}
                   className="group relative font-mono text-3xl font-medium transition-colors hover:text-[var(--accent)]"
                   style={{
-                    color: scrolled
-                      ? "var(--text-primary)"
-                      : "var(--text-inverse)",
+                    color: isDarkSection ? "var(--text-inverse)" : "var(--text-primary)",
                     minWidth: `${link.label.length}ch`,
                   }}
                 >
@@ -76,9 +95,7 @@ export function Header() {
                   <span
                     className="text-3xl"
                     style={{
-                      color: scrolled
-                        ? "var(--text-muted)"
-                        : "var(--text-inverse)",
+                      color: isDarkSection ? "var(--text-inverse)" : "var(--text-muted)",
                       opacity: 0.4,
                     }}
                   >
@@ -94,7 +111,7 @@ export function Header() {
             href="/contact"
             className="group relative font-mono text-3xl font-medium transition-colors hover:text-[var(--accent)] ml-8"
             style={{
-              color: scrolled ? "var(--text-primary)" : "var(--text-inverse)",
+              color: isDarkSection ? "var(--text-inverse)" : "var(--text-primary)",
               minWidth: "9ch",
             }}
           >
@@ -111,9 +128,9 @@ export function Header() {
             <motion.span
               className="block h-0.5 w-6"
               style={{
-                background: scrolled
-                  ? "var(--text-primary)"
-                  : "var(--text-inverse)",
+                background: isDarkSection
+                  ? "var(--text-inverse)"
+                  : "var(--text-primary)",
               }}
               animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.2 }}
@@ -121,9 +138,9 @@ export function Header() {
             <motion.span
               className="block h-0.5 w-6"
               style={{
-                background: scrolled
-                  ? "var(--text-primary)"
-                  : "var(--text-inverse)",
+                background: isDarkSection
+                  ? "var(--text-inverse)"
+                  : "var(--text-primary)",
               }}
               animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
               transition={{ duration: 0.2 }}
@@ -131,9 +148,9 @@ export function Header() {
             <motion.span
               className="block h-0.5 w-6"
               style={{
-                background: scrolled
-                  ? "var(--text-primary)"
-                  : "var(--text-inverse)",
+                background: isDarkSection
+                  ? "var(--text-inverse)"
+                  : "var(--text-primary)",
               }}
               animate={
                 mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }

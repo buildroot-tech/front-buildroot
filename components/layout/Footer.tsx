@@ -80,7 +80,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t-2 border-[var(--border)] pt-6 sm:flex-row">
           <p className="font-mono text-xs text-[var(--text-muted)]">
-            © {new Date().getFullYear()} buildroot_. All rights reserved.
+            © buildroot_. All rights reserved.
           </p>
           <p className="font-mono text-xs text-[var(--text-muted)]">
             Built with Next.js & Tailwind

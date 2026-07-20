@@ -64,7 +64,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
                   <span className="h-3 w-3 border border-emerald-500 bg-emerald-500/80" />
                 </div>
                 <span className="ml-2 text-xs font-bold tracking-wider text-slate-300">
-                  SYS_INSPECTOR // LOG_{project.indexCode} :: {project.id.toUpperCase()}
+                  SYS_INSPECTOR // LOG :: {project.id.toUpperCase()}
                 </span>
               </div>
               <button
@@ -85,8 +85,6 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
                   <Terminal className="h-4 w-4" />
                   <span>CLIENT :: {project.client}</span>
                   <span className="text-[var(--text-muted)]">//</span>
-                  <span>YEAR :: {project.year}</span>
-                  <span className="text-[var(--text-muted)]">//</span>
                   <span>CAT :: {project.category}</span>
                 </div>
                 <h2 id="case-study-title" className="heading text-h1 mt-2 text-[var(--text-primary)]">
@@ -103,13 +101,13 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
                   /// METRIC_TELEMETRY_LOGS
                 </p>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                  {project.metrics.map((metric, i) => (
+                  {project.metrics.map((metric) => (
                     <div
                       key={metric.label}
                       className="border-3 border-[var(--border)] bg-[var(--bg-secondary)] p-4 shadow-[4px_4px_0_var(--border)]"
                     >
                       <p className="font-mono text-xs uppercase font-bold text-[var(--text-muted)]">
-                        [0{i + 1}] {metric.label}
+                        {metric.label}
                       </p>
                       <p className="mt-1 font-mono text-3xl font-black text-[var(--accent)]">
                         {metric.value}
@@ -123,7 +121,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
               <div className="mt-8 grid gap-6 md:grid-cols-2">
                 <div className="border-3 border-[var(--border)] bg-red-50/20 p-6">
                   <div className="font-mono text-xs font-bold uppercase tracking-wider text-red-600 border-b-2 border-red-600/30 pb-2">
-                    /// 01_PROBLEM_DIAGNOSIS
+                    /// PROBLEM_DIAGNOSIS
                   </div>
                   <p className="mt-4 text-sm leading-relaxed text-[var(--text-primary)]">
                     {project.caseStudy.challenge}
@@ -132,7 +130,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
 
                 <div className="border-3 border-[var(--border)] bg-blue-50/20 p-6">
                   <div className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--accent)] border-b-2 border-[var(--accent)]/30 pb-2">
-                    /// 02_ENGINEERING_SOLUTION
+                    /// ENGINEERING_SOLUTION
                   </div>
                   <p className="mt-4 text-sm leading-relaxed text-[var(--text-primary)]">
                     {project.caseStudy.solution}
@@ -144,12 +142,12 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
               <div className="mt-8 border-3 border-[var(--border)] bg-[var(--bg-hero)] text-[var(--text-inverse)] p-6 md:p-8">
                 <div className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--accent)] border-b border-slate-700 pb-3 flex items-center gap-2">
                   <Terminal className="h-4 w-4" />
-                  /// 03_ARCHITECTURAL_DECISIONS
+                  /// ARCHITECTURAL_DECISIONS
                 </div>
                 <ul className="mt-6 grid gap-3 sm:grid-cols-2 font-mono text-xs">
-                  {project.caseStudy.architecture.map((arch, idx) => (
+                  {project.caseStudy.architecture.map((arch) => (
                     <li key={arch} className="flex items-start gap-3 border border-slate-700 bg-slate-900/60 p-3 text-slate-200">
-                      <span className="text-[var(--accent)] font-bold">[0{idx + 1}]</span>
+                      <span className="text-[var(--accent)] font-bold">➔</span>
                       <span>{arch}</span>
                     </li>
                   ))}
@@ -160,7 +158,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
               <div className="mt-8 border-3 border-[var(--border)] bg-[var(--bg-secondary)] p-6">
                 <div className="font-mono text-xs font-bold uppercase tracking-wider text-emerald-600 border-b-2 border-emerald-600/30 pb-2 flex items-center gap-2">
                   <CheckSquare className="h-4 w-4" />
-                  /// 04_MEASURED_IMPACT & DELIVERABLES
+                  /// MEASURED_IMPACT & DELIVERABLES
                 </div>
                 <ul className="mt-4 grid gap-2.5 font-mono text-xs text-[var(--text-primary)]">
                   {project.caseStudy.results.map((res) => (
