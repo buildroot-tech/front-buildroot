@@ -187,22 +187,19 @@ export function Footer(): React.ReactElement {
                     {contactInfo.zip}
                   </span>
                 </div>
-                
-                <div className="flex items-end justify-end shrink-0 hidden xl:flex">
-                  <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[var(--text-primary)] shrink-0">
-                    <path d="M3 20h18L15 8l-3 4-2-2-6 10z"/>
-                    <path d="M12 3v3" />
-                    <path d="M10 5l-1.5-1.5" />
-                    <path d="M14 5l1.5-1.5" />
-                  </svg>
-                </div>
               </div>
 
               {/* Row 1.5: City */}
-              <div className="flex px-2 py-1 items-baseline">
+              <div className="flex px-2 py-1 items-baseline gap-4 md:gap-8">
                 <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
                   {contactInfo.city}
                 </span>
+                <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[var(--text-primary)] shrink-0 translate-y-1 md:translate-y-2">
+                  <path d="M3 20h18L15 8l-3 4-2-2-6 10z"/>
+                  <path d="M12 3v3" />
+                  <path d="M10 5l-1.5-1.5" />
+                  <path d="M14 5l1.5-1.5" />
+                </svg>
               </div>
 
               {/* Row 2: Phone */}
