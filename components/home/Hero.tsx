@@ -309,9 +309,6 @@ export function Hero() {
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
         >
-          <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-[var(--text-inverse)] opacity-25">
-            Scroll
-          </span>
           <div className="relative h-10 w-px overflow-hidden">
             <motion.div
               className="absolute inset-x-0 bg-[var(--accent)] opacity-60"
