@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
   return (
-    <main className="pt-20">
+    <div className="pt-16 sm:pt-20">
       <WorkSection />
-    </main>
+    </div>
   );
 }
