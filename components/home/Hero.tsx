@@ -182,7 +182,7 @@ function DecorativeDetails() {
   );
 }
 
-const SERVICES = ["Web Development", "Technical Consulting", "SaaS Products"];
+const SERVICES = ["System", "Product", "Infrastructure"];
 const HEADLINE_LINES = [
   { text: "We build", delay: 0.3 },
   { text: "digital", delay: 0.45 },
