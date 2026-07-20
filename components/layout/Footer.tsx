@@ -46,7 +46,7 @@ export function Footer(): React.ReactElement {
       <div className="flex flex-col">
 
         {/* ── UPPER HALF ── */}
-        <div className="border-b-2 border-[var(--border)] px-4 md:px-12 py-12 md:py-16">
+        <div className="px-4 md:px-12 py-12 md:py-16">
           <div className="w-[95%] mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-24">
 
