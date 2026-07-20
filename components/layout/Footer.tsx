@@ -75,9 +75,6 @@ export function Footer(): React.ReactElement {
                           "text-[var(--text-primary)] transition-colors duration-150 hover:text-[var(--accent)]"
                         )}
                       >
-                        <span className="text-[var(--text-muted)] group-hover:text-[var(--accent)] transition-colors tabular-nums opacity-50">
-                          0{i + 1}
-                        </span>
                         {link.label}
                       </Link>
                     </motion.div>
