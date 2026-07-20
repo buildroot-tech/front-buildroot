@@ -60,11 +60,14 @@ export function Header() {
                 <Link
                   href={link.href}
                   className="group relative font-mono text-3xl font-medium tracking-tight transition-colors hover:text-[var(--accent)]"
-                  style={{ color: scrolled ? "var(--text-primary)" : "var(--text-inverse)" }}
+                  style={{
+                    color: scrolled ? "var(--text-primary)" : "var(--text-inverse)",
+                    minWidth: `${link.label.length}ch`,
+                  }}
                 >
                   <ScrambleText text={link.label} speed={55} />
                   <span
-                    className="absolute bottom-0 left-0 h-[3px] w-0 bg-current transition-all duration-300 ease-out group-hover:w-full"
+                    className="absolute bottom-0 left-0 h-[3px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100"
                   />
                 </Link>
                 {i < navLinks.length - 1 && (
@@ -83,11 +86,14 @@ export function Header() {
           <a
             href="mailto:hello@buildroot.dev"
             className="group relative font-mono text-3xl font-medium tracking-tight transition-colors hover:text-[var(--accent)] ml-8"
-            style={{ color: scrolled ? "var(--text-primary)" : "var(--text-inverse)" }}
+            style={{
+              color: scrolled ? "var(--text-primary)" : "var(--text-inverse)",
+              minWidth: "8ch",
+            }}
           >
-            let's talk
+            <ScrambleText text="let's talk" speed={55} />
             <span
-              className="absolute bottom-0 left-0 h-[3px] w-0 bg-current transition-all duration-300 ease-out group-hover:w-full"
+              className="absolute bottom-0 left-0 h-[3px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100"
             />
           </a>
 
