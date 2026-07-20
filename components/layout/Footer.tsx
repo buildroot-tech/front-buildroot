@@ -56,7 +56,7 @@ export function Footer(): React.ReactElement {
                     Pages
                   </p>
                 </div>
-                <nav className="flex flex-col gap-2" aria-label="Footer navigation">
+                <nav className="flex flex-col gap-1" aria-label="Footer navigation">
                   {navLinks.map((link, i) => (
                     <motion.div
                       key={link.href}
@@ -69,7 +69,7 @@ export function Footer(): React.ReactElement {
                       <Link
                         href={link.href}
                         className={cn(
-                          "group inline-flex items-center gap-2",
+                          "group inline-flex items-center gap-2 leading-none",
                           "font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] tracking-tight",
                           "text-[var(--text-primary)] transition-colors duration-150 hover:text-[var(--accent)]"
                         )}
@@ -88,7 +88,7 @@ export function Footer(): React.ReactElement {
                     Presencia
                   </p>
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-1">
                   {socialLinks.map((link, i) => (
                     <motion.div
                       key={link.href}
@@ -103,7 +103,7 @@ export function Footer(): React.ReactElement {
                         target="_blank"
                         rel="noopener noreferrer"
                         className={cn(
-                          "group inline-flex items-center gap-2",
+                          "group inline-flex items-center gap-2 leading-none",
                           "font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] tracking-tight",
                           "text-[var(--text-muted)] transition-colors duration-150 hover:text-[var(--accent)]"
                         )}
@@ -127,7 +127,7 @@ export function Footer(): React.ReactElement {
                     Legal
                   </p>
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-1">
                   {[
                     { href: "/privacy", label: "Privacidad" },
                     { href: "/cookies", label: "Cookies" },
@@ -144,7 +144,7 @@ export function Footer(): React.ReactElement {
                       <Link
                         href={link.href}
                         className={cn(
-                          "font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] tracking-tight text-[var(--text-muted)]",
+                          "font-mono text-[clamp(1.25rem,1.5vw,1.6rem)] tracking-tight text-[var(--text-muted)] leading-none",
                           "transition-colors duration-150 hover:text-[var(--text-primary)]"
                         )}
                       >
