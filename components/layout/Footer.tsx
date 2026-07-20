@@ -172,9 +172,13 @@ export function Footer(): React.ReactElement {
                   <span className="headline text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
                     {contactInfo.address}
                   </span>
-                  <div className="flex flex-col font-mono text-[clamp(1rem,1.5vw,1.5rem)] uppercase font-bold leading-[0.8] tracking-tighter">
-                    <span>↗ 0.827782</span>
-                    <span>-77.615538 ↘</span>
+                  <div className="flex items-center gap-2 font-mono text-[clamp(1rem,1.5vw,1.5rem)] uppercase font-bold tracking-tighter">
+                    <span className="text-[1.8em] leading-none font-normal">↗</span>
+                    <div className="flex flex-col leading-[0.8]">
+                      <span>0.827782</span>
+                      <span>-77.615538</span>
+                    </div>
+                    <span className="text-[1.8em] leading-none font-normal">↘</span>
                   </div>
                 </div>
                 
