@@ -17,7 +17,7 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
   const primaryMetric = project.metrics[0];
 
   return (
-    <div className="w-full bg-[var(--bg-primary)] my-3">
+    <div className="w-full bg-white my-3">
       {/* Horizontal Row Header */}
       <div
         onClick={() => setIsExpanded(!isExpanded)}
@@ -76,7 +76,7 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-            className="overflow-hidden bg-[var(--bg-secondary)]/50"
+            className="overflow-hidden bg-white"
           >
             <div className="p-8 sm:p-12 md:p-16">
               <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
@@ -97,7 +97,7 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
 
                     {/* Metric Box */}
                     {primaryMetric && (
-                      <div className="mt-8 flex items-center justify-between bg-[var(--bg-primary)] p-5 font-mono text-xs">
+                      <div className="mt-8 flex items-center justify-between border border-[var(--text-primary)]/10 p-5 font-mono text-xs">
                         <span className="font-semibold text-[var(--text-muted)]">
                           /// Key Impact: {primaryMetric.label}
                         </span>
@@ -116,7 +116,7 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
                         {project.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="bg-[var(--bg-primary)] px-3 py-1 font-semibold text-[var(--text-primary)]"
+                            className="border border-[var(--text-primary)]/10 px-3 py-1 font-semibold text-[var(--text-primary)]"
                           >
                             [{tag}]
                           </span>

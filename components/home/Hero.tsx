@@ -4,69 +4,10 @@ import {
   motion,
   useScroll,
   useTransform,
-  useMotionValue,
-  useSpring,
 } from "framer-motion";
-import { useRef, useCallback } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { useRef } from "react";
 
-/* ─────────────────────────────────────────────────────────
-   Magnetic button
-───────────────────────────────────────────────────────── */
-function MagneticButton({
-  href,
-  children,
-  variant = "default",
-  id,
-}: {
-  href: string;
-  children: React.ReactNode;
-  variant?: "default" | "accent";
-  id: string;
-}) {
-  const ref = useRef<HTMLAnchorElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const sx = useSpring(x, { stiffness: 300, damping: 20 });
-  const sy = useSpring(y, { stiffness: 300, damping: 20 });
 
-  const onMove = useCallback(
-    (e: React.MouseEvent) => {
-      const r = ref.current?.getBoundingClientRect();
-      if (!r) return;
-      x.set((e.clientX - (r.left + r.width / 2)) * 0.35);
-      y.set((e.clientY - (r.top + r.height / 2)) * 0.35);
-    },
-    [x, y]
-  );
-  const onLeave = useCallback(() => { x.set(0); y.set(0); }, [x, y]);
-
-  const base =
-    "inline-flex items-center gap-2 px-6 py-3.5 font-mono text-[11px] uppercase tracking-[0.12em] font-semibold border-2 transition-all duration-150 select-none cursor-pointer group";
-  const styles =
-    variant === "accent"
-      ? "bg-[var(--accent)] border-[var(--accent)] text-white shadow-[4px_4px_0_#fff] hover:shadow-[2px_2px_0_#fff] hover:translate-x-[2px] hover:translate-y-[2px]"
-      : "bg-transparent border-[var(--text-inverse)] text-[var(--text-inverse)] shadow-[4px_4px_0_var(--text-inverse)] hover:shadow-[2px_2px_0_var(--text-inverse)] hover:translate-x-[2px] hover:translate-y-[2px]";
-
-  return (
-    <motion.a
-      id={id}
-      ref={ref}
-      href={href}
-      className={`${base} ${styles}`}
-      style={{ x: sx, y: sy }}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      whileTap={{ scale: 0.97 }}
-    >
-      {children}
-      <ArrowUpRight
-        size={13}
-        className="transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-      />
-    </motion.a>
-  );
-}
 
 /* ─────────────────────────────────────────────────────────
    Interweaving diagonal lines
@@ -153,7 +94,7 @@ function Decorative() {
    Constants
 ───────────────────────────────────────────────────────── */
 const HEADER_H  = 80;
-const FS        = "clamp(64px, 13vw, 220px)";
+const FS        = "clamp(48px, min(13vw, 15vh), 220px)";
 const LH_MAIN   = 0.88;
 const LH_GHOST  = 0.50;
 
@@ -198,7 +139,7 @@ export function Hero() {
 
       {/* ── Content ── */}
       <motion.div
-        className="relative flex flex-1 flex-col px-6 md:px-12"
+        className="relative flex h-[100vh] shrink-0 flex-col px-6 md:px-12"
         style={{
           paddingTop: `${HEADER_H + 20}px`,
           paddingBottom: "28px",
@@ -206,49 +147,20 @@ export function Hero() {
           opacity,
         }}
       >
-        {/*
-          TOP BAR — visible immediately, right below the navbar.
-          Contains: services labels · coordinates · CTA buttons
-        */}
+        {/* Coordinates — top right */}
         <motion.div
-          className="flex items-start justify-between"
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
+          className="flex justify-end"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.1, duration: 0.6 }}
         >
-          {/* Left: services + coordinates */}
-          <div className="flex flex-col gap-2.5">
-            <div className="flex items-center gap-4 flex-wrap">
-              {SERVICES.map((s, i) => (
-                <span key={s} className="flex items-center gap-4">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--text-inverse)] opacity-40">
-                    {s}
-                  </span>
-                  {i < SERVICES.length - 1 && (
-                    <span className="h-px w-3 bg-[var(--text-inverse)] opacity-20" />
-                  )}
-                </span>
-              ))}
-            </div>
-            <div className="font-mono text-[8px] uppercase tracking-[0.2em] text-[var(--text-inverse)] opacity-20 leading-relaxed">
-              <span>LAT: 00.83 N</span>
-              <span className="mx-3 opacity-50">·</span>
-              <span>LON: 77.64 W</span>
-            </div>
-          </div>
-
-          {/* Right: CTAs */}
-          <div className="flex gap-3">
-            <MagneticButton href="/work" variant="accent" id="hero-cta-work">
-              View Our Work
-            </MagneticButton>
-            <MagneticButton href="/contact" id="hero-cta-contact">
-              Start a Project
-            </MagneticButton>
+          <div className="font-mono text-[8px] uppercase tracking-[0.2em] text-[var(--text-inverse)] opacity-20 leading-relaxed text-right">
+            <div>LAT: 00.83 N</div>
+            <div>LON: 77.64 W</div>
           </div>
         </motion.div>
 
-        {/* ── Headline — fills remaining space, text anchored to bottom ── */}
+        {/* ── Headline — fills remaining space, anchored to bottom ── */}
         <div className="flex-1 flex flex-col justify-end">
 
           {/* We build */}
@@ -277,7 +189,7 @@ export function Hero() {
             </motion.h1>
           </div>
 
-          {/* Products. — solid accent, z-10 so echo 1 can go behind */}
+          {/* Products. — solid accent, z-10 so echo 1 goes behind */}
           <div className="overflow-hidden relative z-10">
             <motion.h1
               className="block font-display text-[var(--accent)] uppercase"
@@ -290,17 +202,13 @@ export function Hero() {
             </motion.h1>
           </div>
 
-          {/*
-            Ghost echoes — no overflow-hidden, bleed downward.
-            Section overflow-hidden clips the deepest echo.
-          */}
+          {/* Ghost echoes — bleed downward, section clips the deepest */}
           <motion.div
             aria-hidden="true"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.05, duration: 0.45 }}
           >
-            {/* Echo 1 — lh 0.35 overlaps into solid, z-index -1 goes behind */}
             <span
               className="relative block font-display uppercase"
               style={{
@@ -313,8 +221,6 @@ export function Hero() {
             >
               Products.
             </span>
-
-            {/* Echo 2 */}
             <span
               className="block font-display uppercase"
               style={{
@@ -326,8 +232,6 @@ export function Hero() {
             >
               Products.
             </span>
-
-            {/* Echo 3 — faintest, gets clipped by section */}
             <span
               className="block font-display uppercase"
               style={{
@@ -341,6 +245,27 @@ export function Hero() {
             </span>
           </motion.div>
         </div>
+
+        {/* Services — bottom right */}
+        <motion.div
+          className="flex justify-end pt-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.3, duration: 0.6 }}
+        >
+          <div className="flex items-center gap-4">
+            {SERVICES.map((s, i) => (
+              <span key={s} className="flex items-center gap-4">
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--text-inverse)] opacity-35">
+                  {s}
+                </span>
+                {i < SERVICES.length - 1 && (
+                  <span className="h-px w-3 bg-[var(--text-inverse)] opacity-20" />
+                )}
+              </span>
+            ))}
+          </div>
+        </motion.div>
       </motion.div>
 
       {/* Diagonal cut — 80px below viewport fold, visible on scroll */}
