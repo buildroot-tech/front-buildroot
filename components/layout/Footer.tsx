@@ -173,8 +173,8 @@ export function Footer(): React.ReactElement {
                     {contactInfo.address}
                   </span>
                   <div className="flex flex-col font-mono text-[clamp(1rem,1.5vw,1.5rem)] uppercase font-bold leading-[0.8] tracking-tighter">
-                    <span>0°49'39"N</span>
-                    <span>77°38'24"W</span>
+                    <span>0.827782</span>
+                    <span>-77.615538</span>
                   </div>
                 </div>
                 
