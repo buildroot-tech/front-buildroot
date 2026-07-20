@@ -385,11 +385,6 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Diagonal cut */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-16 bg-[var(--bg-primary)] pointer-events-none"
-        style={{ clipPath: "polygon(0 100%, 100% 100%, 100% 0)" }}
-      />
 
       {/* Scroll line */}
       <motion.div
