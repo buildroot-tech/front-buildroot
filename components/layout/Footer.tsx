@@ -161,13 +161,13 @@ export function Footer(): React.ReactElement {
         </div>
 
         {/* ── LOWER HALF — Contact Info Box ── */}
-        <div className="flex items-center justify-center px-6 md:px-16 py-12 md:py-14">
+        <div className="flex justify-start px-4 md:px-6 pb-4 md:pb-6 pt-12 md:pt-8">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65, ease: "easeOut" }}
-            className="border-2 border-[var(--border)] bg-[var(--bg-secondary)] w-[80%]"
+            className="border-2 border-[var(--border)] bg-[var(--bg-secondary)] w-[90%] max-w-4xl"
             aria-label="Información de contacto"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 divide-y-2 md:divide-y-0 md:divide-x-2 divide-[var(--border)]">
