@@ -51,10 +51,12 @@ export function Footer(): React.ReactElement {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
 
               {/* Navigation */}
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-5">
-                  Pages
-                </p>
+              <div className="flex flex-col">
+                <div className="border-b-2 border-[var(--border)] w-full pb-4 mb-6">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                    Pages
+                  </p>
+                </div>
                 <nav className="flex flex-col gap-0.5" aria-label="Footer navigation">
                   {navLinks.map((link, i) => (
                     <motion.div
@@ -85,10 +87,12 @@ export function Footer(): React.ReactElement {
               </div>
 
               {/* Social */}
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-5">
-                  Presencia
-                </p>
+              <div className="flex flex-col">
+                <div className="border-b-2 border-[var(--border)] w-full pb-4 mb-6">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                    Presencia
+                  </p>
+                </div>
                 <div className="flex flex-col gap-2">
                   {socialLinks.map((link, i) => (
                     <motion.div
@@ -123,10 +127,12 @@ export function Footer(): React.ReactElement {
               </div>
 
               {/* Legal / Cookies */}
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-5">
-                  Legal
-                </p>
+              <div className="flex flex-col">
+                <div className="border-b-2 border-[var(--border)] w-full pb-4 mb-6">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                    Legal
+                  </p>
+                </div>
                 <div className="flex flex-col gap-1.5">
                   {[
                     { href: "/privacy", label: "Política de privacidad" },
@@ -174,7 +180,7 @@ export function Footer(): React.ReactElement {
 
               {/* Left — Address + City */}
               <div className="flex flex-col gap-0 divide-y-2 divide-[var(--border)]">
-                <div className="px-8 py-6 md:px-12 md:py-8">
+                <div className="px-8 py-10 md:px-12 md:py-14">
                   <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-3">
                     Dirección
                   </p>
@@ -182,7 +188,7 @@ export function Footer(): React.ReactElement {
                     {contactInfo.address}
                   </p>
                 </div>
-                <div className="px-8 py-6 md:px-12 md:py-8">
+                <div className="px-8 py-10 md:px-12 md:py-14">
                   <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-3">
                     Ciudad / País
                   </p>
@@ -194,7 +200,7 @@ export function Footer(): React.ReactElement {
 
               {/* Right — Phone + Email */}
               <div className="flex flex-col gap-0 divide-y-2 divide-[var(--border)]">
-                <div className="px-8 py-6 md:px-12 md:py-8">
+                <div className="px-8 py-10 md:px-12 md:py-14">
                   <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-3">
                     Teléfono
                   </p>
@@ -206,7 +212,7 @@ export function Footer(): React.ReactElement {
                     {contactInfo.phone}
                   </a>
                 </div>
-                <div className="px-8 py-6 md:px-12 md:py-8 flex flex-col justify-between gap-6">
+                <div className="px-8 py-10 md:px-12 md:py-14 flex flex-col justify-between gap-6">
                   <div>
                     <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-3">
                       Correo
