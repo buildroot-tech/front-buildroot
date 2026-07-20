@@ -161,7 +161,7 @@ export function Hero() {
         </motion.div>
 
         {/* ── Headline — fills remaining space, anchored to bottom ── */}
-        <div className="flex-1 flex flex-col justify-center">
+        <div className="flex-1 flex flex-col justify-center pb-[12vh]">
 
           {/* We build */}
           <div className="overflow-hidden">
@@ -210,40 +210,22 @@ export function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.05, duration: 0.45 }}
           >
-            <span
-              className="relative block font-display uppercase"
-              style={{
-                ...textBase,
-                lineHeight: 0.35,
-                zIndex: -1,
-                WebkitTextStroke: "2px rgba(248,250,252,0.16)",
-                color: "transparent",
-              }}
-            >
-              Products.
-            </span>
-            <span
-              className="block font-display uppercase"
-              style={{
-                ...textBase,
-                lineHeight: LH_GHOST,
-                WebkitTextStroke: "1.5px rgba(248,250,252,0.08)",
-                color: "transparent",
-              }}
-            >
-              Products.
-            </span>
-            <span
-              className="block font-display uppercase"
-              style={{
-                ...textBase,
-                lineHeight: LH_GHOST,
-                WebkitTextStroke: "1px rgba(248,250,252,0.04)",
-                color: "transparent",
-              }}
-            >
-              Products.
-            </span>
+            {[0.16, 0.08, 0.04].map((opacity, i) => (
+              <span
+                key={i}
+                className={`block font-display uppercase ${i === 0 ? "relative" : ""}`}
+                style={{
+                  ...textBase,
+                  lineHeight: 0.74,
+                  marginTop: i === 0 ? "-0.14em" : 0,
+                  zIndex: i === 0 ? -1 : "auto",
+                  WebkitTextStroke: `${i === 0 ? 2 : i === 1 ? 1.5 : 1}px rgba(248,250,252,${opacity})`,
+                  color: "transparent",
+                }}
+              >
+                Products.
+              </span>
+            ))}
           </motion.div>
         </div>
 
