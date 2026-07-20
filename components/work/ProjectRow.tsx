@@ -18,27 +18,24 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
 
   return (
     <div className="w-full bg-[var(--bg-primary)] transition-colors duration-200 my-1">
-      {/* Balanced Locomotive-Style Horizontal Row Header */}
+      {/* Locomotive-Style Horizontal Row Header */}
       <div
         onClick={() => setIsExpanded(!isExpanded)}
-        className="group relative flex cursor-pointer flex-col justify-between gap-4 py-7 px-6 sm:px-8 md:px-12 lg:flex-row lg:items-center hover:bg-[var(--bg-secondary)]/70 transition-colors"
+        className="group relative flex cursor-pointer items-center justify-between gap-6 py-7 px-6 sm:px-8 md:px-12 hover:bg-[var(--bg-secondary)]/70 transition-colors"
       >
-        {/* Left: Balanced Title (text-xl md:text-2xl lg:text-3xl) */}
-        <div className="flex items-center gap-4 md:gap-8">
-          <div>
-            <h3 className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-[var(--text-primary)] transition-colors group-hover:text-[var(--accent)] tracking-tight">
-              <ScrambleText text={project.title} trigger="hover" speed={45} />
-            </h3>
-            <p className="font-mono text-xs text-[var(--text-muted)] lg:hidden mt-1.5">
-              {project.client} // {project.category}
-            </p>
-          </div>
-        </div>
+        {/* Full-width Line & Title Container spanning from start to end */}
+        <div className="relative flex flex-1 items-baseline justify-between gap-4 min-w-0 pr-4 sm:pr-8">
+          {/* Left: Title */}
+          <h3 className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-[var(--text-primary)] tracking-tight shrink-0 group-hover:underline group-hover:underline-offset-[8px] group-hover:decoration-[1.5px] group-hover:decoration-[var(--text-primary)] group-hover:[text-decoration-skip-ink:auto]">
+            <ScrambleText text={project.title} trigger="hover" speed={45} />
+          </h3>
 
-        {/* Right: Client, Category & Expand Toggle */}
-        <div className="flex items-center justify-between gap-8 font-mono text-xs sm:gap-12">
-          <div className="hidden lg:flex items-center gap-10">
-            <span className="uppercase text-[var(--text-muted)] tracking-wider">
+          {/* Continuous Trailing Line extending through the gap */}
+          <span className="hidden sm:block flex-1 ml-4 mr-4 h-[1.5px] bg-transparent group-hover:bg-[var(--text-primary)] transition-colors translate-y-[-2px]" />
+
+          {/* Metadata Info (Client & Category) */}
+          <div className="hidden lg:flex items-center gap-8 font-mono text-xs shrink-0 group-hover:underline group-hover:underline-offset-[8px] group-hover:decoration-[1.5px] group-hover:decoration-[var(--text-primary)] group-hover:[text-decoration-skip-ink:auto]">
+            <span className="uppercase text-[var(--text-muted)] group-hover:text-[var(--text-primary)] tracking-wider">
               CLIENT :: <strong className="text-[var(--text-primary)]">{project.client}</strong>
             </span>
             <span className="bg-[var(--bg-secondary)] px-3.5 py-1 font-semibold uppercase text-[var(--accent)] text-xs">
@@ -46,19 +43,23 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
             </span>
           </div>
 
-          <button
-            type="button"
-            className={`flex items-center gap-2 px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-wider transition-all ${
-              isExpanded
-                ? "bg-[var(--accent)] text-white shadow-sm"
-                : "bg-[var(--bg-secondary)] text-[var(--text-primary)] group-hover:bg-[var(--accent)] group-hover:text-white"
-            }`}
-            aria-expanded={isExpanded}
-          >
-            <span>{isExpanded ? "CLOSE" : "EXPLORE"}</span>
-            {isExpanded ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
-          </button>
+          {/* Line bridging from Metadata to (+) button */}
+          <span className="hidden lg:block w-8 ml-2 h-[1.5px] bg-transparent group-hover:bg-[var(--text-primary)] transition-colors translate-y-[-2px]" />
         </div>
+
+        {/* Far Right: Only (+) / (-) Toggle Icon Button (No EXPLORE text) */}
+        <button
+          type="button"
+          className={`flex h-10 w-10 shrink-0 items-center justify-center font-mono text-sm font-bold transition-all ${
+            isExpanded
+              ? "bg-[var(--accent)] text-white shadow-sm"
+              : "bg-[var(--bg-secondary)] text-[var(--text-primary)] group-hover:bg-[var(--accent)] group-hover:text-white"
+          }`}
+          aria-expanded={isExpanded}
+          aria-label={isExpanded ? "Collapse project" : "Expand project"}
+        >
+          {isExpanded ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+        </button>
       </div>
 
       {/* Expandable Accordion Drawer Content */}
