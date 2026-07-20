@@ -1,83 +1,52 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { PROJECTS, type Project } from "@/lib/projects";
-import { ProjectCard } from "@/components/work/ProjectCard";
+import { ProjectRow } from "@/components/work/ProjectRow";
 import { CaseStudyModal } from "@/components/work/CaseStudyModal";
-import { ArrowUpRight, Plus, Terminal } from "lucide-react";
+import { Plus, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 export function ProjectsGrid() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <div className="w-full font-mono select-none">
-      {/* Continuous Architectural Grid Container */}
-      <div className="border-t-2 border-l-2 border-[var(--border)] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
-        <AnimatePresence mode="popLayout">
-          {PROJECTS.map((project, idx) => {
-            const isWide = idx === 0;
+    <div className="w-full font-mono select-none border-t-2 border-[var(--border)]">
+      {/* Locomotive-Style Expandable List Rows */}
+      {PROJECTS.map((project) => (
+        <ProjectRow
+          key={project.id}
+          project={project}
+          onSelectCaseStudy={(proj) => setSelectedProject(proj)}
+        />
+      ))}
 
-            return (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                isWide={isWide}
-                onSelectCaseStudy={(proj) => setSelectedProject(proj)}
-              />
-            );
-          })}
-
-          {/* Interactive "YOUR BUILD HERE" Structural Cell */}
-          <motion.div
-            layout
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="group relative flex flex-col justify-between border-b-2 border-r-2 border-[var(--border)] bg-[#0f172a] p-6 text-white transition-colors hover:bg-slate-900"
-          >
-            <div>
-              <div className="flex items-center justify-between border-b border-slate-700 pb-3">
-                <span className="bg-[var(--accent)] px-2.5 py-0.5 text-xs font-black uppercase text-white">
-                  [07] NEXT_BUILD
-                </span>
-                <span className="font-mono text-xs font-bold text-emerald-400 flex items-center gap-1">
-                  <Plus className="h-3.5 w-3.5" /> AVAILABLE FOR Q3/Q4
-                </span>
-              </div>
-
-              <div className="mt-5">
-                <p className="font-mono text-xs uppercase tracking-widest text-[var(--accent)]">
-                  BUILDROOT_ STUDIO // INQUIRY
-                </p>
-                <h3 className="heading text-h3 mt-2 text-white">
-                  Your Project Engineered Here
-                </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-slate-300 font-sans">
-                  Have an ambitious SaaS product, web application, or architecture refactor? We design, engineer, and ship in fast 2-4 week sprints.
-                </p>
-              </div>
-
-              <div className="mt-5 border border-slate-700 bg-slate-950 p-2.5">
-                <div className="flex items-center gap-2 font-mono text-xs text-slate-300">
-                  <Terminal className="h-4 w-4 text-[var(--accent)]" />
-                  <span>GUARANTEED 95+ LIGHTHOUSE & ZERO BLOAT</span>
-                </div>
-              </div>
+      {/* Interactive "START YOUR PROJECT" Final Row */}
+      <div className="w-full border-b-2 border-[var(--border)] bg-[#0f172a] text-white p-6 sm:p-8 md:px-10">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-bold uppercase text-[var(--accent)]">
+              <Plus className="h-4 w-4" />
+              <span>[07] NEXT_PROJECT_SLOT</span>
             </div>
+            <h3 className="heading text-h2 mt-2 text-white">
+              Ready to build your digital product?
+            </h3>
+            <p className="mt-1 text-sm text-slate-300 font-sans max-w-xl">
+              We engineer scalable SaaS platforms, high-performance web applications, and custom cloud architecture in 2-4 week sprints.
+            </p>
+          </div>
 
-            <div className="mt-6 pt-3 border-t border-dashed border-slate-700">
-              <Link
-                href="/#contact"
-                className="group/btn flex w-full items-center justify-between border border-white bg-[var(--accent)] px-4 py-2.5 font-mono text-xs font-black uppercase tracking-wider text-white transition-all hover:bg-white hover:text-[var(--border)]"
-              >
-                <span>[ INITIATE_BUILD_REQ → ]</span>
-                <ArrowUpRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
-              </Link>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+          <div>
+            <Link
+              href="/#contact"
+              className="brutalist-button brutalist-button-accent text-xs font-bold tracking-wider"
+            >
+              <span>START A BUILD →</span>
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
       </div>
 
       {/* Case Study Modal */}
