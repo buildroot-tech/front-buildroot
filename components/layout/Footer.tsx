@@ -200,6 +200,13 @@ export function Footer(): React.ReactElement {
                   <path d="M10 5l-1.5-1.5" />
                   <path d="M14 5l1.5-1.5" />
                 </svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--text-primary)] shrink-0 w-[clamp(2.5rem,4.5vw,6rem)] h-[clamp(2.5rem,4.5vw,6rem)] translate-y-1 md:translate-y-2 ml-[-1vw]">
+                  <path d="M3 18h18v-2a6 6 0 0 0-6-6H9a6 6 0 0 0-6 6v2z" />
+                  <path d="M15 10c0-1.5-1-2-2-2s-2 .5-2 2" />
+                  <circle cx="17.5" cy="13.5" r="1.5" fill="currentColor" stroke="none" />
+                  <path d="M7 18v2" />
+                  <path d="M17 18v2" />
+                </svg>
               </div>
 
               {/* Row 2: Phone */}
