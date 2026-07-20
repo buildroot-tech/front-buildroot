@@ -167,14 +167,14 @@ export function Footer(): React.ReactElement {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65, ease: "easeOut" }}
-            className="border-2 border-[var(--border)] bg-[var(--bg-secondary)] w-[90%] max-w-4xl"
+            className="border-2 border-[var(--border)] bg-[var(--bg-secondary)] w-[95%] max-w-6xl"
             aria-label="Información de contacto"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 divide-y-2 md:divide-y-0 md:divide-x-2 divide-[var(--border)]">
 
               {/* Left — Address + City */}
               <div className="flex flex-col gap-0 divide-y-2 divide-[var(--border)]">
-                <div className="p-10 md:p-16">
+                <div className="px-8 py-6 md:px-12 md:py-8">
                   <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-3">
                     Dirección
                   </p>
@@ -182,7 +182,7 @@ export function Footer(): React.ReactElement {
                     {contactInfo.address}
                   </p>
                 </div>
-                <div className="p-10 md:p-16">
+                <div className="px-8 py-6 md:px-12 md:py-8">
                   <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-3">
                     Ciudad / País
                   </p>
@@ -194,7 +194,7 @@ export function Footer(): React.ReactElement {
 
               {/* Right — Phone + Email */}
               <div className="flex flex-col gap-0 divide-y-2 divide-[var(--border)]">
-                <div className="p-10 md:p-16">
+                <div className="px-8 py-6 md:px-12 md:py-8">
                   <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-3">
                     Teléfono
                   </p>
@@ -206,7 +206,7 @@ export function Footer(): React.ReactElement {
                     {contactInfo.phone}
                   </a>
                 </div>
-                <div className="p-10 md:p-16 flex flex-col justify-between gap-10">
+                <div className="px-8 py-6 md:px-12 md:py-8 flex flex-col justify-between gap-6">
                   <div>
                     <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--text-muted)] mb-3">
                       Correo
