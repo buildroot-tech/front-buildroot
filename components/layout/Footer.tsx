@@ -163,11 +163,11 @@ export function Footer(): React.ReactElement {
         {/* ── LOWER HALF (Contact Info) ── */}
         <div className="pt-12 md:pt-8 pb-4 md:pb-6 relative w-full overflow-hidden">
           {/* Main Info Box */}
-          <div className="mx-auto w-[95%] max-w-6xl md:ml-auto md:mr-8 xl:mr-[5%] border-2 border-[var(--border)] bg-[var(--bg-primary)]">
-            <div className="flex flex-col divide-y-2 divide-[var(--border)]">
+          <div className="mx-auto w-[95%] max-w-6xl md:ml-auto md:mr-8 xl:mr-[5%] bg-[var(--bg-primary)]">
+            <div className="flex flex-col gap-2">
               
               {/* Row 1: Location */}
-              <div className="flex flex-col xl:flex-row items-center justify-between px-6 py-6 md:px-8 md:py-8 gap-4 xl:gap-0">
+              <div className="flex flex-col xl:flex-row items-center justify-between px-2 py-1 gap-4 xl:gap-0">
                 <div className="flex flex-col md:flex-row items-baseline gap-4 md:gap-8 w-full xl:w-auto">
                   <span className="headline text-[var(--text-primary)] text-[clamp(2rem,3.5vw,4.5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
                     {contactInfo.address}
@@ -192,21 +192,21 @@ export function Footer(): React.ReactElement {
               </div>
 
               {/* Row 2: Phone */}
-              <div className="flex flex-col md:flex-row divide-y-2 md:divide-y-0 md:divide-x-2 divide-[var(--border)] h-auto md:h-32">
-                <div className="flex-1 px-6 py-6 md:px-8 flex items-center justify-center md:justify-start overflow-hidden">
+              <div className="flex flex-col md:flex-row h-auto md:h-24 px-2 py-1 items-center">
+                <div className="flex-1 flex items-center justify-center md:justify-start overflow-hidden">
                   <span className="headline text-[var(--text-primary)] text-[clamp(3.5rem,6vw,7rem)] leading-[0.8] capitalize tracking-tighter">
                     Teléfono
                   </span>
                 </div>
-                <div className="flex-1 grid grid-rows-2 divide-y-2 divide-[var(--border)]">
-                  <div className="flex items-center justify-center font-mono text-[clamp(1.2rem,2vw,1.5rem)] font-bold bg-[var(--text-primary)] text-[var(--bg-primary)]">
+                <div className="flex-1 flex flex-col w-full">
+                  <div className="flex items-center justify-center font-mono text-[clamp(1.2rem,2vw,1.5rem)] font-bold bg-[var(--text-primary)] text-[var(--bg-primary)] py-1">
                     {contactInfo.phone.split(" ")[0]}
                   </div>
-                  <div className="grid grid-cols-2 divide-x-2 divide-[var(--border)]">
-                    <div className="flex items-center justify-center font-mono text-[clamp(1.2rem,2vw,1.5rem)] font-bold bg-[var(--bg-primary)]">
+                  <div className="flex">
+                    <div className="flex-1 flex items-center justify-center font-mono text-[clamp(1.2rem,2vw,1.5rem)] font-bold bg-[var(--bg-primary)] text-[var(--text-primary)] py-1">
                       {contactInfo.phone.split(" ")[1]}
                     </div>
-                    <div className="flex items-center justify-center font-mono text-[clamp(1.2rem,2vw,1.5rem)] font-bold bg-[var(--bg-primary)]">
+                    <div className="flex-1 flex items-center justify-center font-mono text-[clamp(1.2rem,2vw,1.5rem)] font-bold bg-[var(--bg-primary)] text-[var(--text-primary)] py-1">
                       {contactInfo.phone.split(" ")[2]}
                     </div>
                   </div>
@@ -214,7 +214,7 @@ export function Footer(): React.ReactElement {
               </div>
 
               {/* Row 3: Email */}
-              <div className="group flex items-center justify-center overflow-hidden py-4 px-4 bg-[var(--bg-primary)] hover:bg-[var(--text-primary)] transition-colors duration-300">
+              <div className="group flex items-center justify-center overflow-hidden py-1 px-2 bg-[var(--bg-primary)] hover:bg-[var(--text-primary)] transition-colors duration-300">
                 <a href={`mailto:${contactInfo.email}`} className="flex items-center justify-between w-full">
                   <span className="headline text-[var(--text-primary)] text-[clamp(3rem,8vw,11rem)] leading-[0.75] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
                     {contactInfo.email.split("@")[0]}
