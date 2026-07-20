@@ -206,6 +206,9 @@ export function Footer(): React.ReactElement {
                   {/* Minimalist eye */}
                   <circle cx="16" cy="14" r="1" fill="currentColor" stroke="none" />
                 </svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-500 shrink-0 w-[clamp(2.5rem,4.5vw,6rem)] h-[clamp(2.5rem,4.5vw,6rem)] translate-y-1 md:translate-y-2 ml-[-1vw]">
+                  <path d="M17.5 20H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                </svg>
               </div>
 
               {/* Row 2: Phone */}
