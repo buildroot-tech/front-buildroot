@@ -205,7 +205,6 @@ export function Hero() {
           {/* Ghost echoes — bleed downward, section clips the deepest */}
           <motion.div
             aria-hidden="true"
-            className="pb-12 md:pb-16"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.05, duration: 0.45 }}
