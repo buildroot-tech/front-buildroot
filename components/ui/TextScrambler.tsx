@@ -18,7 +18,7 @@ interface TextScramblerProps {
 function ScrambleText({
   text,
   className,
-  speed = 50,
+  speed = 40,
   trigger = "hover",
   active = true,
   as: Tag = "span",
@@ -29,6 +29,7 @@ function ScrambleText({
 }: TextScramblerProps) {
   const [display, setDisplay] = useState(text);
   const timersRef = useRef<NodeJS.Timeout[]>([]);
+  const isAnimatingRef = useRef(false);
 
   const clearAll = useCallback(() => {
     timersRef.current.forEach(clearTimeout);
@@ -37,23 +38,39 @@ function ScrambleText({
 
   const travelFrame = useCallback((word: string, step: number): string => {
     const letters = word.split("");
-    // Shuffle the remaining letters (from step onwards)
-    const remaining = letters.slice(step).sort(() => Math.random() - 0.5);
-    return [...letters.slice(0, step), ...remaining].join("");
+    if (step >= letters.length) return word;
+
+    // Keep first `step` letters fixed, shuffle the rest
+    const fixed = letters.slice(0, step);
+    const remaining = letters.slice(step);
+
+    // Fisher-Yates shuffle for smoother transitions
+    for (let i = remaining.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
+    }
+
+    return [...fixed, ...remaining].join("");
   }, []);
 
   const scramble = useCallback(() => {
+    if (isAnimatingRef.current) return;
+
     clearAll();
+    isAnimatingRef.current = true;
+    setDisplay(text);
+
     const words = text.split(" ");
     const maxLen = Math.max(...words.map((w) => w.length));
 
-    for (let step = 1; step <= maxLen; step++) {
+    for (let step = 0; step <= maxLen; step++) {
       const t = setTimeout(() => {
         if (step >= maxLen) {
           setDisplay(text);
+          isAnimatingRef.current = false;
         } else {
           const result = words
-            .map((word) => travelFrame(word, Math.min(step, word.length - 1)))
+            .map((word) => travelFrame(word, Math.min(step, word.length)))
             .join(" ");
           setDisplay(result);
         }
