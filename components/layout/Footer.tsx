@@ -13,7 +13,7 @@ const navLinks = [
 ];
 
 const socialLinks = [
-  { href: "https://github.com/buildroot-tech", label: "gh/buildroot-tech" },
+  { href: "https://instagram.com/buildroot", label: "ig/buildroot" },
   { href: "https://twitter.com/buildroot_dev", label: "tw/buildroot_dev" },
   { href: "https://linkedin.com/company/buildroot", label: "li/buildroot" },
 ];
