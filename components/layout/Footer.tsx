@@ -223,16 +223,16 @@ export function Footer(): React.ReactElement {
                   </span>
                 </div>
                 <div className="grid grid-cols-2 grid-rows-2 border-2 border-[var(--border)] gap-[2px] bg-[var(--border)]">
-                  <div className="flex items-center justify-center font-mono text-[clamp(1.25rem,2.25vw,3rem)] leading-[0.85] tracking-tighter font-light bg-[var(--text-primary)] text-[var(--bg-primary)] py-1 px-2 md:px-4">
+                  <div className="flex items-center justify-center font-mono text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--text-primary)] text-[var(--bg-primary)] py-1 md:py-2 px-2 md:px-4">
                     {contactInfo.phone.split(" ")[0]}
                   </div>
-                  <div className="flex items-center justify-center font-mono text-[clamp(1.25rem,2.25vw,3rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 px-2 md:px-4">
+                  <div className="flex items-center justify-center font-mono text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
                     {contactInfo.phone.split(" ")[1]}
                   </div>
-                  <div className="flex items-center justify-center font-mono text-[clamp(1.25rem,2.25vw,3rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 px-2 md:px-4">
+                  <div className="flex items-center justify-center font-mono text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
                     {contactInfo.phone.split(" ")[2]}
                   </div>
-                  <div className="flex items-center justify-center font-mono text-[clamp(1.25rem,2.25vw,3rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 px-2 md:px-4">
+                  <div className="flex items-center justify-center font-mono text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
                     {contactInfo.phone.split(" ")[3]}
                   </div>
                 </div>
