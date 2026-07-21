@@ -230,15 +230,27 @@ export function Footer(): React.ReactElement {
                   </div>
 
                   {/* Phone Grid */}
-                  <div className="flex-1 grid grid-cols-2 grid-rows-2 border-2 border-[var(--border)] gap-[2px] bg-[var(--border)] min-w-[150px]">
-                    <div className="row-span-2 flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-normal bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
+                  <div className="flex-1 flex border-2 border-[var(--border)] min-w-[150px]">
+                    {/* Left Column */}
+                    <div className="flex-1 flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-normal text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
                       {contactInfo.phone.split(" ")[0]}
                     </div>
-                    <div className="flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-normal bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
-                      {contactInfo.phone.split(" ")[1]}
-                    </div>
-                    <div className="flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-normal bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
-                      {contactInfo.phone.split(" ")[2]}
+                    
+                    {/* Informal Vertical Divider */}
+                    <div className="w-[2px] bg-[var(--border)] my-1 md:my-2 shrink-0 rounded-full"></div>
+                    
+                    {/* Right Column */}
+                    <div className="flex-1 flex flex-col">
+                      <div className="flex-1 flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-normal text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
+                        {contactInfo.phone.split(" ")[1]}
+                      </div>
+                      
+                      {/* Informal Horizontal Divider */}
+                      <div className="h-[2px] bg-[var(--border)] mx-1 md:mx-2 shrink-0 rounded-full"></div>
+                      
+                      <div className="flex-1 flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-normal text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
+                        {contactInfo.phone.split(" ")[2]}
+                      </div>
                     </div>
                   </div>
                 </div>
