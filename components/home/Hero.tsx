@@ -265,7 +265,7 @@ export function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.05, duration: 0.45 }}
           >
-            {[0.16, 0.06].map((opacity, i) => (
+            {[0.16].map((opacity, i) => (
               <span
                 key={i}
                 className="block font-display uppercase"
