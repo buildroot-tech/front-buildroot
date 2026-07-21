@@ -232,7 +232,7 @@ export function Footer(): React.ReactElement {
                   {/* Phone Grid */}
                   <div className="flex-1 flex border-2 border-[var(--border)] min-w-[150px]">
                     {/* Left Column */}
-                    <div className="flex-1 flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-normal text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
+                    <div className="flex-1 flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-normal bg-[var(--text-primary)] text-[var(--bg-primary)] py-1 md:py-2 px-2 md:px-4">
                       {contactInfo.phone.split(" ")[0]}
                     </div>
                     
