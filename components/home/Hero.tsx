@@ -82,23 +82,46 @@ function Decorative() {
         transition={{ delay: 1, duration: 0.5, ease: "backOut" }}
       />
 
-      {/* Nubes Verdes - Ambient Aurora */}
+      {/* Nubes Verdes - Ambient Aurora (Amorphous Clouds) */}
       <motion.div
-        className="absolute top-[20%] right-[10%] w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(16,185,129,0.18) 0%, transparent 70%)" }}
-        animate={{ scale: [1, 1.2, 1], x: [0, -50, 0], y: [0, 30, 0] }}
+        className="absolute top-[10%] right-[5%] w-[60vw] h-[35vw] max-w-[800px] max-h-[500px] pointer-events-none mix-blend-screen"
+        style={{
+          background: "radial-gradient(ellipse at center, rgba(16,185,129,0.18) 0%, transparent 70%)",
+          filter: "blur(60px)",
+        }}
+        animate={{
+          scale: [1, 1.1, 1],
+          x: [0, -30, 0],
+          y: [0, 20, 0],
+          borderRadius: ["40% 60% 70% 30% / 40% 50% 60% 50%", "60% 40% 30% 70% / 60% 30% 70% 40%", "40% 60% 70% 30% / 40% 50% 60% 50%"]
+        }}
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute bottom-[10%] left-[20%] w-[50vw] h-[50vw] max-w-[700px] max-h-[700px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(4,120,87,0.15) 0%, transparent 70%)" }}
-        animate={{ scale: [1.2, 1, 1.2], x: [0, 60, 0], y: [0, -40, 0] }}
+        className="absolute bottom-[5%] left-[10%] w-[70vw] h-[40vw] max-w-[900px] max-h-[600px] pointer-events-none mix-blend-screen"
+        style={{
+          background: "radial-gradient(ellipse at center, rgba(4,120,87,0.15) 0%, transparent 70%)",
+          filter: "blur(80px)",
+        }}
+        animate={{
+          scale: [1.1, 1, 1.1],
+          x: [0, 50, 0],
+          y: [0, -20, 0],
+          borderRadius: ["60% 40% 30% 70% / 60% 30% 70% 40%", "40% 60% 70% 30% / 40% 50% 60% 50%", "60% 40% 30% 70% / 60% 30% 70% 40%"]
+        }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute top-[40%] left-[40%] w-[30vw] h-[30vw] max-w-[500px] max-h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(20,184,166,0.12) 0%, transparent 70%)" }}
-        animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
+        className="absolute top-[30%] left-[30%] w-[50vw] h-[25vw] max-w-[700px] max-h-[400px] pointer-events-none mix-blend-screen"
+        style={{
+          background: "radial-gradient(ellipse at center, rgba(20,184,166,0.12) 0%, transparent 70%)",
+          filter: "blur(50px)",
+        }}
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.6, 1, 0.6],
+          borderRadius: ["50% 50% 50% 50% / 50% 50% 50% 50%", "30% 70% 70% 30% / 30% 30% 70% 70%", "50% 50% 50% 50% / 50% 50% 50% 50%"]
+        }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
 
