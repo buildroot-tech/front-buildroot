@@ -285,7 +285,7 @@ export function Hero() {
 
         {/* Services — bottom right */}
         <motion.div
-          className="flex justify-end pt-4"
+          className="flex justify-end pt-4 pb-24"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.3, duration: 0.6 }}
