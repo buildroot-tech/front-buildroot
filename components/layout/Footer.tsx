@@ -176,7 +176,7 @@ export function Footer(): React.ReactElement {
                       <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
                         {contactInfo.email.split("@")[0]}
                       </span>
-                      <span className="font-mono text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] text-[var(--accent)] font-light z-10 group-hover:scale-110 transition-transform duration-300">
+                      <span className="headline text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] text-[var(--accent)] font-light z-10 group-hover:scale-110 transition-transform duration-300">
                         @
                       </span>
                       <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
@@ -227,16 +227,16 @@ export function Footer(): React.ReactElement {
                     </span>
                   </div>
                   <div className="grid grid-cols-2 grid-rows-2 border-2 border-[var(--border)] gap-[2px] bg-[var(--border)]">
-                    <div className="flex items-center justify-center font-mono text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--text-primary)] text-[var(--bg-primary)] py-1 md:py-2 px-2 md:px-4">
+                    <div className="flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--text-primary)] text-[var(--bg-primary)] py-1 md:py-2 px-2 md:px-4">
                       {contactInfo.phone.split(" ")[0]}
                     </div>
-                    <div className="flex items-center justify-center font-mono text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
+                    <div className="flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
                       {contactInfo.phone.split(" ")[1]}
                     </div>
-                    <div className="flex items-center justify-center font-mono text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
+                    <div className="flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
                       {contactInfo.phone.split(" ")[2]}
                     </div>
-                    <div className="flex items-center justify-center font-mono text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
+                    <div className="flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
                       {contactInfo.phone.split(" ")[3]}
                     </div>
                   </div>
@@ -248,13 +248,13 @@ export function Footer(): React.ReactElement {
                     {contactInfo.address}
                   </span>
                   
-                  <div className="flex items-center gap-1 md:gap-2 font-mono text-[clamp(1.1rem,1.8vw,1.8rem)] uppercase font-light tracking-tighter text-[var(--text-primary)]">
-                    <span className="text-[1.6em] leading-none font-normal">↗</span>
+                  <div className="flex items-center gap-1 md:gap-2 headline text-[clamp(1.1rem,1.8vw,1.8rem)] uppercase font-light tracking-tighter text-[var(--text-primary)]">
+                    <span className="text-[1.6em] leading-none font-light">↗</span>
                     <div className="flex flex-col leading-[0.85]">
                       <span>00.827782</span>
                       <span>77.615538</span>
                     </div>
-                    <span className="text-[1.6em] leading-none font-normal">↘</span>
+                    <span className="text-[1.6em] leading-none font-light">↘</span>
                   </div>
                 </div>
               </div>
