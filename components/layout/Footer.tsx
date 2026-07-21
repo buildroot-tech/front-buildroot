@@ -170,11 +170,11 @@ export function Footer(): React.ReactElement {
               
               {/* Row 1: Location */}
               <div className="flex items-baseline justify-start w-full px-2 py-1 gap-2 md:gap-4">
-                <span className="headline font-thin text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
+                <span className="font-display font-thin text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
                   {contactInfo.address}
                 </span>
                 
-                <div className="flex items-center gap-1 md:gap-2 headline text-[clamp(1.1rem,1.8vw,1.8rem)] uppercase font-thin tracking-tighter text-[var(--text-primary)]">
+                <div className="flex items-center gap-1 md:gap-2 font-display text-[clamp(1.1rem,1.8vw,1.8rem)] uppercase font-thin tracking-tighter text-[var(--text-primary)]">
                   <span className="text-[1.6em] leading-none font-thin">↗</span>
                   <div className="flex flex-col leading-[0.85]">
                     <span>00.827782</span>
@@ -183,7 +183,7 @@ export function Footer(): React.ReactElement {
                   <span className="text-[1.6em] leading-none font-thin">↘</span>
                 </div>
 
-                <span className="headline font-thin text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
+                <span className="font-display font-thin text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
                   {contactInfo.zip}
                 </span>
               </div>
@@ -193,7 +193,7 @@ export function Footer(): React.ReactElement {
                 
                 {/* Row 2: City */}
                 <div className="flex items-end justify-start gap-1 md:gap-2 w-full">
-                  <span className="headline font-thin text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
+                  <span className="font-display font-thin text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
                     {contactInfo.city}
                   </span>
                   
@@ -213,7 +213,7 @@ export function Footer(): React.ReactElement {
                     </svg>
                   </div>
 
-                  <span className="headline font-thin text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
+                  <span className="font-display font-thin text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
                     {contactInfo.country}
                   </span>
                 </div>
@@ -221,23 +221,23 @@ export function Footer(): React.ReactElement {
                 {/* Row 3: Telephone and Grid */}
                 <div className="flex items-center justify-start w-full gap-2 md:gap-4 shrink-0">
                   <div className="flex items-center gap-2 md:gap-4 shrink-0">
-                    <span className="headline font-thin text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] capitalize tracking-tighter">
+                    <span className="font-display font-thin text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] capitalize tracking-tighter">
                       Telephone
                     </span>
-                    <span className="headline font-thin text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter">
+                    <span className="font-display font-thin text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter">
                       +57
                     </span>
                   </div>
 
                   {/* Phone Grid */}
                   <div className="flex-1 grid grid-cols-2 grid-rows-2 border-2 border-[var(--border)] gap-[2px] bg-[var(--border)] min-w-[150px]">
-                    <div className="row-span-2 flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-thin bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
+                    <div className="row-span-2 flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-thin bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
                       {contactInfo.phone.split(" ")[0]}
                     </div>
-                    <div className="flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-thin bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
+                    <div className="flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-thin bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
                       {contactInfo.phone.split(" ")[1]}
                     </div>
-                    <div className="flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-thin bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
+                    <div className="flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-thin bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
                       {contactInfo.phone.split(" ")[2]}
                     </div>
                   </div>
@@ -248,13 +248,13 @@ export function Footer(): React.ReactElement {
               {/* Row 4: Email */}
               <div className="group flex items-center justify-start w-full py-1 px-2 bg-[var(--bg-primary)] hover:bg-[var(--text-primary)] transition-colors duration-300">
                 <a href={`mailto:${contactInfo.email}`} className="flex items-center justify-start gap-1 md:gap-2 w-full">
-                  <span className="headline font-thin text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
+                  <span className="font-display font-thin text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
                     {contactInfo.email.split("@")[0]}
                   </span>
-                  <span className="headline text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] text-[var(--text-primary)] font-thin z-10 group-hover:scale-110 transition-transform duration-300">
+                  <span className="font-display text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] text-[var(--text-primary)] font-thin z-10 group-hover:scale-110 transition-transform duration-300">
                     @
                   </span>
-                  <span className="headline font-thin text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
+                  <span className="font-display font-thin text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
                     {contactInfo.email.split("@")[1]}
                   </span>
                 </a>
