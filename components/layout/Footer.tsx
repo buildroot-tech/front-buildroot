@@ -186,7 +186,7 @@ export function Footer(): React.ReactElement {
               <circle cx="12" cy="12" r="10"></circle>
               <path d="M14.83 14.83a4 4 0 1 1 0-5.66"></path>
             </svg>
-            <span className="leading-none mt-[0.1em]">{year}</span>
+            <span>{year}</span>
           </div>
 
           {/* Main Info Box */}
