@@ -170,7 +170,7 @@ export function Footer(): React.ReactElement {
               
               {/* Row 1: Location */}
               <div className="flex items-end justify-start w-full px-2 py-[clamp(0.1rem,0.3vw,0.4rem)] gap-2 md:gap-4">
-                <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(1.8rem,3vw,4rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
+                <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
                   {contactInfo.address}
                 </span>
                 
@@ -183,14 +183,14 @@ export function Footer(): React.ReactElement {
                   <span className="text-[1.6em] leading-none font-normal">↘</span>
                 </div>
 
-                <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(1.8rem,3vw,4rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
+                <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
                   {contactInfo.zip}
                 </span>
               </div>
 
               {/* Row 2: City */}
               <div className="flex items-end justify-start gap-1 md:gap-2 w-full px-2 py-[clamp(0.1rem,0.3vw,0.4rem)]">
-                <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(1.8rem,3vw,4rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
+                <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
                   {contactInfo.city}
                 </span>
                 
@@ -210,7 +210,7 @@ export function Footer(): React.ReactElement {
                   </svg>
                 </div>
 
-                <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(1.8rem,3vw,4rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
+                <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
                   {contactInfo.country}
                 </span>
               </div>
@@ -218,10 +218,10 @@ export function Footer(): React.ReactElement {
               {/* Row 3: Telephone and Grid */}
               <div className="flex items-center justify-start w-full px-2 py-[clamp(0.1rem,0.3vw,0.4rem)] gap-2 md:gap-4">
                 <div className="flex items-center gap-2 md:gap-4 shrink-0">
-                  <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(1.8rem,3vw,4rem)] leading-[0.85] capitalize tracking-tighter">
+                  <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] capitalize tracking-tighter">
                     Telephone
                   </span>
-                  <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(1.8rem,3vw,4rem)] leading-[0.85] tracking-tighter">
+                  <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] tracking-tighter">
                     +57
                   </span>
                 </div>
@@ -255,13 +255,13 @@ export function Footer(): React.ReactElement {
               {/* Row 4: Email */}
               <div className="group flex items-center justify-start w-full px-2 py-[clamp(0.1rem,0.3vw,0.4rem)] bg-[var(--bg-primary)] hover:bg-[var(--text-primary)] transition-colors duration-300">
                 <a href={`mailto:${contactInfo.email}`} className="flex items-center justify-start gap-1 md:gap-2 w-full">
-                  <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(1.8rem,3vw,4rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
+                  <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
                     {contactInfo.email.split("@")[0]}
                   </span>
-                  <span className="font-display text-[clamp(1.8rem,3vw,4rem)] leading-[0.85] text-[var(--text-primary)] font-normal z-10 group-hover:scale-110 transition-transform duration-300">
+                  <span className="font-display text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] text-[var(--text-primary)] font-normal z-10 group-hover:scale-110 transition-transform duration-300">
                     @
                   </span>
-                  <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(1.8rem,3vw,4rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
+                  <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
                     {contactInfo.email.split("@")[1]}
                   </span>
                 </a>
