@@ -261,23 +261,23 @@ export function Footer(): React.ReactElement {
                     <span className="shrink-0 font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
                       {contactInfo.email.split("@")[0]}
                     </span>
-                    {/* Circular arrow — evokes the @ loop, connects hello → buildroot.tech */}
+                    {/* Rounded-rect horseshoe: starts bottom-left, wraps around, arrow at center-bottom pointing ← */}
                     <svg
                       className="flex-1 text-[var(--text-primary)] group-hover:text-[var(--bg-primary)] transition-colors duration-300"
                       style={{ height: "clamp(2.2rem,3.8vw,5rem)" }}
-                      viewBox="0 0 200 60"
+                      viewBox="0 0 200 100"
                       preserveAspectRatio="none"
                       fill="none"
                       stroke="currentColor"
-                      strokeWidth="2"
+                      strokeWidth="3"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       aria-hidden="true"
                     >
-                      {/* Arc going right, looping back, then arrow pointing right */}
-                      <path d="M 10 30 C 10 10, 100 10, 100 30 C 100 50, 190 50, 190 30" />
-                      {/* Arrowhead */}
-                      <path d="M 182 22 L 190 30 L 182 38" />
+                      {/* 3 sides of rounded rect: bottom-left → up → top → down → center-bottom */}
+                      <path d="M 20 85 A 12 12 0 0 1 8 73 L 8 27 A 12 12 0 0 1 20 15 L 180 15 A 12 12 0 0 1 192 27 L 192 73 A 12 12 0 0 1 180 85 L 112 85" />
+                      {/* Arrowhead pointing ← at center-bottom */}
+                      <path d="M 120 77 L 112 85 L 120 93" />
                     </svg>
                     <span className="shrink-0 font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
                       {contactInfo.email.split("@")[1]}
