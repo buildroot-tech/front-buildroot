@@ -269,7 +269,7 @@ export function Footer(): React.ReactElement {
                       preserveAspectRatio="none"
                       fill="none"
                       stroke="currentColor"
-                      strokeWidth="3"
+                      strokeWidth="6"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       aria-hidden="true"
