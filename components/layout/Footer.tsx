@@ -226,13 +226,13 @@ export function Footer(): React.ReactElement {
                   </span>
                 </div>
                 <div className="grid grid-cols-2 grid-rows-2 border-2 border-[var(--border)] gap-[2px] bg-[var(--border)]">
-                  <div className="flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--text-primary)] text-[var(--bg-primary)] py-1 md:py-2 px-2 md:px-4">
+                  <div className="row-span-2 flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--text-primary)] text-[var(--bg-primary)] py-1 md:py-2 px-2 md:px-4">
                     {contactInfo.phone.split(" ")[0]}
                   </div>
                   <div className="flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
                     {contactInfo.phone.split(" ")[1]}
                   </div>
-                  <div className="col-span-2 flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
+                  <div className="flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
                     {contactInfo.phone.split(" ")[2]}
                   </div>
                 </div>
