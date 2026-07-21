@@ -26,7 +26,7 @@ const HEADER_H = 80;
 // Color values for interpolation
 const COLORS = {
   light: { r: 248, g: 250, b: 252 },  // --text-inverse / --bg-primary
-  dark: { r: 15, g: 23, b: 42 },      // --text-primary / --bg-hero
+  dark: { r: 0, g: 0, b: 0 },        // --text-primary / --bg-hero
 };
 
 function lerp(a: number, b: number, t: number): number {
