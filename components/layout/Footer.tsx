@@ -188,68 +188,73 @@ export function Footer(): React.ReactElement {
                 </span>
               </div>
 
-              {/* Row 2: City */}
-              <div className="flex items-end justify-start gap-1 md:gap-2 w-full px-2 py-[clamp(0.1rem,0.3vw,0.4rem)]">
-                <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
-                  {contactInfo.city}
-                </span>
-                
-                <div className="flex items-end gap-1 md:gap-2">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[var(--text-primary)] shrink-0 w-[clamp(2.5rem,4.5vw,6rem)] h-[clamp(2.5rem,4.5vw,6rem)]">
-                    <path d="M3 20h18L15 8l-3 4-2-2-6 10z"/>
-                    <path d="M12 3v3" />
-                    <path d="M10 5l-1.5-1.5" />
-                    <path d="M14 5l1.5-1.5" />
-                  </svg>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--text-primary)] shrink-0 w-[clamp(2.5rem,4.5vw,6rem)] h-[clamp(2.5rem,4.5vw,6rem)] ml-[-1vw]">
-                    <path d="M20 17C20 13 17 10 15 10C15 7 13 7 13 10C9 10 4 13 4 17V20H18C20 20 20 18 20 17Z" />
-                    <circle cx="16" cy="14" r="1" fill="currentColor" stroke="none" />
-                  </svg>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-500 shrink-0 w-[clamp(2.5rem,4.5vw,6rem)] h-[clamp(2.5rem,4.5vw,6rem)] ml-[-1vw]">
-                    <path d="M17.5 20H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
-                  </svg>
-                </div>
+              {/* Rows 2 & 3: shared w-fit so phone grid right-aligns with Colombia */}
+              <div className="w-fit flex flex-col gap-0">
 
-                <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
-                  {contactInfo.country}
-                </span>
-              </div>
-
-              {/* Row 3: Telephone and Grid */}
-              <div className="flex items-center justify-start w-full px-2 py-[clamp(0.1rem,0.3vw,0.4rem)] gap-2 md:gap-4">
-                <div className="flex items-center gap-2 md:gap-4 shrink-0">
-                  <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] capitalize tracking-tighter">
-                    Telephone
+                {/* Row 2: City */}
+                <div className="flex items-end justify-start gap-1 md:gap-2 w-full px-2 py-[clamp(0.1rem,0.3vw,0.4rem)]">
+                  <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
+                    {contactInfo.city}
                   </span>
-                  <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] tracking-tighter">
-                    +57
+                  
+                  <div className="flex items-end gap-1 md:gap-2">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[var(--text-primary)] shrink-0 w-[clamp(2.5rem,4.5vw,6rem)] h-[clamp(2.5rem,4.5vw,6rem)]">
+                      <path d="M3 20h18L15 8l-3 4-2-2-6 10z"/>
+                      <path d="M12 3v3" />
+                      <path d="M10 5l-1.5-1.5" />
+                      <path d="M14 5l1.5-1.5" />
+                    </svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--text-primary)] shrink-0 w-[clamp(2.5rem,4.5vw,6rem)] h-[clamp(2.5rem,4.5vw,6rem)] ml-[-1vw]">
+                      <path d="M20 17C20 13 17 10 15 10C15 7 13 7 13 10C9 10 4 13 4 17V20H18C20 20 20 18 20 17Z" />
+                      <circle cx="16" cy="14" r="1" fill="currentColor" stroke="none" />
+                    </svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-500 shrink-0 w-[clamp(2.5rem,4.5vw,6rem)] h-[clamp(2.5rem,4.5vw,6rem)] ml-[-1vw]">
+                      <path d="M17.5 20H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                    </svg>
+                  </div>
+
+                  <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
+                    {contactInfo.country}
                   </span>
                 </div>
 
-                {/* Phone Grid */}
-                <div className="flex-1 flex border-2 border-[var(--border)] min-w-[150px]">
-                  {/* Left Column */}
-                  <div className="flex-1 flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-normal text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
-                    {contactInfo.phone.split(" ")[0]}
+                {/* Row 3: Telephone and Grid */}
+                <div className="flex items-center justify-start w-full px-2 py-[clamp(0.1rem,0.3vw,0.4rem)] gap-2 md:gap-4">
+                  <div className="flex items-center gap-2 md:gap-4 shrink-0">
+                    <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] capitalize tracking-tighter">
+                      Telephone
+                    </span>
+                    <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] tracking-tighter">
+                      +57
+                    </span>
                   </div>
-                  
-                  {/* Informal Vertical Divider */}
-                  <div className="w-[2px] bg-[var(--border)] my-1 md:my-2 shrink-0 rounded-full"></div>
-                  
-                  {/* Right Column */}
-                  <div className="flex-1 flex flex-col">
+
+                  {/* Phone Grid */}
+                  <div className="flex-1 flex border-2 border-[var(--border)] min-w-0">
+                    {/* Left Column */}
                     <div className="flex-1 flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-normal text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
-                      {contactInfo.phone.split(" ")[1]}
+                      {contactInfo.phone.split(" ")[0]}
                     </div>
                     
-                    {/* Informal Horizontal Divider */}
-                    <div className="h-[2px] bg-[var(--border)] mx-1 md:mx-2 shrink-0 rounded-full"></div>
+                    {/* Informal Vertical Divider */}
+                    <div className="w-[2px] bg-[var(--border)] my-1 md:my-2 shrink-0 rounded-full"></div>
                     
-                    <div className="flex-1 flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-normal text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
-                      {contactInfo.phone.split(" ")[2]}
+                    {/* Right Column */}
+                    <div className="flex-1 flex flex-col">
+                      <div className="flex-1 flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-normal text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
+                        {contactInfo.phone.split(" ")[1]}
+                      </div>
+                      
+                      {/* Informal Horizontal Divider */}
+                      <div className="h-[2px] bg-[var(--border)] mx-1 md:mx-2 shrink-0 rounded-full"></div>
+                      
+                      <div className="flex-1 flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-normal text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
+                        {contactInfo.phone.split(" ")[2]}
+                      </div>
                     </div>
                   </div>
                 </div>
+
               </div>
 
               {/* Row 4: Email */}
