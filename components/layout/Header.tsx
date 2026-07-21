@@ -90,7 +90,7 @@ export function Header() {
             className="font-mono text-3xl font-bold tracking-tight"
             style={{ color: textColor } as React.CSSProperties}
           >
-            <ScrambleText text="buildroot" speed={80} />
+            <ScrambleText text="buildroot" speed={80} trigger="mount" key={`logo-${pathname}`} />
             <span className="cursor-blink inline-block scale-y-75 origin-bottom">_</span>
           </Link>
 
@@ -106,7 +106,7 @@ export function Header() {
                     minWidth: `${link.label.length}ch`,
                   } as React.CSSProperties}
                 >
-                  <ScrambleText text={link.label} speed={55} />
+                  <ScrambleText text={link.label} speed={55} trigger="mount" key={`${link.label}-${pathname}`} />
                   <span className={`absolute bottom-0 left-0 h-[3px] w-full bg-current transition-opacity duration-150 ${pathname === link.href ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
                 </Link>
                 {i < navLinks.length - 1 && (
@@ -133,7 +133,7 @@ export function Header() {
               minWidth: "9ch",
             } as React.CSSProperties}
           >
-            <ScrambleText text="let_s talk" speed={55} />
+            <ScrambleText text="let_s talk" speed={55} trigger="mount" key={`contact-${pathname}`} />
             <span className={`absolute bottom-0 left-0 h-[3px] w-full bg-current transition-opacity duration-150 ${pathname === "/contact" ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
           </Link>
 
