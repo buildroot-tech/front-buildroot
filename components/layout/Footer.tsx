@@ -181,8 +181,12 @@ export function Footer(): React.ReactElement {
         <div className="pt-12 md:pt-8 pb-4 md:pb-6 w-full overflow-hidden flex items-end justify-between pl-4 md:pl-12">
           
           {/* Bottom Left: Copyright/Year */}
-          <div className="font-mono text-[clamp(1.2rem,1.6vw,1.8rem)] font-medium tracking-tight text-[var(--text-primary)] pointer-events-none mb-[clamp(0.1rem,0.3vw,0.4rem)]">
-            ©{year}
+          <div className="font-mono text-[clamp(1.2rem,1.6vw,1.8rem)] font-medium tracking-tight text-[var(--text-primary)] pointer-events-none mb-[clamp(0.1rem,0.3vw,0.4rem)] flex items-center gap-1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[1em] h-[1em]">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M14.83 14.83a4 4 0 1 1 0-5.66"></path>
+            </svg>
+            <span className="leading-none mt-[0.1em]">{year}</span>
           </div>
 
           {/* Main Info Box */}
