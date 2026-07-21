@@ -85,19 +85,19 @@ function Decorative() {
       {/* Nubes Verdes - Ambient Aurora */}
       <motion.div
         className="absolute top-[20%] right-[10%] w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, rgba(16,185,129,0.18) 0%, transparent 70%)" }}
         animate={{ scale: [1, 1.2, 1], x: [0, -50, 0], y: [0, 30, 0] }}
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute bottom-[10%] left-[20%] w-[50vw] h-[50vw] max-w-[700px] max-h-[700px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(4,120,87,0.05) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, rgba(4,120,87,0.15) 0%, transparent 70%)" }}
         animate={{ scale: [1.2, 1, 1.2], x: [0, 60, 0], y: [0, -40, 0] }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute top-[40%] left-[40%] w-[30vw] h-[30vw] max-w-[500px] max-h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(20,184,166,0.04) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, rgba(20,184,166,0.12) 0%, transparent 70%)" }}
         animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
