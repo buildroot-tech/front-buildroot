@@ -188,11 +188,11 @@ export function Footer(): React.ReactElement {
                 </span>
               </div>
 
-              {/* Rows 2 & 3: City and Phone Grid (Aligned) */}
-              <div className="grid grid-cols-1 xl:grid-cols-[max-content_1fr] w-full px-2 py-1 gap-x-2 md:gap-x-4 items-center">
+              {/* Rows 2 & 3: City and Phone Grid (Aligned by width) */}
+              <div className="flex flex-col w-max px-2 gap-1 xl:gap-2">
                 
-                {/* Row 2, Col 1: City */}
-                <div className="flex items-end justify-start gap-1 md:gap-2">
+                {/* Row 2: City */}
+                <div className="flex items-end justify-start gap-1 md:gap-2 w-full">
                   <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
                     {contactInfo.city}
                   </span>
@@ -218,31 +218,31 @@ export function Footer(): React.ReactElement {
                   </span>
                 </div>
 
-                {/* Row 2, Col 2: Empty space */}
-                <div className="hidden xl:block"></div>
+                {/* Row 3: Telephone and Grid */}
+                <div className="flex items-center justify-start w-full gap-2 md:gap-4 shrink-0">
+                  <div className="flex items-center gap-2 md:gap-4 shrink-0">
+                    <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] capitalize tracking-tighter">
+                      Telephone
+                    </span>
+                    <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter">
+                      +57
+                    </span>
+                  </div>
 
-                {/* Row 3, Col 1: Telephone Label */}
-                <div className="flex items-center justify-start gap-2 md:gap-4 shrink-0 py-1">
-                  <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] capitalize tracking-tighter">
-                    Telephone
-                  </span>
-                  <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter">
-                    +57
-                  </span>
+                  {/* Phone Grid */}
+                  <div className="flex-1 grid grid-cols-2 grid-rows-2 border-2 border-[var(--border)] gap-[2px] bg-[var(--border)] min-w-[150px]">
+                    <div className="row-span-2 flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--text-primary)] text-[var(--bg-primary)] py-1 md:py-2 px-2 md:px-4">
+                      {contactInfo.phone.split(" ")[0]}
+                    </div>
+                    <div className="flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
+                      {contactInfo.phone.split(" ")[1]}
+                    </div>
+                    <div className="flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
+                      {contactInfo.phone.split(" ")[2]}
+                    </div>
+                  </div>
                 </div>
 
-                {/* Row 3, Col 2: Phone Grid */}
-                <div className="flex-1 grid grid-cols-2 grid-rows-2 border-2 border-[var(--border)] gap-[2px] bg-[var(--border)] mt-2 xl:mt-0">
-                  <div className="row-span-2 flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--text-primary)] text-[var(--bg-primary)] py-1 md:py-2 px-2 md:px-4">
-                    {contactInfo.phone.split(" ")[0]}
-                  </div>
-                  <div className="flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
-                    {contactInfo.phone.split(" ")[1]}
-                  </div>
-                  <div className="flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
-                    {contactInfo.phone.split(" ")[2]}
-                  </div>
-                </div>
               </div>
 
               {/* Row 4: Email */}
