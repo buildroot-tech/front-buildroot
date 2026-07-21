@@ -216,7 +216,7 @@ export function Footer(): React.ReactElement {
               </div>
 
               {/* Row 3: Phone */}
-              <div className="flex flex-col md:flex-row h-auto px-2 py-1 items-center gap-1 md:gap-2">
+              <div className="flex flex-col md:flex-row h-auto px-2 py-1 items-center justify-between gap-1 md:gap-2 w-full">
                 <div className="flex items-center justify-center md:justify-start overflow-hidden shrink-0 gap-2 md:gap-4">
                   <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] capitalize tracking-tighter">
                     Telephone
@@ -225,7 +225,7 @@ export function Footer(): React.ReactElement {
                     +57
                   </span>
                 </div>
-                <div className="flex-1 w-full grid grid-cols-2 grid-rows-2 border-2 border-[var(--border)] gap-[2px] bg-[var(--border)]">
+                <div className="grid grid-cols-2 grid-rows-2 border-2 border-[var(--border)] gap-[2px] bg-[var(--border)] shrink-0">
                   <div className="row-span-2 flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--text-primary)] text-[var(--bg-primary)] py-1 md:py-2 px-2 md:px-4">
                     {contactInfo.phone.split(" ")[0]}
                   </div>
