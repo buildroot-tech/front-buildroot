@@ -82,10 +82,42 @@ function Decorative() {
         transition={{ delay: 1, duration: 0.5, ease: "backOut" }}
       />
 
-      <div
-        className="absolute top-1/2 right-[8%] -translate-y-1/2 w-[500px] h-[500px] rounded-full"
-        style={{ background: "radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%)" }}
+      {/* Nubes Verdes - Ambient Aurora */}
+      <motion.div
+        className="absolute top-[20%] right-[10%] w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%)" }}
+        animate={{ scale: [1, 1.2, 1], x: [0, -50, 0], y: [0, 30, 0] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
       />
+      <motion.div
+        className="absolute bottom-[10%] left-[20%] w-[50vw] h-[50vw] max-w-[700px] max-h-[700px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(4,120,87,0.05) 0%, transparent 70%)" }}
+        animate={{ scale: [1.2, 1, 1.2], x: [0, 60, 0], y: [0, -40, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute top-[40%] left-[40%] w-[30vw] h-[30vw] max-w-[500px] max-h-[500px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(20,184,166,0.04) 0%, transparent 70%)" }}
+        animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Wireframe Volcanes (Cumbal & Chiles) - Brutalist Geometry */}
+      <svg
+        className="absolute bottom-0 left-0 w-full h-[30vh] opacity-10 pointer-events-none"
+        preserveAspectRatio="none"
+        viewBox="0 0 1000 300"
+      >
+        {/* Cumbal (Higher, left) */}
+        <polyline points="-50,300 300,50 650,300" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[var(--text-inverse)]" />
+        <polyline points="125,175 475,175" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-[var(--text-inverse)] opacity-40" />
+        <polyline points="300,50 300,300" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-[var(--text-inverse)] opacity-40" />
+
+        {/* Chiles (Slightly lower, right) */}
+        <polyline points="350,300 700,120 1050,300" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[var(--text-inverse)]" />
+        <polyline points="525,210 875,210" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-[var(--text-inverse)] opacity-40" />
+        <polyline points="700,120 700,300" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-[var(--text-inverse)] opacity-40" />
+      </svg>
     </div>
   );
 }
