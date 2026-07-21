@@ -1,8 +1,7 @@
 import { Hero } from "@/components/home/Hero";
 import { HeroTransition } from "@/components/home/HeroTransition";
-import { Services } from "@/components/home/Services";
-import { WorkSection } from "@/components/work/WorkSection";
-import { Highlights } from "@/components/home/Highlights";
+import { WorkflowSteps } from "@/components/home/WorkflowSteps";
+import { SelectWork } from "@/components/home/SelectWork";
 import { CTA } from "@/components/home/CTA";
 
 export default function Home() {
@@ -12,14 +11,11 @@ export default function Home() {
         <Hero />
       </section>
       <HeroTransition />
-      <section id="services">
-        <Services />
+      <section id="process">
+        <WorkflowSteps />
       </section>
       <section id="work">
-        <WorkSection />
-      </section>
-      <section id="highlights">
-        <Highlights />
+        <SelectWork />
       </section>
       <section id="cta">
         <CTA />
