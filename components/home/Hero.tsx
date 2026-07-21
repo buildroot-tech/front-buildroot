@@ -36,22 +36,22 @@ function InterweavingLines() {
     <svg className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true">
       {down.map((l, i) => (
         <motion.line key={`d${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
-          stroke="rgba(248,250,252,0.02)" strokeWidth="1"
+          stroke="rgba(248,250,252,0.035)" strokeWidth="1"
           animate={{ x: ["-30%", "30%", "-30%"] }}
           transition={{ duration: l.d, repeat: Infinity, ease: "easeInOut", delay: l.dl }} />
       ))}
       {up.map((l, i) => (
         <motion.line key={`u${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
-          stroke="rgba(248,250,252,0.015)" strokeWidth="1"
+          stroke="rgba(248,250,252,0.025)" strokeWidth="1"
           animate={{ x: ["30%", "-30%", "30%"] }}
           transition={{ duration: l.d, repeat: Infinity, ease: "easeInOut", delay: l.dl }} />
       ))}
       <motion.line x1="8%" y1="0%" x2="92%" y2="100%"
-        stroke="rgba(37,99,235,0.05)" strokeWidth="1"
+        stroke="rgba(37,99,235,0.08)" strokeWidth="1"
         animate={{ x: ["-18%", "18%", "-18%"] }}
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }} />
       <motion.line x1="92%" y1="0%" x2="8%" y2="100%"
-        stroke="rgba(37,99,235,0.03)" strokeWidth="1"
+        stroke="rgba(37,99,235,0.05)" strokeWidth="1"
         animate={{ x: ["18%", "-18%", "18%"] }}
         transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }} />
     </svg>
