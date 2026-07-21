@@ -29,7 +29,7 @@ const contactInfo = {
   city: "Ipiales",
   country: ", Colombia",
   zip: "524060",
-  phone: "+57 310 425 2781",
+  phone: "310 425 2781",
   email: "hello@buildroot.tech",
 };
 
@@ -217,9 +217,12 @@ export function Footer(): React.ReactElement {
 
               {/* Row 3: Phone */}
               <div className="flex flex-col md:flex-row h-auto px-2 py-1 items-center gap-1 md:gap-2">
-                <div className="flex items-center justify-center md:justify-start overflow-hidden shrink-0">
+                <div className="flex items-center justify-center md:justify-start overflow-hidden shrink-0 gap-2 md:gap-4">
                   <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] capitalize tracking-tighter">
-                    Teléfono
+                    Phone
+                  </span>
+                  <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter">
+                    +57
                   </span>
                 </div>
                 <div className="grid grid-cols-2 grid-rows-2 border-2 border-[var(--border)] gap-[2px] bg-[var(--border)]">
@@ -229,11 +232,8 @@ export function Footer(): React.ReactElement {
                   <div className="flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
                     {contactInfo.phone.split(" ")[1]}
                   </div>
-                  <div className="flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
+                  <div className="col-span-2 flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
                     {contactInfo.phone.split(" ")[2]}
-                  </div>
-                  <div className="flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
-                    {contactInfo.phone.split(" ")[3]}
                   </div>
                 </div>
               </div>
