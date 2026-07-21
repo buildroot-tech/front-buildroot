@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,7 +14,6 @@ const navLinks = [
 ];
 
 // Route → background color config
-// text: color for text, bg: navbar background, needsScroll: only on home
 const routeColors: Record<string, { text: string; bg: string; needsScroll?: boolean }> = {
   "/": { text: "var(--text-inverse)", bg: "transparent", needsScroll: true },
   "/work": { text: "var(--text-primary)", bg: "white" },
@@ -24,25 +23,58 @@ const routeColors: Record<string, { text: string; bg: string; needsScroll?: bool
 
 const HEADER_H = 80;
 
+// Color values for interpolation
+const COLORS = {
+  light: { r: 248, g: 250, b: 252 },  // --text-inverse / --bg-primary
+  dark: { r: 15, g: 23, b: 42 },      // --text-primary / --bg-hero
+};
+
+function lerp(a: number, b: number, t: number): number {
+  return Math.round(a + (b - a) * Math.min(Math.max(t, 0), 1));
+}
+
+function lerpColor(t: number): string {
+  const r = lerp(COLORS.light.r, COLORS.dark.r, t);
+  const g = lerp(COLORS.light.g, COLORS.dark.g, t);
+  const b = lerp(COLORS.light.b, COLORS.dark.b, t);
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
+function lerpBgColor(t: number): string {
+  // transparent (hero) → --bg-primary (light)
+  const r = lerp(15, 248, t);
+  const g = lerp(23, 250, t);
+  const b = lerp(42, 252, t);
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
 export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolledPastHero, setScrolledPastHero] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Home page: detect when scrolled past hero
+  // Home page: smooth scroll-based transition
   useEffect(() => {
     const config = routeColors[pathname] || routeColors["/"];
     if (!config.needsScroll) {
-      setScrolledPastHero(false);
+      setScrollProgress(0);
       return;
     }
 
     const check = () => {
       const hero = document.getElementById("hero");
       if (!hero) return;
+
       const rect = hero.getBoundingClientRect();
-      // Past hero when hero bottom is above navbar
-      setScrolledPastHero(rect.bottom <= HEADER_H);
+      const heroBottom = rect.bottom;
+
+      // Calculate transition progress:
+      // 0 = navbar fully in hero (dark)
+      // 1 = navbar fully past hero (light)
+      // Start transitioning when hero bottom is 200px above navbar
+      const transitionZone = 200;
+      const rawProgress = (HEADER_H - (heroBottom - transitionZone)) / transitionZone;
+      setScrollProgress(Math.min(Math.max(rawProgress, 0), 1));
     };
 
     window.addEventListener("scroll", check, { passive: true });
@@ -53,21 +85,18 @@ export function Header() {
   // Determine colors based on route and scroll position
   const config = routeColors[pathname] || routeColors["/"];
   const isHome = pathname === "/";
-  const isLightBg = isHome
-    ? scrolledPastHero
-    : config.bg !== "transparent" && config.bg !== "#0A0A0A";
 
-  const textColor = isHome
-    ? scrolledPastHero
-      ? "var(--text-primary)"
-      : config.text
-    : config.text;
+  const textColor = useMemo(() => {
+    if (!isHome) return config.text;
+    // Interpolate from white (hero) to dark (services)
+    return lerpColor(scrollProgress);
+  }, [isHome, config.text, scrollProgress]);
 
-  const bgColor = isHome
-    ? scrolledPastHero
-      ? "var(--bg-primary)"
-      : config.bg
-    : config.bg;
+  const bgColor = useMemo(() => {
+    if (!isHome) return config.bg;
+    // Interpolate from transparent (hero) to light (services)
+    return scrollProgress > 0 ? lerpBgColor(scrollProgress) : config.bg;
+  }, [isHome, config.bg, scrollProgress]);
 
   useEffect(() => {
     if (mobileOpen) {
@@ -83,8 +112,8 @@ export function Header() {
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300"
-        style={{ backgroundColor: bgColor }}
+        className="fixed top-0 left-0 right-0 z-50 transition-colors duration-150"
+        style={{ backgroundColor: bgColor } as React.CSSProperties}
       >
         <div className="flex items-center justify-between px-6 py-5 overflow-hidden">
           {/* Logo */}
