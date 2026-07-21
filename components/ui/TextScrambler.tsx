@@ -82,12 +82,20 @@ function ScrambleText({
     onMouseEnter?.();
   };
 
+  const handleMouseLeave = () => {
+    if (trigger === "hover") {
+      clearAll();
+      setDisplay(text);
+    }
+    onMouseLeave?.();
+  };
+
   return (
     <Tag
       className={className}
       style={style}
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onMouseLeave={handleMouseLeave}
       onClick={onClick}
     >
       {display}
