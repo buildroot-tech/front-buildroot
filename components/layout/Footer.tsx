@@ -175,12 +175,20 @@ export function Footer(): React.ReactElement {
                 </span>
                 
                 <div className="flex items-center gap-1 md:gap-2 font-display text-[clamp(1.1rem,1.8vw,1.8rem)] uppercase font-normal tracking-tighter text-[var(--text-primary)]">
-                  <span className="text-[1.6em] leading-none font-normal">↗</span>
+                  {/* ↗ arrow */}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--text-primary)] shrink-0 w-[1.6em] h-[1.6em]">
+                    <path d="M7 17 L17 7" />
+                    <path d="M7 7 h10 v10" />
+                  </svg>
                   <div className="flex flex-col leading-[0.85]">
                     <span>00.827782</span>
                     <span>77.615538</span>
                   </div>
-                  <span className="text-[1.6em] leading-none font-normal">↘</span>
+                  {/* ↘ arrow */}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--text-primary)] shrink-0 w-[1.6em] h-[1.6em]">
+                    <path d="M7 7 L17 17" />
+                    <path d="M17 7 v10 h-10" />
+                  </svg>
                 </div>
 
                 <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
@@ -237,7 +245,7 @@ export function Footer(): React.ReactElement {
                     </div>
                     
                     {/* Informal Vertical Divider */}
-                    <div className="w-[2px] bg-[var(--border)] my-1 md:my-2 shrink-0 rounded-full"></div>
+                    <div className="w-[4px] bg-[var(--border)] my-1 md:my-2 shrink-0 rounded-full"></div>
                     
                     {/* Right Column */}
                     <div className="flex-1 flex flex-col">
@@ -246,7 +254,7 @@ export function Footer(): React.ReactElement {
                       </div>
                       
                       {/* Informal Horizontal Divider */}
-                      <div className="h-[2px] bg-[var(--border)] mx-1 md:mx-2 shrink-0 rounded-full"></div>
+                      <div className="h-[4px] bg-[var(--border)] mx-1 md:mx-2 shrink-0 rounded-full"></div>
                       
                       <div className="flex-1 flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-normal text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
                         {contactInfo.phone.split(" ")[2]}
