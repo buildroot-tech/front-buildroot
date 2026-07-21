@@ -165,7 +165,7 @@ export function Footer(): React.ReactElement {
         {/* ── LOWER HALF (Contact Info) ── */}
         <div className="pt-12 md:pt-8 pb-4 md:pb-6 relative w-full overflow-hidden">
           {/* Main Info Box */}
-          <div className="mx-auto w-[95%] max-w-6xl md:ml-auto md:mr-8 xl:mr-[5%] bg-[var(--bg-primary)]">
+          <div className="ml-auto w-fit bg-[var(--bg-primary)] pr-2 xl:pr-[2%]">
             <div className="flex flex-col gap-0">
               
               {/* Row 1: Location */}
@@ -188,7 +188,7 @@ export function Footer(): React.ReactElement {
                 </span>
               </div>
 
-              {/* Rows 2 & 3: shared w-fit so phone grid right-aligns with Colombia */}
+              {/* Rows 2, 3 & 4: shared w-fit so all rows align as a rectangle */}
               <div className="w-fit flex flex-col gap-0">
 
                 {/* Row 2: City */}
@@ -261,23 +261,8 @@ export function Footer(): React.ReactElement {
                     <span className="shrink-0 font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
                       {contactInfo.email.split("@")[0]}
                     </span>
-                    {/* Stretchy @ — SVG fills remaining space, no size change */}
-                    <svg
-                      className="flex-1 group-hover:text-[var(--bg-primary)] transition-colors duration-300"
-                      style={{ height: "clamp(2.2rem,3.8vw,5rem)", overflow: "visible" }}
-                      viewBox="0 0 100 85"
-                      preserveAspectRatio="none"
-                      aria-hidden="true"
-                    >
-                      <text
-                        x="50" y="80"
-                        textAnchor="middle"
-                        fontSize="100"
-                        fontFamily="Space Grotesk, system-ui, sans-serif"
-                        fontWeight="400"
-                        fill="currentColor"
-                      >@</text>
-                    </svg>
+                    {/* Baseline rule replacing @ */}
+                    <div className="flex-1 border-b-[2px] border-[var(--border)] self-end mb-[0.15em] group-hover:border-[var(--bg-primary)] transition-colors duration-300"></div>
                     <span className="shrink-0 font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
                       {contactInfo.email.split("@")[1]}
                     </span>
