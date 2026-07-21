@@ -198,17 +198,17 @@ export function Footer(): React.ReactElement {
                   </span>
                   
                   <div className="flex items-end gap-1 md:gap-2">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[var(--text-primary)] shrink-0 w-[clamp(2.5rem,4.5vw,6rem)] h-[clamp(2.5rem,4.5vw,6rem)]">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[var(--text-primary)] shrink-0 w-[clamp(2.5rem,4.5vw,6rem)] h-[clamp(2.5rem,4.5vw,6rem)]">
                       <path d="M3 20h18L15 8l-3 4-2-2-6 10z"/>
                       <path d="M12 3v3" />
                       <path d="M10 5l-1.5-1.5" />
                       <path d="M14 5l1.5-1.5" />
                     </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--text-primary)] shrink-0 w-[clamp(2.5rem,4.5vw,6rem)] h-[clamp(2.5rem,4.5vw,6rem)] ml-[-1vw]">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--text-primary)] shrink-0 w-[clamp(2.5rem,4.5vw,6rem)] h-[clamp(2.5rem,4.5vw,6rem)] ml-[-1vw]">
                       <path d="M20 17C20 13 17 10 15 10C15 7 13 7 13 10C9 10 4 13 4 17V20H18C20 20 20 18 20 17Z" />
                       <circle cx="16" cy="14" r="1" fill="currentColor" stroke="none" />
                     </svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-500 shrink-0 w-[clamp(2.5rem,4.5vw,6rem)] h-[clamp(2.5rem,4.5vw,6rem)] ml-[-1vw]">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-500 shrink-0 w-[clamp(2.5rem,4.5vw,6rem)] h-[clamp(2.5rem,4.5vw,6rem)] ml-[-1vw]">
                       <path d="M17.5 20H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
                     </svg>
                   </div>
@@ -269,7 +269,7 @@ export function Footer(): React.ReactElement {
                       preserveAspectRatio="none"
                       fill="none"
                       stroke="currentColor"
-                      strokeWidth="6"
+                      strokeWidth="8"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       aria-hidden="true"
