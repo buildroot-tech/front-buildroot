@@ -66,16 +66,6 @@ function Decorative() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       <motion.div
-        className="absolute top-8 right-8 grid grid-cols-5 gap-2.5"
-        animate={{ y: [0, -7, 0], opacity: [0.12, 0.19, 0.12] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-      >
-        {Array.from({ length: 25 }).map((_, i) => (
-          <div key={i} className="w-1 h-1 rounded-full bg-[var(--text-inverse)]" />
-        ))}
-      </motion.div>
-
-      <motion.div
         className="absolute bottom-6 right-6 w-8 h-8 border-r-2 border-b-2 border-[var(--accent)]"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 0.4, scale: 1 }}
@@ -202,9 +192,9 @@ export function Hero() {
           opacity,
         }}
       >
-        {/* Coordinates — top right */}
+        {/* Coordinates & Dots — top right */}
         <motion.div
-          className="flex justify-end"
+          className="flex flex-col items-end gap-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1, duration: 0.6 }}
@@ -213,6 +203,16 @@ export function Hero() {
             <div>LAT: 00.83 N</div>
             <div>LON: 77.64 W</div>
           </div>
+          
+          <motion.div
+            className="grid grid-cols-5 gap-2.5"
+            animate={{ y: [0, -7, 0], opacity: [0.12, 0.19, 0.12] }}
+            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+          >
+            {Array.from({ length: 25 }).map((_, i) => (
+              <div key={i} className="w-1 h-1 rounded-full bg-[var(--text-inverse)]" />
+            ))}
+          </motion.div>
         </motion.div>
 
         {/* ── Headline — fills remaining space, anchored to bottom ── */}
