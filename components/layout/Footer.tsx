@@ -255,21 +255,35 @@ export function Footer(): React.ReactElement {
                   </div>
                 </div>
 
-              </div>
+                {/* Row 4: Email — inside w-fit so it matches Row 2/3 width */}
+                <div className="group flex items-center w-full px-2 py-[clamp(0.1rem,0.3vw,0.4rem)] bg-[var(--bg-primary)] hover:bg-[var(--text-primary)] transition-colors duration-300">
+                  <a href={`mailto:${contactInfo.email}`} className="flex items-center w-full gap-0">
+                    <span className="shrink-0 font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
+                      {contactInfo.email.split("@")[0]}
+                    </span>
+                    {/* Stretchy @ — SVG fills remaining space, no size change */}
+                    <svg
+                      className="flex-1 group-hover:text-[var(--bg-primary)] transition-colors duration-300"
+                      style={{ height: "clamp(2.2rem,3.8vw,5rem)", overflow: "visible" }}
+                      viewBox="0 0 100 85"
+                      preserveAspectRatio="none"
+                      aria-hidden="true"
+                    >
+                      <text
+                        x="50" y="80"
+                        textAnchor="middle"
+                        fontSize="100"
+                        fontFamily="Space Grotesk, system-ui, sans-serif"
+                        fontWeight="400"
+                        fill="currentColor"
+                      >@</text>
+                    </svg>
+                    <span className="shrink-0 font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
+                      {contactInfo.email.split("@")[1]}
+                    </span>
+                  </a>
+                </div>
 
-              {/* Row 4: Email */}
-              <div className="group flex items-center justify-start w-full px-2 py-[clamp(0.1rem,0.3vw,0.4rem)] bg-[var(--bg-primary)] hover:bg-[var(--text-primary)] transition-colors duration-300">
-                <a href={`mailto:${contactInfo.email}`} className="flex items-center justify-start gap-1 md:gap-2 w-full">
-                  <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
-                    {contactInfo.email.split("@")[0]}
-                  </span>
-                  <span className="font-display text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] text-[var(--text-primary)] font-normal z-10 group-hover:scale-110 transition-transform duration-300">
-                    @
-                  </span>
-                  <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
-                    {contactInfo.email.split("@")[1]}
-                  </span>
-                </a>
               </div>
 
             </div>
