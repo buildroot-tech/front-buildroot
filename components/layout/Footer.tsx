@@ -312,6 +312,11 @@ export function Footer(): React.ReactElement {
 
             </div>
           </div>
+
+          {/* Bottom Left: Copyright/Year */}
+          <div className="absolute bottom-4 md:bottom-6 left-4 md:left-12 font-mono text-sm md:text-base font-medium tracking-tight text-[var(--text-primary)] pointer-events-none">
+            r{year}
+          </div>
         </div>
 
       </div>
