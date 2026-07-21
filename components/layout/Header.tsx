@@ -22,11 +22,17 @@ const routeColors: Record<string, { text: string; bg: string; needsScroll?: bool
 };
 
 const HEADER_H = 80;
+const DIAGONAL_H = 96; // h-24 = 96px
 
 // Color values for interpolation
 const COLORS = {
-  light: { r: 248, g: 250, b: 252 },  // --text-inverse / --bg-primary
-  dark: { r: 0, g: 0, b: 0 },        // --text-primary / --bg-hero
+  light: { r: 248, g: 250, b: 252 },  // --bg-primary
+  dark: { r: 15, g: 23, b: 42 },      // --bg-hero
+};
+
+const TEXT_COLORS = {
+  light: { r: 15, g: 23, b: 42 },     // --text-primary (dark, for light bg)
+  dark: { r: 248, g: 250, b: 252 },   // --text-inverse (light, for dark bg)
 };
 
 function lerp(a: number, b: number, t: number): number {
@@ -34,17 +40,18 @@ function lerp(a: number, b: number, t: number): number {
 }
 
 function lerpColor(t: number): string {
-  const r = lerp(COLORS.light.r, COLORS.dark.r, t);
-  const g = lerp(COLORS.light.g, COLORS.dark.g, t);
-  const b = lerp(COLORS.light.b, COLORS.dark.b, t);
+  // Text: white (on dark) → dark (on light)
+  const r = lerp(TEXT_COLORS.dark.r, TEXT_COLORS.light.r, t);
+  const g = lerp(TEXT_COLORS.dark.g, TEXT_COLORS.light.g, t);
+  const b = lerp(TEXT_COLORS.dark.b, TEXT_COLORS.light.b, t);
   return `rgb(${r}, ${g}, ${b})`;
 }
 
 function lerpBgColor(t: number): string {
-  // transparent (hero) → --bg-primary (light)
-  const r = lerp(15, 248, t);
-  const g = lerp(23, 250, t);
-  const b = lerp(42, 252, t);
+  // Bg: dark (hero) → light (services)
+  const r = lerp(COLORS.dark.r, COLORS.light.r, t);
+  const g = lerp(COLORS.dark.g, COLORS.light.g, t);
+  const b = lerp(COLORS.dark.b, COLORS.light.b, t);
   return `rgb(${r}, ${g}, ${b})`;
 }
 
@@ -68,12 +75,11 @@ export function Header() {
       const rect = hero.getBoundingClientRect();
       const heroBottom = rect.bottom;
 
-      // Calculate transition progress:
-      // 0 = navbar fully in hero (dark)
-      // 1 = navbar fully past hero (light)
-      // Start transitioning when hero bottom is 200px above navbar
-      const transitionZone = 200;
-      const rawProgress = (HEADER_H - (heroBottom - transitionZone)) / transitionZone;
+      // The diagonal sits at heroBottom and is DIAGONAL_H tall.
+      // Transition happens as the diagonal passes through the navbar (0 to HEADER_H).
+      // Progress 0 = diagonal hasn't reached navbar (dark)
+      // Progress 1 = diagonal fully past navbar (light)
+      const rawProgress = (HEADER_H - heroBottom) / DIAGONAL_H;
       setScrollProgress(Math.min(Math.max(rawProgress, 0), 1));
     };
 
