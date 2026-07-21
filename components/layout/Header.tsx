@@ -107,7 +107,7 @@ export function Header() {
                   } as React.CSSProperties}
                 >
                   <ScrambleText text={link.label} speed={55} />
-                  <span className="absolute bottom-0 left-0 h-[3px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+                  <span className={`absolute bottom-0 left-0 h-[3px] w-full bg-current transition-opacity duration-150 ${pathname === link.href ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
                 </Link>
                 {i < navLinks.length - 1 && (
                   <span
@@ -134,7 +134,7 @@ export function Header() {
             } as React.CSSProperties}
           >
             <ScrambleText text="let_s talk" speed={55} />
-            <span className="absolute bottom-0 left-0 h-[3px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
+            <span className={`absolute bottom-0 left-0 h-[3px] w-full bg-current transition-opacity duration-150 ${pathname === "/contact" ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
           </Link>
 
           {/* Mobile Burger */}
