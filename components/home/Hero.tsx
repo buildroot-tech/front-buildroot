@@ -95,7 +95,7 @@ function Decorative() {
 ───────────────────────────────────────────────────────── */
 const HEADER_H  = 80;
 const FS        = "clamp(64px, 13vw, 220px)";
-const LH_MAIN   = 0.88;
+const LH_MAIN   = 0.80;
 const LH_GHOST  = 0.50;
 
 const SERVICES  = ["System", "Product", "Infrastructure"];
@@ -216,8 +216,8 @@ export function Hero() {
                 className="block font-display uppercase"
                 style={{
                   ...textBase,
-                  lineHeight: 0.70,
-                  marginTop: 0,
+                  lineHeight: 0.60,
+                  marginTop: i === 0 ? "-0.15em" : 0,
                   WebkitTextStroke: `${i === 0 ? 2 : 1.5}px rgba(248,250,252,${opacity})`,
                   color: "transparent",
                 }}
