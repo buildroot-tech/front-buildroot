@@ -169,7 +169,7 @@ export function Footer(): React.ReactElement {
             <div className="flex flex-col gap-0">
               
               {/* Row 1: Location */}
-              <div className="flex items-end justify-start w-full px-2 py-[clamp(0.3rem,0.8vw,1rem)] gap-2 md:gap-4">
+              <div className="flex items-end justify-start w-full px-2 py-[clamp(0.1rem,0.3vw,0.4rem)] gap-2 md:gap-4">
                 <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
                   {contactInfo.address}
                 </span>
@@ -189,7 +189,7 @@ export function Footer(): React.ReactElement {
               </div>
 
               {/* Row 2: City */}
-              <div className="flex items-end justify-start gap-1 md:gap-2 w-full px-2 py-[clamp(0.3rem,0.8vw,1rem)]">
+              <div className="flex items-end justify-start gap-1 md:gap-2 w-full px-2 py-[clamp(0.1rem,0.3vw,0.4rem)]">
                 <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
                   {contactInfo.city}
                 </span>
@@ -216,7 +216,7 @@ export function Footer(): React.ReactElement {
               </div>
 
               {/* Row 3: Telephone and Grid */}
-              <div className="flex items-center justify-start w-full px-2 py-[clamp(0.3rem,0.8vw,1rem)] gap-2 md:gap-4">
+              <div className="flex items-center justify-start w-full px-2 py-[clamp(0.1rem,0.3vw,0.4rem)] gap-2 md:gap-4">
                 <div className="flex items-center gap-2 md:gap-4 shrink-0">
                   <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] capitalize tracking-tighter">
                     Telephone
@@ -253,7 +253,7 @@ export function Footer(): React.ReactElement {
               </div>
 
               {/* Row 4: Email */}
-              <div className="group flex items-center justify-start w-full px-2 py-[clamp(0.3rem,0.8vw,1rem)] bg-[var(--bg-primary)] hover:bg-[var(--text-primary)] transition-colors duration-300">
+              <div className="group flex items-center justify-start w-full px-2 py-[clamp(0.1rem,0.3vw,0.4rem)] bg-[var(--bg-primary)] hover:bg-[var(--text-primary)] transition-colors duration-300">
                 <a href={`mailto:${contactInfo.email}`} className="flex items-center justify-start gap-1 md:gap-2 w-full">
                   <span className="font-display font-normal text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
                     {contactInfo.email.split("@")[0]}
