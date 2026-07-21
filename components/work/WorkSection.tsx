@@ -11,7 +11,7 @@ export function WorkSection() {
       {/* Terminal Telemetry Marquee Ticker Strip — Light Mode */}
       <div className="w-full border-y border-[var(--text-primary)]/10 py-2.5 font-mono text-xs font-bold overflow-hidden select-none mb-8 md:mb-10">
         <div className="flex whitespace-nowrap animate-marquee gap-8">
-          <span className="text-[var(--accent)]">/// SYSTEM_LOGS: WORK_MODULE_ACTIVE</span>
+          <span className="text-[var(--accent)]">{"/// SYSTEM_LOGS: WORK_MODULE_ACTIVE"}</span>
           <span className="text-[var(--text-primary)]">● PRODUCTION_DEPLOYED</span>
           <span className="text-[var(--text-muted)]">STATUS: 200_OK</span>
           <span className="text-[var(--accent)]">LATENCY: &lt;15MS_EDGE</span>
@@ -20,7 +20,7 @@ export function WorkSection() {
           <span className="text-[var(--accent)]">SECURITY: HARDENED_SHIELD</span>
           <span className="text-[var(--text-primary)]">BUILD: STABLE_RELEASE</span>
           <span className="text-[var(--text-muted)]">ROUTING: DISTRIBUTED_NODES</span>
-          <span className="text-[var(--accent)]">/// SYSTEM_LOGS: WORK_MODULE_ACTIVE</span>
+          <span className="text-[var(--accent)]">{"/// SYSTEM_LOGS: WORK_MODULE_ACTIVE"}</span>
           <span className="text-[var(--text-primary)]">● PRODUCTION_DEPLOYED</span>
           <span className="text-[var(--text-muted)]">STATUS: 200_OK</span>
         </div>
@@ -39,7 +39,7 @@ export function WorkSection() {
           <div>
             <div className="inline-flex items-center gap-2 border border-[var(--text-primary)]/10 px-3.5 py-1.5 font-mono text-xs font-bold uppercase text-[var(--accent)] tracking-widest">
               <Terminal className="h-3.5 w-3.5" />
-              <span>// Selected Works</span>
+              <span>{"// Selected Works"}</span>
             </div>
             <h2 className="headline text-h1 mt-4 text-[var(--text-primary)] tracking-tight">
               <ScrambleText text="Featured Projects & Architecture" speed={55} trigger="mount" />

@@ -89,7 +89,7 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
                 <div className="flex flex-col justify-between lg:col-span-7 space-y-8">
                   <div>
                     <div className="font-mono text-xs text-[var(--accent)] font-semibold tracking-wider">
-                      /// Project Overview
+                      {"/// Project Overview"}
                     </div>
                     <p className="mt-4 text-base text-[var(--text-primary)] leading-relaxed font-sans max-w-2xl">
                       {project.description}
@@ -99,7 +99,7 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
                     {primaryMetric && (
                       <div className="mt-8 flex items-center justify-between border border-[var(--text-primary)]/10 p-5 font-mono text-xs">
                         <span className="font-semibold text-[var(--text-muted)]">
-                          /// Key Impact: {primaryMetric.label}
+                          {"/// Key Impact: "}{primaryMetric.label}
                         </span>
                         <span className="text-lg font-black text-[var(--accent)]">
                           {primaryMetric.value}

@@ -37,14 +37,12 @@ function ScrambleText({
 
   const scramble = useCallback(() => {
     clearAll();
-    setDisplay(text);
 
     const letters = text.split("");
     const len = letters.length;
 
     // Step 1: Reverse the word
-    const reversed = [...letters].reverse().join("");
-    const t0 = setTimeout(() => setDisplay(reversed), 0);
+    const t0 = setTimeout(() => setDisplay([...letters].reverse().join("")), 0);
     timersRef.current.push(t0);
 
     // Step 2: Rotate letters one by one from the end back to original

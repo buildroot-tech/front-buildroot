@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function StyleGuideLayout({
   children,
 }: {
@@ -10,12 +12,12 @@ export default function StyleGuideLayout({
           <span className="font-mono text-sm uppercase tracking-widest text-[var(--text-muted)]">
             buildroot_ Style Guide
           </span>
-          <a
+          <Link
             href="/"
             className="brutalist-button text-xs"
           >
             ← Back to Site
-          </a>
+          </Link>
         </div>
       </nav>
       <main className="mx-auto max-w-[1400px] px-6 py-12">{children}</main>

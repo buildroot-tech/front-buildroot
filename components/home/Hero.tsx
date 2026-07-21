@@ -141,7 +141,6 @@ function Decorative() {
 const HEADER_H  = 80;
 const FS        = "clamp(64px, 13vw, 220px)";
 const LH_MAIN   = 0.80;
-const LH_GHOST  = 0.50;
 
 const SERVICES  = ["System", "Product", "Infrastructure"];
 
