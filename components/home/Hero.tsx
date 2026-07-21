@@ -127,7 +127,7 @@ function Decorative() {
 
       {/* Wireframe Volcanes (Cumbal & Chiles) - Brutalist Geometry */}
       <svg
-        className="absolute bottom-0 left-0 w-full h-[30vh] opacity-10 pointer-events-none"
+        className="absolute bottom-0 left-0 w-full h-[30vh] opacity-25 pointer-events-none"
         preserveAspectRatio="none"
         viewBox="0 0 1000 300"
       >
