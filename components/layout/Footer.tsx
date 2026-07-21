@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ScrambleText } from "@/components/ui/TextScrambler";
@@ -33,6 +34,13 @@ const contactInfo = {
   email: "hello@buildroot.tech",
 };
 
+const routeColors: Record<string, { bg: string; text: string; border: string }> = {
+  "/": { bg: "var(--bg-primary)", text: "var(--text-primary)", border: "var(--border)" },
+  "/work": { bg: "#ffffff", text: "#000000", border: "#000000" },
+  "/services": { bg: "var(--accent)", text: "#ffffff", border: "#ffffff" },
+  "/about": { bg: "#000000", text: "#ffffff", border: "#ffffff" },
+};
+
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
@@ -44,12 +52,19 @@ const fadeUp = {
 
 export function Footer(): React.ReactElement {
   const year = new Date().getFullYear();
+  const pathname = usePathname();
+  const config = routeColors[pathname] || routeColors["/"];
 
   return (
     <footer
       id="footer"
-      className="bg-[var(--bg-primary)]"
+      className="bg-[var(--bg-primary)] transition-colors duration-300"
       aria-label="Site footer"
+      style={{
+        "--bg-primary": config.bg,
+        "--text-primary": config.text,
+        "--border": config.border,
+      } as React.CSSProperties}
     >
       <div className="flex flex-col">
 
