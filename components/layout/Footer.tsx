@@ -238,9 +238,9 @@ export function Footer(): React.ReactElement {
                   </div>
 
                   {/* Phone Grid */}
-                  <div className="flex-1 flex border-2 border-[var(--border)] min-w-0">
-                    {/* Left Column */}
-                    <div className="flex-1 flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-normal text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
+                  <div className="flex-1 flex border-[4px] border-[var(--border)] min-w-0">
+                    {/* Left Column — narrower */}
+                    <div className="flex-[0.6] flex items-center justify-center font-display text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-normal text-[var(--text-primary)] py-1 md:py-2 px-2 md:px-4">
                       {contactInfo.phone.split(" ")[0]}
                     </div>
                     
