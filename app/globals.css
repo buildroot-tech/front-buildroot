@@ -8,8 +8,8 @@
 :root {
   /* ---- Colors: Light Mode ---- */
   --bg-hero: #000000;
-  --bg-primary: #f8fafc;
-  --bg-secondary: #e2e8f0;
+  --bg-primary: #e2e8f0;
+  --bg-secondary: #f8fafc;
 
   --text-primary: #000000;
   --text-muted: #64748b;
