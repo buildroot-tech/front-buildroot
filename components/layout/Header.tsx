@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/lib/utils";
 import { ScrambleText } from "@/components/ui/TextScrambler";
 
 const navLinks = [
@@ -31,17 +30,12 @@ export function Header() {
 
   // Home page: detect when scrolled past hero
   useEffect(() => {
-    const config = routeColors[pathname] || routeColors["/"];
-    if (!config.needsScroll) {
-      setScrolledPastHero(false);
-      return;
-    }
+    if (pathname !== "/") return;
 
     const check = () => {
       const hero = document.getElementById("hero");
       if (!hero) return;
       const rect = hero.getBoundingClientRect();
-      // Past hero when hero bottom is above navbar
       setScrolledPastHero(rect.bottom <= HEADER_H);
     };
 
@@ -50,20 +44,18 @@ export function Header() {
     return () => window.removeEventListener("scroll", check);
   }, [pathname]);
 
+  const isHome = pathname === "/";
+  const effectiveScrolledPastHero = isHome ? scrolledPastHero : false;
+
   // Determine colors based on route and scroll position
   const config = routeColors[pathname] || routeColors["/"];
-  const isHome = pathname === "/";
 
-  const textColor = isHome
-    ? scrolledPastHero
-      ? "var(--text-primary)"
-      : config.text
+  const textColor = effectiveScrolledPastHero
+    ? "var(--text-primary)"
     : config.text;
 
-  const bgColor = isHome
-    ? scrolledPastHero
-      ? "var(--bg-primary)"
-      : config.bg
+  const bgColor = effectiveScrolledPastHero
+    ? "var(--bg-primary)"
     : config.bg;
 
   useEffect(() => {

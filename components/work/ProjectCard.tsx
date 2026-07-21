@@ -36,7 +36,7 @@ export function ProjectCard({ project, onSelectCaseStudy, isWide = false }: Proj
             PRJ_{project.indexCode}
           </span>
           <span className="font-extrabold uppercase text-[var(--accent)]">
-            // {project.category}
+            {"// "}{project.category}
           </span>
         </div>
         <span className="border border-[var(--border)] bg-[var(--bg-primary)] px-2 py-0.5 font-bold text-[var(--text-muted)]">
@@ -65,7 +65,7 @@ export function ProjectCard({ project, onSelectCaseStudy, isWide = false }: Proj
           {primaryMetric && (
             <div className="mt-5 flex items-center justify-between border border-[var(--border)] bg-[var(--bg-primary)] p-2.5 font-mono text-xs">
               <span className="uppercase tracking-wider font-bold text-[var(--text-muted)]">
-                /// METRIC: {primaryMetric.label}
+                {"/// METRIC: "}{primaryMetric.label}
               </span>
               <span className="text-sm font-black text-[var(--accent)]">
                 {primaryMetric.value}
