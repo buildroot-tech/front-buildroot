@@ -94,7 +94,7 @@ function Decorative() {
    Constants
 ───────────────────────────────────────────────────────── */
 const HEADER_H  = 80;
-const FS        = "clamp(48px, min(13vw, 15vh), 220px)";
+const FS        = "clamp(64px, 13vw, 220px)";
 const LH_MAIN   = 0.88;
 const LH_GHOST  = 0.50;
 
@@ -161,7 +161,7 @@ export function Hero() {
         </motion.div>
 
         {/* ── Headline — fills remaining space, anchored to bottom ── */}
-        <div className="flex-1 flex flex-col justify-end">
+        <div className="flex-1 flex flex-col justify-center pb-[12vh]">
 
           {/* We build */}
           <div className="overflow-hidden">
@@ -202,47 +202,30 @@ export function Hero() {
             </motion.h1>
           </div>
 
-          {/* Ghost echoes — bleed downward, section clips the deepest */}
+          {/* Ghost echoes — h-0 so they don't consume space, bleed downward */}
           <motion.div
             aria-hidden="true"
+            className="h-0"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.05, duration: 0.45 }}
           >
-            <span
-              className="relative block font-display uppercase"
-              style={{
-                ...textBase,
-                lineHeight: 0.35,
-                zIndex: -1,
-                WebkitTextStroke: "2px rgba(248,250,252,0.16)",
-                color: "transparent",
-              }}
-            >
-              Products.
-            </span>
-            <span
-              className="block font-display uppercase"
-              style={{
-                ...textBase,
-                lineHeight: LH_GHOST,
-                WebkitTextStroke: "1.5px rgba(248,250,252,0.08)",
-                color: "transparent",
-              }}
-            >
-              Products.
-            </span>
-            <span
-              className="block font-display uppercase"
-              style={{
-                ...textBase,
-                lineHeight: LH_GHOST,
-                WebkitTextStroke: "1px rgba(248,250,252,0.04)",
-                color: "transparent",
-              }}
-            >
-              Products.
-            </span>
+            {[0.16, 0.06].map((opacity, i) => (
+              <span
+                key={i}
+                className={`block font-display uppercase ${i === 0 ? "relative" : ""}`}
+                style={{
+                  ...textBase,
+                  lineHeight: 0.65,
+                  marginTop: i === 0 ? "-0.08em" : 0,
+                  zIndex: i === 0 ? -1 : "auto",
+                  WebkitTextStroke: `${i === 0 ? 2 : 1.5}px rgba(248,250,252,${opacity})`,
+                  color: "transparent",
+                }}
+              >
+                Products.
+              </span>
+            ))}
           </motion.div>
         </div>
 
