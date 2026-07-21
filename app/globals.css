@@ -7,18 +7,18 @@
 
 :root {
   /* ---- Colors: Light Mode ---- */
-  --bg-hero: #0f172a;
+  --bg-hero: #000000;
   --bg-primary: #f8fafc;
   --bg-secondary: #e2e8f0;
 
-  --text-primary: #0f172a;
+  --text-primary: #000000;
   --text-muted: #64748b;
   --text-inverse: #f8fafc;
 
   --accent: #2563eb;
   --accent-hover: #1d4ed8;
 
-  --border: #0f172a;
+  --border: #000000;
   --border-muted: #cbd5e1;
 
   /* ---- Typography ---- */
