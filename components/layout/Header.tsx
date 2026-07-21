@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ScrambleText } from "@/components/ui/TextScrambler";
@@ -12,33 +13,61 @@ const navLinks = [
   { href: "/about", label: "about" },
 ];
 
-const darkSections = ["hero", "cta"];
+// Route → background color config
+// text: color for text, bg: navbar background, needsScroll: only on home
+const routeColors: Record<string, { text: string; bg: string; needsScroll?: boolean }> = {
+  "/": { text: "var(--text-inverse)", bg: "transparent", needsScroll: true },
+  "/work": { text: "var(--text-primary)", bg: "white" },
+  "/services": { text: "white", bg: "var(--accent)" },
+  "/about": { text: "var(--text-inverse)", bg: "#0A0A0A" },
+};
+
+const HEADER_H = 80;
 
 export function Header() {
-  const [isDark, setIsDark] = useState(true);
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
 
+  // Home page: detect when scrolled past hero
   useEffect(() => {
-    const HEADER_H = 80;
+    const config = routeColors[pathname] || routeColors["/"];
+    if (!config.needsScroll) {
+      setScrolledPastHero(false);
+      return;
+    }
 
     const check = () => {
-      const sections = document.querySelectorAll<HTMLElement>("section[id], footer[id]");
-      let found = false;
-      for (const section of sections) {
-        const rect = section.getBoundingClientRect();
-        if (HEADER_H >= rect.top && HEADER_H < rect.bottom) {
-          setIsDark(darkSections.includes(section.id));
-          found = true;
-          break;
-        }
-      }
-      if (!found) setIsDark(true);
+      const hero = document.getElementById("hero");
+      if (!hero) return;
+      const rect = hero.getBoundingClientRect();
+      // Past hero when hero bottom is above navbar
+      setScrolledPastHero(rect.bottom <= HEADER_H);
     };
 
     window.addEventListener("scroll", check, { passive: true });
     check();
     return () => window.removeEventListener("scroll", check);
-  }, []);
+  }, [pathname]);
+
+  // Determine colors based on route and scroll position
+  const config = routeColors[pathname] || routeColors["/"];
+  const isHome = pathname === "/";
+  const isLightBg = isHome
+    ? scrolledPastHero
+    : config.bg !== "transparent" && config.bg !== "#0A0A0A";
+
+  const textColor = isHome
+    ? scrolledPastHero
+      ? "var(--text-primary)"
+      : config.text
+    : config.text;
+
+  const bgColor = isHome
+    ? scrolledPastHero
+      ? "var(--bg-primary)"
+      : config.bg
+    : config.bg;
 
   useEffect(() => {
     if (mobileOpen) {
@@ -54,19 +83,15 @@ export function Header() {
   return (
     <>
       <header
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-colors duration-300",
-          isDark ? "bg-transparent" : "bg-[var(--bg-primary)]",
-        )}
+        className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300"
+        style={{ backgroundColor: bgColor }}
       >
         <div className="flex items-center justify-between px-6 py-5 overflow-hidden">
           {/* Logo */}
           <Link
             href="/"
             className="font-mono text-3xl font-bold tracking-tight"
-            style={{
-              color: isDark ? "var(--text-inverse)" : "var(--text-primary)",
-            }}
+            style={{ color: textColor } as React.CSSProperties}
           >
             <ScrambleText text="buildroot" speed={80} />
             <span className="cursor-blink inline-block scale-y-75 origin-bottom">_</span>
@@ -80,9 +105,9 @@ export function Header() {
                   href={link.href}
                   className="group relative font-mono text-3xl font-medium transition-colors hover:text-[var(--accent)]"
                   style={{
-                    color: isDark ? "var(--text-inverse)" : "var(--text-primary)",
+                    color: textColor,
                     minWidth: `${link.label.length}ch`,
-                  }}
+                  } as React.CSSProperties}
                 >
                   <ScrambleText text={link.label} speed={55} />
                   <span className="absolute bottom-0 left-0 h-[3px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
@@ -91,9 +116,9 @@ export function Header() {
                   <span
                     className="text-3xl"
                     style={{
-                      color: isDark ? "var(--text-inverse)" : "var(--text-muted)",
+                      color: textColor,
                       opacity: 0.4,
-                    }}
+                    } as React.CSSProperties}
                   >
                     ,
                   </span>
@@ -107,9 +132,9 @@ export function Header() {
             href="/contact"
             className="group relative font-mono text-3xl font-medium transition-colors hover:text-[var(--accent)] ml-8"
             style={{
-              color: isDark ? "var(--text-inverse)" : "var(--text-primary)",
+              color: textColor,
               minWidth: "9ch",
-            }}
+            } as React.CSSProperties}
           >
             <ScrambleText text="let_s talk" speed={55} />
             <span className="absolute bottom-0 left-0 h-[3px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
@@ -123,25 +148,19 @@ export function Header() {
           >
             <motion.span
               className="block h-0.5 w-6"
-              style={{
-                background: isDark ? "var(--text-inverse)" : "var(--text-primary)",
-              }}
+              style={{ background: textColor } as React.CSSProperties}
               animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.2 }}
             />
             <motion.span
               className="block h-0.5 w-6"
-              style={{
-                background: isDark ? "var(--text-inverse)" : "var(--text-primary)",
-              }}
+              style={{ background: textColor } as React.CSSProperties}
               animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
               transition={{ duration: 0.2 }}
             />
             <motion.span
               className="block h-0.5 w-6"
-              style={{
-                background: isDark ? "var(--text-inverse)" : "var(--text-primary)",
-              }}
+              style={{ background: textColor } as React.CSSProperties}
               animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.2 }}
             />
