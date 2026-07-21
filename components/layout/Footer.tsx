@@ -178,9 +178,15 @@ export function Footer(): React.ReactElement {
         </div>
 
         {/* ── LOWER HALF (Contact Info) ── */}
-        <div className="pt-12 md:pt-8 pb-4 md:pb-6 relative w-full overflow-hidden">
+        <div className="pt-12 md:pt-8 pb-4 md:pb-6 w-full overflow-hidden flex items-end justify-between pl-4 md:pl-12">
+          
+          {/* Bottom Left: Copyright/Year */}
+          <div className="font-mono text-[clamp(1.2rem,1.6vw,1.8rem)] font-medium tracking-tight text-[var(--text-primary)] pointer-events-none mb-[clamp(0.1rem,0.3vw,0.4rem)]">
+            ©{year}
+          </div>
+
           {/* Main Info Box */}
-          <div className="ml-auto w-fit bg-[var(--bg-primary)] pr-2 xl:pr-[2%]">
+          <div className="w-fit bg-[var(--bg-primary)] pr-2 xl:pr-[2%] shrink-0">
             <div className="flex flex-col gap-0">
               
               {/* Row 1: Location */}
@@ -309,16 +315,9 @@ export function Footer(): React.ReactElement {
                 </div>
 
               </div>
-
             </div>
           </div>
-
-          {/* Bottom Left: Copyright/Year */}
-          <div className="absolute bottom-4 md:bottom-6 left-4 md:left-12 font-mono text-[clamp(1.2rem,1.6vw,1.8rem)] font-medium tracking-tight text-[var(--text-primary)] pointer-events-none">
-            ©{year}
-          </div>
         </div>
-
       </div>
     </footer>
   );
