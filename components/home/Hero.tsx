@@ -213,12 +213,11 @@ export function Hero() {
             {[0.16, 0.06].map((opacity, i) => (
               <span
                 key={i}
-                className={`block font-display uppercase ${i === 0 ? "relative" : ""}`}
+                className="block font-display uppercase"
                 style={{
                   ...textBase,
                   lineHeight: 0.70,
                   marginTop: 0,
-                  zIndex: i === 0 ? -1 : "auto",
                   WebkitTextStroke: `${i === 0 ? 2 : 1.5}px rgba(248,250,252,${opacity})`,
                   color: "transparent",
                 }}
