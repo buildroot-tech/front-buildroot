@@ -22,7 +22,7 @@ export function ProjectsGrid() {
       ))}
 
       {/* Interactive "Start Your Project" Callout Row */}
-      <div className="w-full bg-[var(--bg-secondary)]/60 py-16 px-6 sm:px-10 md:px-14 mt-8">
+      <div className="w-full border-t border-[var(--text-primary)]/10 py-16 px-6 sm:px-10 md:px-14 mt-8">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 max-w-7xl">
           <div>
             <div className="flex items-center gap-2 text-xs font-bold uppercase text-[var(--accent)] tracking-widest">
