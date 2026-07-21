@@ -54,13 +54,14 @@ export function Footer(): React.ReactElement {
   const year = new Date().getFullYear();
   const pathname = usePathname();
   const config = routeColors[pathname] || routeColors["/"];
+  const isHome = pathname === "/";
 
   return (
     <footer
       id="footer"
       className="bg-[var(--bg-primary)] transition-colors duration-300"
       aria-label="Site footer"
-      style={{
+      style={isHome ? undefined : {
         "--bg-primary": config.bg,
         "--text-primary": config.text,
         "--border": config.border,
