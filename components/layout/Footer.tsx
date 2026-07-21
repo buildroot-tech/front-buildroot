@@ -61,7 +61,7 @@ export function Footer(): React.ReactElement {
               {/* Navigation & Legal (2 columns inside Pages) */}
               <div className="flex flex-col">
                 <div className="border-b-2 border-[var(--border)] w-full pb-2 mb-3">
-                  <p className="font-mono text-[clamp(1.35rem,1.6vw,1.8rem)] capitalize tracking-tight text-[var(--text-primary)]">
+                  <p className="font-mono font-medium text-[clamp(1.35rem,1.6vw,1.8rem)] capitalize tracking-tight text-[var(--text-primary)]">
                     Menu
                   </p>
                 </div>
@@ -81,7 +81,7 @@ export function Footer(): React.ReactElement {
                           href={link.href}
                           className={cn(
                             "group relative inline-flex items-center gap-2 leading-[0.8]",
-                            "font-mono text-[clamp(1.35rem,1.6vw,1.8rem)] tracking-tight",
+                            "font-mono font-medium text-[clamp(1.35rem,1.6vw,1.8rem)] tracking-tight",
                             "text-[var(--text-primary)]"
                           )}
                           style={{ minWidth: `${link.label.length}ch` }}
@@ -108,7 +108,7 @@ export function Footer(): React.ReactElement {
                           href={link.href}
                           className={cn(
                             "group relative inline-flex items-center gap-2 leading-[0.8]",
-                            "font-mono text-[clamp(1.35rem,1.6vw,1.8rem)] tracking-tight text-[var(--text-primary)]"
+                            "font-mono font-medium text-[clamp(1.35rem,1.6vw,1.8rem)] tracking-tight text-[var(--text-primary)]"
                           )}
                           style={{ minWidth: `${link.label.length}ch` }}
                         >
@@ -124,7 +124,7 @@ export function Footer(): React.ReactElement {
               {/* Social */}
               <div className="flex flex-col">
                 <div className="border-b-2 border-[var(--border)] w-full pb-2 mb-3">
-                  <p className="font-mono text-[clamp(1.35rem,1.6vw,1.8rem)] capitalize tracking-tight text-[var(--text-primary)]">
+                  <p className="font-mono font-medium text-[clamp(1.35rem,1.6vw,1.8rem)] capitalize tracking-tight text-[var(--text-primary)]">
                     Elsewhere
                   </p>
                 </div>
@@ -144,7 +144,7 @@ export function Footer(): React.ReactElement {
                         rel="noopener noreferrer"
                         className={cn(
                           "group relative inline-flex items-center gap-2 leading-[0.8]",
-                          "font-mono text-[clamp(1.35rem,1.6vw,1.8rem)] tracking-tight",
+                          "font-mono font-medium text-[clamp(1.35rem,1.6vw,1.8rem)] tracking-tight",
                           "text-[var(--text-primary)]"
                         )}
                         style={{ minWidth: `${link.label.length}ch` }}
