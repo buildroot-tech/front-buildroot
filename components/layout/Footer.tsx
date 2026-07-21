@@ -261,8 +261,24 @@ export function Footer(): React.ReactElement {
                     <span className="shrink-0 font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
                       {contactInfo.email.split("@")[0]}
                     </span>
-                    {/* Baseline rule replacing @ */}
-                    <div className="flex-1 border-b-[2px] border-[var(--border)] self-end mb-[0.15em] group-hover:border-[var(--bg-primary)] transition-colors duration-300"></div>
+                    {/* Circular arrow — evokes the @ loop, connects hello → buildroot.tech */}
+                    <svg
+                      className="flex-1 text-[var(--text-primary)] group-hover:text-[var(--bg-primary)] transition-colors duration-300"
+                      style={{ height: "clamp(2.2rem,3.8vw,5rem)" }}
+                      viewBox="0 0 200 60"
+                      preserveAspectRatio="none"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      {/* Arc going right, looping back, then arrow pointing right */}
+                      <path d="M 10 30 C 10 10, 100 10, 100 30 C 100 50, 190 50, 190 30" />
+                      {/* Arrowhead */}
+                      <path d="M 182 22 L 190 30 L 182 38" />
+                    </svg>
                     <span className="shrink-0 font-display font-normal text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
                       {contactInfo.email.split("@")[1]}
                     </span>
