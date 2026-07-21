@@ -169,7 +169,7 @@ export function Footer(): React.ReactElement {
             <div className="flex flex-col gap-2">
               
               {/* Row 1: Location */}
-              <div className="flex items-baseline justify-between w-full px-2 py-1">
+              <div className="flex items-baseline justify-start w-full px-2 py-1 gap-2 md:gap-4">
                 <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
                   {contactInfo.address}
                 </span>
@@ -189,7 +189,7 @@ export function Footer(): React.ReactElement {
               </div>
 
               {/* Row 2: City */}
-              <div className="flex items-end justify-between w-full px-2 py-1">
+              <div className="flex items-end justify-start w-full px-2 py-1 gap-2 md:gap-4">
                 <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap translate-y-1 md:translate-y-2">
                   {contactInfo.city}
                 </span>
@@ -218,7 +218,7 @@ export function Footer(): React.ReactElement {
               </div>
 
               {/* Row 3: Phone */}
-              <div className="flex items-center justify-between w-full px-2 py-1">
+              <div className="flex items-center justify-start w-full px-2 py-1 gap-2 md:gap-4">
                 <div className="flex items-center gap-2 md:gap-4 shrink-0">
                   <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] capitalize tracking-tighter">
                     Telephone
@@ -227,7 +227,7 @@ export function Footer(): React.ReactElement {
                     +57
                   </span>
                 </div>
-                <div className="grid grid-cols-2 grid-rows-2 border-2 border-[var(--border)] gap-[2px] bg-[var(--border)] shrink-0">
+                <div className="flex-1 grid grid-cols-2 grid-rows-2 border-2 border-[var(--border)] gap-[2px] bg-[var(--border)]">
                   <div className="row-span-2 flex items-center justify-center headline text-[clamp(1rem,1.5vw,2rem)] leading-[0.85] tracking-tighter font-light bg-[var(--text-primary)] text-[var(--bg-primary)] py-1 md:py-2 px-2 md:px-4">
                     {contactInfo.phone.split(" ")[0]}
                   </div>
@@ -241,8 +241,8 @@ export function Footer(): React.ReactElement {
               </div>
 
               {/* Row 4: Email */}
-              <div className="group flex items-center justify-between w-full py-1 px-2 bg-[var(--bg-primary)] hover:bg-[var(--text-primary)] transition-colors duration-300">
-                <a href={`mailto:${contactInfo.email}`} className="flex items-center justify-between w-full">
+              <div className="group flex items-center justify-start w-full py-1 px-2 bg-[var(--bg-primary)] hover:bg-[var(--text-primary)] transition-colors duration-300">
+                <a href={`mailto:${contactInfo.email}`} className="flex items-center justify-start gap-1 md:gap-2 w-full">
                   <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter group-hover:text-[var(--bg-primary)] transition-colors duration-300 lowercase">
                     {contactInfo.email.split("@")[0]}
                   </span>
