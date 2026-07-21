@@ -219,7 +219,7 @@ export function Footer(): React.ReactElement {
               <div className="flex flex-col md:flex-row h-auto px-2 py-1 items-center gap-1 md:gap-2">
                 <div className="flex items-center justify-center md:justify-start overflow-hidden shrink-0 gap-2 md:gap-4">
                   <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] capitalize tracking-tighter">
-                    Phone
+                    Telephone
                   </span>
                   <span className="headline font-light text-[var(--text-primary)] text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter">
                     +57
