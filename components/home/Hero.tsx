@@ -216,8 +216,8 @@ export function Hero() {
                 className={`block font-display uppercase ${i === 0 ? "relative" : ""}`}
                 style={{
                   ...textBase,
-                  lineHeight: 0.55,
-                  marginTop: i === 0 ? "-0.2em" : 0,
+                  lineHeight: 0.65,
+                  marginTop: i === 0 ? "-0.08em" : 0,
                   zIndex: i === 0 ? -1 : "auto",
                   WebkitTextStroke: `${i === 0 ? 2 : 1.5}px rgba(248,250,252,${opacity})`,
                   color: "transparent",
