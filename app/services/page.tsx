@@ -1,10 +1,6 @@
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Services — buildroot_",
-  description:
-    "Web development, technical consulting, and SaaS products. Buildroot_ delivers full-stack solutions with modern frameworks.",
-};
+import { ScrambleText } from "@/components/ui/TextScrambler";
 
 export default function ServicesPage() {
   return (
@@ -14,7 +10,7 @@ export default function ServicesPage() {
           What We Do
         </h1>
         <h2 className="mt-4 font-mono text-4xl font-bold text-white md:text-6xl">
-          Services
+          <ScrambleText text="Services" speed={55} trigger="mount" />
         </h2>
         <p className="mt-6 max-w-lg text-lg text-white/70">
           Web development, technical consulting, and SaaS products for startups

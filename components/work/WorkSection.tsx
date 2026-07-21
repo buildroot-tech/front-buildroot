@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ProjectsGrid } from "@/components/work/ProjectsGrid";
 import { Terminal } from "lucide-react";
+import { ScrambleText } from "@/components/ui/TextScrambler";
 
 export function WorkSection() {
   return (
@@ -41,7 +42,7 @@ export function WorkSection() {
               <span>// Selected Works</span>
             </div>
             <h2 className="headline text-h1 mt-4 text-[var(--text-primary)] tracking-tight">
-              Featured Projects & Architecture
+              <ScrambleText text="Featured Projects & Architecture" speed={55} trigger="mount" />
             </h2>
             <p className="mt-3 text-base md:text-lg text-[var(--text-primary)] max-w-3xl leading-relaxed font-sans">
               Engineering high-performance digital products, custom web platforms, and modern cloud architectures built with technical precision, scalability, and design craftsmanship.
