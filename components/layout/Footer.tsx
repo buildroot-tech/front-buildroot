@@ -222,17 +222,15 @@ export function Footer(): React.ReactElement {
                     Teléfono
                   </span>
                 </div>
-                <div className="flex-1 flex flex-col w-full border-2 border-[var(--border)] divide-y-2 divide-[var(--border)]">
-                  <div className="flex items-center justify-center font-mono text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter font-light bg-[var(--text-primary)] text-[var(--bg-primary)] py-1">
+                <div className="flex-1 flex flex-row w-full border-2 border-[var(--border)] divide-x-2 divide-[var(--border)]">
+                  <div className="flex items-center justify-center px-4 md:px-8 font-mono text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter font-light bg-[var(--text-primary)] text-[var(--bg-primary)] py-1">
                     {contactInfo.phone.split(" ")[0]}
                   </div>
-                  <div className="flex divide-x-2 divide-[var(--border)]">
-                    <div className="flex-1 flex items-center justify-center font-mono text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1">
-                      {contactInfo.phone.split(" ")[1]}
-                    </div>
-                    <div className="flex-1 flex items-center justify-center font-mono text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1">
-                      {contactInfo.phone.split(" ")[2]}
-                    </div>
+                  <div className="flex-1 flex items-center justify-center font-mono text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1">
+                    {contactInfo.phone.split(" ")[1]}
+                  </div>
+                  <div className="flex-[2] flex items-center justify-center font-mono text-[clamp(2.5rem,4.5vw,6rem)] leading-[0.85] tracking-tighter font-light bg-[var(--bg-primary)] text-[var(--text-primary)] py-1">
+                    {contactInfo.phone.split(" ")[2]}
                   </div>
                 </div>
               </div>
