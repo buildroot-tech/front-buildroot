@@ -15,7 +15,7 @@ const navLinks = [
 
 // Route → background color config
 const routeColors: Record<string, { text: string; bg: string; needsScroll?: boolean }> = {
-  "/": { text: "var(--text-inverse)", bg: "transparent", needsScroll: true },
+  "/": { text: "var(--text-inverse)", bg: "var(--bg-hero)", needsScroll: true },
   "/work": { text: "var(--text-primary)", bg: "white" },
   "/services": { text: "white", bg: "var(--accent)" },
   "/about": { text: "var(--text-inverse)", bg: "#0A0A0A" },
@@ -40,7 +40,6 @@ function lerp(a: number, b: number, t: number): number {
 }
 
 function lerpColor(t: number): string {
-  // Text: white (on dark) → dark (on light)
   const r = lerp(TEXT_COLORS.dark.r, TEXT_COLORS.light.r, t);
   const g = lerp(TEXT_COLORS.dark.g, TEXT_COLORS.light.g, t);
   const b = lerp(TEXT_COLORS.dark.b, TEXT_COLORS.light.b, t);
@@ -48,7 +47,6 @@ function lerpColor(t: number): string {
 }
 
 function lerpBgColor(t: number): string {
-  // Bg: dark (hero) → light (services)
   const r = lerp(COLORS.dark.r, COLORS.light.r, t);
   const g = lerp(COLORS.dark.g, COLORS.light.g, t);
   const b = lerp(COLORS.dark.b, COLORS.light.b, t);
@@ -58,13 +56,13 @@ function lerpBgColor(t: number): string {
 export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [diagonalProgress, setDiagonalProgress] = useState(0);
 
-  // Home page: smooth scroll-based transition
+  // Home page: smooth scroll-based transition matching diagonal
   useEffect(() => {
     const config = routeColors[pathname] || routeColors["/"];
     if (!config.needsScroll) {
-      setScrollProgress(0);
+      setDiagonalProgress(0);
       return;
     }
 
@@ -75,12 +73,12 @@ export function Header() {
       const rect = hero.getBoundingClientRect();
       const heroBottom = rect.bottom;
 
-      // The diagonal sits at heroBottom and is DIAGONAL_H tall.
-      // Transition happens as the diagonal passes through the navbar (0 to HEADER_H).
-      // Progress 0 = diagonal hasn't reached navbar (dark)
-      // Progress 1 = diagonal fully past navbar (light)
-      const rawProgress = (HEADER_H - heroBottom) / DIAGONAL_H;
-      setScrollProgress(Math.min(Math.max(rawProgress, 0), 1));
+      // Diagonal spans from heroBottom to heroBottom + DIAGONAL_H
+      // Navbar is at 0 to HEADER_H
+      // Progress 0 = diagonal hasn't entered navbar (all dark)
+      // Progress 1 = diagonal fully past navbar (all light)
+      const rawProgress = (HEADER_H - heroBottom) / HEADER_H;
+      setDiagonalProgress(Math.min(Math.max(rawProgress, 0), 1));
     };
 
     window.addEventListener("scroll", check, { passive: true });
@@ -88,21 +86,31 @@ export function Header() {
     return () => window.removeEventListener("scroll", check);
   }, [pathname]);
 
-  // Determine colors based on route and scroll position
+  // Determine colors based on route and diagonal progress
   const config = routeColors[pathname] || routeColors["/"];
   const isHome = pathname === "/";
 
-  const textColor = useMemo(() => {
-    if (!isHome) return config.text;
-    // Interpolate from white (hero) to dark (services)
-    return lerpColor(scrollProgress);
-  }, [isHome, config.text, scrollProgress]);
-
+  // For home: bg interpolates from dark to light; text uses gradient matching diagonal
+  // For other routes: solid bg, solid text
   const bgColor = useMemo(() => {
     if (!isHome) return config.bg;
-    // Interpolate from transparent (hero) to light (services)
-    return scrollProgress > 0 ? lerpBgColor(scrollProgress) : config.bg;
-  }, [isHome, config.bg, scrollProgress]);
+    return lerpBgColor(diagonalProgress);
+  }, [isHome, config.bg, diagonalProgress]);
+
+  // For home: text gradient boundary = diagonalProgress * 100%
+  // 0% = all white (diagonal hasn't reached), 100% = all dark (diagonal past)
+  const textGradient = useMemo(() => {
+    if (!isHome) return null;
+    // diagonalProgress 0 = boundary at 0% (all white)
+    // diagonalProgress 1 = boundary at 100% (all dark)
+    const boundary = Math.round(diagonalProgress * 100);
+    return `linear-gradient(to bottom, rgb(${TEXT_COLORS.dark.r}, ${TEXT_COLORS.dark.g}, ${TEXT_COLORS.dark.b}) ${boundary}%, rgb(${TEXT_COLORS.light.r}, ${TEXT_COLORS.light.g}, ${TEXT_COLORS.light.b}) ${boundary}%)`;
+  }, [isHome, diagonalProgress]);
+
+  const solidTextColor = useMemo(() => {
+    if (isHome) return lerpColor(diagonalProgress);
+    return config.text;
+  }, [isHome, config.text, diagonalProgress]);
 
   useEffect(() => {
     if (mobileOpen) {
@@ -115,6 +123,22 @@ export function Header() {
     };
   }, [mobileOpen]);
 
+  // Style for text with gradient
+  const gradientTextStyle = useMemo(() => {
+    if (!textGradient) return {};
+    return {
+      background: textGradient,
+      WebkitBackgroundClip: "text",
+      backgroundClip: "text",
+      color: "transparent",
+    } as React.CSSProperties;
+  }, [textGradient]);
+
+  // Style for solid color text (non-home or elements that don't use gradient)
+  const solidTextStyle = useMemo(() => {
+    return { color: solidTextColor } as React.CSSProperties;
+  }, [solidTextColor]);
+
   return (
     <>
       <header
@@ -126,7 +150,7 @@ export function Header() {
           <Link
             href="/"
             className="font-mono text-3xl font-bold tracking-tight"
-            style={{ color: textColor } as React.CSSProperties}
+            style={textGradient ? gradientTextStyle : solidTextStyle}
           >
             <ScrambleText text="buildroot" speed={80} />
             <span className="cursor-blink inline-block scale-y-75 origin-bottom">_</span>
@@ -139,21 +163,17 @@ export function Header() {
                 <Link
                   href={link.href}
                   className="group relative font-mono text-3xl font-medium transition-colors hover:text-[var(--accent)]"
-                  style={{
-                    color: textColor,
-                    minWidth: `${link.label.length}ch`,
-                  } as React.CSSProperties}
+                  style={{ minWidth: `${link.label.length}ch` } as React.CSSProperties}
                 >
-                  <ScrambleText text={link.label} speed={55} />
+                  <span style={textGradient ? gradientTextStyle : solidTextStyle}>
+                    <ScrambleText text={link.label} speed={55} />
+                  </span>
                   <span className="absolute bottom-0 left-0 h-[3px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                 </Link>
                 {i < navLinks.length - 1 && (
                   <span
                     className="text-3xl"
-                    style={{
-                      color: textColor,
-                      opacity: 0.4,
-                    } as React.CSSProperties}
+                    style={textGradient ? gradientTextStyle : { ...solidTextStyle, opacity: 0.4 } as React.CSSProperties}
                   >
                     ,
                   </span>
@@ -166,12 +186,11 @@ export function Header() {
           <Link
             href="/contact"
             className="group relative font-mono text-3xl font-medium transition-colors hover:text-[var(--accent)] ml-8"
-            style={{
-              color: textColor,
-              minWidth: "9ch",
-            } as React.CSSProperties}
+            style={{ minWidth: "9ch" } as React.CSSProperties}
           >
-            <ScrambleText text="let_s talk" speed={55} />
+            <span style={textGradient ? gradientTextStyle : solidTextStyle}>
+              <ScrambleText text="let_s talk" speed={55} />
+            </span>
             <span className="absolute bottom-0 left-0 h-[3px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
           </Link>
 
@@ -183,19 +202,19 @@ export function Header() {
           >
             <motion.span
               className="block h-0.5 w-6"
-              style={{ background: textColor } as React.CSSProperties}
+              style={{ background: solidTextColor } as React.CSSProperties}
               animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.2 }}
             />
             <motion.span
               className="block h-0.5 w-6"
-              style={{ background: textColor } as React.CSSProperties}
+              style={{ background: solidTextColor } as React.CSSProperties}
               animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
               transition={{ duration: 0.2 }}
             />
             <motion.span
               className="block h-0.5 w-6"
-              style={{ background: textColor } as React.CSSProperties}
+              style={{ background: solidTextColor } as React.CSSProperties}
               animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.2 }}
             />
