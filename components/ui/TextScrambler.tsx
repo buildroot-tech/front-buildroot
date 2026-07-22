@@ -6,7 +6,7 @@ interface TextScramblerProps {
   text: string;
   className?: string;
   speed?: number;
-  trigger?: "hover" | "mount" | "manual";
+  trigger?: "hover" | "mount" | "both" | "manual";
   active?: boolean;
   as?: "span" | "div" | "p" | "h1" | "h2" | "h3";
   style?: React.CSSProperties;
@@ -70,18 +70,18 @@ function ScrambleText({
   }, [clearAll]);
 
   useEffect(() => {
-    if (trigger === "mount" && active) {
+    if ((trigger === "mount" || trigger === "both") && active) {
       scramble();
     }
   }, [trigger, active, scramble]);
 
   const handleMouseEnter = () => {
-    if (trigger === "hover") scramble();
+    if (trigger === "hover" || trigger === "both") scramble();
     onMouseEnter?.();
   };
 
   const handleMouseLeave = () => {
-    if (trigger === "hover") {
+    if (trigger === "hover" || trigger === "both") {
       clearAll();
       setDisplay(text);
     }
