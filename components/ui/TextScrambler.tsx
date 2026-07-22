@@ -41,9 +41,8 @@ function ScrambleText({
     const letters = text.split("");
     const len = letters.length;
 
-    // Step 1: Reverse the word
-    const t0 = setTimeout(() => setDisplay([...letters].reverse().join("")), 0);
-    timersRef.current.push(t0);
+    // Step 1: Reverse the word — synchronous so it fires instantly on hover
+    setDisplay([...letters].reverse().join(""));
 
     // Step 2: Rotate letters one by one from the end back to original
     for (let i = 1; i < len; i++) {
