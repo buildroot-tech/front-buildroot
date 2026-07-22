@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ScrambleText } from "@/components/ui/TextScrambler";
+import { ScrambleText, ScrambleTextHandle } from "@/components/ui/TextScrambler";
 
 const navLinks = [
   { href: "/work", label: "work" },
@@ -27,6 +27,12 @@ export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
+
+  // Imperative refs — hover is detected at the <Link> level so the entire
+  // clickable area triggers the scramble, not just the inner text span.
+  const logoRef = useRef<ScrambleTextHandle>(null);
+  const navRefs = useRef<Map<string, ScrambleTextHandle>>(new Map());
+  const contactRef = useRef<ScrambleTextHandle>(null);
 
   // Home page: detect when scrolled past hero
   useEffect(() => {
@@ -76,13 +82,21 @@ export function Header() {
         style={{ backgroundColor: bgColor } as React.CSSProperties}
       >
         <div className="flex items-center justify-between px-6 py-5 overflow-hidden">
-          {/* Logo */}
+          {/* Logo — hover detected on the <Link>, not the inner span */}
           <Link
             href="/"
             className="font-mono text-3xl font-bold tracking-tight"
             style={{ color: textColor } as React.CSSProperties}
+            onMouseEnter={() => logoRef.current?.scramble()}
+            onMouseLeave={() => logoRef.current?.reset()}
           >
-            <ScrambleText text="buildroot" speed={95} trigger="both" key={`logo-${pathname}`} />
+            <ScrambleText
+              ref={logoRef}
+              text="buildroot"
+              speed={95}
+              trigger="mount"
+              key={`logo-${pathname}`}
+            />
             <span className="cursor-blink inline-block scale-y-75 origin-bottom">_</span>
           </Link>
 
@@ -97,8 +111,19 @@ export function Header() {
                     color: textColor,
                     minWidth: `${link.label.length}ch`,
                   } as React.CSSProperties}
+                  onMouseEnter={() => navRefs.current.get(link.href)?.scramble()}
+                  onMouseLeave={() => navRefs.current.get(link.href)?.reset()}
                 >
-                  <ScrambleText text={link.label} speed={68} trigger="both" key={`${link.label}-${pathname}`} />
+                  <ScrambleText
+                    ref={(el) => {
+                      if (el) navRefs.current.set(link.href, el);
+                      else navRefs.current.delete(link.href);
+                    }}
+                    text={link.label}
+                    speed={68}
+                    trigger="mount"
+                    key={`${link.label}-${pathname}`}
+                  />
                   <span className={`absolute bottom-0 left-0 h-[3px] w-full bg-current transition-opacity duration-150 ${pathname === link.href ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
                 </Link>
                 {i < navLinks.length - 1 && (
@@ -124,8 +149,16 @@ export function Header() {
               color: textColor,
               minWidth: "9ch",
             } as React.CSSProperties}
+            onMouseEnter={() => contactRef.current?.scramble()}
+            onMouseLeave={() => contactRef.current?.reset()}
           >
-            <ScrambleText text="let_s talk" speed={68} trigger="both" key={`contact-${pathname}`} />
+            <ScrambleText
+              ref={contactRef}
+              text="let_s talk"
+              speed={68}
+              trigger="mount"
+              key={`contact-${pathname}`}
+            />
             <span className={`absolute bottom-0 left-0 h-[3px] w-full bg-current transition-opacity duration-150 ${pathname === "/contact" ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
           </Link>
 
