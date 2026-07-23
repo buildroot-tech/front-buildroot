@@ -55,7 +55,7 @@ export function WorkflowSteps() {
         <div className="sticky top-0 flex h-screen w-full flex-col md:flex-row overflow-hidden">
           
           {/* Left Side: Sticky Title */}
-          <div className="flex h-[30vh] w-full flex-col justify-center px-6 md:h-full md:w-1/3 md:px-12 lg:px-24">
+          <div className="flex h-[30vh] w-full flex-col justify-center px-6 md:h-full md:w-1/3 md:pl-10 lg:pl-16">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -65,7 +65,7 @@ export function WorkflowSteps() {
               <p className="font-mono text-sm uppercase tracking-[0.2em] text-[var(--accent)] mb-4">
                 How We Work
               </p>
-              <h2 className="font-display text-6xl font-bold uppercase leading-none tracking-tighter sm:text-7xl lg:text-8xl xl:text-9xl">
+              <h2 className="font-display text-[clamp(2.5rem,6vw,8rem)] font-bold uppercase leading-none tracking-tighter">
                 Our<br />Process
               </h2>
             </motion.div>
@@ -106,7 +106,7 @@ function StepCard({ step, index, scrollYProgress }: any) {
 
   return (
     <motion.div
-      className="absolute top-0 left-0 flex h-full w-full flex-col p-6 md:p-12"
+      className="absolute top-0 left-0 flex h-full w-full flex-col items-center justify-center p-4 sm:p-6 md:p-8"
       style={{
         y: index === 0 ? "0%" : y,
         scale,
@@ -114,7 +114,7 @@ function StepCard({ step, index, scrollYProgress }: any) {
       }}
     >
       <div
-        className="flex h-full w-full flex-col justify-between border-4 border-[var(--border)] p-8 shadow-[12px_12px_0px_0px_var(--border)] md:p-16"
+        className="flex h-[90vh] md:h-[85vh] w-full max-w-5xl flex-col justify-between border-4 border-[var(--border)] p-6 sm:p-8 md:p-12 shadow-[8px_8px_0px_0px_var(--border)] md:shadow-[12px_12px_0px_0px_var(--border)]"
         style={{
           backgroundColor: step.color,
           color: step.textColor,
@@ -126,10 +126,10 @@ function StepCard({ step, index, scrollYProgress }: any) {
           </span>
         </div>
         <div>
-          <h3 className="font-display text-4xl font-bold uppercase tracking-tight md:text-6xl lg:text-7xl mb-6">
+          <h3 className="font-display text-3xl font-bold uppercase tracking-tight sm:text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">
             {step.title}
           </h3>
-          <p className="font-mono text-lg max-w-2xl md:text-2xl leading-relaxed opacity-90">
+          <p className="font-mono text-base md:text-xl lg:text-2xl leading-relaxed opacity-90">
             {step.description}
           </p>
         </div>
