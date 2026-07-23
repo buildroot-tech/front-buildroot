@@ -215,7 +215,7 @@ export function Hero() {
         </motion.div>
 
         {/* ── Headline — fills remaining space, anchored to bottom ── */}
-        <div className="flex-1 flex flex-col justify-center pb-[28vh]">
+        <div className="flex-1 flex flex-col justify-center pb-[22vh]">
 
           {/* We build */}
           <div className="overflow-hidden">
