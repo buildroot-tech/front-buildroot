@@ -139,7 +139,7 @@ function Decorative() {
    Constants
 ───────────────────────────────────────────────────────── */
 const HEADER_H  = 80;
-const FS        = "clamp(48px, 9vw, 220px)";
+const FS        = "clamp(56px, 11.5vw, 220px)";
 const LH_MAIN   = 0.80;
 
 const SERVICES  = ["System", "Product", "Infrastructure"];
@@ -215,7 +215,7 @@ export function Hero() {
         </motion.div>
 
         {/* ── Headline — fills remaining space, anchored to bottom ── */}
-        <div className="flex-1 flex flex-col justify-center pb-[12vh]">
+        <div className="flex-1 flex flex-col justify-center pb-[22vh]">
 
           {/* We build */}
           <div className="overflow-hidden">
