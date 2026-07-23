@@ -44,7 +44,7 @@ const item = {
 
 export function WorkflowSteps() {
   return (
-    <section className="section-generous bg-[var(--bg-primary)]">
+    <section className="section-generous bg-[var(--bg-secondary)]">
       <div className="container-padded">
         {/* Header */}
         <motion.div
