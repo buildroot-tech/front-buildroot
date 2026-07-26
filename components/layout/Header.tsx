@@ -125,7 +125,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
               <span key={link.href} className="flex items-center">
                 <Link
                   href={link.href}
-                  className="group relative font-mono text-3xl font-medium transition-colors hover:text-[var(--accent)]"
+                  className="group relative font-mono text-3xl md:text-2xl font-light transition-colors hover:text-[var(--accent)]"
                   style={
                     {
                       color: textColor,
@@ -153,7 +153,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
                 </Link>
                 {i < navLinks.length - 1 && (
                   <span
-                    className="text-3xl"
+                    className="text-3xl md:text-2xl font-light"
                     style={
                       {
                         color: textColor,
@@ -171,7 +171,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
           {/* Contact link */}
           <Link
             href="/contact"
-            className="group relative font-mono text-3xl font-medium transition-colors hover:text-[var(--accent)] ml-8"
+            className="group relative font-mono text-3xl md:text-2xl font-light transition-colors hover:text-[var(--accent)] ml-8"
             style={
               {
                 color: textColor,
@@ -195,9 +195,8 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
             />
           </Link>
 
-          {/* Lang Toggle */}
-          <a
-            className="group relative font-mono text-3xl font-medium transition-colors hover:text-[var(--accent)] ml-6"
+          <Link
+            className="group relative font-mono text-3xl md:text-2xl font-light transition-colors hover:text-[var(--accent)] ml-6"
             style={{ color: textColor }}
             href={lang === "en" ? `/es${normalizedPathname === "/" ? "" : normalizedPathname}` : normalizedPathname}
             onMouseEnter={() => langRef.current?.scramble()}
@@ -210,7 +209,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
               trigger="mount"
               key={`lang-${pathname}`}
             />
-          </a>
+          </Link>
 
           {/* Mobile Burger */}
           <button
@@ -257,7 +256,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-mono text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
+                  className="font-mono text-4xl font-light tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
@@ -265,18 +264,18 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
               ))}
               <Link
                 href="/contact"
-                className="font-mono text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
+                className="font-mono text-4xl font-light tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
                 onClick={() => setMobileOpen(false)}
               >
                 {dict?.contact || "let's talk"}
               </Link>
-              <a
+              <Link
                 href={lang === "en" ? `/es${normalizedPathname === "/" ? "" : normalizedPathname}` : normalizedPathname}
-                className="font-mono text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)] mt-8"
+                className="font-mono text-4xl font-light tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)] mt-8"
                 onClick={() => setMobileOpen(false)}
               >
                 {lang === "en" ? "ES" : "EN"}
-              </a>
+              </Link>
             </nav>
           </motion.div>
         )}

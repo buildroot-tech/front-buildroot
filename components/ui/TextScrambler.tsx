@@ -106,6 +106,14 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
       }
     }, [trigger, active, scramble, reset]);
 
+    const prevTextRef = useRef(text);
+    useEffect(() => {
+      if (prevTextRef.current !== text) {
+        prevTextRef.current = text;
+        scramble(); // Automatically scramble when text prop changes
+      }
+    }, [text, scramble]);
+
     const handleMouseEnter = () => {
       if (trigger === "hover" || trigger === "both") scramble();
       onMouseEnter?.();
