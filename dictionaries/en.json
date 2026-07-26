@@ -32,33 +32,33 @@
     },
     "process": {
       "title": "OUR PROCESS",
-      "steps": [
-        {
+      "steps": {
+        "requirements": {
           "number": "01",
-          "title": "DISCOVERY",
-          "desc": "We dive deep into your business goals, user needs, and technical requirements to form a solid foundation."
+          "title": "REQUIREMENTS",
+          "desc": "We map the problem, define the exact scope, and align perfectly on your goals. No guessing, just extreme clarity."
         },
-        {
+        "design": {
           "number": "02",
           "title": "DESIGN",
-          "desc": "Crafting intuitive interfaces and brutalist aesthetics that communicate your brand's unique edge."
+          "desc": "Crafting intuitive interfaces and aesthetics that communicate your brand's unique edge, backed by strict system design."
         },
-        {
+        "build": {
           "number": "03",
-          "title": "ENGINEERING",
-          "desc": "Building robust, scalable architectures using the latest web technologies for maximum performance."
+          "title": "BUILD",
+          "desc": "Iterative, high-velocity development. We build robust, scalable architectures for maximum performance."
         },
-        {
+        "testing": {
           "number": "04",
-          "title": "LAUNCH",
-          "desc": "Deploying and scaling your product with continuous monitoring and optimization."
+          "title": "TESTING",
+          "desc": "Rigorous quality, performance, and security validation to ensure the product is unbreakable."
         },
-        {
+        "production": {
           "number": "05",
-          "title": "OPTIMIZATION",
-          "desc": "Continuous monitoring, A/B testing, and performance tuning to ensure your product scales flawlessly."
+          "title": "GO LIVE",
+          "desc": "Deploy and scale with absolute confidence. Your product hits the market flawlessly and ready to dominate."
         }
-      ]
+      }
     },
     "work": {
       "title": "SELECTED WORK",
