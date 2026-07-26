@@ -128,7 +128,7 @@ body {
 
 .heading {
   font-family: var(--font-display), system-ui, sans-serif;
-  font-weight: 600;
+  font-weight: 300;
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
@@ -162,7 +162,8 @@ body {
   border: 2px solid var(--border);
   box-shadow: var(--shadow-brutalist);
   background: var(--bg-secondary);
-  transition: box-shadow var(--duration-hover) ease,
+  transition:
+    box-shadow var(--duration-hover) ease,
     transform var(--duration-hover) ease;
 }
 
@@ -188,7 +189,8 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   cursor: pointer;
-  transition: box-shadow var(--duration-hover) ease,
+  transition:
+    box-shadow var(--duration-hover) ease,
     transform var(--duration-hover) ease;
 }
 
@@ -246,8 +248,13 @@ body {
    ============================================ */
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 .cursor-blink {

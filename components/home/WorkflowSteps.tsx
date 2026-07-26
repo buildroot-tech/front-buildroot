@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 const steps = [
   {
     number: "01",
+    dictKey: "discovery",
     title: "Discovery",
     description:
       "We map the problem, define the exact scope, and align perfectly on your goals. No guessing, just extreme clarity.",
@@ -14,6 +15,7 @@ const steps = [
   },
   {
     number: "02",
+    dictKey: "architecture",
     title: "Architecture",
     description:
       "System design, strict tech stack decisions, and a technical blueprint built for brutal efficiency and scale.",
@@ -22,6 +24,7 @@ const steps = [
   },
   {
     number: "03",
+    dictKey: "build",
     title: "Build",
     description:
       "Iterative, high-velocity development with continuous feedback loops. We build it fast, we build it right.",
@@ -30,15 +33,28 @@ const steps = [
   },
   {
     number: "04",
+    dictKey: "ship",
     title: "Ship",
     description:
       "Deploy, monitor, and scale with absolute confidence. Your product hits the market like a sledgehammer.",
     color: "var(--border)", // Very dark
     textColor: "var(--text-inverse)",
   },
+  {
+    number: "05",
+    dictKey: "optimization",
+    title: "Optimization",
+    description: "Continuous monitoring, performance tuning, and scaling optimizations.",
+    color: "#000000",
+    textColor: "var(--text-inverse)",
+  },
 ];
 
-export function WorkflowSteps() {
+interface WorkflowStepsProps {
+  dict?: any;
+}
+
+export function WorkflowSteps({ dict }: WorkflowStepsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -51,7 +67,7 @@ export function WorkflowSteps() {
         We create a long scrollable area.
         4 steps, we can give it around 400vh so there's plenty of scroll duration.
       */}
-      <div className="relative h-[400vh] w-full">
+      <div className="relative h-[500vh] w-full">
         <div className="sticky top-0 flex h-screen w-full flex-col md:flex-row overflow-hidden">
           
           {/* Left Side: Sticky Title */}
@@ -63,10 +79,10 @@ export function WorkflowSteps() {
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <p className="font-mono text-sm uppercase tracking-[0.2em] text-[var(--accent)] mb-4">
-                How We Work
+                {dict?.home?.process?.subtitle || "How We Work"}
               </p>
-              <h2 className="font-display text-[clamp(2.5rem,6vw,8rem)] font-bold uppercase leading-none tracking-tighter">
-                Our<br />Process
+              <h2 className="font-display text-[clamp(2.5rem,6vw,8rem)] font-light uppercase leading-none tracking-tighter">
+                {dict?.home?.process?.title || "Our Process"}
               </h2>
             </motion.div>
           </div>
@@ -79,6 +95,7 @@ export function WorkflowSteps() {
                 step={step}
                 index={index}
                 scrollYProgress={scrollYProgress}
+                dict={dict}
               />
             ))}
           </div>
@@ -88,9 +105,9 @@ export function WorkflowSteps() {
   );
 }
 
-function StepCard({ step, index, scrollYProgress }: any) {
-  const start = index * 0.25;
-  const end = start + 0.25;
+function StepCard({ step, index, scrollYProgress, dict }: any) {
+  const start = index * 0.20;
+  const end = start + 0.20;
 
   const y = useTransform(
     scrollYProgress,
@@ -127,10 +144,10 @@ function StepCard({ step, index, scrollYProgress }: any) {
         </div>
         <div>
           <h3 className="font-display text-3xl font-bold uppercase tracking-tight sm:text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">
-            {step.title}
+            {step.dictKey && dict?.home?.process?.steps?.[step.dictKey]?.title ? dict.home.process.steps[step.dictKey].title : step.title}
           </h3>
           <p className="font-mono text-base md:text-xl lg:text-2xl leading-relaxed opacity-90">
-            {step.description}
+            {step.dictKey && dict?.home?.process?.steps?.[step.dictKey]?.description ? dict.home.process.steps[step.dictKey].description : step.description}
           </p>
         </div>
       </div>

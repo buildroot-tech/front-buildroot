@@ -13,7 +13,7 @@ export function ProjectVisualPreview({ project }: ProjectVisualPreviewProps) {
         <div className="relative flex h-48 w-full items-center justify-center overflow-hidden border-b-3 border-[var(--border)] bg-[#0f172a] p-4 text-[var(--text-inverse)] select-none">
           {/* Blueprint Grid BG */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:16px_16px] opacity-60" />
-          
+
           {/* Architectural Overlay */}
           <div className="relative z-10 w-full font-mono text-xs">
             <div className="flex justify-between border-b border-blue-500/40 pb-1 text-[10px] text-blue-400">
@@ -30,7 +30,9 @@ export function ProjectVisualPreview({ project }: ProjectVisualPreviewProps) {
                 <span className="text-[9px] text-blue-300">RBAC_ACTIVE</span>
               </div>
               <div className="border border-slate-700 bg-slate-900/80 p-2 text-center">
-                <span className="block font-bold text-emerald-400">LAWYERS</span>
+                <span className="block font-bold text-emerald-400">
+                  LAWYERS
+                </span>
                 <span className="text-[9px] text-slate-400">SPRING_SEC</span>
               </div>
             </div>
@@ -60,12 +62,20 @@ export function ProjectVisualPreview({ project }: ProjectVisualPreviewProps) {
             </div>
             <div className="mt-4 flex items-baseline justify-between">
               <div>
-                <span className="text-4xl font-black tracking-tighter text-white">98/100</span>
-                <span className="block text-[10px] text-blue-200 uppercase">LIGHTHOUSE SCORE</span>
+                <span className="text-4xl font-black tracking-tighter text-white">
+                  98/100
+                </span>
+                <span className="block text-[10px] text-blue-200 uppercase">
+                  LIGHTHOUSE SCORE
+                </span>
               </div>
               <div className="text-right">
-                <span className="text-2xl font-extrabold text-amber-300">&lt;500ms</span>
-                <span className="block text-[10px] text-blue-200 uppercase">MOBILE FCP</span>
+                <span className="text-2xl font-extrabold text-amber-300">
+                  &lt;500ms
+                </span>
+                <span className="block text-[10px] text-blue-200 uppercase">
+                  MOBILE FCP
+                </span>
               </div>
             </div>
             <div className="mt-4 h-1.5 w-full bg-blue-900/60 overflow-hidden border border-white/20">
@@ -90,7 +100,9 @@ export function ProjectVisualPreview({ project }: ProjectVisualPreviewProps) {
             </div>
             <div className="mt-3 flex items-center justify-between gap-2">
               <div className="border border-emerald-500 bg-emerald-950/60 p-2 text-center w-1/3">
-                <span className="block font-bold text-emerald-300">INBOUND</span>
+                <span className="block font-bold text-emerald-300">
+                  INBOUND
+                </span>
                 <span className="text-[9px] text-emerald-400">CASE_FLOW</span>
               </div>
               <div className="text-emerald-400 font-bold text-xs">➔</div>
@@ -127,7 +139,9 @@ export function ProjectVisualPreview({ project }: ProjectVisualPreviewProps) {
             </div>
             <div className="mt-2 grid grid-cols-3 gap-2">
               <div className="col-span-2 border-r border-[#0f172a] pr-2">
-                <div className="bg-[#0f172a] text-white p-1 text-[10px] font-bold uppercase">HEADLINE</div>
+                <div className="bg-[#0f172a] text-white p-1 text-[10px] font-bold uppercase">
+                  HEADLINE
+                </div>
                 <div className="mt-1 h-2 bg-slate-300 w-full" />
                 <div className="mt-1 h-2 bg-slate-300 w-3/4" />
               </div>
@@ -138,7 +152,9 @@ export function ProjectVisualPreview({ project }: ProjectVisualPreviewProps) {
             </div>
             <div className="mt-3 flex justify-between border-t border-[#0f172a] pt-1 text-[10px] text-[var(--text-muted)]">
               <span>WORKFLOW: &lt;4H</span>
-              <span className="font-bold text-[var(--accent)]">TARGET: 50K MAU</span>
+              <span className="font-bold text-[var(--accent)]">
+                TARGET: 50K MAU
+              </span>
             </div>
           </div>
 
@@ -160,7 +176,9 @@ export function ProjectVisualPreview({ project }: ProjectVisualPreviewProps) {
               <span className="font-mono text-2xl font-extrabold text-[var(--accent)] uppercase">
                 {project.id.replace(/-/g, "_")}
               </span>
-              <span className="block text-[10px] text-slate-400 mt-1">STATUS: PRODUCTION_SHIPPED</span>
+              <span className="block text-[10px] text-slate-400 mt-1">
+                STATUS: PRODUCTION_SHIPPED
+              </span>
             </div>
           </div>
           <span className="absolute -right-2 -bottom-6 font-mono text-8xl font-black text-white/5 pointer-events-none">

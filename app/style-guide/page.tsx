@@ -10,16 +10,56 @@ import { ScrambleText } from "@/components/ui/TextScrambler";
 
 // ── Color Data ───────────────────────────────────────────────
 const colors = [
-  { name: "Hero", token: "--bg-hero", value: "#0F172A", text: "var(--text-inverse)" },
-  { name: "Primary", token: "--bg-primary", value: "#F8FAFC", text: "var(--text-primary)" },
-  { name: "Secondary", token: "--bg-secondary", value: "#E2E8F0", text: "var(--text-primary)" },
+  {
+    name: "Hero",
+    token: "--bg-hero",
+    value: "#0F172A",
+    text: "var(--text-inverse)",
+  },
+  {
+    name: "Primary",
+    token: "--bg-primary",
+    value: "#F8FAFC",
+    text: "var(--text-primary)",
+  },
+  {
+    name: "Secondary",
+    token: "--bg-secondary",
+    value: "#E2E8F0",
+    text: "var(--text-primary)",
+  },
   { name: "Accent", token: "--accent", value: "#2563EB", text: "#FFFFFF" },
-  { name: "Accent Hover", token: "--accent-hover", value: "#1D4ED8", text: "#FFFFFF" },
-  { name: "Text Primary", token: "--text-primary", value: "#0F172A", text: "#FFFFFF" },
-  { name: "Text Muted", token: "--text-muted", value: "#64748B", text: "#FFFFFF" },
-  { name: "Text Inverse", token: "--text-inverse", value: "#F8FAFC", text: "#0F172A" },
+  {
+    name: "Accent Hover",
+    token: "--accent-hover",
+    value: "#1D4ED8",
+    text: "#FFFFFF",
+  },
+  {
+    name: "Text Primary",
+    token: "--text-primary",
+    value: "#0F172A",
+    text: "#FFFFFF",
+  },
+  {
+    name: "Text Muted",
+    token: "--text-muted",
+    value: "#64748B",
+    text: "#FFFFFF",
+  },
+  {
+    name: "Text Inverse",
+    token: "--text-inverse",
+    value: "#F8FAFC",
+    text: "#0F172A",
+  },
   { name: "Border", token: "--border", value: "#0F172A", text: "#FFFFFF" },
-  { name: "Border Muted", token: "--border-muted", value: "#CBD5E1", text: "#0F172A" },
+  {
+    name: "Border Muted",
+    token: "--border-muted",
+    value: "#CBD5E1",
+    text: "#0F172A",
+  },
 ];
 
 // ── Spacing Data ─────────────────────────────────────────────
@@ -42,7 +82,14 @@ const spacingGenerous = [
 ];
 
 // ── Tags Data ────────────────────────────────────────────────
-const tags = ["React", "Next.js", "Tailwind", "Framer Motion", "TypeScript", "Vercel"];
+const tags = [
+  "React",
+  "Next.js",
+  "Tailwind",
+  "Framer Motion",
+  "TypeScript",
+  "Vercel",
+];
 
 export default function StyleGuidePage() {
   return (
@@ -56,8 +103,8 @@ export default function StyleGuidePage() {
           buildroot_
         </h1>
         <p className="mt-4 max-w-xl text-lg text-[var(--text-muted)]">
-          Visual reference for all design tokens, typography, components, and patterns
-          used across the buildroot_ website.
+          Visual reference for all design tokens, typography, components, and
+          patterns used across the buildroot_ website.
         </p>
       </section>
 
@@ -81,7 +128,9 @@ export default function StyleGuidePage() {
               </div>
               <div className="p-3">
                 <p className="text-sm font-semibold">{c.name}</p>
-                <p className="font-mono text-xs text-[var(--text-muted)]">{c.token}</p>
+                <p className="font-mono text-xs text-[var(--text-muted)]">
+                  {c.token}
+                </p>
               </div>
             </div>
           ))}
@@ -93,7 +142,11 @@ export default function StyleGuidePage() {
         <SectionTitle number="02" title="Typography" />
 
         <div className="mt-8 space-y-8">
-          <TypeRow label="Display" size="clamp(72px, 10vw, 180px)" token="--text-display">
+          <TypeRow
+            label="Display"
+            size="clamp(72px, 10vw, 180px)"
+            token="--text-display"
+          >
             <span className="headline text-display">BUILDROOT</span>
           </TypeRow>
 
@@ -111,8 +164,8 @@ export default function StyleGuidePage() {
 
           <TypeRow label="Body" size="18px" token="--text-body">
             <span className="text-lg">
-              The quick brown fox jumps over the lazy dog. Pack my box with five dozen
-              liquor jugs.
+              The quick brown fox jumps over the lazy dog. Pack my box with five
+              dozen liquor jugs.
             </span>
           </TypeRow>
 
@@ -144,7 +197,9 @@ export default function StyleGuidePage() {
         <SubHeading>Buttons</SubHeading>
         <div className="mt-4 flex flex-wrap gap-4">
           <button className="brutalist-button">Default</button>
-          <button className="brutalist-button brutalist-button-accent">Accent</button>
+          <button className="brutalist-button brutalist-button-accent">
+            Accent
+          </button>
           <button className="brutalist-button opacity-50" disabled>
             Disabled
           </button>
@@ -498,7 +553,7 @@ export default function StyleGuidePage() {
                   Description of the service offering.
                 </p>
               </div>
-            )
+            ),
           )}
         </div>
 
@@ -562,7 +617,9 @@ export default function StyleGuidePage() {
 function SectionTitle({ number, title }: { number: string; title: string }) {
   return (
     <div className="flex items-baseline gap-4">
-      <span className="font-mono text-sm text-[var(--text-muted)]">{number}</span>
+      <span className="font-mono text-sm text-[var(--text-muted)]">
+        {number}
+      </span>
       <h2 className="heading text-h2">{title}</h2>
     </div>
   );
@@ -590,9 +647,15 @@ function TypeRow({
   return (
     <div className="border-b border-[var(--border-muted)] pb-6">
       <div className="mb-2 flex items-baseline gap-3">
-        <span className="font-mono text-xs text-[var(--text-muted)]">{label}</span>
-        <span className="font-mono text-xs text-[var(--text-muted)]">{size}</span>
-        <span className="font-mono text-xs text-[var(--text-muted)]">{token}</span>
+        <span className="font-mono text-xs text-[var(--text-muted)]">
+          {label}
+        </span>
+        <span className="font-mono text-xs text-[var(--text-muted)]">
+          {size}
+        </span>
+        <span className="font-mono text-xs text-[var(--text-muted)]">
+          {token}
+        </span>
       </div>
       <div className="overflow-hidden">{children}</div>
     </div>

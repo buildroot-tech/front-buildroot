@@ -36,13 +36,13 @@ Design technical approaches and make architecture decisions for the buildroot_ w
 
 ## Architecture Patterns (buildroot_)
 
-| Pattern | When to Use |
-|---------|-------------|
-| Server Components | Static content, SEO-critical pages |
-| Client Components | Interactive UI, animations, state |
+| Pattern             | When to Use                          |
+| ------------------- | ------------------------------------ |
+| Server Components   | Static content, SEO-critical pages   |
+| Client Components   | Interactive UI, animations, state    |
 | Compound Components | Complex UI (menus, tabs, accordions) |
-| Render Props | When logic needs to be shared |
-| Custom Hooks | Reusable stateful logic |
+| Render Props        | When logic needs to be shared        |
+| Custom Hooks        | Reusable stateful logic              |
 
 ## Output Format
 
@@ -50,24 +50,29 @@ Design technical approaches and make architecture decisions for the buildroot_ w
 ## Architecture Decision: [Feature]
 
 ### Context
+
 What problem are we solving?
 
 ### Options
 
 #### Option A: [Name]
+
 - Pros: ...
 - Cons: ...
 - Complexity: Low/Medium/High
 
 #### Option B: [Name]
+
 - Pros: ...
 - Cons: ...
 - Complexity: Low/Medium/High
 
 ### Recommendation
+
 Option [X] because [rationale].
 
 ### Implementation Notes
+
 - Key files to create/modify
 - Data flow diagram
 - Performance considerations

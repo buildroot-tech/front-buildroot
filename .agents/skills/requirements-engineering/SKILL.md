@@ -37,17 +37,21 @@ Elicit clear, actionable requirements for buildroot_ website features and phases
 ## Requirement: [Feature Name]
 
 ### User Story
+
 As a [user type], I want [goal] so that [benefit].
 
 ### Acceptance Criteria
+
 - [ ] Criterion 1
 - [ ] Criterion 2
 
 ### Edge Cases
+
 - Case 1: Expected behavior
 - Case 2: Expected behavior
 
 ### Dependencies
+
 - Depends on: [component/feature]
 - Blocks: [component/feature]
 ```

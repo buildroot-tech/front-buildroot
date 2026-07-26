@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { Preloader } from "@/components/ui/Preloader";
 
 const bricolageGrotesque = Bricolage_Grotesque({
   variable: "--font-display",
@@ -17,27 +18,32 @@ const geistMono = Geist_Mono({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
 });
 
-export const metadata: Metadata = {
-  title: "buildroot_ — Digital Products & Consulting",
-  description:
-    "buildroot_ is a tech venture specializing in web development, technical consulting, and SaaS products.",
-};
+import { defaultMetadata } from "@/lib/seo";
+import { getDictionary, Locale } from "@/lib/dictionaries";
 
-export default function RootLayout({
+export const metadata: Metadata = defaultMetadata;
+
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ lang: string }>;
 }>) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
+
   return (
     <html
-      lang="en"
+      lang={lang}
       className={`${bricolageGrotesque.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <Preloader dict={dict.preloader} />
         <ScrollProgress />
-        <Header />
+        <Header dict={dict.header} lang={lang} />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <Footer dict={dict.footer} />
       </body>
     </html>
   );

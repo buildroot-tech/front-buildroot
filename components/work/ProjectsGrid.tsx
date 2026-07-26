@@ -33,7 +33,8 @@ export function ProjectsGrid() {
               Ready to build your digital product?
             </h3>
             <p className="mt-3 text-base sm:text-lg text-[var(--text-primary)] font-sans max-w-4xl leading-relaxed">
-              We engineer scalable digital platforms, high-performance web applications, and custom cloud architecture in 2-4 week sprints.
+              We engineer scalable digital platforms, high-performance web
+              applications, and custom cloud architecture in 2-4 week sprints.
             </p>
           </div>
 

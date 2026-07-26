@@ -22,14 +22,14 @@ Ensure quality through testing, accessibility audits, and performance validation
 
 ## Quality Gates
 
-| Gate | Criteria | Tool |
-|------|----------|------|
-| Lint | Zero warnings | ESLint + Prettier |
-| Type Check | Zero errors | TypeScript strict |
-| Tests | All passing | Vitest/Jest |
-| Lighthouse | 95+ all categories | Chrome DevTools |
-| Accessibility | WCAG 2.1 AA | axe-core |
-| Bundle Size | <200KB initial | Next.js build |
+| Gate          | Criteria           | Tool              |
+| ------------- | ------------------ | ----------------- |
+| Lint          | Zero warnings      | ESLint + Prettier |
+| Type Check    | Zero errors        | TypeScript strict |
+| Tests         | All passing        | Vitest/Jest       |
+| Lighthouse    | 95+ all categories | Chrome DevTools   |
+| Accessibility | WCAG 2.1 AA        | axe-core          |
+| Bundle Size   | <200KB initial     | Next.js build     |
 
 ## Lighthouse Audit Checklist
 
