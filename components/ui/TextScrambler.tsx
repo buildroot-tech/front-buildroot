@@ -66,6 +66,11 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
       // Step 1: Reverse the word — synchronous so it fires instantly
       setDisplay([...letters].reverse().join(""));
 
+      // Normalize duration: assume speed was tuned for an 8-letter word.
+      // Now all words take exactly (speed * 8) milliseconds, regardless of length.
+      const totalDuration = speed * 8;
+      const stepDuration = len > 0 ? totalDuration / len : 0;
+
       // Step 2: Rotate letters one by one from the end back to original
       for (let i = 1; i < len; i++) {
         const t = setTimeout(() => {
@@ -74,14 +79,14 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
             ...letters.slice(0, len - i),
           ].join("");
           setDisplay(rotated);
-        }, i * speed);
+        }, i * stepDuration);
         timersRef.current.push(t);
       }
 
       // Final: back to original
       const tFinal = setTimeout(() => {
         setDisplay(text);
-      }, len * speed);
+      }, totalDuration);
       timersRef.current.push(tFinal);
     }, [text, speed, clearAll]);
 
