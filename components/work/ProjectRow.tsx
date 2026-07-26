@@ -9,7 +9,7 @@ import {
   Terminal,
   ExternalLink,
 } from "lucide-react";
-import { type Project } from "@/lib/projects";
+import { type Project } from "@/types";
 import { ScrambleText } from "@/components/ui/TextScrambler";
 import { ProjectVisualPreview } from "@/components/work/ProjectVisualPreview";
 

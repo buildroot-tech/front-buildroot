@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { PROJECTS, type Project } from "@/lib/projects";
+import { PROJECTS } from "@/lib/projects";
+import { type Project } from "@/types";
 import { ProjectRow } from "@/components/work/ProjectRow";
 import { CaseStudyModal } from "@/components/work/CaseStudyModal";
 import { Plus, ArrowUpRight } from "lucide-react";
