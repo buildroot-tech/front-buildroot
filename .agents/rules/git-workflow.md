@@ -9,19 +9,19 @@ description: Git workflow rules for buildroot_ project
 
 ### Primary Branches
 
-| Branch | Purpose | Protection |
-|--------|---------|------------|
-| `main` | Production-ready code | Protected, no direct commits |
-| `develop` | Integration branch | Protected, merge via PR |
+| Branch    | Purpose               | Protection                   |
+| --------- | --------------------- | ---------------------------- |
+| `main`    | Production-ready code | Protected, no direct commits |
+| `develop` | Integration branch    | Protected, merge via PR      |
 
 ### Supporting Branches
 
-| Branch Pattern | Purpose | Example |
-|----------------|---------|---------|
-| `feature/<name>` | New features | `feature/work-page` |
-| `fix/<name>` | Bug fixes | `fix/header-scroll` |
-| `hotfix/<name>` | Urgent production fixes | `hotfix/security-patch` |
-| `chore/<name>` | Maintenance tasks | `chore/update-deps` |
+| Branch Pattern   | Purpose                 | Example                 |
+| ---------------- | ----------------------- | ----------------------- |
+| `feature/<name>` | New features            | `feature/work-page`     |
+| `fix/<name>`     | Bug fixes               | `fix/header-scroll`     |
+| `hotfix/<name>`  | Urgent production fixes | `hotfix/security-patch` |
+| `chore/<name>`   | Maintenance tasks       | `chore/update-deps`     |
 
 ## Branch Flow
 
@@ -51,17 +51,17 @@ feature/* ──── fix/* ──── chore/*
 
 ### Types
 
-| Type | When to Use | Example |
-|------|-------------|---------|
-| `feat` | New feature | `feat(work): add project grid` |
-| `fix` | Bug fix | `fix(header): resolve scroll issue` |
-| `chore` | Maintenance | `chore(deps): update framer-motion` |
-| `docs` | Documentation | `docs(readme): add setup instructions` |
-| `style` | Formatting (no logic change) | `style(css): fix spacing` |
-| `refactor` | Code restructuring | `refactor(hooks): extract useScroll` |
-| `test` | Adding tests | `test(utils): add cn() tests` |
-| `perf` | Performance improvement | `perf(images): add lazy loading` |
-| `ci` | CI/CD changes | `ci(vercel): add preview deployments` |
+| Type       | When to Use                  | Example                                |
+| ---------- | ---------------------------- | -------------------------------------- |
+| `feat`     | New feature                  | `feat(work): add project grid`         |
+| `fix`      | Bug fix                      | `fix(header): resolve scroll issue`    |
+| `chore`    | Maintenance                  | `chore(deps): update framer-motion`    |
+| `docs`     | Documentation                | `docs(readme): add setup instructions` |
+| `style`    | Formatting (no logic change) | `style(css): fix spacing`              |
+| `refactor` | Code restructuring           | `refactor(hooks): extract useScroll`   |
+| `test`     | Adding tests                 | `test(utils): add cn() tests`          |
+| `perf`     | Performance improvement      | `perf(images): add lazy loading`       |
+| `ci`       | CI/CD changes                | `ci(vercel): add preview deployments`  |
 
 ### Rules
 
@@ -129,20 +129,24 @@ git push origin main --tags
 
 ```markdown
 ## Description
+
 Brief description of changes.
 
 ## Type of Change
+
 - [ ] Bug fix
 - [ ] New feature
 - [ ] Breaking change
 - [ ] Documentation update
 
 ## Testing
+
 - [ ] Unit tests pass
 - [ ] Manual testing done
 - [ ] Responsive tested
 
 ## Checklist
+
 - [ ] Code follows style guidelines
 - [ ] Self-review completed
 - [ ] No console.log statements

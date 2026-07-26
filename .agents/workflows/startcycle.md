@@ -39,20 +39,20 @@ When the user types `/startcycle <phase>`, orchestrate the development process u
 
 ## Phase List
 
-| Phase | Name | Description |
-|-------|------|-------------|
-| 0 | Setup | Project initialization (DONE) |
-| 1 | Design System | CSS tokens, typography, palette |
-| 2 | Layout | Header, Footer, Page Transitions |
-| 3 | Home | Hero, Services, Highlights, CTA |
-| 4 | Work | Project grid, Case studies |
-| 5 | About | Team, Philosophy, Stack |
-| 6 | Process | Methodology timeline |
-| 7 | Contact | Formspree form |
-| 8 | Easter Egg | Click pattern |
-| 9 | SEO | Sitemap, robots, OG images |
-| 10 | Polish | Responsive, testing, a11y |
-| 11 | Deploy | Vercel + domain |
+| Phase | Name          | Description                      |
+| ----- | ------------- | -------------------------------- |
+| 0     | Setup         | Project initialization (DONE)    |
+| 1     | Design System | CSS tokens, typography, palette  |
+| 2     | Layout        | Header, Footer, Page Transitions |
+| 3     | Home          | Hero, Services, Highlights, CTA  |
+| 4     | Work          | Project grid, Case studies       |
+| 5     | About         | Team, Philosophy, Stack          |
+| 6     | Process       | Methodology timeline             |
+| 7     | Contact       | Formspree form                   |
+| 8     | Easter Egg    | Click pattern                    |
+| 9     | SEO           | Sitemap, robots, OG images       |
+| 10    | Polish        | Responsive, testing, a11y        |
+| 11    | Deploy        | Vercel + domain                  |
 
 ## Example
 
@@ -61,6 +61,7 @@ When the user types `/startcycle <phase>`, orchestrate the development process u
 ```
 
 This will:
+
 1. Have @requirements-engineer clarify Phase 1 scope
 2. Have @solution-architect design the approach
 3. Have @frontend-dev implement the design system

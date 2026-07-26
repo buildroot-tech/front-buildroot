@@ -2,7 +2,13 @@
 
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, Terminal, CheckSquare, ArrowRight } from "lucide-react";
+import {
+  X,
+  ExternalLink,
+  Terminal,
+  CheckSquare,
+  ArrowRight,
+} from "lucide-react";
 import { type Project } from "@/lib/projects";
 
 interface CaseStudyModalProps {
@@ -87,7 +93,10 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
                   <span className="text-[var(--text-muted)]">{"//"}</span>
                   <span>CAT :: {project.category}</span>
                 </div>
-                <h2 id="case-study-title" className="heading text-h1 mt-2 text-[var(--text-primary)]">
+                <h2
+                  id="case-study-title"
+                  className="heading text-h1 mt-2 text-[var(--text-primary)]"
+                >
                   {project.title}
                 </h2>
                 <p className="mt-3 text-base text-[var(--text-muted)] max-w-3xl leading-relaxed">
@@ -146,7 +155,10 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
                 </div>
                 <ul className="mt-6 grid gap-3 sm:grid-cols-2 font-mono text-xs">
                   {project.caseStudy.architecture.map((arch) => (
-                    <li key={arch} className="flex items-start gap-3 border border-slate-700 bg-slate-900/60 p-3 text-slate-200">
+                    <li
+                      key={arch}
+                      className="flex items-start gap-3 border border-slate-700 bg-slate-900/60 p-3 text-slate-200"
+                    >
                       <span className="text-[var(--accent)] font-bold">➔</span>
                       <span>{arch}</span>
                     </li>
@@ -162,7 +174,10 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
                 </div>
                 <ul className="mt-4 grid gap-2.5 font-mono text-xs text-[var(--text-primary)]">
                   {project.caseStudy.results.map((res) => (
-                    <li key={res} className="flex items-center gap-3 border border-[var(--border)] bg-[var(--bg-primary)] p-2.5">
+                    <li
+                      key={res}
+                      className="flex items-center gap-3 border border-[var(--border)] bg-[var(--bg-primary)] p-2.5"
+                    >
                       <ArrowRight className="h-3.5 w-3.5 shrink-0 text-emerald-600" />
                       <span className="font-semibold">{res}</span>
                     </li>

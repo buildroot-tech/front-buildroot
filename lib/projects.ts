@@ -1,48 +1,25 @@
-export type ProjectCategory = "All" | "SaaS" | "Web Apps" | "Consulting" | "Labs";
-
-export interface ProjectMetric {
-  label: string;
-  value: string;
-}
-
-export interface CaseStudy {
-  challenge: string;
-  solution: string;
-  architecture: string[];
-  results: string[];
-}
-
-export interface Project {
-  id: string;
-  indexCode: string;
-  title: string;
-  client: string;
-  year: string;
-  category: ProjectCategory;
-  summary: string;
-  description: string;
-  featured: boolean;
-  tags: string[];
-  metrics: ProjectMetric[];
-  caseStudy: CaseStudy;
-  demoUrl?: string;
-  githubUrl?: string;
-  isLab?: boolean;
-}
-
+import { Project } from "@/types";
 export const PROJECTS: readonly Project[] = [
   {
     id: "polo-pantoja-platform",
     indexCode: "01",
-    title: "Polo & Pantoja Digital Platform",
+    title: "Polo & Pantoja",
     client: "Polo & Pantoja Abogados",
     year: "2026",
     category: "SaaS",
     featured: true,
-    summary: "Law firm portal & specialized real estate marketplace with anticres contract management.",
+    summary:
+      "Law firm portal & specialized real estate marketplace with anticres contract management.",
     description:
       "Full-stack legal service portal combined with a regional real estate marketplace handling rentals, sales, and Colombian anticres property contracts with role-based document access.",
-    tags: ["Next.js 14", "Spring Boot 3", "Java 17", "PostgreSQL", "Clean Architecture", "JWT"],
+    tags: [
+      "Next.js 14",
+      "Spring Boot 3",
+      "Java 17",
+      "PostgreSQL",
+      "Clean Architecture",
+      "JWT",
+    ],
     metrics: [
       { label: "Contract Modalities", value: "3 (Rent/Sale/Anticres)" },
       { label: "Security", value: "Spring Sec + RBAC" },
@@ -70,12 +47,13 @@ export const PROJECTS: readonly Project[] = [
   {
     id: "edusur-educational",
     indexCode: "02",
-    title: "Edusur Educational Platform",
+    title: "Edusur",
     client: "Edusur Servicios Educativos",
     year: "2026",
     category: "Web Apps",
     featured: true,
-    summary: "High-performance Astro 5 web experience with GSAP micro-animations.",
+    summary:
+      "High-performance Astro 5 web experience with GSAP micro-animations.",
     description:
       "A fast, content-driven educational website featuring 14 custom sections, student review engines, and sub-second load times.",
     tags: ["Astro 5", "TypeScript", "Tailwind 4", "GSAP 3", "EmailJS"],
@@ -106,15 +84,23 @@ export const PROJECTS: readonly Project[] = [
   {
     id: "salesforce-agentforce-omni",
     indexCode: "03",
-    title: "Salesforce Agentforce & OmniChannel Engine",
+    title: "Salesforce Omni",
     client: "Enterprise Consulting",
     year: "2026",
     category: "Consulting",
     featured: true,
-    summary: "Automated Omni-Channel customer routing & Agentforce AI integration suite.",
+    summary:
+      "Automated Omni-Channel customer routing & Agentforce AI integration suite.",
     description:
       "Architecture design and custom LWC integration for enterprise Salesforce CRM deployments, automating Omni-Channel routing, case escalation flows, and AI Agentforce assistants.",
-    tags: ["Salesforce", "LWC", "Agentforce AI", "Omni-Channel", "Apex", "Flow Automation"],
+    tags: [
+      "Salesforce",
+      "LWC",
+      "Agentforce AI",
+      "Omni-Channel",
+      "Apex",
+      "Flow Automation",
+    ],
     metrics: [
       { label: "Routing Latency", value: "<1.2s" },
       { label: "Case Automation", value: "85% Auto-Routed" },
@@ -141,12 +127,13 @@ export const PROJECTS: readonly Project[] = [
   {
     id: "aca-diario-digital",
     indexCode: "04",
-    title: "Acá — Diario Digital de Ipiales",
+    title: "Acá",
     client: "Acá Medios",
     year: "2026",
     category: "Web Apps",
     featured: true,
-    summary: "High-velocity digital newspaper & self-managed advertising engine.",
+    summary:
+      "High-velocity digital newspaper & self-managed advertising engine.",
     description:
       "A modern local journalism platform built for fast editorial workflows (draft -> review -> publish in <4h) with self-hosted ad management.",
     tags: ["Next.js 14", "Tailwind 4", "PostgreSQL", "Monorepo", "Local CMS"],
@@ -177,7 +164,7 @@ export const PROJECTS: readonly Project[] = [
   {
     id: "apex-analytics",
     indexCode: "05",
-    title: "Apex Telemetry Platform",
+    title: "Apex",
     client: "Apex Enterprise Systems",
     year: "2025",
     category: "SaaS",
@@ -213,7 +200,7 @@ export const PROJECTS: readonly Project[] = [
   {
     id: "buildroot-agent-system",
     indexCode: "06",
-    title: "buildroot_ Agentic AI Workflow Engine",
+    title: "buildroot_ Engine",
     client: "buildroot_ Labs",
     year: "2026",
     category: "Labs",
@@ -222,7 +209,13 @@ export const PROJECTS: readonly Project[] = [
     summary: "Multi-agent autonomous software engineering lifecycle framework.",
     description:
       "Orchestration engine coordinating 6 specialized AI agents (Requirements, Architecture, Frontend, QA, Copywriting, DevOps) with automated handoff gates.",
-    tags: ["Antigravity AGY", "Multi-Agent", "TypeScript", "AI Automation", "Workflows"],
+    tags: [
+      "Antigravity AGY",
+      "Multi-Agent",
+      "TypeScript",
+      "AI Automation",
+      "Workflows",
+    ],
     metrics: [
       { label: "Agent Roles", value: "6 Specialized" },
       { label: "Cycle Speed", value: "3x Faster" },

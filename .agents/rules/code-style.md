@@ -1,6 +1,6 @@
 ---
 trigger:
-  glob: {ts,tsx,js,jsx}
+  glob: { ts, tsx, js, jsx }
 description: Code style rules for TypeScript and React files
 ---
 
@@ -19,17 +19,17 @@ description: Code style rules for TypeScript and React files
 ```tsx
 // Good: Named export, explicit props interface
 interface ButtonProps {
-  className?: string
-  children: React.ReactNode
-  variant?: 'primary' | 'secondary'
+  className?: string;
+  children: React.ReactNode;
+  variant?: "primary" | "secondary";
 }
 
-export function Button({ className, children, variant = 'primary' }: ButtonProps) {
-  return (
-    <button className={cn('base', variant, className)}>
-      {children}
-    </button>
-  )
+export function Button({
+  className,
+  children,
+  variant = "primary",
+}: ButtonProps) {
+  return <button className={cn("base", variant, className)}>{children}</button>;
 }
 ```
 
@@ -42,22 +42,22 @@ export function Button({ className, children, variant = 'primary' }: ButtonProps
 
 ## File Naming
 
-| Type | Convention | Example |
-|------|------------|---------|
-| Components | PascalCase | `Hero.tsx` |
-| Utilities | camelCase | `utils.ts` |
-| Constants | camelCase | `constants.ts` |
-| Pages | lowercase | `page.tsx` |
-| CSS | kebab-case | `globals.css` |
+| Type       | Convention | Example        |
+| ---------- | ---------- | -------------- |
+| Components | PascalCase | `Hero.tsx`     |
+| Utilities  | camelCase  | `utils.ts`     |
+| Constants  | camelCase  | `constants.ts` |
+| Pages      | lowercase  | `page.tsx`     |
+| CSS        | kebab-case | `globals.css`  |
 
 ## Imports
 
 ```tsx
 // Order: React, Next.js, External libs, Internal
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/Button'
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/Button";
 ```
 
 ## Comments

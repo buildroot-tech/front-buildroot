@@ -36,11 +36,11 @@ Write clear, compelling content that converts and ranks.
 
 ## Brand Voice
 
-| Attribute | Description |
-|-----------|-------------|
-| Tone | Professional but approachable |
-| Style | Direct, no jargon |
-| Language | English (primary) |
+| Attribute  | Description                               |
+| ---------- | ----------------------------------------- |
+| Tone       | Professional but approachable             |
+| Style      | Direct, no jargon                         |
+| Language   | English (primary)                         |
 | Confidence | We know our craft, but we're not arrogant |
 
 ## SEO Checklist

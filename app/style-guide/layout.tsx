@@ -12,10 +12,7 @@ export default function StyleGuideLayout({
           <span className="font-mono text-sm uppercase tracking-widest text-[var(--text-muted)]">
             buildroot_ Style Guide
           </span>
-          <Link
-            href="/"
-            className="brutalist-button text-xs"
-          >
+          <Link href="/" className="brutalist-button text-xs">
             ← Back to Site
           </Link>
         </div>

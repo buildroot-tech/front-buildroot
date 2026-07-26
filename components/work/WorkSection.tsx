@@ -7,21 +7,42 @@ import { ScrambleText } from "@/components/ui/TextScrambler";
 
 export function WorkSection() {
   return (
-    <section id="work" className="relative w-full bg-white pt-4 md:pt-6 pb-16 md:pb-24 overflow-hidden">
+    <section
+      id="work"
+      className="relative w-full bg-white pt-4 md:pt-6 pb-16 md:pb-24 overflow-hidden"
+    >
       {/* Terminal Telemetry Marquee Ticker Strip — Light Mode */}
       <div className="w-full border-y border-[var(--text-primary)]/10 py-2.5 font-mono text-xs font-bold overflow-hidden select-none mb-8 md:mb-10">
         <div className="flex whitespace-nowrap animate-marquee gap-8">
-          <span className="text-[var(--accent)]">{"/// SYSTEM_LOGS: WORK_MODULE_ACTIVE"}</span>
-          <span className="text-[var(--text-primary)]">● PRODUCTION_DEPLOYED</span>
+          <span className="text-[var(--accent)]">
+            {"/// SYSTEM_LOGS: WORK_MODULE_ACTIVE"}
+          </span>
+          <span className="text-[var(--text-primary)]">
+            ● PRODUCTION_DEPLOYED
+          </span>
           <span className="text-[var(--text-muted)]">STATUS: 200_OK</span>
           <span className="text-[var(--accent)]">LATENCY: &lt;15MS_EDGE</span>
-          <span className="text-[var(--text-primary)]">PIPELINE: CI_CD_VERIFIED</span>
-          <span className="text-[var(--text-muted)]">MEMORY: OPTIMIZED_ALLOC</span>
-          <span className="text-[var(--accent)]">SECURITY: HARDENED_SHIELD</span>
-          <span className="text-[var(--text-primary)]">BUILD: STABLE_RELEASE</span>
-          <span className="text-[var(--text-muted)]">ROUTING: DISTRIBUTED_NODES</span>
-          <span className="text-[var(--accent)]">{"/// SYSTEM_LOGS: WORK_MODULE_ACTIVE"}</span>
-          <span className="text-[var(--text-primary)]">● PRODUCTION_DEPLOYED</span>
+          <span className="text-[var(--text-primary)]">
+            PIPELINE: CI_CD_VERIFIED
+          </span>
+          <span className="text-[var(--text-muted)]">
+            MEMORY: OPTIMIZED_ALLOC
+          </span>
+          <span className="text-[var(--accent)]">
+            SECURITY: HARDENED_SHIELD
+          </span>
+          <span className="text-[var(--text-primary)]">
+            BUILD: STABLE_RELEASE
+          </span>
+          <span className="text-[var(--text-muted)]">
+            ROUTING: DISTRIBUTED_NODES
+          </span>
+          <span className="text-[var(--accent)]">
+            {"/// SYSTEM_LOGS: WORK_MODULE_ACTIVE"}
+          </span>
+          <span className="text-[var(--text-primary)]">
+            ● PRODUCTION_DEPLOYED
+          </span>
           <span className="text-[var(--text-muted)]">STATUS: 200_OK</span>
         </div>
       </div>
@@ -42,10 +63,16 @@ export function WorkSection() {
               <span>{"// Selected Works"}</span>
             </div>
             <h2 className="headline text-h1 mt-4 text-[var(--text-primary)] tracking-tight">
-              <ScrambleText text="Featured Projects & Architecture" speed={55} trigger="mount" />
+              <ScrambleText
+                text="Featured Projects & Architecture"
+                speed={55}
+                trigger="mount"
+              />
             </h2>
             <p className="mt-3 text-base md:text-lg text-[var(--text-primary)] max-w-3xl leading-relaxed font-sans">
-              Engineering high-performance digital products, custom web platforms, and modern cloud architectures built with technical precision, scalability, and design craftsmanship.
+              Engineering high-performance digital products, custom web
+              platforms, and modern cloud architectures built with technical
+              precision, scalability, and design craftsmanship.
             </p>
           </div>
         </motion.div>
