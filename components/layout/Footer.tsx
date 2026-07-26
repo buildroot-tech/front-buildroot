@@ -62,16 +62,16 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
   const isHome = normalizedPathname === "/";
 
   const navLinks = [
-    { href: "/work", label: dict?.nav?.work || "work" },
-    { href: "/services", label: dict?.nav?.services || "services" },
-    { href: "/about", label: dict?.nav?.about || "about" },
-    { href: "/contact", label: dict?.contact || "lets talk" },
+    { href: "/work", label: dict?.header?.nav?.work || "work" },
+    { href: "/services", label: dict?.header?.nav?.services || "services" },
+    { href: "/about", label: dict?.header?.nav?.about || "about" },
+    { href: "/contact", label: dict?.header?.contact || "lets talk" },
   ];
 
   const legalLinks = [
-    { href: "/privacy", label: dict?.legal?.privacy || "privacy" },
-    { href: "/cookies", label: dict?.legal?.cookies || "cookies" },
-    { href: "/newsletter", label: dict?.legal?.newsletter || "newsletter" },
+    { href: "/privacy", label: dict?.footer?.legal?.privacy || "privacy" },
+    { href: "/cookies", label: dict?.footer?.legal?.cookies || "cookies" },
+    { href: "/newsletter", label: dict?.footer?.legal?.newsletter || "newsletter" },
   ];
 
   return (
@@ -98,7 +98,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
               <div className="flex flex-col">
                 <div className="border-b-[1px] border-[var(--border)] w-full pb-2 mb-3">
                   <p className="font-mono font-medium text-[clamp(1.35rem,1.6vw,1.8rem)] capitalize tracking-tight text-[var(--text-primary)]">
-                    {dict?.menu || "Menu"}
+                    {dict?.footer?.menu || "Menu"}
                   </p>
                 </div>
                 <div className="grid grid-cols-2 gap-8">
