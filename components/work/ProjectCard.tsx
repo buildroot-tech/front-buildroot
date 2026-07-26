@@ -12,7 +12,11 @@ interface ProjectCardProps {
   readonly isWide?: boolean;
 }
 
-export function ProjectCard({ project, onSelectCaseStudy, isWide = false }: ProjectCardProps) {
+export function ProjectCard({
+  project,
+  onSelectCaseStudy,
+  isWide = false,
+}: ProjectCardProps) {
   const primaryMetric = project.metrics[0];
 
   return (
@@ -36,7 +40,8 @@ export function ProjectCard({ project, onSelectCaseStudy, isWide = false }: Proj
             PRJ_{project.indexCode}
           </span>
           <span className="font-extrabold uppercase text-[var(--accent)]">
-            {"// "}{project.category}
+            {"// "}
+            {project.category}
           </span>
         </div>
         <span className="border border-[var(--border)] bg-[var(--bg-primary)] px-2 py-0.5 font-bold text-[var(--text-muted)]">
@@ -49,7 +54,10 @@ export function ProjectCard({ project, onSelectCaseStudy, isWide = false }: Proj
         <div>
           {/* Client Tag */}
           <div className="font-mono text-xs uppercase tracking-widest text-[var(--text-muted)]">
-            CLIENT :: <span className="font-bold text-[var(--text-primary)]">{project.client}</span>
+            CLIENT ::{" "}
+            <span className="font-bold text-[var(--text-primary)]">
+              {project.client}
+            </span>
           </div>
 
           {/* Title */}
@@ -65,7 +73,8 @@ export function ProjectCard({ project, onSelectCaseStudy, isWide = false }: Proj
           {primaryMetric && (
             <div className="mt-5 flex items-center justify-between border border-[var(--border)] bg-[var(--bg-primary)] p-2.5 font-mono text-xs">
               <span className="uppercase tracking-wider font-bold text-[var(--text-muted)]">
-                {"/// METRIC: "}{primaryMetric.label}
+                {"/// METRIC: "}
+                {primaryMetric.label}
               </span>
               <span className="text-sm font-black text-[var(--accent)]">
                 {primaryMetric.value}
@@ -96,8 +105,7 @@ export function ProjectCard({ project, onSelectCaseStudy, isWide = false }: Proj
             aria-label={`Inspect case study for ${project.title}`}
           >
             <span className="flex items-center gap-2">
-              <Terminal className="h-3.5 w-3.5" />
-              [ READ_CASE_STUDY // ]
+              <Terminal className="h-3.5 w-3.5" />[ READ_CASE_STUDY // ]
             </span>
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
           </button>

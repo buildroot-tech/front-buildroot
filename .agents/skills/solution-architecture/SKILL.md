@@ -30,12 +30,12 @@ Design optimal technical approaches for buildroot_ website features.
 
 ## Architecture Patterns
 
-| Pattern | When to Use |
-|---------|-------------|
-| Server Components | Static content, SEO-critical pages |
-| Client Components | Interactive UI, animations, state |
-| Compound Components | Complex UI (menus, tabs) |
-| Custom Hooks | Reusable stateful logic |
+| Pattern             | When to Use                        |
+| ------------------- | ---------------------------------- |
+| Server Components   | Static content, SEO-critical pages |
+| Client Components   | Interactive UI, animations, state  |
+| Compound Components | Complex UI (menus, tabs)           |
+| Custom Hooks        | Reusable stateful logic            |
 
 ## Output Template
 
@@ -43,18 +43,23 @@ Design optimal technical approaches for buildroot_ website features.
 ## Architecture Decision: [Feature]
 
 ### Context
+
 What problem are we solving?
 
 ### Options
+
 #### Option A: [Name]
+
 - Pros: ...
 - Cons: ...
 - Complexity: Low/Medium/High
 
 ### Recommendation
+
 Option [X] because [rationale].
 
 ### Implementation Notes
+
 - Key files to create/modify
 - Performance considerations
 ```

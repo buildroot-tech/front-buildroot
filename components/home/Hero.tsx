@@ -139,7 +139,7 @@ function Decorative() {
    Constants
 ───────────────────────────────────────────────────────── */
 const HEADER_H  = 80;
-const FS        = "clamp(64px, 13vw, 220px)";
+const FS        = "clamp(48px, 9vw, 220px)";
 const LH_MAIN   = 0.80;
 
 const SERVICES  = ["System", "Product", "Infrastructure"];
@@ -147,7 +147,11 @@ const SERVICES  = ["System", "Product", "Infrastructure"];
 /* ─────────────────────────────────────────────────────────
    Hero
 ───────────────────────────────────────────────────────── */
-export function Hero() {
+interface HeroProps {
+  dict?: any;
+}
+
+export function Hero({ dict }: HeroProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -215,7 +219,7 @@ export function Hero() {
         </motion.div>
 
         {/* ── Headline — fills remaining space, anchored to bottom ── */}
-        <div className="flex-1 flex flex-col justify-center pb-[20vh]">
+        <div className="flex-1 flex flex-col justify-center pb-[12vh]">
 
           {/* We build */}
           <div className="overflow-hidden">
@@ -226,7 +230,7 @@ export function Hero() {
               animate={{ y: 0 }}
               transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             >
-              We build
+              {dict?.line1 || "We build"}
             </motion.h1>
           </div>
 
@@ -239,7 +243,7 @@ export function Hero() {
               animate={{ y: 0 }}
               transition={{ duration: 1, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
             >
-              Digital
+              {dict?.line2 || "Digital"}
             </motion.h1>
           </div>
 
@@ -252,7 +256,7 @@ export function Hero() {
               animate={{ y: 0 }}
               transition={{ duration: 1, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
             >
-              Products.
+              {dict?.line3 || "Products."}
             </motion.h1>
           </div>
 
@@ -276,7 +280,7 @@ export function Hero() {
                   color: "transparent",
                 }}
               >
-                Products.
+                {dict?.line3 || "Products."}
               </span>
             ))}
           </motion.div>
@@ -290,12 +294,12 @@ export function Hero() {
           transition={{ delay: 1.3, duration: 0.6 }}
         >
           <div className="flex items-center gap-4">
-            {SERVICES.map((s, i) => (
+            {(dict?.services || SERVICES).map((s: string, i: number) => (
               <span key={s} className="flex items-center gap-4">
                 <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--text-inverse)] opacity-35">
                   {s}
                 </span>
-                {i < SERVICES.length - 1 && (
+                {i < (dict?.services || SERVICES).length - 1 && (
                   <span className="h-px w-3 bg-[var(--text-inverse)] opacity-20" />
                 )}
               </span>

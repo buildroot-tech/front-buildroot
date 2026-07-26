@@ -1,119 +1,137 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ScrambleText } from "@/components/ui/TextScrambler";
+import { PixelImage } from "@/components/ui/PixelImage";
+import { PROJECTS } from "@/lib/projects";
 
-const featured = [
-  {
-    slug: "polo-pantoja",
-    title: "Polo & Pantoja",
-    category: "E-Commerce",
-    description: "Full-stack platform for a fashion brand. Next.js, Java, PostgreSQL.",
-    year: "2024",
-  },
-  {
-    slug: "edusur",
-    title: "Edusur",
-    category: "Education",
-    description: "Educational platform for course management. React, Node.js, MongoDB.",
-    year: "2024",
-  },
-];
+// We dynamically pull featured projects from our central data source
+const featured = PROJECTS.filter((project) => project.featured);
 
-const container = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2 },
-  },
+const getImageName = (id: string) => {
+  if (id.includes("polo")) return "polo-pantoja";
+  if (id.includes("edusur")) return "edusur";
+  if (id.includes("salesforce")) return "salesforce-ai";
+  if (id.includes("aca")) return "aca-diario";
+  return "polo-pantoja";
 };
 
-const item = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const },
-  },
-};
+interface SelectWorkProps {
+  dict?: any;
+}
 
-export function SelectWork() {
+export function SelectWork({ dict }: SelectWorkProps) {
+  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+  const [hoveredCTA, setHoveredCTA] = useState(false);
+  const [ctaSymbol, setCtaSymbol] = useState("*");
+
+  useEffect(() => {
+    if (!hoveredCTA) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setCtaSymbol("*");
+    const interval = setInterval(() => {
+      setCtaSymbol((prev) => (prev === "*" ? "_" : "*"));
+    }, 800); // Blink every 800ms
+    return () => clearInterval(interval);
+  }, [hoveredCTA]);
+
+  // Dimensions for the inline image
+  const imageWidth = 240;
+
   return (
-    <section className="section-generous bg-[var(--bg-primary)]">
+    <section className="relative w-full bg-[var(--bg-primary)] py-24 md:py-40 overflow-hidden">
       <div className="container-padded">
         {/* Header */}
-        <motion.div
-          className="flex items-end justify-between"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <div>
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
-              Selected Work
-            </p>
-            <h2 className="heading text-h2 mt-4">Featured Projects</h2>
-          </div>
-          <Link
-            href="/work"
-            className="hidden items-center gap-2 font-mono text-sm text-[var(--accent)] hover:underline sm:flex"
-          >
-            View All <ArrowUpRight className="h-4 w-4" />
-          </Link>
-        </motion.div>
-
-        {/* Projects — large horizontal cards */}
-        <motion.div
-          className="mt-12 flex flex-col gap-6"
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {featured.map((project) => (
-            <motion.div key={project.slug} variants={item}>
-              <Link href={`/work/${project.slug}`} className="group block">
-                <div className="flex flex-col sm:flex-row border-2 border-[var(--border)] bg-[var(--bg-primary)] transition-colors hover:bg-[var(--bg-secondary)]">
-                  {/* Visual placeholder */}
-                  <div className="flex h-48 sm:h-auto sm:w-80 shrink-0 items-center justify-center bg-[var(--bg-hero)] font-mono text-sm text-[var(--text-inverse)]">
-                    {project.category}
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex flex-1 flex-col justify-between p-6 sm:p-8">
-                    <div>
-                      <div className="flex items-start justify-between">
-                        <h3 className="font-mono text-xl font-bold uppercase tracking-wider">
-                          {project.title}
-                        </h3>
-                        <ArrowUpRight className="h-5 w-5 text-[var(--text-muted)] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-[var(--accent)]" />
-                      </div>
-                      <p className="mt-3 text-sm text-[var(--text-muted)] max-w-lg">
-                        {project.description}
-                      </p>
-                    </div>
-                    <div className="mt-4 font-mono text-xs text-[var(--text-muted)]">
-                      {project.year}
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Mobile link */}
-        <div className="mt-8 text-center sm:hidden">
-          <Link
-            href="/work"
-            className="brutalist-button brutalist-button-accent text-xs"
-          >
-            View All Projects →
-          </Link>
+        <div className="mb-2 md:mb-4">
+          <h2 className="heading text-h3 capitalize">Featured Projects</h2>
         </div>
       </div>
+
+      {/* The List (Locomotive Style) */}
+      <div className="flex flex-col relative z-10 w-full mt-2 px-6 md:px-12">
+          {featured.map((project) => (
+            <Link
+              href={`/work/${project.id}`}
+              key={project.id}
+              className="group flex flex-col justify-center min-h-[90px] md:min-h-[110px] transition-colors duration-500 w-full"
+              onMouseEnter={() => setHoveredProject(project.id)}
+              onMouseLeave={() => setHoveredProject(null)}
+            >
+              <div className="flex flex-row items-center justify-center w-full">
+                
+                {/* Left Line */}
+                <div className="h-[1px] bg-[var(--text-primary)] flex-1" />
+                
+                {/* Title with Inline Image */}
+                <div className="px-6 md:px-12 shrink-0 overflow-hidden">
+                  <h3 className="flex items-center justify-center font-display text-4xl sm:text-5xl md:text-5xl lg:text-[4rem] font-light uppercase tracking-tighter text-[var(--text-primary)] text-center whitespace-nowrap">
+                    {project.title.split(" ").map((word, i, arr) => {
+                      const isSingleWord = arr.length === 1;
+                      // If 1 word, insert at the end (index 0). If >1, insert in the middle.
+                      const insertIndex = isSingleWord ? 0 : Math.floor((arr.length - 1) / 2);
+                      
+                      return (
+                        <span key={i} className="flex items-center">
+                          {i > 0 && <span className="w-[0.25em] inline-block"></span>}
+                          
+                            <ScrambleText text={word} trigger="mount" active={hoveredProject === project.id} speed={40} />
+                          
+                          <AnimatePresence>
+                            {hoveredProject === project.id && i === insertIndex && (
+                              <motion.div
+                                initial={{ width: 0, opacity: 0, margin: "0px 0px" }}
+                                animate={{ width: imageWidth, opacity: 1, margin: "0px 16px" }}
+                                exit={{ width: 0, opacity: 0, margin: "0px 0px" }}
+                                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                                className="relative overflow-hidden border-2 border-[var(--border)] bg-[var(--bg-hero)] hidden md:block"
+                                style={{ height: "1.5em" }}
+                              >
+                                <PixelImage src={`/projects/${getImageName(project.id)}.jpg`} />
+                                
+                                {/* Black overlay for contrast */}
+                                <div className="absolute inset-0 bg-black/10 mix-blend-multiply pointer-events-none" />
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </span>
+                      );
+                    })}
+                  </h3>
+                </div>
+
+                {/* Right Line */}
+                <div className="h-[1px] bg-[var(--text-primary)] flex-1" />
+                
+              </div>
+            </Link>
+          ))}
+
+          {/* View All Projects Row */}
+          <Link
+            href="/work"
+            className="group flex flex-col justify-center min-h-[90px] md:min-h-[110px] transition-colors duration-500 w-full"
+            onMouseEnter={() => setHoveredCTA(true)}
+            onMouseLeave={() => setHoveredCTA(false)}
+          >
+            <div className="flex flex-row items-center justify-center w-full">
+              <div className="h-[1px] bg-[var(--text-primary)] flex-1" />
+              
+              <div className="px-6 md:px-12 shrink-0 overflow-hidden">
+                <h3 className="flex items-center justify-center font-display text-4xl sm:text-5xl md:text-5xl lg:text-[4rem] font-light capitalize tracking-tighter transition-colors duration-500 text-center whitespace-nowrap text-[var(--text-primary)]">
+                  <span className="w-[1ch] text-center inline-block">{hoveredCTA ? ctaSymbol : ""}</span>
+                  <span className="mx-2 md:mx-4">
+                    <ScrambleText text="All Works" trigger="mount" active={hoveredCTA} speed={25} />
+                  </span>
+                  <span className="w-[1ch] text-center inline-block">{hoveredCTA ? ctaSymbol : ""}</span>
+                </h3>
+              </div>
+
+              <div className="h-[1px] bg-[var(--text-primary)] flex-1" />
+            </div>
+          </Link>
+        </div>
     </section>
   );
 }

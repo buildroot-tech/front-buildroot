@@ -35,22 +35,27 @@ Elicit, clarify, and document requirements for buildroot_ website features and p
 ## Requirement: [Feature Name]
 
 ### User Story
+
 As a [user type], I want [goal] so that [benefit].
 
 ### Acceptance Criteria
+
 - [ ] Criterion 1
 - [ ] Criterion 2
 - [ ] Criterion 3
 
 ### Edge Cases
+
 - Case 1: Expected behavior
 - Case 2: Expected behavior
 
 ### Dependencies
+
 - Depends on: [component/feature]
 - Blocks: [component/feature]
 
 ### Questions
+
 - Question 1?
 - Question 2?
 ```

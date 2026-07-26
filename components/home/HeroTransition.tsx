@@ -16,7 +16,7 @@ export function HeroTransition() {
     [
       "polygon(0 0, 100% 0, 100% 0%, 0 0%)",
       "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-    ]
+    ],
   );
 
   return (

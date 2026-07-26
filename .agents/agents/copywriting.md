@@ -22,11 +22,11 @@ Create compelling UX copy, SEO content, CTAs, and marketing materials for buildr
 
 ## Brand Voice
 
-| Attribute | Description |
-|-----------|-------------|
-| **Tone** | Professional but approachable |
-| **Style** | Direct, no jargon |
-| **Language** | English (primary), Spanish available |
+| Attribute      | Description                               |
+| -------------- | ----------------------------------------- |
+| **Tone**       | Professional but approachable             |
+| **Style**      | Direct, no jargon                         |
+| **Language**   | English (primary), Spanish available      |
 | **Confidence** | We know our craft, but we're not arrogant |
 
 ## SEO Checklist
@@ -40,13 +40,13 @@ Create compelling UX copy, SEO content, CTAs, and marketing materials for buildr
 
 ## Microcopy Guide
 
-| Context | Style |
-|---------|-------|
-| Button text | Verb + noun ("View Project") |
-| Form labels | Clear, not abbreviated |
-| Error messages | Helpful, suggest next step |
+| Context        | Style                               |
+| -------------- | ----------------------------------- |
+| Button text    | Verb + noun ("View Project")        |
+| Form labels    | Clear, not abbreviated              |
+| Error messages | Helpful, suggest next step          |
 | Loading states | Descriptive ("Loading projects...") |
-| Empty states | Explain what's missing |
+| Empty states   | Explain what's missing              |
 
 ## Reference
 
