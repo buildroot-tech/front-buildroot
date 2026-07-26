@@ -121,8 +121,9 @@ export function SelectWork({ dict }: SelectWorkProps) {
               <div className="px-6 md:px-12 shrink-0 overflow-hidden">
                 <h3 className="flex items-center justify-center font-display text-4xl sm:text-5xl md:text-5xl lg:text-[4rem] font-light capitalize tracking-tighter transition-colors duration-500 text-center whitespace-nowrap text-[var(--text-primary)]">
                   <span className="w-[1ch] text-center inline-block">{hoveredCTA ? ctaSymbol : ""}</span>
-                  <span className="mx-2 md:mx-4">
-                    <ScrambleText text="All Works" trigger="mount" active={hoveredCTA} speed={25} />
+                  <span className="mx-2 md:mx-4 flex items-center gap-[0.25em]">
+                    <ScrambleText text="All" trigger="mount" active={hoveredCTA} speed={40} />
+                    <ScrambleText text="Works" trigger="mount" active={hoveredCTA} speed={40} />
                   </span>
                   <span className="w-[1ch] text-center inline-block">{hoveredCTA ? ctaSymbol : ""}</span>
                 </h3>
