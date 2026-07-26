@@ -33,36 +33,36 @@ Build high-quality React components following buildroot_'s design system.
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| Framework | Next.js 14 (App Router) |
-| Language | TypeScript (strict) |
-| Styling | Tailwind CSS 4 |
-| Animations | Framer Motion |
-| Scroll | Lenis |
-| Icons | Lucide React |
+| Layer      | Technology              |
+| ---------- | ----------------------- |
+| Framework  | Next.js 14 (App Router) |
+| Language   | TypeScript (strict)     |
+| Styling    | Tailwind CSS 4          |
+| Animations | Framer Motion           |
+| Scroll     | Lenis                   |
+| Icons      | Lucide React            |
 
 ## Code Pattern
 
 ```tsx
-import { motion } from 'framer-motion'
-import { cn } from '@/lib/utils'
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 interface ComponentProps {
-  className?: string
-  children: React.ReactNode
+  className?: string;
+  children: React.ReactNode;
 }
 
 export function Component({ className, children }: ComponentProps) {
   return (
     <motion.div
-      className={cn('base-styles', className)}
+      className={cn("base-styles", className)}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
       {children}
     </motion.div>
-  )
+  );
 }
 ```
 

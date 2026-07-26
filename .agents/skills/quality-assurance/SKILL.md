@@ -12,6 +12,7 @@ Validate that all code meets buildroot_'s quality standards.
 ## Instructions
 
 1. **Run linting and type checks**
+
    ```bash
    npm run lint
    npx tsc --noEmit
@@ -45,12 +46,12 @@ Validate that all code meets buildroot_'s quality standards.
 
 ## Quality Gates
 
-| Gate | Criteria | Tool |
-|------|----------|------|
-| Lint | Zero warnings | ESLint |
-| Type Check | Zero errors | TypeScript |
-| Lighthouse | 95+ all | Chrome DevTools |
-| A11y | WCAG 2.1 AA | axe-core |
+| Gate       | Criteria      | Tool            |
+| ---------- | ------------- | --------------- |
+| Lint       | Zero warnings | ESLint          |
+| Type Check | Zero errors   | TypeScript      |
+| Lighthouse | 95+ all       | Chrome DevTools |
+| A11y       | WCAG 2.1 AA   | axe-core        |
 
 ## Constraints
 

@@ -10,6 +10,7 @@ This file defines the AI team members for the buildroot_ website project. Each a
 
 **Role**: Requirements Engineer
 **Responsibilities**:
+
 - Elicit, clarify, and document requirements
 - Write acceptance criteria
 - Identify gaps and dependencies
@@ -21,6 +22,7 @@ This file defines the AI team members for the buildroot_ website project. Each a
 
 **Role**: Solution Architect
 **Responsibilities**:
+
 - Design technical approaches
 - Evaluate implementation options
 - Define component architecture
@@ -32,6 +34,7 @@ This file defines the AI team members for the buildroot_ website project. Each a
 
 **Role**: Frontend Developer
 **Responsibilities**:
+
 - Implement React/Next.js components
 - Apply Tailwind CSS styling
 - Add Framer Motion animations
@@ -43,6 +46,7 @@ This file defines the AI team members for the buildroot_ website project. Each a
 
 **Role**: QA Engineer
 **Responsibilities**:
+
 - Write and run tests
 - Audit accessibility
 - Run Lighthouse audits
@@ -55,6 +59,7 @@ This file defines the AI team members for the buildroot_ website project. Each a
 
 **Role**: DevOps Engineer
 **Responsibilities**:
+
 - Project setup and configuration
 - Build optimization
 - Vercel deployment
@@ -67,6 +72,7 @@ This file defines the AI team members for the buildroot_ website project. Each a
 
 **Role**: Copywriter
 **Responsibilities**:
+
 - Write UX copy
 - Create SEO content
 - Craft CTAs
@@ -94,15 +100,18 @@ When completing a phase, each agent should produce:
 ## Phase [X] Complete: [Phase Name]
 
 ### Deliverables
+
 - [ ] Deliverable 1
 - [ ] Deliverable 2
 
 ### Notes
+
 - Key decisions made
 - Issues encountered
 - Recommendations for next agent
 
 ### Files Changed
+
 - file1.tsx
 - file2.tsx
 ```

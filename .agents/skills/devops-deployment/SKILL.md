@@ -12,6 +12,7 @@ Ensure smooth deployment and optimal performance on Vercel.
 ## Instructions
 
 1. **Verify build**
+
    ```bash
    npm run build
    ```
@@ -20,6 +21,7 @@ Ensure smooth deployment and optimal performance on Vercel.
    - Verify output
 
 2. **Configure environment**
+
    ```bash
    # .env.local
    FORMSPREE_ENDPOINT=https://formspree.io/f/your-form-id
@@ -43,12 +45,12 @@ Ensure smooth deployment and optimal performance on Vercel.
 
 ## Vercel Settings
 
-| Setting | Value |
-|---------|-------|
-| Framework | Next.js |
-| Build Command | `next build` |
-| Output Directory | `.next` |
-| Node.js Version | 20.x |
+| Setting          | Value        |
+| ---------------- | ------------ |
+| Framework        | Next.js      |
+| Build Command    | `next build` |
+| Output Directory | `.next`      |
+| Node.js Version  | 20.x         |
 
 ## Constraints
 

@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Plus, Minus, Terminal, ExternalLink } from "lucide-react";
+import {
+  ArrowUpRight,
+  Plus,
+  Minus,
+  Terminal,
+  ExternalLink,
+} from "lucide-react";
 import { type Project } from "@/lib/projects";
 import { ScrambleText } from "@/components/ui/TextScrambler";
 import { ProjectVisualPreview } from "@/components/work/ProjectVisualPreview";
@@ -60,7 +66,11 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
             aria-expanded={isExpanded}
             aria-label={isExpanded ? "Collapse project" : "Expand project"}
           >
-            {isExpanded ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
+            {isExpanded ? (
+              <Minus className="h-5 w-5" />
+            ) : (
+              <Plus className="h-5 w-5" />
+            )}
           </button>
         </div>
 
@@ -99,7 +109,8 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
                     {primaryMetric && (
                       <div className="mt-8 flex items-center justify-between border border-[var(--text-primary)]/10 p-5 font-mono text-xs">
                         <span className="font-semibold text-[var(--text-muted)]">
-                          {"/// Key Impact: "}{primaryMetric.label}
+                          {"/// Key Impact: "}
+                          {primaryMetric.label}
                         </span>
                         <span className="text-lg font-black text-[var(--accent)]">
                           {primaryMetric.value}

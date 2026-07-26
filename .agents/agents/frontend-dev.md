@@ -21,14 +21,14 @@ Implement React/Next.js components with Tailwind CSS and Framer Motion for the b
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| Framework | Next.js 14 (App Router) |
-| Language | TypeScript (strict) |
-| Styling | Tailwind CSS 4 |
-| Animations | Framer Motion |
-| Scroll | Lenis |
-| Icons | Lucide React |
+| Layer      | Technology              |
+| ---------- | ----------------------- |
+| Framework  | Next.js 14 (App Router) |
+| Language   | TypeScript (strict)     |
+| Styling    | Tailwind CSS 4          |
+| Animations | Framer Motion           |
+| Scroll     | Lenis                   |
+| Icons      | Lucide React            |
 
 ## Code Style
 

@@ -1,0 +1,77 @@
+{
+  "header": {
+    "nav": {
+      "work": "work",
+      "services": "services",
+      "about": "about"
+    },
+    "contact": "let's talk"
+  },
+  "footer": {
+    "menu": "Menu",
+    "legal": {
+      "privacy": "privacy",
+      "cookies": "cookies",
+      "newsletter": "newsletter"
+    }
+  },
+  "preloader": {
+    "based_in": "BASED IN",
+    "location": "IPIALES, COLOMBIA",
+    "system": "SYSTEM",
+    "ready": "READY",
+    "digital": "DIGITAL",
+    "experience": "EXPERIENCE"
+  },
+  "home": {
+    "hero": {
+      "line1": "We build",
+      "line2": "Digital",
+      "line3": "Products.",
+      "services": ["System", "Product", "Infrastructure"]
+    },
+    "process": {
+      "title": "OUR PROCESS",
+      "steps": [
+        {
+          "number": "01",
+          "title": "DISCOVERY",
+          "desc": "We dive deep into your business goals, user needs, and technical requirements to form a solid foundation."
+        },
+        {
+          "number": "02",
+          "title": "DESIGN",
+          "desc": "Crafting intuitive interfaces and brutalist aesthetics that communicate your brand's unique edge."
+        },
+        {
+          "number": "03",
+          "title": "ENGINEERING",
+          "desc": "Building robust, scalable architectures using the latest web technologies for maximum performance."
+        },
+        {
+          "number": "04",
+          "title": "LAUNCH",
+          "desc": "Deploying and scaling your product with continuous monitoring and optimization."
+        },
+        {
+          "number": "05",
+          "title": "OPTIMIZATION",
+          "desc": "Continuous monitoring, A/B testing, and performance tuning to ensure your product scales flawlessly."
+        }
+      ]
+    },
+    "work": {
+      "title": "SELECTED WORK",
+      "subtitle": "Recent projects and digital experiences.",
+      "view_project": "View Project"
+    },
+    "cta": {
+      "manifesto": "We build high-performance technology and design unconventional solutions. We exist to help bold brands break out of the ordinary. Every line of code and every pixel is crafted to elevate your digital presence.",
+      "lets_build": "Let's Build Together",
+      "title": "READY TO BUILD?",
+      "subtitle": "Let's turn your vision into reality.",
+      "primary_btn": "START A PROJECT",
+      "secondary_text": "or reach out via email"
+    }
+  }
+}

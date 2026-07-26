@@ -1,12 +1,20 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback, forwardRef, useImperativeHandle } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 
 interface TextScramblerProps {
   text: string;
   className?: string;
   speed?: number;
   trigger?: "hover" | "mount" | "both" | "manual";
+  triggerOnce?: boolean;
   active?: boolean;
   as?: "span" | "div" | "p" | "h1" | "h2" | "h3";
   style?: React.CSSProperties;
@@ -27,6 +35,7 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
       className,
       speed = 80,
       trigger = "hover",
+      triggerOnce = false,
       active = true,
       as: Tag = "span",
       style,
@@ -34,10 +43,11 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
       onMouseLeave,
       onClick,
     },
-    ref
+    ref,
   ) {
     const [display, setDisplay] = useState(text);
     const timersRef = useRef<NodeJS.Timeout[]>([]);
+    const hasScrambledRef = useRef(false);
 
     const clearAll = useCallback(() => {
       timersRef.current.forEach(clearTimeout);
@@ -45,6 +55,9 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
     }, []);
 
     const scramble = useCallback(() => {
+      if (triggerOnce && hasScrambledRef.current) return;
+      hasScrambledRef.current = true;
+      
       clearAll();
 
       const letters = text.split("");
@@ -73,9 +86,10 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
     }, [text, speed, clearAll]);
 
     const reset = useCallback(() => {
+      if (triggerOnce && hasScrambledRef.current) return;
       clearAll();
       setDisplay(text);
-    }, [clearAll, text]);
+    }, [clearAll, text, triggerOnce]);
 
     // Expose scramble/reset imperatively so parent elements can trigger from
     // a wider hover area (e.g. the full <Link> rather than just the inner span)
@@ -86,10 +100,11 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
     }, [clearAll]);
 
     useEffect(() => {
-      if ((trigger === "mount" || trigger === "both") && active) {
-        scramble();
+      if (trigger === "mount" || trigger === "both") {
+        if (active) scramble();
+        else reset();
       }
-    }, [trigger, active, scramble]);
+    }, [trigger, active, scramble, reset]);
 
     const handleMouseEnter = () => {
       if (trigger === "hover" || trigger === "both") scramble();
@@ -114,7 +129,7 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
         {display}
       </Tag>
     );
-  }
+  },
 );
 
 ScrambleText.displayName = "ScrambleText";

@@ -4,17 +4,23 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ScrambleText, ScrambleTextHandle } from "@/components/ui/TextScrambler";
+import {
+  ScrambleText,
+  ScrambleTextHandle,
+} from "@/components/ui/TextScrambler";
+import { useRouter } from "next/navigation";
 
-const navLinks = [
-  { href: "/work", label: "work" },
-  { href: "/services", label: "services" },
-  { href: "/about", label: "about" },
-];
+interface HeaderProps {
+  dict?: any;
+  lang?: string;
+}
 
 // Route → background color config
 // text: color for text, bg: navbar background, needsScroll: only on home
-const routeColors: Record<string, { text: string; bg: string; needsScroll?: boolean }> = {
+const routeColors: Record<
+  string,
+  { text: string; bg: string; needsScroll?: boolean }
+> = {
   "/": { text: "var(--text-inverse)", bg: "transparent", needsScroll: true },
   "/work": { text: "var(--text-primary)", bg: "white" },
   "/services": { text: "white", bg: "var(--accent)" },
@@ -23,20 +29,30 @@ const routeColors: Record<string, { text: string; bg: string; needsScroll?: bool
 
 const HEADER_H = 80;
 
-export function Header() {
+export function Header({ dict, lang = "en" }: HeaderProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
+
+  const normalizedPathname = pathname.replace(/^\/(en|es)(\/|$)/, '/').replace(/\/$/, '') || '/';
+
+  const navLinks = [
+    { href: "/work", label: dict?.nav?.work || "work" },
+    { href: "/services", label: dict?.nav?.services || "services" },
+    { href: "/about", label: dict?.nav?.about || "about" },
+  ];
 
   // Imperative refs — hover is detected at the <Link> level so the entire
   // clickable area triggers the scramble, not just the inner text span.
   const logoRef = useRef<ScrambleTextHandle>(null);
   const navRefs = useRef<Map<string, ScrambleTextHandle>>(new Map());
   const contactRef = useRef<ScrambleTextHandle>(null);
+  const langRef = useRef<ScrambleTextHandle>(null);
 
   // Home page: detect when scrolled past hero
   useEffect(() => {
-    if (pathname !== "/") return;
+    if (normalizedPathname !== "/") return;
 
     const check = () => {
       const hero = document.getElementById("hero");
@@ -50,19 +66,17 @@ export function Header() {
     return () => window.removeEventListener("scroll", check);
   }, [pathname]);
 
-  const isHome = pathname === "/";
+  const isHome = normalizedPathname === "/";
   const effectiveScrolledPastHero = isHome ? scrolledPastHero : false;
 
   // Determine colors based on route and scroll position
-  const config = routeColors[pathname] || routeColors["/"];
+  const config = routeColors[normalizedPathname] || routeColors["/"];
 
   const textColor = effectiveScrolledPastHero
     ? "var(--text-primary)"
     : config.text;
 
-  const bgColor = effectiveScrolledPastHero
-    ? "var(--bg-primary)"
-    : config.bg;
+  const bgColor = effectiveScrolledPastHero ? "var(--bg-primary)" : config.bg;
 
   useEffect(() => {
     if (mobileOpen) {
@@ -81,11 +95,11 @@ export function Header() {
         className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300"
         style={{ backgroundColor: bgColor } as React.CSSProperties}
       >
-        <div className="flex items-center justify-between px-6 py-5 overflow-hidden">
+        <div className="flex items-center justify-between px-6 md:px-12 py-5 overflow-hidden">
           {/* Logo — hover detected on the <Link>, not the inner span */}
           <Link
             href="/"
-            className="font-mono text-3xl font-bold tracking-tight"
+            className="group relative font-mono text-3xl font-bold tracking-tight"
             style={{ color: textColor } as React.CSSProperties}
             onMouseEnter={() => logoRef.current?.scramble()}
             onMouseLeave={() => logoRef.current?.reset()}
@@ -97,21 +111,30 @@ export function Header() {
               trigger="mount"
               key={`logo-${pathname}`}
             />
-            <span className="cursor-blink inline-block scale-y-75 origin-bottom">_</span>
+            <span className="cursor-blink inline-block scale-y-75 origin-bottom">
+              _
+            </span>
+            <span
+              className={`absolute bottom-0 left-0 h-[1px] w-full bg-current transition-opacity duration-150 opacity-0 group-hover:opacity-100`}
+            />
           </Link>
 
           {/* Center nav */}
-          <nav className="hidden items-center gap-0 md:flex md:ml-40 overflow-hidden">
+          <nav className="hidden items-center gap-0 md:flex md:ml-80 overflow-hidden">
             {navLinks.map((link, i) => (
               <span key={link.href} className="flex items-center">
                 <Link
                   href={link.href}
                   className="group relative font-mono text-3xl font-medium transition-colors hover:text-[var(--accent)]"
-                  style={{
-                    color: textColor,
-                    minWidth: `${link.label.length}ch`,
-                  } as React.CSSProperties}
-                  onMouseEnter={() => navRefs.current.get(link.href)?.scramble()}
+                  style={
+                    {
+                      color: textColor,
+                      minWidth: `${link.label.length}ch`,
+                    } as React.CSSProperties
+                  }
+                  onMouseEnter={() =>
+                    navRefs.current.get(link.href)?.scramble()
+                  }
                   onMouseLeave={() => navRefs.current.get(link.href)?.reset()}
                 >
                   <ScrambleText
@@ -124,15 +147,19 @@ export function Header() {
                     trigger="mount"
                     key={`${link.label}-${pathname}`}
                   />
-                  <span className={`absolute bottom-0 left-0 h-[3px] w-full bg-current transition-opacity duration-150 ${pathname === link.href ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
+                  <span
+                    className={`absolute bottom-0 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${pathname === link.href ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+                  />
                 </Link>
                 {i < navLinks.length - 1 && (
                   <span
                     className="text-3xl"
-                    style={{
-                      color: textColor,
-                      opacity: 0.4,
-                    } as React.CSSProperties}
+                    style={
+                      {
+                        color: textColor,
+                        opacity: 0.4,
+                      } as React.CSSProperties
+                    }
                   >
                     ,
                   </span>
@@ -145,22 +172,45 @@ export function Header() {
           <Link
             href="/contact"
             className="group relative font-mono text-3xl font-medium transition-colors hover:text-[var(--accent)] ml-8"
-            style={{
-              color: textColor,
-              minWidth: "9ch",
-            } as React.CSSProperties}
+            style={
+              {
+                color: textColor,
+                width: "10ch",
+                display: "inline-block",
+                textAlign: "center",
+              } as React.CSSProperties
+            }
             onMouseEnter={() => contactRef.current?.scramble()}
             onMouseLeave={() => contactRef.current?.reset()}
           >
             <ScrambleText
               ref={contactRef}
-              text="let_s talk"
+              text={dict?.contact || "let's talk"}
               speed={68}
               trigger="mount"
               key={`contact-${pathname}`}
             />
-            <span className={`absolute bottom-0 left-0 h-[3px] w-full bg-current transition-opacity duration-150 ${pathname === "/contact" ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
+            <span
+              className={`absolute bottom-0 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${normalizedPathname === "/contact" ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+            />
           </Link>
+
+          {/* Lang Toggle */}
+          <a
+            className="group relative font-mono text-3xl font-medium transition-colors hover:text-[var(--accent)] ml-6"
+            style={{ color: textColor }}
+            href={lang === "en" ? `/es${normalizedPathname === "/" ? "" : normalizedPathname}` : normalizedPathname}
+            onMouseEnter={() => langRef.current?.scramble()}
+            onMouseLeave={() => langRef.current?.reset()}
+          >
+            <ScrambleText
+              ref={langRef}
+              text={lang === "en" ? "ES" : "EN"}
+              speed={68}
+              trigger="mount"
+              key={`lang-${pathname}`}
+            />
+          </a>
 
           {/* Mobile Burger */}
           <button
@@ -183,7 +233,9 @@ export function Header() {
             <motion.span
               className="block h-0.5 w-6"
               style={{ background: textColor } as React.CSSProperties}
-              animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+              animate={
+                mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }
+              }
               transition={{ duration: 0.2 }}
             />
           </button>
@@ -216,8 +268,15 @@ export function Header() {
                 className="font-mono text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
                 onClick={() => setMobileOpen(false)}
               >
-                let_s talk
+                {dict?.contact || "let's talk"}
               </Link>
+              <a
+                href={lang === "en" ? `/es${normalizedPathname === "/" ? "" : normalizedPathname}` : normalizedPathname}
+                className="font-mono text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)] mt-8"
+                onClick={() => setMobileOpen(false)}
+              >
+                {lang === "en" ? "ES" : "EN"}
+              </a>
             </nav>
           </motion.div>
         )}

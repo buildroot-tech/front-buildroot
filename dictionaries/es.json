@@ -1,0 +1,77 @@
+{
+  "header": {
+    "nav": {
+      "work": "trabajo",
+      "services": "servicios",
+      "about": "nosotros"
+    },
+    "contact": "hablemos"
+  },
+  "footer": {
+    "menu": "Menú",
+    "legal": {
+      "privacy": "privacidad",
+      "cookies": "cookies",
+      "newsletter": "newsletter"
+    }
+  },
+  "preloader": {
+    "based_in": "BASADO EN",
+    "location": "IPIALES, COLOMBIA",
+    "system": "SISTEMA",
+    "ready": "LISTO",
+    "digital": "EXPERIENCIA",
+    "experience": "DIGITAL"
+  },
+  "home": {
+    "hero": {
+      "line1": "Creamos",
+      "line2": "Productos",
+      "line3": "Digitales.",
+      "services": ["Sistemas", "Producto", "Infraestructura"]
+    },
+    "process": {
+      "title": "NUESTRO PROCESO",
+      "steps": [
+        {
+          "number": "01",
+          "title": "DESCUBRIMIENTO",
+          "desc": "Analizamos a fondo tus objetivos comerciales, las necesidades del usuario y los requisitos técnicos para formar una base sólida."
+        },
+        {
+          "number": "02",
+          "title": "DISEÑO",
+          "desc": "Creamos interfaces intuitivas y estéticas brutalistas que comunican la ventaja única de tu marca."
+        },
+        {
+          "number": "03",
+          "title": "INGENIERÍA",
+          "desc": "Construimos arquitecturas robustas y escalables utilizando las últimas tecnologías web para un rendimiento máximo."
+        },
+        {
+          "number": "04",
+          "title": "LANZAMIENTO",
+          "desc": "Desplegamos y escalamos tu producto con monitoreo y optimización continuos."
+        },
+        {
+          "number": "05",
+          "title": "OPTIMIZACIÓN",
+          "desc": "Monitoreo continuo, pruebas A/B y ajustes de rendimiento para asegurar que tu producto escale impecablemente."
+        }
+      ]
+    },
+    "work": {
+      "title": "TRABAJO DESTACADO",
+      "subtitle": "Proyectos recientes y experiencias digitales.",
+      "view_project": "Ver Proyecto"
+    },
+    "cta": {
+      "manifesto": "Construimos tecnología de alto rendimiento y diseñamos soluciones no convencionales. Existimos para ayudar a marcas audaces a salir de lo ordinario. Cada línea de código y cada píxel está diseñado para elevar tu presencia digital.",
+      "lets_build": "Construyamos Juntos",
+      "title": "¿LISTO PARA CONSTRUIR?",
+      "subtitle": "Convirtamos tu visión en realidad.",
+      "primary_btn": "INICIAR PROYECTO",
+      "secondary_text": "o contáctanos por correo electrónico"
+    }
+  }
+}

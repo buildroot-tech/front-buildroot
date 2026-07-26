@@ -25,30 +25,30 @@ Handle deployment, CI/CD, performance optimization, and infrastructure.
 
 ```typescript
 // next.config.ts
-import type { NextConfig } from 'next'
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [],
   },
   async headers() {
     return [
       {
-        source: '/(.*)',
+        source: "/(.*)",
         headers: [
-          { key: 'X-Frame-Options', value: 'DENY' },
-          { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'Referrer-Policy', value: 'origin-when-cross-origin' },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "origin-when-cross-origin" },
         ],
       },
-    ]
+    ];
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;
 ```
 
 ## Environment Variables
@@ -61,13 +61,13 @@ NEXT_PUBLIC_SITE_URL=https://buildroot.dev
 
 ## Vercel Settings
 
-| Setting | Value |
-|---------|-------|
-| Framework | Next.js |
-| Build Command | `next build` |
-| Output Directory | `.next` |
-| Node.js Version | 20.x |
-| Edge Functions | Enabled |
+| Setting          | Value        |
+| ---------------- | ------------ |
+| Framework        | Next.js      |
+| Build Command    | `next build` |
+| Output Directory | `.next`      |
+| Node.js Version  | 20.x         |
+| Edge Functions   | Enabled      |
 
 ## Reference
 

@@ -11,19 +11,20 @@ description: Core project instructions for buildroot_ website
 - **Services**: Web development, technical consulting, SaaS products
 - **Style**: Brutalist hybrid (raw + elegant)
 - **Mode**: Light mode, dark hero (blue)
+- **Design Reference / Inspiration**: https://locomotive.ca/en (Massive typography, smooth scroll, high-contrast blocky layout, premium micro-interactions, brutalist-but-clean). ALL agents must use this reference for UI/UX and animation decisions.
 
 ## Tech Stack (Non-negotiable)
 
-| Layer | Technology |
-|-------|------------|
-| Framework | Next.js 14 (App Router) |
-| Language | TypeScript (strict) |
-| Styling | Tailwind CSS 4 |
-| Animations | Framer Motion |
-| Scroll | Lenis |
-| Icons | Lucide React |
-| Forms | Formspree |
-| Deploy | Vercel (free tier) |
+| Layer      | Technology              |
+| ---------- | ----------------------- |
+| Framework  | Next.js 14 (App Router) |
+| Language   | TypeScript (strict)     |
+| Styling    | Tailwind CSS 4          |
+| Animations | Framer Motion           |
+| Scroll     | Lenis                   |
+| Icons      | Lucide React            |
+| Forms      | Formspree               |
+| Deploy     | Vercel (free tier)      |
 
 ## Design Tokens
 
@@ -40,15 +41,15 @@ description: Core project instructions for buildroot_ website
 
 ## Performance Targets
 
-| Metric | Target |
-|--------|--------|
-| Lighthouse Performance | 95+ |
-| Lighthouse Accessibility | 95+ |
-| Lighthouse SEO | 100 |
-| FCP | <1.5s |
-| LCP | <2.5s |
-| TBT | <200ms |
-| CLS | <0.1 |
+| Metric                   | Target |
+| ------------------------ | ------ |
+| Lighthouse Performance   | 95+    |
+| Lighthouse Accessibility | 95+    |
+| Lighthouse SEO           | 100    |
+| FCP                      | <1.5s  |
+| LCP                      | <2.5s  |
+| TBT                      | <200ms |
+| CLS                      | <0.1   |
 
 ## File Structure
 
