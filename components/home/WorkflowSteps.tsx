@@ -6,46 +6,42 @@ import { motion, useScroll, useTransform } from "framer-motion";
 const steps = [
   {
     number: "01",
-    dictKey: "discovery",
-    title: "Discovery",
-    description:
-      "We map the problem, define the exact scope, and align perfectly on your goals. No guessing, just extreme clarity.",
+    dictKey: "requirements",
+    title: "Requirements",
+    description: "We map the problem, define the exact scope, and align perfectly on your goals. No guessing, just extreme clarity.",
     color: "var(--bg-primary)",
     textColor: "var(--text-primary)",
   },
   {
     number: "02",
-    dictKey: "architecture",
-    title: "Architecture",
-    description:
-      "System design, strict tech stack decisions, and a technical blueprint built for brutal efficiency and scale.",
-    color: "var(--bg-primary)", // Blanca
+    dictKey: "design",
+    title: "Design",
+    description: "Crafting intuitive interfaces and aesthetics that communicate your brand's unique edge, backed by strict system design.",
+    color: "var(--bg-primary)",
     textColor: "var(--text-primary)",
   },
   {
     number: "03",
     dictKey: "build",
     title: "Build",
-    description:
-      "Iterative, high-velocity development with continuous feedback loops. We build it fast, we build it right.",
-    color: "var(--accent)", // Azul
+    description: "Iterative, high-velocity development. We build robust, scalable architectures for maximum performance.",
+    color: "var(--accent)",
     textColor: "white",
   },
   {
     number: "04",
-    dictKey: "ship",
-    title: "Ship",
-    description:
-      "Deploy, monitor, and scale with absolute confidence. Your product hits the market like a sledgehammer.",
-    color: "#0A0A0A", // Negra
+    dictKey: "testing",
+    title: "Testing",
+    description: "Rigorous quality, performance, and security validation to ensure the product is unbreakable.",
+    color: "#0A0A0A",
     textColor: "var(--text-inverse)",
   },
   {
     number: "05",
-    dictKey: "optimization",
-    title: "Optimization",
-    description: "Continuous monitoring, performance tuning, and scaling optimizations.",
-    color: "#000000", // Negra
+    dictKey: "production",
+    title: "Go Live",
+    description: "Deploy and scale with absolute confidence. Your product hits the market flawlessly and ready to dominate.",
+    color: "#000000",
     textColor: "var(--text-inverse)",
   },
 ];

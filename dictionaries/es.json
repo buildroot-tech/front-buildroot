@@ -32,33 +32,33 @@
     },
     "process": {
       "title": "NUESTRO PROCESO",
-      "steps": [
-        {
+      "steps": {
+        "requirements": {
           "number": "01",
-          "title": "DESCUBRIMIENTO",
-          "desc": "Analizamos a fondo tus objetivos comerciales, las necesidades del usuario y los requisitos técnicos para formar una base sólida."
+          "title": "REQUERIMIENTOS",
+          "desc": "Mapeamos el problema, definimos el alcance exacto y nos alineamos perfectamente con tus objetivos. Sin suposiciones, solo claridad extrema."
         },
-        {
+        "design": {
           "number": "02",
           "title": "DISEÑO",
-          "desc": "Creamos interfaces intuitivas y estéticas brutalistas que comunican la ventaja única de tu marca."
+          "desc": "Creamos interfaces intuitivas y estéticas que comunican la ventaja única de tu marca, con un diseño de sistema estricto."
         },
-        {
+        "build": {
           "number": "03",
-          "title": "INGENIERÍA",
-          "desc": "Construimos arquitecturas robustas y escalables utilizando las últimas tecnologías web para un rendimiento máximo."
+          "title": "CONSTRUCCIÓN",
+          "desc": "Desarrollo iterativo de alta velocidad. Construimos arquitecturas robustas y escalables con máximo rendimiento."
         },
-        {
+        "testing": {
           "number": "04",
-          "title": "LANZAMIENTO",
-          "desc": "Desplegamos y escalamos tu producto con monitoreo y optimización continuos."
+          "title": "PRUEBAS",
+          "desc": "Validación rigurosa de calidad, rendimiento y seguridad para asegurar que el producto sea irrompible."
         },
-        {
+        "production": {
           "number": "05",
-          "title": "OPTIMIZACIÓN",
-          "desc": "Monitoreo continuo, pruebas A/B y ajustes de rendimiento para asegurar que tu producto escale impecablemente."
+          "title": "PASO A PRODUCCIÓN",
+          "desc": "Desplegamos y escalamos con absoluta confianza. Tu producto sale al mercado impecablemente y listo para dominar."
         }
-      ]
+      }
     },
     "work": {
       "title": "TRABAJO DESTACADO",
