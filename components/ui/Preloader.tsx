@@ -10,7 +10,7 @@ interface PreloaderProps {
 
 export function Preloader({ dict }: PreloaderProps) {
   const [isLoading, setIsLoading] = useState(true);
-  const [showPreloader, setShowPreloader] = useState(false);
+  const [showPreloader, setShowPreloader] = useState(true);
   const [isFirstVisit, setIsFirstVisit] = useState(false);
   const [activeItems, setActiveItems] = useState<number[]>([]);
 
