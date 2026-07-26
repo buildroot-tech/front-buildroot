@@ -43,7 +43,7 @@ export default async function RootLayout({
         <ScrollProgress />
         <Header dict={dict.header} lang={lang} />
         <main className="flex-1">{children}</main>
-        <Footer dict={dict.footer} />
+        <Footer dict={dict} />
       </body>
     </html>
   );
