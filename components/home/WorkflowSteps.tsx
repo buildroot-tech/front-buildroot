@@ -19,8 +19,8 @@ const steps = [
     title: "Architecture",
     description:
       "System design, strict tech stack decisions, and a technical blueprint built for brutal efficiency and scale.",
-    color: "var(--accent)", // The vibrant blue
-    textColor: "white",
+    color: "var(--bg-primary)", // Blanca
+    textColor: "var(--text-primary)",
   },
   {
     number: "03",
@@ -28,8 +28,8 @@ const steps = [
     title: "Build",
     description:
       "Iterative, high-velocity development with continuous feedback loops. We build it fast, we build it right.",
-    color: "var(--bg-hero)", // Dark blue/navy
-    textColor: "var(--text-inverse)",
+    color: "var(--accent)", // Azul
+    textColor: "white",
   },
   {
     number: "04",
@@ -37,7 +37,7 @@ const steps = [
     title: "Ship",
     description:
       "Deploy, monitor, and scale with absolute confidence. Your product hits the market like a sledgehammer.",
-    color: "var(--border)", // Very dark
+    color: "#0A0A0A", // Negra
     textColor: "var(--text-inverse)",
   },
   {
@@ -45,7 +45,7 @@ const steps = [
     dictKey: "optimization",
     title: "Optimization",
     description: "Continuous monitoring, performance tuning, and scaling optimizations.",
-    color: "#000000",
+    color: "#000000", // Negra
     textColor: "var(--text-inverse)",
   },
 ];
@@ -131,7 +131,7 @@ function StepCard({ step, index, scrollYProgress, dict }: any) {
       }}
     >
       <div
-        className="flex h-[90vh] md:h-[85vh] w-full max-w-5xl flex-col justify-between border-4 border-[var(--border)] p-6 sm:p-8 md:p-12 shadow-[8px_8px_0px_0px_var(--border)] md:shadow-[12px_12px_0px_0px_var(--border)]"
+        className="flex h-[85vh] md:h-[72vh] lg:h-[78vh] w-full max-w-5xl flex-col justify-between border-4 border-[var(--border)] p-6 sm:p-8 md:p-10 shadow-[8px_8px_0px_0px_var(--border)] md:shadow-[12px_12px_0px_0px_var(--border)]"
         style={{
           backgroundColor: step.color,
           color: step.textColor,
