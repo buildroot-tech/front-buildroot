@@ -9,7 +9,7 @@ import {
   CheckSquare,
   ArrowRight,
 } from "lucide-react";
-import { type Project } from "@/lib/projects";
+import { type Project } from "@/types";
 
 interface CaseStudyModalProps {
   readonly project: Project | null;

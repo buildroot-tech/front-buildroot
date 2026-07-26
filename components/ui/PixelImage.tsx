@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { animate } from "framer-motion";
+import { animate, AnimationPlaybackControls } from "framer-motion";
 
 export function PixelImage({ src }: { src: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -13,7 +13,7 @@ export function PixelImage({ src }: { src: string }) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animationRef: number;
+    let animationRef: AnimationPlaybackControls;
 
     const img = new window.Image();
     img.src = src;
