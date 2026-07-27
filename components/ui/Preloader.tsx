@@ -75,7 +75,7 @@ export function Preloader({ dict }: PreloaderProps) {
       timers.push(setTimeout(() => setIsLoading(false), 1800));
       
       return () => timers.forEach(clearTimeout);
-    } else if (window.location.pathname === "/") {
+    } else if (window.location.pathname === "/" || window.location.pathname === "/es") {
       setIsFirstVisit(false);
       setShowPreloader(true);
       
