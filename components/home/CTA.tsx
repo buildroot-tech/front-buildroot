@@ -90,7 +90,7 @@ const BottomCTA = ({ dict }: { dict?: any }) => {
   }, [hovered]);
 
   return (
-    <div className="flex flex-col relative w-full px-6 md:px-12 pb-24 md:pb-40">
+    <div className="flex flex-col relative w-full px-6 md:px-12 pb-8 md:pb-12">
       <Link
         href="mailto:hello@buildroot.dev"
         className="group flex flex-col justify-center min-h-[90px] md:min-h-[110px] transition-colors duration-500 w-full"
