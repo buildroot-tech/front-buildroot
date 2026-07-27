@@ -232,7 +232,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
               {/* Row 1: Address, Street, Zip */}
               <div className="flex items-end justify-end w-full py-[clamp(0.1rem,0.3vw,0.4rem)] gap-2 md:gap-3">
                 <span className="font-display font-light text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
-                  {contactInfo.address}
+                  {dict?.footer?.address || contactInfo.address}
                 </span>
 
                 <span className="font-display font-light text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
