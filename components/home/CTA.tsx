@@ -3,6 +3,7 @@
 import { useScroll, useTransform, MotionValue, m } from "framer-motion";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
+import { Ticker } from "./Ticker";
 
 interface CTAProps {
   dict?: any;
@@ -44,6 +45,9 @@ export function CTA({ dict }: CTAProps) {
 
       {/* CTA Bottom Row (Matching 'All Works' structural style) */}
       <BottomCTA dict={dict} />
+
+      {/* Marquee Ticker */}
+      <Ticker text={dict?.ticker_text || "/// HIGH-END EXPERIENCES /// UNCONVENTIONAL DESIGNS"} />
     </section>
   );
 }
