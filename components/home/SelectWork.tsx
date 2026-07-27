@@ -28,14 +28,11 @@ export function SelectWork({ dict }: SelectWorkProps) {
   const [ctaSymbol, setCtaSymbol] = useState("*");
 
   useEffect(() => {
-    if (!hoveredCTA) return;
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setCtaSymbol("*");
     const interval = setInterval(() => {
       setCtaSymbol((prev) => (prev === "*" ? "_" : "*"));
     }, 800); // Blink every 800ms
     return () => clearInterval(interval);
-  }, [hoveredCTA]);
+  }, []);
 
   // Dimensions for the inline image
   const imageWidth = 240;
@@ -120,13 +117,13 @@ export function SelectWork({ dict }: SelectWorkProps) {
               
               <div className="px-6 md:px-12 shrink-0 overflow-hidden">
                 <h3 className="flex items-center justify-center font-display text-4xl sm:text-5xl md:text-5xl lg:text-[4rem] font-light capitalize tracking-tighter transition-colors duration-500 text-center whitespace-nowrap text-[var(--text-primary)]">
-                  <span className="w-[1ch] text-center inline-block">{hoveredCTA ? ctaSymbol : ""}</span>
+                  <span className="w-[1ch] text-center inline-block">{ctaSymbol}</span>
                   <span className="mx-2 md:mx-4 flex items-center gap-[0.25em]">
                     {((dict?.home?.work?.all_works || "All Works") as string).split(" ").map((w, idx) => (
                       <ScrambleText key={idx} text={w} trigger="mount" active={hoveredCTA} speed={40} />
                     ))}
                   </span>
-                  <span className="w-[1ch] text-center inline-block">{hoveredCTA ? ctaSymbol : ""}</span>
+                  <span className="w-[1ch] text-center inline-block">{ctaSymbol}</span>
                 </h3>
               </div>
 
