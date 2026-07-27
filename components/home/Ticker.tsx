@@ -67,8 +67,8 @@ export function Ticker({ baseVelocity = -1, text }: TickerProps) {
           scale,
           opacity,
           // Creates a fade effect on left/right and top/bottom
-          maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-          WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+          maskImage: "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+          WebkitMaskImage: "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
         }}
       >
         <m.div
