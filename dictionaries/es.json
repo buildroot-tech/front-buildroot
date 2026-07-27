@@ -9,6 +9,8 @@
   },
   "footer": {
     "menu": "Menú",
+    "elsewhere": "En otros lados",
+    "all_rights": "Todos los derechos reservados.",
     "legal": {
       "privacy": "privacidad",
       "cookies": "cookies",
@@ -36,27 +38,27 @@
         "requirements": {
           "number": "01",
           "title": "REQUERIMIENTOS",
-          "desc": "Mapeamos el problema, definimos el alcance exacto y nos alineamos perfectamente con tus objetivos. Sin suposiciones, solo claridad extrema."
+          "description": "Mapeamos el problema, definimos el alcance exacto y nos alineamos perfectamente con tus objetivos. Sin suposiciones, solo claridad extrema."
         },
         "design": {
           "number": "02",
           "title": "DISEÑO",
-          "desc": "Creamos interfaces intuitivas y estéticas que comunican la ventaja única de tu marca, con un diseño de sistema estricto."
+          "description": "Creamos interfaces intuitivas y potentes que comunican la ventaja única de tu marca, con un diseño de sistema estricto."
         },
         "build": {
           "number": "03",
           "title": "CONSTRUCCIÓN",
-          "desc": "Desarrollo iterativo de alta velocidad. Construimos arquitecturas robustas y escalables con máximo rendimiento."
+          "description": "Desarrollo iterativo de alta velocidad. Construimos arquitecturas robustas y escalables con máximo rendimiento."
         },
         "testing": {
           "number": "04",
           "title": "PRUEBAS",
-          "desc": "Validación rigurosa de calidad, rendimiento y seguridad para asegurar que el producto sea irrompible."
+          "description": "Validación rigurosa de calidad, rendimiento y seguridad para asegurar que el producto sea irrompible."
         },
         "production": {
           "number": "05",
           "title": "PASO A PRODUCCIÓN",
-          "desc": "Desplegamos y escalamos con absoluta confianza. Tu producto sale al mercado impecablemente y listo para dominar."
+          "description": "Desplegamos y escalamos con absoluta confianza. Tu producto sale al mercado impecablemente y listo para dominar."
         }
       }
     },

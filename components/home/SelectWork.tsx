@@ -45,7 +45,7 @@ export function SelectWork({ dict }: SelectWorkProps) {
       <div className="container-padded">
         {/* Header */}
         <div className="mb-2 md:mb-4">
-          <h2 className="heading text-h3 capitalize">Featured Projects</h2>
+          <h2 className="heading text-h3 capitalize">{dict?.home?.work?.title || "Featured Projects"}</h2>
         </div>
       </div>
 
