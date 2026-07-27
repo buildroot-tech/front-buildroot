@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { useScroll, useTransform, MotionValue, m } from "framer-motion";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 
@@ -63,9 +63,9 @@ const Word = ({
 
   return (
     <span className="relative mr-3 md:mr-6 lg:mr-8 mt-1 inline-block">
-      <motion.span style={{ opacity }} className="inline-block">
+      <m.span style={{ opacity }} className="inline-block">
         {children}
-      </motion.span>
+      </m.span>
     </span>
   );
 };

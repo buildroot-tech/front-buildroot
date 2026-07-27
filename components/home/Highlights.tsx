@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
@@ -50,7 +50,7 @@ export function Highlights() {
     <section className="section-generous bg-[var(--bg-secondary)]">
       <div className="container-padded">
         {/* Header */}
-        <motion.div
+        <m.div
           className="flex items-end justify-between"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -69,10 +69,10 @@ export function Highlights() {
           >
             View All <ArrowUpRight className="h-4 w-4" />
           </Link>
-        </motion.div>
+        </m.div>
 
         {/* Grid */}
-        <motion.div
+        <m.div
           className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
           variants={container}
           initial="hidden"
@@ -80,7 +80,7 @@ export function Highlights() {
           viewport={{ once: true, margin: "-100px" }}
         >
           {projects.map((project) => (
-            <motion.div key={project.slug} variants={item}>
+            <m.div key={project.slug} variants={item}>
               <Link href={`/work/${project.slug}`} className="group block">
                 <div className="brutalist-card overflow-hidden">
                   {/* Image placeholder */}
@@ -108,9 +108,9 @@ export function Highlights() {
                   </div>
                 </div>
               </Link>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
 
         {/* Mobile link */}
         <div className="mt-8 text-center sm:hidden">

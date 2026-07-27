@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useScroll, useTransform, m } from "framer-motion";
 
 const steps = [
   {
@@ -68,7 +68,7 @@ export function WorkflowSteps({ dict }: WorkflowStepsProps) {
           
           {/* Left Side: Sticky Title */}
           <div className="flex h-[30vh] w-full flex-col justify-center px-6 md:h-full md:w-1/3 md:pl-10 lg:pl-16">
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -80,7 +80,7 @@ export function WorkflowSteps({ dict }: WorkflowStepsProps) {
               <h2 className="font-display text-[clamp(2.5rem,6vw,8rem)] font-light uppercase leading-none tracking-tighter">
                 {dict?.home?.process?.title || "Our Process"}
               </h2>
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Right Side: Stacking Cards */}
@@ -118,7 +118,7 @@ function StepCard({ step, index, scrollYProgress, dict }: any) {
   );
 
   return (
-    <motion.div
+    <m.div
       className="absolute top-0 left-0 flex h-full w-full flex-col items-center justify-center p-4 sm:p-6 md:p-8"
       style={{
         y: index === 0 ? "0%" : y,
@@ -147,6 +147,6 @@ function StepCard({ step, index, scrollYProgress, dict }: any) {
           </p>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }

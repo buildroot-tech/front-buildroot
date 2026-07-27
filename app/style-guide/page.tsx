@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ScrambleText } from "@/components/ui/TextScrambler";
 
 /* ============================================================
@@ -294,7 +294,7 @@ export default function StyleGuidePage() {
           {/* Hover Shadow */}
           <div>
             <SubHeading>Hover Effect</SubHeading>
-            <motion.div
+            <m.div
               className="mt-4 cursor-pointer border-2 border-[var(--border)] p-6"
               whileHover={{
                 boxShadow: "2px 2px 0 var(--border)",
@@ -304,7 +304,7 @@ export default function StyleGuidePage() {
               transition={{ duration: 0.15 }}
             >
               <p className="font-mono text-sm">Hover me →</p>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -317,32 +317,32 @@ export default function StyleGuidePage() {
           {/* Hover */}
           <div>
             <SubHeading>Hover (150ms ease)</SubHeading>
-            <motion.button
+            <m.button
               className="brutalist-button mt-4"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               Hover / Click Me
-            </motion.button>
+            </m.button>
           </div>
 
           {/* Spring */}
           <div>
             <SubHeading>Spring Physics</SubHeading>
-            <motion.button
+            <m.button
               className="brutalist-button mt-4"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               Spring Button
-            </motion.button>
+            </m.button>
           </div>
 
           {/* Scroll Reveal */}
           <div>
             <SubHeading>Scroll Reveal</SubHeading>
-            <motion.div
+            <m.div
               className="mt-4 border-2 border-[var(--border)] p-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -352,13 +352,13 @@ export default function StyleGuidePage() {
               <p className="font-mono text-sm">
                 Scroll down to reveal this element
               </p>
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Stagger */}
           <div>
             <SubHeading>Stagger Children</SubHeading>
-            <motion.div
+            <m.div
               className="mt-4 flex gap-3"
               initial="hidden"
               whileInView="visible"
@@ -372,7 +372,7 @@ export default function StyleGuidePage() {
               }}
             >
               {[1, 2, 3, 4].map((i) => (
-                <motion.div
+                <m.div
                   key={i}
                   className="flex h-12 w-12 items-center justify-center border-2 border-[var(--border)] font-mono text-sm"
                   variants={{
@@ -381,9 +381,9 @@ export default function StyleGuidePage() {
                   }}
                 >
                   {i}
-                </motion.div>
+                </m.div>
               ))}
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Text Scrambler */}

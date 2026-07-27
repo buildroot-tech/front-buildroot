@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ScrambleText } from "@/components/ui/TextScrambler";
 
@@ -108,7 +108,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                     aria-label="Footer navigation"
                   >
                     {navLinks.map((link, i) => (
-                      <motion.div
+                      <m.div
                         key={link.href}
                         custom={i}
                         initial="hidden"
@@ -128,7 +128,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                           <ScrambleText text={link.label} speed={55} />
                           <span className="absolute -bottom-1 left-0 h-[1px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                         </Link>
-                      </motion.div>
+                      </m.div>
                     ))}
                   </nav>
 
@@ -138,7 +138,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                     aria-label="Legal navigation"
                   >
                     {legalLinks.map((link, i) => (
-                      <motion.div
+                      <m.div
                         key={link.href}
                         custom={i + navLinks.length}
                         initial="hidden"
@@ -157,7 +157,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                           <ScrambleText text={link.label} speed={55} />
                           <span className="absolute -bottom-1 left-0 h-[1px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                         </Link>
-                      </motion.div>
+                      </m.div>
                     ))}
                   </nav>
                 </div>
@@ -172,7 +172,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                 </div>
                 <div className="flex flex-col gap-0">
                   {socialLinks.map((link, i) => (
-                    <motion.div
+                    <m.div
                       key={link.href}
                       custom={i}
                       initial="hidden"
@@ -195,7 +195,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                         <ScrambleText text={link.label} speed={55} />
                         <span className="absolute -bottom-1 left-0 h-[1px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />
                       </a>
-                    </motion.div>
+                    </m.div>
                   ))}
                 </div>
               </div>

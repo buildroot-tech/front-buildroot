@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  motion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { useScroll, useTransform, m } from "framer-motion";
 import { useRef } from "react";
 
 
@@ -35,22 +31,22 @@ function InterweavingLines() {
   return (
     <svg className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true">
       {down.map((l, i) => (
-        <motion.line key={`d${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
+        <m.line key={`d${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
           stroke="rgba(248,250,252,0.035)" strokeWidth="1"
           animate={{ x: ["-30%", "30%", "-30%"] }}
           transition={{ duration: l.d, repeat: Infinity, ease: "easeInOut", delay: l.dl }} />
       ))}
       {up.map((l, i) => (
-        <motion.line key={`u${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
+        <m.line key={`u${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
           stroke="rgba(248,250,252,0.025)" strokeWidth="1"
           animate={{ x: ["30%", "-30%", "30%"] }}
           transition={{ duration: l.d, repeat: Infinity, ease: "easeInOut", delay: l.dl }} />
       ))}
-      <motion.line x1="8%" y1="0%" x2="92%" y2="100%"
+      <m.line x1="8%" y1="0%" x2="92%" y2="100%"
         stroke="rgba(37,99,235,0.08)" strokeWidth="1"
         animate={{ x: ["-18%", "18%", "-18%"] }}
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }} />
-      <motion.line x1="92%" y1="0%" x2="8%" y2="100%"
+      <m.line x1="92%" y1="0%" x2="8%" y2="100%"
         stroke="rgba(37,99,235,0.05)" strokeWidth="1"
         animate={{ x: ["18%", "-18%", "18%"] }}
         transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }} />
@@ -65,7 +61,7 @@ function InterweavingLines() {
 function Decorative() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <motion.div
+      <m.div
         className="absolute bottom-6 right-6 w-8 h-8 border-r-2 border-b-2 border-[var(--accent)]"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 0.4, scale: 1 }}
@@ -73,7 +69,7 @@ function Decorative() {
       />
 
       {/* Nubes Verdes - Ambient Aurora (Amorphous Clouds) */}
-      <motion.div
+      <m.div
         className="absolute top-[10%] right-[5%] w-[60vw] h-[35vw] max-w-[800px] max-h-[500px] pointer-events-none mix-blend-screen"
         style={{
           background: "radial-gradient(ellipse at center, rgba(16,185,129,0.18) 0%, transparent 70%)",
@@ -87,7 +83,7 @@ function Decorative() {
         }}
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
+      <m.div
         className="absolute bottom-[5%] left-[10%] w-[70vw] h-[40vw] max-w-[900px] max-h-[600px] pointer-events-none mix-blend-screen"
         style={{
           background: "radial-gradient(ellipse at center, rgba(4,120,87,0.15) 0%, transparent 70%)",
@@ -101,7 +97,7 @@ function Decorative() {
         }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
+      <m.div
         className="absolute top-[30%] left-[30%] w-[50vw] h-[25vw] max-w-[700px] max-h-[400px] pointer-events-none mix-blend-screen"
         style={{
           background: "radial-gradient(ellipse at center, rgba(20,184,166,0.12) 0%, transparent 70%)",
@@ -186,7 +182,7 @@ export function Hero({ dict }: HeroProps) {
       <Decorative />
 
       {/* ── Content ── */}
-      <motion.div
+      <m.div
         className="relative flex h-[100vh] shrink-0 flex-col px-6 md:px-12"
         style={{
           paddingTop: `${HEADER_H + 20}px`,
@@ -196,7 +192,7 @@ export function Hero({ dict }: HeroProps) {
         }}
       >
         {/* Coordinates & Dots — top right */}
-        <motion.div
+        <m.div
           className="flex flex-col items-end gap-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -207,7 +203,7 @@ export function Hero({ dict }: HeroProps) {
             <div>LON: 77.64 W</div>
           </div>
           
-          <motion.div
+          <m.div
             className="grid grid-cols-5 gap-2.5"
             animate={{ y: [0, -7, 0], opacity: [0.12, 0.19, 0.12] }}
             transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
@@ -215,15 +211,15 @@ export function Hero({ dict }: HeroProps) {
             {Array.from({ length: 25 }).map((_, i) => (
               <div key={i} className="w-1 h-1 rounded-full bg-[var(--text-inverse)]" />
             ))}
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
 
         {/* ── Headline — fills remaining space, anchored to bottom ── */}
         <div className="flex-1 flex flex-col justify-center pb-[12vh]">
 
           {/* We build */}
           <div className="overflow-hidden">
-            <motion.h1
+            <m.h1
               className="block font-display text-[var(--text-inverse)] uppercase"
               style={{ ...textBase, lineHeight: LH_MAIN }}
               initial={{ y: "106%" }}
@@ -231,12 +227,12 @@ export function Hero({ dict }: HeroProps) {
               transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             >
               {dict?.line1 || "We build"}
-            </motion.h1>
+            </m.h1>
           </div>
 
           {/* Digital */}
           <div className="overflow-hidden">
-            <motion.h1
+            <m.h1
               className="block font-display text-[var(--text-inverse)] uppercase"
               style={{ ...textBase, lineHeight: LH_MAIN }}
               initial={{ y: "106%" }}
@@ -244,12 +240,12 @@ export function Hero({ dict }: HeroProps) {
               transition={{ duration: 1, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
             >
               {dict?.line2 || "Digital"}
-            </motion.h1>
+            </m.h1>
           </div>
 
           {/* Products. — solid accent, z-10 so echo 1 goes behind */}
           <div className="overflow-hidden relative z-10">
-            <motion.h1
+            <m.h1
               className="block font-display text-[var(--accent)] uppercase"
               style={{ ...textBase, lineHeight: LH_MAIN }}
               initial={{ y: "106%" }}
@@ -257,11 +253,11 @@ export function Hero({ dict }: HeroProps) {
               transition={{ duration: 1, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
             >
               {dict?.line3 || "Products."}
-            </motion.h1>
+            </m.h1>
           </div>
 
           {/* Ghost echoes — h-0 so they don't consume space, bleed downward */}
-          <motion.div
+          <m.div
             aria-hidden="true"
             className="h-0"
             initial={{ opacity: 0 }}
@@ -283,11 +279,11 @@ export function Hero({ dict }: HeroProps) {
                 {dict?.line3 || "Products."}
               </span>
             ))}
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Services — bottom right */}
-        <motion.div
+        <m.div
           className="flex justify-end pt-4 pb-24"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -305,8 +301,8 @@ export function Hero({ dict }: HeroProps) {
               </span>
             ))}
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
 
       {/* Diagonal cut — 80px below viewport fold, visible on scroll */}
       <div
@@ -315,7 +311,7 @@ export function Hero({ dict }: HeroProps) {
       />
 
       {/* Scroll line */}
-      <motion.div
+      <m.div
         className="absolute bottom-24 left-1/2 -translate-x-1/2 z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -323,14 +319,14 @@ export function Hero({ dict }: HeroProps) {
         aria-hidden="true"
       >
         <div className="relative h-8 w-px overflow-hidden">
-          <motion.div
+          <m.div
             className="absolute inset-x-0 bg-[var(--accent)] opacity-60"
             animate={{ top: ["-100%", "100%"] }}
             transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
             style={{ height: "50%" }}
           />
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

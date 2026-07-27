@@ -9,19 +9,23 @@ import { Preloader } from "@/components/ui/Preloader";
 const bricolageGrotesque = Bricolage_Grotesque({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 import { defaultMetadata } from "@/lib/seo";
 import { getDictionary, Locale } from "@/lib/dictionaries";
 
 export const metadata: Metadata = defaultMetadata;
+
+import { Providers } from "@/app/providers";
 
 export default async function RootLayout({
   children,
@@ -39,11 +43,13 @@ export default async function RootLayout({
       className={`${bricolageGrotesque.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Preloader dict={dict.preloader} />
-        <ScrollProgress />
-        <Header dict={dict.header} lang={lang} />
-        <main className="flex-1">{children}</main>
-        <Footer dict={dict} />
+        <Providers>
+          <Preloader dict={dict.preloader} />
+          <ScrollProgress />
+          <Header dict={dict.header} lang={lang} />
+          <main className="flex-1">{children}</main>
+          <Footer dict={dict} />
+        </Providers>
       </body>
     </html>
   );
