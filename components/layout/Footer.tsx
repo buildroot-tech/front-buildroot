@@ -28,7 +28,7 @@ const contactInfo = {
   country: "Colombia",
   zip: "524060",
   phone: "310 425 2781",
-  email: "hello@buildroot.tech",
+  email: "info@buildroot.co",
 };
 
 const routeColors: Record<
@@ -368,6 +368,15 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                   </div>
                 </div>
 
+                {/* Email */}
+                <a
+                  href={`mailto:${contactInfo.email}`}
+                  className="group flex items-center shrink-0 ml-4 md:ml-6"
+                >
+                  <span className="font-display font-light text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] tracking-tighter group-hover:bg-[var(--text-primary)] group-hover:text-[var(--bg-primary)] transition-colors duration-300 py-1 lowercase">
+                    {contactInfo.email}
+                  </span>
+                </a>
               </div>
             </div>
           </div>
