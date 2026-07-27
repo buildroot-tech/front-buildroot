@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import {
   ArrowUpRight,
   Plus,
@@ -81,7 +81,7 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
       {/* Expandable Accordion Drawer Content */}
       <AnimatePresence>
         {isExpanded && (
-          <motion.div
+          <m.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -162,7 +162,7 @@ export function ProjectRow({ project, onSelectCaseStudy }: ProjectRowProps) {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

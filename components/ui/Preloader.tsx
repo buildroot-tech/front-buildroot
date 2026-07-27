@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { ScrambleText } from "@/components/ui/TextScrambler";
 
 interface PreloaderProps {
@@ -92,7 +92,7 @@ export function Preloader({ dict }: PreloaderProps) {
   return (
     <AnimatePresence>
       {isLoading && (
-        <motion.div
+        <m.div
           key="preloader"
           initial={{ y: 0 }}
           exit={{ y: "-100%" }}
@@ -102,22 +102,22 @@ export function Preloader({ dict }: PreloaderProps) {
           {/* Main Logo Center */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
             <div className="overflow-hidden">
-              <motion.div
+              <m.div
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
                 className="font-mono text-5xl md:text-7xl lg:text-[6rem] font-light tracking-tighter flex items-center"
               >
                 <ScrambleText text="buildroot" speed={60} trigger="mount" />
-                <motion.span
+                <m.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: [0, 1, 0] }}
                   transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
                   className="inline-block scale-y-75 origin-bottom ml-1"
                 >
                   _
-                </motion.span>
-              </motion.div>
+                </m.span>
+              </m.div>
             </div>
           </div>
 
@@ -127,7 +127,7 @@ export function Preloader({ dict }: PreloaderProps) {
               <AnimatePresence>
                 {floatingItems.map((item) => (
                   activeItems.includes(item.id) && (
-                    <motion.div
+                    <m.div
                       key={`loc-${item.id}`}
                       className={`absolute flex flex-col font-mono text-[10px] md:text-xs font-light uppercase tracking-[0.2em] opacity-70 ${item.className}`}
                       initial={{ opacity: 0.7 }}
@@ -137,13 +137,13 @@ export function Preloader({ dict }: PreloaderProps) {
                     >
                       <span><ScrambleText text={item.line1} speed={25} trigger="mount" /></span>
                       <span><ScrambleText text={item.line2} speed={25} trigger="mount" /></span>
-                    </motion.div>
+                    </m.div>
                   )
                 ))}
               </AnimatePresence>
             </div>
           )}
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

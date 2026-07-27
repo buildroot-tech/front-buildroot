@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Code2, Lightbulb, Rocket } from "lucide-react";
 
 const services = [
@@ -49,7 +49,7 @@ export function Services() {
     <section className="section-generous bg-[var(--bg-primary)]">
       <div className="container-padded">
         {/* Header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -59,10 +59,10 @@ export function Services() {
             What We Do
           </p>
           <h2 className="heading text-h2 mt-4">Services</h2>
-        </motion.div>
+        </m.div>
 
         {/* Grid */}
-        <motion.div
+        <m.div
           className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
           variants={container}
           initial="hidden"
@@ -72,7 +72,7 @@ export function Services() {
           {services.map((service) => {
             const Icon = service.icon;
             return (
-              <motion.div
+              <m.div
                 key={service.title}
                 className="brutalist-card p-8"
                 variants={item}
@@ -94,10 +94,10 @@ export function Services() {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

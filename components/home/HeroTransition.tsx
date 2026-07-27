@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useScroll, useTransform, m } from "framer-motion";
 import { useRef } from "react";
 
 export function HeroTransition() {
@@ -21,7 +21,7 @@ export function HeroTransition() {
 
   return (
     <div ref={ref} className="relative h-0">
-      <motion.div
+      <m.div
         className="absolute -top-px left-0 right-0 h-24 bg-[var(--bg-primary)]"
         style={{
           clipPath,

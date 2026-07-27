@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ProjectsGrid } from "@/components/work/ProjectsGrid";
 import { Terminal } from "lucide-react";
 import { ScrambleText } from "@/components/ui/TextScrambler";
@@ -50,7 +50,7 @@ export function WorkSection() {
       {/* Spacious Edge-to-Edge Container */}
       <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-8 md:px-12">
         {/* Section Header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -75,7 +75,7 @@ export function WorkSection() {
               precision, scalability, and design craftsmanship.
             </p>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Projects Grid */}
         <div className="mt-4">

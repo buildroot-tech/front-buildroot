@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import {
   ScrambleText,
   ScrambleTextHandle,
@@ -217,19 +217,19 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
-            <motion.span
+            <m.span
               className="block h-0.5 w-6"
               style={{ background: textColor } as React.CSSProperties}
               animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.2 }}
             />
-            <motion.span
+            <m.span
               className="block h-0.5 w-6"
               style={{ background: textColor } as React.CSSProperties}
               animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
               transition={{ duration: 0.2 }}
             />
-            <motion.span
+            <m.span
               className="block h-0.5 w-6"
               style={{ background: textColor } as React.CSSProperties}
               animate={
@@ -244,7 +244,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -277,7 +277,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
                 {lang === "en" ? "ES" : "EN"}
               </Link>
             </nav>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

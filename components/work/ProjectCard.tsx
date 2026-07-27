@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowUpRight, Terminal } from "lucide-react";
 import { type Project } from "@/types";
 import { ScrambleText } from "@/components/ui/TextScrambler";
@@ -20,7 +20,7 @@ export function ProjectCard({
   const primaryMetric = project.metrics[0];
 
   return (
-    <motion.article
+    <m.article
       layout
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
@@ -111,6 +111,6 @@ export function ProjectCard({
           </button>
         </div>
       </div>
-    </motion.article>
+    </m.article>
   );
 }

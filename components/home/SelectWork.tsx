@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { ScrambleText } from "@/components/ui/TextScrambler";
@@ -80,7 +80,7 @@ export function SelectWork({ dict }: SelectWorkProps) {
                           
                           <AnimatePresence>
                             {hoveredProject === project.id && i === insertIndex && (
-                              <motion.div
+                              <m.div
                                 initial={{ width: 0, opacity: 0, margin: "0px 0px" }}
                                 animate={{ width: imageWidth, opacity: 1, margin: "0px 16px" }}
                                 exit={{ width: 0, opacity: 0, margin: "0px 0px" }}
@@ -92,7 +92,7 @@ export function SelectWork({ dict }: SelectWorkProps) {
                                 
                                 {/* Black overlay for contrast */}
                                 <div className="absolute inset-0 bg-black/10 mix-blend-multiply pointer-events-none" />
-                              </motion.div>
+                              </m.div>
                             )}
                           </AnimatePresence>
                         </span>

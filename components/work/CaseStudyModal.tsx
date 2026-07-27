@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import {
   X,
   ExternalLink,
@@ -43,7 +43,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
           aria-labelledby="case-study-title"
         >
           {/* Dark Overlay */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -53,7 +53,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
           />
 
           {/* Terminal Window Container */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.96, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 15 }}
@@ -225,7 +225,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
                 </button>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       )}
     </AnimatePresence>
