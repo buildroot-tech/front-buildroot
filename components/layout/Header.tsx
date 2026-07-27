@@ -195,21 +195,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
             />
           </Link>
 
-          <Link
-            className="group relative font-mono text-3xl md:text-2xl font-light transition-colors hover:text-[var(--accent)] ml-6"
-            style={{ color: textColor }}
-            href={lang === "en" ? `/es${normalizedPathname === "/" ? "" : normalizedPathname}` : normalizedPathname}
-            onMouseEnter={() => langRef.current?.scramble()}
-            onMouseLeave={() => langRef.current?.reset()}
-          >
-            <ScrambleText
-              ref={langRef}
-              text={lang === "en" ? "ES" : "EN"}
-              speed={68}
-              trigger="mount"
-              key={`lang-${pathname}`}
-            />
-          </Link>
+
 
           {/* Mobile Burger */}
           <button
