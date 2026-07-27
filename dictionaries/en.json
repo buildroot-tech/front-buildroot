@@ -9,6 +9,8 @@
   },
   "footer": {
     "menu": "Menu",
+    "elsewhere": "Elsewhere",
+    "all_rights": "All rights reserved.",
     "legal": {
       "privacy": "privacy",
       "cookies": "cookies",
@@ -36,27 +38,27 @@
         "requirements": {
           "number": "01",
           "title": "REQUIREMENTS",
-          "desc": "We map the problem, define the exact scope, and align perfectly on your goals. No guessing, just extreme clarity."
+          "description": "We map the problem, define the exact scope, and align perfectly on your goals. No guessing, just extreme clarity."
         },
         "design": {
           "number": "02",
           "title": "DESIGN",
-          "desc": "Crafting intuitive interfaces and aesthetics that communicate your brand's unique edge, backed by strict system design."
+          "description": "Crafting intuitive and powerful interfaces that communicate your brand's unique edge, backed by strict system design."
         },
         "build": {
           "number": "03",
           "title": "BUILD",
-          "desc": "Iterative, high-velocity development. We build robust, scalable architectures for maximum performance."
+          "description": "Iterative, high-velocity development. We build robust, scalable architectures for maximum performance."
         },
         "testing": {
           "number": "04",
           "title": "TESTING",
-          "desc": "Rigorous quality, performance, and security validation to ensure the product is unbreakable."
+          "description": "Rigorous quality, performance, and security validation to ensure the product is unbreakable."
         },
         "production": {
           "number": "05",
           "title": "GO LIVE",
-          "desc": "Deploy and scale with absolute confidence. Your product hits the market flawlessly and ready to dominate."
+          "description": "Deploy and scale with absolute confidence. Your product hits the market flawlessly and ready to dominate."
         }
       }
     },
