@@ -13,6 +13,13 @@ description: Core project instructions for buildroot_ website
 - **Mode**: Light mode, dark hero (blue)
 - **Design Reference / Inspiration**: https://locomotive.ca/en (Massive typography, smooth scroll, high-contrast blocky layout, premium micro-interactions, brutalist-but-clean). ALL agents must use this reference for UI/UX and animation decisions.
 
+## Impeccable Design Principles
+
+All UI code must adhere to the *Impeccable* AI design framework (impeccable.style):
+- **`/polish`**: Strip "AI slop" (generic borders, artificial shadows, soft grays). Use harsh, deliberate contrasts.
+- **`/distill`**: Simplify component soup. Rely on negative space (whitespace) and massive typography for visual hierarchy rather than nested cards or pills.
+- **`/clarify`**: Reduce noise. Do not clutter the interface with unneeded elements or generic icons. Keep it raw, typographic, and highly functional.
+
 ## Tech Stack (Non-negotiable)
 
 | Layer      | Technology              |
