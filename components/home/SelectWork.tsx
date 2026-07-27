@@ -66,7 +66,7 @@ export function SelectWork({ dict }: SelectWorkProps) {
                 
                 {/* Title with Inline Image */}
                 <div className="px-6 md:px-12 shrink-0 overflow-hidden">
-                  <h3 className="flex items-center justify-center font-display text-4xl sm:text-5xl md:text-5xl lg:text-[4rem] font-light uppercase tracking-tighter text-[var(--text-primary)] text-center whitespace-nowrap">
+                  <h3 className="flex items-center justify-center font-display text-4xl sm:text-5xl md:text-5xl lg:text-[4rem] font-light capitalize tracking-tighter text-[var(--text-primary)] text-center whitespace-nowrap">
                     {project.title.split(" ").map((word, i, arr) => {
                       const isSingleWord = arr.length === 1;
                       // If 1 word, insert at the end (index 0). If >1, insert in the middle.
@@ -122,8 +122,9 @@ export function SelectWork({ dict }: SelectWorkProps) {
                 <h3 className="flex items-center justify-center font-display text-4xl sm:text-5xl md:text-5xl lg:text-[4rem] font-light capitalize tracking-tighter transition-colors duration-500 text-center whitespace-nowrap text-[var(--text-primary)]">
                   <span className="w-[1ch] text-center inline-block">{hoveredCTA ? ctaSymbol : ""}</span>
                   <span className="mx-2 md:mx-4 flex items-center gap-[0.25em]">
-                    <ScrambleText text="All" trigger="mount" active={hoveredCTA} speed={40} />
-                    <ScrambleText text="Works" trigger="mount" active={hoveredCTA} speed={40} />
+                    {((dict?.home?.work?.all_works || "All Works") as string).split(" ").map((w, idx) => (
+                      <ScrambleText key={idx} text={w} trigger="mount" active={hoveredCTA} speed={40} />
+                    ))}
                   </span>
                   <span className="w-[1ch] text-center inline-block">{hoveredCTA ? ctaSymbol : ""}</span>
                 </h3>

@@ -66,7 +66,8 @@
     "work": {
       "title": "Selected Work",
       "subtitle": "Recent projects and digital experiences.",
-      "view_project": "View Project"
+      "view_project": "View Project",
+      "all_works": "All Works"
     },
     "cta": {
       "manifesto": "We build high-performance technology and design unconventional solutions. We exist to help bold brands break out of the ordinary. Every line of code and every pixel is crafted to elevate your digital presence.",

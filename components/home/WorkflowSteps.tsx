@@ -75,10 +75,10 @@ export function WorkflowSteps({ dict }: WorkflowStepsProps) {
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <p className="font-mono text-sm uppercase tracking-[0.2em] text-[var(--accent)] mb-4">
-                {dict?.home?.process?.subtitle || "How We Work"}
+                {dict?.subtitle || "How We Work"}
               </p>
               <h2 className="font-display text-[clamp(2.5rem,6vw,8rem)] font-light uppercase leading-none tracking-tighter">
-                {dict?.home?.process?.title || "Our Process"}
+                {dict?.title || "Our Process"}
               </h2>
             </m.div>
           </div>
@@ -140,10 +140,10 @@ function StepCard({ step, index, scrollYProgress, dict }: any) {
         </div>
         <div>
           <h3 className="font-display text-3xl font-bold uppercase tracking-tight sm:text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">
-            {step.dictKey && dict?.home?.process?.steps?.[step.dictKey]?.title ? dict.home.process.steps[step.dictKey].title : step.title}
+            {step.dictKey && dict?.steps?.[step.dictKey]?.title ? dict.steps[step.dictKey].title : step.title}
           </h3>
           <p className="font-mono text-base md:text-xl lg:text-2xl leading-relaxed opacity-90">
-            {step.dictKey && dict?.home?.process?.steps?.[step.dictKey]?.description ? dict.home.process.steps[step.dictKey].description : step.description}
+            {step.dictKey && dict?.steps?.[step.dictKey]?.description ? dict.steps[step.dictKey].description : step.description}
           </p>
         </div>
       </div>

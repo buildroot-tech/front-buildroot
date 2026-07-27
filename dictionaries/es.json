@@ -66,7 +66,8 @@
     "work": {
       "title": "Trabajo Destacado",
       "subtitle": "Proyectos recientes y experiencias digitales.",
-      "view_project": "Ver Proyecto"
+      "view_project": "Ver Proyecto",
+      "all_works": "Todos los Proyectos"
     },
     "cta": {
       "manifesto": "Construimos tecnología de alto rendimiento y diseñamos soluciones no convencionales. Existimos para ayudar a marcas audaces a salir de lo ordinario. Cada línea de código y cada píxel está diseñado para elevar tu presencia digital.",
