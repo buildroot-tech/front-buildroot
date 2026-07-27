@@ -334,10 +334,10 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                 </span>
               </div>
 
-              {/* Row 3: Phone, Grid, Email */}
+              {/* Row 3: Phone, Grid */}
               <div className="flex items-center justify-end w-full py-[clamp(0.1rem,0.3vw,0.4rem)] gap-2 md:gap-3">
                 <span className="font-display font-light text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] capitalize tracking-tighter shrink-0">
-                  Phone
+                  {dict?.footer?.phone || "Phone"}
                 </span>
 
                 {/* Phone Grid */}
@@ -368,15 +368,6 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                   </div>
                 </div>
 
-                {/* Email */}
-                <a
-                  href={`mailto:${contactInfo.email}`}
-                  className="group flex items-center shrink-0"
-                >
-                  <span className="font-display font-light text-[var(--text-primary)] text-[clamp(2.2rem,3.8vw,5rem)] leading-[0.85] tracking-tighter group-hover:bg-[var(--text-primary)] group-hover:text-[var(--bg-primary)] transition-colors duration-300 py-1 lowercase">
-                    {contactInfo.email}
-                  </span>
-                </a>
               </div>
             </div>
           </div>
