@@ -33,6 +33,7 @@
       "services": ["Sistemas", "Producto", "Infraestructura"]
     },
     "process": {
+      "subtitle": "Cómo trabajamos",
       "title": "NUESTRO PROCESO",
       "steps": {
         "requirements": {
@@ -63,7 +64,7 @@
       }
     },
     "work": {
-      "title": "TRABAJO DESTACADO",
+      "title": "Trabajo Destacado",
       "subtitle": "Proyectos recientes y experiencias digitales.",
       "view_project": "Ver Proyecto"
     },
