@@ -60,7 +60,7 @@ export function Ticker({ baseVelocity = -1, text }: TickerProps) {
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
 
   return (
-    <div ref={ref} className="w-full overflow-hidden flex flex-nowrap pt-12 md:pt-20 pb-24 md:pb-32 bg-[var(--bg-primary)] perspective-1000">
+    <div ref={ref} className="w-full overflow-hidden flex flex-nowrap pt-20 md:pt-32 pb-32 md:pb-48 bg-[var(--bg-primary)] perspective-1000">
       <m.div 
         className="w-full flex"
         style={{

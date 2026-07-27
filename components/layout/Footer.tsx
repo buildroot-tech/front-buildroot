@@ -95,7 +95,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
     >
       <div className="flex flex-col">
         {/* ── UPPER HALF ── */}
-        <div className="px-6 md:px-12 py-6 md:py-8">
+        <div className="px-6 md:px-12 pt-12 md:pt-20 pb-6 md:pb-8">
           <div className="w-full mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
               {/* Navigation & Legal (2 columns inside Pages) */}
