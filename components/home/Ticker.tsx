@@ -35,7 +35,9 @@ export function Ticker({ baseVelocity = -1, text }: TickerProps) {
   const directionFactor = useRef<number>(1);
   
   useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * baseVelocity * (delta / 20);
+    // Delta is in milliseconds. delta / 1000 gives seconds.
+    // Base velocity of 1 means 1% per second.
+    let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
     if (velocityFactor.get() < 0) {
       directionFactor.current = -1;
