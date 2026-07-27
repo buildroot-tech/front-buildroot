@@ -68,7 +68,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
     { href: "/contact", label: dict?.header?.contact || "lets talk" },
     { 
       href: pathname.startsWith("/es") ? normalizedPathname : `/es${normalizedPathname === "/" ? "" : normalizedPathname}`, 
-      label: pathname.startsWith("/es") ? "EN" : "ES" 
+      label: pathname.startsWith("/es") ? "Inglés" : "Spanish" 
     },
   ];
 
