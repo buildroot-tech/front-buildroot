@@ -39,7 +39,7 @@ export function SelectWork({ dict }: SelectWorkProps) {
 
   return (
     <section className="relative w-full bg-[var(--bg-primary)] py-24 md:py-40 overflow-hidden">
-      <div className="container-padded">
+      <div className="w-full px-6 md:px-12">
         {/* Header */}
         <div className="mb-2 md:mb-4">
           <h2 className="heading text-h3 capitalize">{dict?.home?.work?.title || "Featured Projects"}</h2>
