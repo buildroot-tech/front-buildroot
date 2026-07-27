@@ -49,16 +49,37 @@ export function Ticker({ baseVelocity = -1, text }: TickerProps) {
     baseX.set(baseX.get() + moveBy);
   });
 
+  // Scroll linked effects for fading and scaling
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
+
   return (
-    <div className="w-full overflow-hidden flex flex-nowrap pb-12 md:pb-24 border-b border-[var(--border)] bg-[var(--bg-primary)]">
-      <m.div
-        className="font-display font-medium uppercase text-[clamp(4rem,10vw,10rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)]"
-        style={{ x }}
+    <div ref={ref} className="w-full overflow-hidden flex flex-nowrap pb-12 md:pb-24 border-b border-[var(--border)] bg-[var(--bg-primary)] perspective-1000">
+      <m.div 
+        className="w-full flex"
+        style={{
+          scale,
+          opacity,
+          // Creates a fade effect on left/right and top/bottom
+          maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+          WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+        }}
       >
-        <span className="block mr-8">{text}</span>
-        <span className="block mr-8">{text}</span>
-        <span className="block mr-8">{text}</span>
-        <span className="block mr-8">{text}</span>
+        <m.div
+          className="font-display font-medium uppercase text-[clamp(4rem,10vw,10rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)]"
+          style={{ x }}
+        >
+          <span className="block mr-8">{text}</span>
+          <span className="block mr-8">{text}</span>
+          <span className="block mr-8">{text}</span>
+          <span className="block mr-8">{text}</span>
+        </m.div>
       </m.div>
     </div>
   );
