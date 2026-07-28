@@ -17,7 +17,7 @@ interface TickerProps {
   secondaryText?: string;
 }
 
-export function Ticker({ baseVelocity = -1, text, secondaryText }: TickerProps) {
+export function Ticker({ baseVelocity = -0.3, text, secondaryText }: TickerProps) {
   const baseX = useMotionValue(0);
   const baseXReverse = useMotionValue(0);
   
