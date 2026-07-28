@@ -125,7 +125,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
               <span key={link.href} className="flex items-center">
                 <Link
                   href={link.href}
-                  className="group relative font-mono text-3xl md:text-2xl font-light transition-colors hover:text-[var(--accent)]"
+                  className="group relative font-mono text-3xl md:text-2xl font-medium transition-colors hover:text-[var(--accent)]"
                   style={
                     {
                       color: textColor,
@@ -153,11 +153,10 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
                 </Link>
                 {i < navLinks.length - 1 && (
                   <span
-                    className="text-3xl md:text-2xl font-light"
+                    className="text-3xl md:text-2xl font-medium"
                     style={
                       {
                         color: textColor,
-                        opacity: 0.4,
                       } as React.CSSProperties
                     }
                   >
@@ -171,7 +170,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
           {/* Contact link */}
           <Link
             href="/contact"
-            className="group relative font-mono text-3xl md:text-2xl font-light transition-colors hover:text-[var(--accent)] ml-8"
+            className="group relative font-mono text-3xl md:text-2xl font-medium transition-colors hover:text-[var(--accent)] ml-8"
             style={
               {
                 color: textColor,
@@ -242,7 +241,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-mono text-4xl font-light tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
+                  className="font-mono text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
@@ -250,14 +249,14 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
               ))}
               <Link
                 href="/contact"
-                className="font-mono text-4xl font-light tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
+                className="font-mono text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
                 onClick={() => setMobileOpen(false)}
               >
                 {dict?.contact || "let's talk"}
               </Link>
               <Link
                 href={lang === "en" ? `/es${normalizedPathname === "/" ? "" : normalizedPathname}` : normalizedPathname}
-                className="font-mono text-4xl font-light tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)] mt-8"
+                className="font-mono text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)] mt-8"
                 onClick={() => setMobileOpen(false)}
               >
                 {lang === "en" ? "ES" : "EN"}
