@@ -81,7 +81,7 @@ export function Ticker({ baseVelocity = -1, text }: TickerProps) {
       />
       
       <m.div 
-        className="w-full flex flex-col items-center justify-center gap-2 md:gap-4 relative z-0"
+        className="w-full flex flex-col items-center justify-center gap-8 md:gap-14 relative z-0"
         style={{
           scale,
           opacity,
@@ -95,7 +95,7 @@ export function Ticker({ baseVelocity = -1, text }: TickerProps) {
         {/* Top Ribbon (Smaller, Reversed, Tilted Back) */}
         <m.div
           className="font-display font-medium uppercase text-[clamp(2rem,5vw,4.5rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)] opacity-30 origin-bottom"
-          style={{ x: xReverse, rotateX: 45, z: -50 }}
+          style={{ x: xReverse, rotateX: 20, z: -50 }}
         >
           <RepeatedText />
         </m.div>
@@ -111,7 +111,7 @@ export function Ticker({ baseVelocity = -1, text }: TickerProps) {
         {/* Bottom Ribbon (Smaller, Reversed, Tilted Back) */}
         <m.div
           className="font-display font-medium uppercase text-[clamp(2rem,5vw,4.5rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)] opacity-30 origin-top"
-          style={{ x: xReverse, rotateX: -45, z: -50 }}
+          style={{ x: xReverse, rotateX: -20, z: -50 }}
         >
           <RepeatedText />
         </m.div>
