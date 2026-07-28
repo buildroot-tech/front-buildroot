@@ -18,6 +18,8 @@ interface TickerProps {
 
 export function Ticker({ baseVelocity = -1, text }: TickerProps) {
   const baseX = useMotionValue(0);
+  const baseXReverse = useMotionValue(0);
+  
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
   const smoothVelocity = useSpring(scrollVelocity, {
@@ -29,14 +31,12 @@ export function Ticker({ baseVelocity = -1, text }: TickerProps) {
   });
 
   // wrap between -20% and -45% to keep it seamless.
-  // With 4 duplicated spans, this keeps the animation visually infinite.
   const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
+  const xReverse = useTransform(baseXReverse, (v) => `${wrap(-20, -45, v)}%`);
 
   const directionFactor = useRef<number>(1);
   
   useAnimationFrame((t, delta) => {
-    // Delta is in milliseconds. delta / 1000 gives seconds.
-    // Base velocity of 1 means 1% per second.
     let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
     if (velocityFactor.get() < 0) {
@@ -46,10 +46,12 @@ export function Ticker({ baseVelocity = -1, text }: TickerProps) {
     }
 
     moveBy += directionFactor.current * moveBy * velocityFactor.get();
+    
     baseX.set(baseX.get() + moveBy);
+    // Reverse moves in the opposite direction
+    baseXReverse.set(baseXReverse.get() - moveBy);
   });
 
-  // Scroll linked effects for fading and scaling
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -59,26 +61,50 @@ export function Ticker({ baseVelocity = -1, text }: TickerProps) {
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
 
+  const RepeatedText = () => (
+    <>
+      <span className="block mr-8">{text}</span>
+      <span className="block mr-8">{text}</span>
+      <span className="block mr-8">{text}</span>
+      <span className="block mr-8">{text}</span>
+    </>
+  );
+
   return (
-    <div ref={ref} className="w-full overflow-hidden flex flex-nowrap pt-[clamp(6rem,12vw,16rem)] pb-[clamp(6rem,12vw,16rem)] bg-[var(--bg-primary)] perspective-1000">
+    <div ref={ref} className="w-full overflow-hidden flex flex-nowrap pt-[clamp(6rem,12vw,16rem)] pb-[clamp(6rem,12vw,16rem)] bg-[var(--bg-primary)]">
       <m.div 
-        className="w-full flex"
+        className="w-full flex flex-col items-center justify-center gap-2 md:gap-4"
         style={{
           scale,
           opacity,
-          // Creates a fade effect on left/right and top/bottom
-          maskImage: "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
-          WebkitMaskImage: "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+          perspective: "1200px",
+          transformStyle: "preserve-3d",
+          maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+          WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
         }}
       >
+        {/* Top Ribbon (Smaller, Reversed, Tilted Back) */}
         <m.div
-          className="font-display font-medium uppercase text-[clamp(4rem,10vw,10rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)]"
-          style={{ x }}
+          className="font-display font-medium uppercase text-[clamp(2rem,5vw,4.5rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)] opacity-30 origin-bottom"
+          style={{ x: xReverse, rotateX: 45, z: -50 }}
         >
-          <span className="block mr-8">{text}</span>
-          <span className="block mr-8">{text}</span>
-          <span className="block mr-8">{text}</span>
-          <span className="block mr-8">{text}</span>
+          <RepeatedText />
+        </m.div>
+
+        {/* Middle Ribbon (Main, Forward) */}
+        <m.div
+          className="font-display font-medium uppercase text-[clamp(4rem,10vw,10rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)] origin-center"
+          style={{ x, translateZ: 50 }}
+        >
+          <RepeatedText />
+        </m.div>
+
+        {/* Bottom Ribbon (Smaller, Reversed, Tilted Back) */}
+        <m.div
+          className="font-display font-medium uppercase text-[clamp(2rem,5vw,4.5rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)] opacity-30 origin-top"
+          style={{ x: xReverse, rotateX: -45, z: -50 }}
+        >
+          <RepeatedText />
         </m.div>
       </m.div>
     </div>
