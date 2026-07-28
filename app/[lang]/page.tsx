@@ -19,7 +19,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <WorkflowSteps dict={dict.home.process} />
       </section>
       <section id="work">
-        <SelectWork dict={dict} />
+        <SelectWork dict={dict.home.work} />
       </section>
       <section id="cta">
         <CTA dict={dict.home.cta} />

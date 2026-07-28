@@ -143,8 +143,10 @@ const SERVICES  = ["System", "Product", "Infrastructure"];
 /* ─────────────────────────────────────────────────────────
    Hero
 ───────────────────────────────────────────────────────── */
+import type { Dictionary } from "@/lib/dictionaries";
+
 interface HeroProps {
-  dict?: any;
+  dict?: Dictionary["home"]["hero"];
 }
 
 export function Hero({ dict }: HeroProps) {
