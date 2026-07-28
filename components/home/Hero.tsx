@@ -148,9 +148,9 @@ export function Hero({ dict }: HeroProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1, duration: 0.6 }}
         >
-          <div className="font-mono text-[10px] tracking-[0.2em] text-[var(--text-inverse)] opacity-60 leading-relaxed text-right">
-            <div>lat: 00.83 n</div>
-            <div>lon: 77.64 w</div>
+          <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-inverse)] opacity-60 leading-relaxed text-right">
+            <div>LAT: 00.83 N</div>
+            <div>LON: 77.64 W</div>
           </div>
           
           <m.div
@@ -170,7 +170,7 @@ export function Hero({ dict }: HeroProps) {
           {/* We build */}
           <div className="overflow-hidden">
             <m.h1
-              className="block font-display text-[var(--text-inverse)]"
+              className="block font-display text-[var(--text-inverse)] uppercase"
               style={{ ...textBase, lineHeight: LH_MAIN }}
               initial={{ y: "106%" }}
               animate={{ y: 0 }}
@@ -183,7 +183,7 @@ export function Hero({ dict }: HeroProps) {
           {/* Digital */}
           <div className="overflow-hidden">
             <m.h1
-              className="block font-display text-[var(--text-inverse)]"
+              className="block font-display text-[var(--text-inverse)] uppercase"
               style={{ ...textBase, lineHeight: LH_MAIN }}
               initial={{ y: "106%" }}
               animate={{ y: 0 }}
@@ -196,7 +196,7 @@ export function Hero({ dict }: HeroProps) {
           {/* Products. — solid accent, z-10 so echo 1 goes behind */}
           <div className="overflow-hidden relative z-10">
             <m.h1
-              className="block font-display text-[var(--accent)]"
+              className="block font-display text-[var(--accent)] uppercase"
               style={{ ...textBase, lineHeight: LH_MAIN }}
               initial={{ y: "106%" }}
               animate={{ y: 0 }}
@@ -217,7 +217,7 @@ export function Hero({ dict }: HeroProps) {
             {[0.16].map((opacity, i) => (
               <span
                 key={i}
-                className="block font-display"
+                className="block font-display uppercase"
                 style={{
                   ...textBase,
                   lineHeight: 0.60,
@@ -242,7 +242,7 @@ export function Hero({ dict }: HeroProps) {
           <div className="flex items-center gap-4">
             {(dict?.services || SERVICES).map((s: string, i: number) => (
               <span key={s} className="flex items-center gap-4">
-                <span className="font-mono text-[11px] tracking-[0.18em] text-[var(--text-inverse)] opacity-60">
+                <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--text-inverse)] opacity-60">
                   {s}
                 </span>
                 {i < (dict?.services || SERVICES).length - 1 && (

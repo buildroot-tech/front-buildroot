@@ -123,7 +123,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
               <span key={link.href} className="flex items-center">
                 <Link
                   href={link.href}
-                  className="group relative font-mono text-sm tracking-[0.1em] font-medium transition-colors hover:text-[var(--accent)]"
+                  className="group relative font-mono text-2xl tracking-[0.1em] font-medium transition-colors hover:text-[var(--accent)]"
                   style={
                     {
                       color: textColor,
@@ -155,7 +155,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
           {/* Contact link */}
           <Link
             href="/contact"
-            className="hidden md:inline-block group relative font-mono text-sm tracking-[0.1em] font-medium transition-colors hover:text-[var(--accent)]"
+            className="hidden md:inline-block group relative font-mono text-2xl tracking-[0.1em] font-medium transition-colors hover:text-[var(--accent)]"
             style={
               {
                 color: textColor,
