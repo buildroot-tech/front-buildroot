@@ -118,7 +118,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
           </Link>
 
           {/* Center nav */}
-          <nav className="hidden items-center gap-8 md:flex flex-1 justify-center overflow-hidden">
+          <nav className="hidden items-center gap-3 md:flex md:ml-auto md:mr-16 overflow-hidden">
             {navLinks.map((link, i) => (
               <span key={link.href} className="flex items-center">
                 <Link
@@ -148,6 +148,14 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
                     className={`absolute -bottom-2 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${pathname === link.href ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
                   />
                 </Link>
+                {i < navLinks.length - 1 && (
+                  <span
+                    className="font-mono text-2xl font-medium"
+                    style={{ color: textColor }}
+                  >
+                    ,
+                  </span>
+                )}
               </span>
             ))}
           </nav>
