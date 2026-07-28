@@ -148,7 +148,7 @@ export function Hero({ dict }: HeroProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1, duration: 0.6 }}
         >
-          <div className="font-mono text-[8px] uppercase tracking-[0.2em] text-[var(--text-inverse)] opacity-60 leading-relaxed text-right">
+          <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-inverse)] opacity-60 leading-relaxed text-right">
             <div>LAT: 00.83 N</div>
             <div>LON: 77.64 W</div>
           </div>
@@ -242,7 +242,7 @@ export function Hero({ dict }: HeroProps) {
           <div className="flex items-center gap-4">
             {(dict?.services || SERVICES).map((s: string, i: number) => (
               <span key={s} className="flex items-center gap-4">
-                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--text-inverse)] opacity-35">
+                <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--text-inverse)] opacity-60">
                   {s}
                 </span>
                 {i < (dict?.services || SERVICES).length - 1 && (
