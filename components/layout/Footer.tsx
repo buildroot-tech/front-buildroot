@@ -6,8 +6,10 @@ import { m } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ScrambleText } from "@/components/ui/TextScrambler";
 
+import type { Dictionary } from "@/lib/dictionaries";
+
 interface FooterProps {
-  dict?: any;
+  dict?: Dictionary;
 }
 
 const socialLinks = [
@@ -16,11 +18,13 @@ const socialLinks = [
   { href: "https://linkedin.com/company/buildroot", label: "linkedin" },
 ];
 
+/*
 const legalLinks = [
   { href: "/privacy", label: "privacy" },
   { href: "/cookies", label: "cookies" },
   { href: "/newsletter", label: "newsletter" },
 ];
+*/
 
 const contactInfo = {
   address: "Cl.7 Este",

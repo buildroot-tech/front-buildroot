@@ -8,10 +8,10 @@ import {
   ScrambleText,
   ScrambleTextHandle,
 } from "@/components/ui/TextScrambler";
-import { useRouter } from "next/navigation";
+import type { Dictionary } from "@/lib/dictionaries";
 
 interface HeaderProps {
-  dict?: any;
+  dict?: Dictionary["header"];
   lang?: string;
 }
 
@@ -31,7 +31,6 @@ const HEADER_H = 80;
 
 export function Header({ dict, lang = "en" }: HeaderProps) {
   const pathname = usePathname();
-  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
 
@@ -48,7 +47,6 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
   const logoRef = useRef<ScrambleTextHandle>(null);
   const navRefs = useRef<Map<string, ScrambleTextHandle>>(new Map());
   const contactRef = useRef<ScrambleTextHandle>(null);
-  const langRef = useRef<ScrambleTextHandle>(null);
 
   // Home page: detect when scrolled past hero
   useEffect(() => {
@@ -64,7 +62,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
     window.addEventListener("scroll", check, { passive: true });
     check();
     return () => window.removeEventListener("scroll", check);
-  }, [pathname]);
+  }, [normalizedPathname]);
 
   const isHome = normalizedPathname === "/";
   const effectiveScrolledPastHero = isHome ? scrolledPastHero : false;

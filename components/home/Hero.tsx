@@ -10,46 +10,38 @@ import { useRef } from "react";
 ───────────────────────────────────────────────────────── */
 function InterweavingLines() {
   const down = [
-    { x1: "-20%", y1: "0%",  x2: "60%",  y2: "100%", d: 28, dl: 0   },
-    { x1: "0%",   y1: "0%",  x2: "80%",  y2: "100%", d: 34, dl: -6  },
-    { x1: "20%",  y1: "0%",  x2: "100%", y2: "100%", d: 30, dl: -12 },
-    { x1: "40%",  y1: "0%",  x2: "120%", y2: "100%", d: 36, dl: -3  },
-    { x1: "60%",  y1: "0%",  x2: "140%", y2: "100%", d: 26, dl: -9  },
-    { x1: "-40%", y1: "0%",  x2: "40%",  y2: "100%", d: 32, dl: -15 },
-    { x1: "80%",  y1: "0%",  x2: "160%", y2: "100%", d: 38, dl: -4  },
+    { x1: "-20%", y1: "0%",  x2: "60%",  y2: "100%" },
+    { x1: "0%",   y1: "0%",  x2: "80%",  y2: "100%" },
+    { x1: "20%",  y1: "0%",  x2: "100%", y2: "100%" },
+    { x1: "40%",  y1: "0%",  x2: "120%", y2: "100%" },
+    { x1: "60%",  y1: "0%",  x2: "140%", y2: "100%" },
+    { x1: "-40%", y1: "0%",  x2: "40%",  y2: "100%" },
+    { x1: "80%",  y1: "0%",  x2: "160%", y2: "100%" },
   ];
   const up = [
-    { x1: "-20%", y1: "100%", x2: "60%",  y2: "0%", d: 32, dl: -8  },
-    { x1: "0%",   y1: "100%", x2: "80%",  y2: "0%", d: 26, dl: 0   },
-    { x1: "20%",  y1: "100%", x2: "100%", y2: "0%", d: 36, dl: -14 },
-    { x1: "40%",  y1: "100%", x2: "120%", y2: "0%", d: 30, dl: -5  },
-    { x1: "60%",  y1: "100%", x2: "140%", y2: "0%", d: 28, dl: -11 },
-    { x1: "-40%", y1: "100%", x2: "40%",  y2: "0%", d: 34, dl: -2  },
-    { x1: "80%",  y1: "100%", x2: "160%", y2: "0%", d: 40, dl: -7  },
+    { x1: "-20%", y1: "100%", x2: "60%",  y2: "0%" },
+    { x1: "0%",   y1: "100%", x2: "80%",  y2: "0%" },
+    { x1: "20%",  y1: "100%", x2: "100%", y2: "0%" },
+    { x1: "40%",  y1: "100%", x2: "120%", y2: "0%" },
+    { x1: "60%",  y1: "100%", x2: "140%", y2: "0%" },
+    { x1: "-40%", y1: "100%", x2: "40%",  y2: "0%" },
+    { x1: "80%",  y1: "100%", x2: "160%", y2: "0%" },
   ];
 
   return (
     <svg className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true">
       {down.map((l, i) => (
-        <m.line key={`d${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
-          stroke="rgba(248,250,252,0.035)" strokeWidth="1"
-          animate={{ x: ["-30%", "30%", "-30%"] }}
-          transition={{ duration: l.d, repeat: Infinity, ease: "easeInOut", delay: l.dl }} />
+        <line key={`d${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
+          stroke="rgba(248,250,252,0.035)" strokeWidth="1" />
       ))}
       {up.map((l, i) => (
-        <m.line key={`u${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
-          stroke="rgba(248,250,252,0.025)" strokeWidth="1"
-          animate={{ x: ["30%", "-30%", "30%"] }}
-          transition={{ duration: l.d, repeat: Infinity, ease: "easeInOut", delay: l.dl }} />
+        <line key={`u${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
+          stroke="rgba(248,250,252,0.025)" strokeWidth="1" />
       ))}
-      <m.line x1="8%" y1="0%" x2="92%" y2="100%"
-        stroke="rgba(37,99,235,0.08)" strokeWidth="1"
-        animate={{ x: ["-18%", "18%", "-18%"] }}
-        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }} />
-      <m.line x1="92%" y1="0%" x2="8%" y2="100%"
-        stroke="rgba(37,99,235,0.05)" strokeWidth="1"
-        animate={{ x: ["18%", "-18%", "18%"] }}
-        transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }} />
+      <line x1="8%" y1="0%" x2="92%" y2="100%"
+        stroke="rgba(37,99,235,0.08)" strokeWidth="1" />
+      <line x1="92%" y1="0%" x2="8%" y2="100%"
+        stroke="rgba(37,99,235,0.05)" strokeWidth="1" />
     </svg>
   );
 }
@@ -67,50 +59,6 @@ function Decorative() {
         animate={{ opacity: 0.4, scale: 1 }}
         transition={{ delay: 1, duration: 0.5, ease: "backOut" }}
       />
-
-      {/* Nubes Verdes - Ambient Aurora (Amorphous Clouds) */}
-      <m.div
-        className="absolute top-[10%] right-[5%] w-[60vw] h-[35vw] max-w-[800px] max-h-[500px] pointer-events-none mix-blend-screen"
-        style={{
-          background: "radial-gradient(ellipse at center, rgba(16,185,129,0.18) 0%, transparent 70%)",
-          filter: "blur(60px)",
-        }}
-        animate={{
-          scale: [1, 1.1, 1],
-          x: [0, -30, 0],
-          y: [0, 20, 0],
-          borderRadius: ["40% 60% 70% 30% / 40% 50% 60% 50%", "60% 40% 30% 70% / 60% 30% 70% 40%", "40% 60% 70% 30% / 40% 50% 60% 50%"]
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <m.div
-        className="absolute bottom-[5%] left-[10%] w-[70vw] h-[40vw] max-w-[900px] max-h-[600px] pointer-events-none mix-blend-screen"
-        style={{
-          background: "radial-gradient(ellipse at center, rgba(4,120,87,0.15) 0%, transparent 70%)",
-          filter: "blur(80px)",
-        }}
-        animate={{
-          scale: [1.1, 1, 1.1],
-          x: [0, 50, 0],
-          y: [0, -20, 0],
-          borderRadius: ["60% 40% 30% 70% / 60% 30% 70% 40%", "40% 60% 70% 30% / 40% 50% 60% 50%", "60% 40% 30% 70% / 60% 30% 70% 40%"]
-        }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <m.div
-        className="absolute top-[30%] left-[30%] w-[50vw] h-[25vw] max-w-[700px] max-h-[400px] pointer-events-none mix-blend-screen"
-        style={{
-          background: "radial-gradient(ellipse at center, rgba(20,184,166,0.12) 0%, transparent 70%)",
-          filter: "blur(50px)",
-        }}
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.6, 1, 0.6],
-          borderRadius: ["50% 50% 50% 50% / 50% 50% 50% 50%", "30% 70% 70% 30% / 30% 30% 70% 70%", "50% 50% 50% 50% / 50% 50% 50% 50%"]
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-      />
-
       {/* Wireframe Volcanes (Cumbal & Chiles) - Brutalist Geometry */}
       <svg
         className="absolute bottom-0 left-0 w-full h-[30vh] opacity-25 pointer-events-none"
@@ -143,8 +91,10 @@ const SERVICES  = ["System", "Product", "Infrastructure"];
 /* ─────────────────────────────────────────────────────────
    Hero
 ───────────────────────────────────────────────────────── */
+import type { Dictionary } from "@/lib/dictionaries";
+
 interface HeroProps {
-  dict?: any;
+  dict?: Dictionary["home"]["hero"];
 }
 
 export function Hero({ dict }: HeroProps) {
@@ -198,7 +148,7 @@ export function Hero({ dict }: HeroProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1, duration: 0.6 }}
         >
-          <div className="font-mono text-[8px] uppercase tracking-[0.2em] text-[var(--text-inverse)] opacity-20 leading-relaxed text-right">
+          <div className="font-mono text-[8px] uppercase tracking-[0.2em] text-[var(--text-inverse)] opacity-60 leading-relaxed text-right">
             <div>LAT: 00.83 N</div>
             <div>LON: 77.64 W</div>
           </div>
@@ -296,7 +246,7 @@ export function Hero({ dict }: HeroProps) {
                   {s}
                 </span>
                 {i < (dict?.services || SERVICES).length - 1 && (
-                  <span className="h-px w-3 bg-[var(--text-inverse)] opacity-20" />
+                  <span className="h-px w-3 bg-[var(--text-inverse)] opacity-60" />
                 )}
               </span>
             ))}

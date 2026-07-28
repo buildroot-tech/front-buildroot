@@ -17,6 +17,16 @@ interface TickerProps {
   secondaryText?: string;
 }
 
+const RepeatedText = ({ text, hidden = false }: { text: string, hidden?: boolean }) => (
+  <>
+    {Array.from({ length: 12 }).map((_, i) => (
+      <span key={i} className="block mr-8" aria-hidden={hidden || i !== 0 ? "true" : undefined}>
+        {text}
+      </span>
+    ))}
+  </>
+);
+
 export function Ticker({ baseVelocity = -0.3, text, secondaryText }: TickerProps) {
   const baseX = useMotionValue(0);
   const baseXReverse = useMotionValue(0);
@@ -62,24 +72,7 @@ export function Ticker({ baseVelocity = -0.3, text, secondaryText }: TickerProps
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
 
-  const RepeatedText = () => (
-    <>
-      {Array.from({ length: 12 }).map((_, i) => (
-        <span key={i} className="block mr-8">{text}</span>
-      ))}
-    </>
-  );
-
-  const RepeatedSecondaryText = () => {
-    const t = secondaryText || text;
-    return (
-      <>
-        {Array.from({ length: 12 }).map((_, i) => (
-          <span key={i} className="block mr-8">{t}</span>
-        ))}
-      </>
-    );
-  };
+  const t = secondaryText || text;
 
   return (
     <div ref={ref} className="relative w-full overflow-hidden flex flex-nowrap pt-[clamp(6rem,12vw,16rem)] pb-[clamp(6rem,12vw,16rem)] bg-[var(--bg-primary)]">
@@ -107,16 +100,18 @@ export function Ticker({ baseVelocity = -0.3, text, secondaryText }: TickerProps
         <m.div
           className="font-display font-medium uppercase text-[clamp(1rem,3vw,2.5rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)] opacity-10 origin-bottom"
           style={{ x, rotateX: 45, z: -100 }}
+          aria-hidden="true"
         >
-          <RepeatedText />
+          <RepeatedText text={text} hidden={true} />
         </m.div>
 
         {/* Top 1 Ribbon (Smaller, Reversed, Tilted Back) */}
         <m.div
           className="font-display font-medium uppercase text-[clamp(2rem,5vw,4.5rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)] opacity-30 origin-bottom"
           style={{ x: xReverse, rotateX: 20, z: -50 }}
+          aria-hidden="true"
         >
-          <RepeatedSecondaryText />
+          <RepeatedText text={t} hidden={true} />
         </m.div>
 
         {/* Middle Ribbon (Main, Forward) */}
@@ -124,23 +119,25 @@ export function Ticker({ baseVelocity = -0.3, text, secondaryText }: TickerProps
           className="font-display font-medium uppercase text-[clamp(4rem,10vw,10rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)] origin-center"
           style={{ x, translateZ: 50 }}
         >
-          <RepeatedText />
+          <RepeatedText text={text} />
         </m.div>
 
         {/* Bottom 1 Ribbon (Smaller, Reversed, Tilted Back) */}
         <m.div
           className="font-display font-medium uppercase text-[clamp(2rem,5vw,4.5rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)] opacity-30 origin-top"
           style={{ x: xReverse, rotateX: -20, z: -50 }}
+          aria-hidden="true"
         >
-          <RepeatedSecondaryText />
+          <RepeatedText text={t} hidden={true} />
         </m.div>
 
         {/* Bottom 2 Ribbon (Smallest, Furthest, Forward) */}
         <m.div
           className="font-display font-medium uppercase text-[clamp(1rem,3vw,2.5rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)] opacity-10 origin-top"
           style={{ x, rotateX: -45, z: -100 }}
+          aria-hidden="true"
         >
-          <RepeatedText />
+          <RepeatedText text={text} hidden={true} />
         </m.div>
       </m.div>
     </div>

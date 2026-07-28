@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import { ScrambleText } from "@/components/ui/TextScrambler";
 
+import type { Dictionary } from "@/lib/dictionaries";
+
 interface PreloaderProps {
-  dict?: any;
+  dict?: Dictionary["preloader"];
 }
 
 export function Preloader({ dict }: PreloaderProps) {
@@ -14,7 +16,7 @@ export function Preloader({ dict }: PreloaderProps) {
   const [isFirstVisit, setIsFirstVisit] = useState(false);
   const [activeItems, setActiveItems] = useState<number[]>([]);
 
-  const floatingItems = [
+  const floatingItems = React.useMemo(() => [
     {
       id: 1,
       line1: dict?.based_in || "BASED IN",
@@ -57,14 +59,16 @@ export function Preloader({ dict }: PreloaderProps) {
       className: "bottom-[10%] left-1/2 -translate-x-1/2 items-center text-center",
       start: 700, end: 1300,
     },
-  ];
+  ], [dict]);
 
   useEffect(() => {
     const hasVisited = sessionStorage.getItem("buildroot_visited");
     
     if (!hasVisited) {
-      setIsFirstVisit(true);
-      setShowPreloader(true);
+      setTimeout(() => {
+        setIsFirstVisit(true);
+        setShowPreloader(true);
+      }, 0);
       sessionStorage.setItem("buildroot_visited", "true");
       
       const timers = floatingItems.flatMap((item) => [
@@ -76,16 +80,20 @@ export function Preloader({ dict }: PreloaderProps) {
       
       return () => timers.forEach(clearTimeout);
     } else if (window.location.pathname === "/" || window.location.pathname === "/es") {
-      setIsFirstVisit(false);
-      setShowPreloader(true);
+      setTimeout(() => {
+        setIsFirstVisit(false);
+        setShowPreloader(true);
+      }, 0);
       
       const timer = setTimeout(() => setIsLoading(false), 800);
       return () => clearTimeout(timer);
     } else {
-      setShowPreloader(false);
-      setIsLoading(false);
+      setTimeout(() => {
+        setShowPreloader(false);
+        setIsLoading(false);
+      }, 0);
     }
-  }, []);
+  }, [floatingItems]);
 
   if (!showPreloader) return null;
 

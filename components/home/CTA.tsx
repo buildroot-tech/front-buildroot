@@ -5,8 +5,10 @@ import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import { Ticker } from "./Ticker";
 
+import type { Dictionary } from "@/lib/dictionaries";
+
 interface CTAProps {
-  dict?: any;
+  dict?: Dictionary["home"]["cta"];
 }
 
 export function CTA({ dict }: CTAProps) {
@@ -78,7 +80,7 @@ const Word = ({
 };
 
 // Bottom Contact Link with the blink mechanic
-const BottomCTA = ({ dict }: { dict?: any }) => {
+const BottomCTA = ({ dict }: { dict?: Dictionary["home"]["cta"] }) => {
   const [hovered, setHovered] = useState(false);
   const [ctaSymbol, setCtaSymbol] = useState("*");
 
