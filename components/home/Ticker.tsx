@@ -94,7 +94,7 @@ export function Ticker({ baseVelocity = -1, text, secondaryText }: TickerProps) 
       />
       
       <m.div 
-        className="w-full flex flex-col items-center justify-center gap-8 md:gap-14 relative z-0"
+        className="w-full flex flex-col items-center justify-center gap-4 md:gap-8 relative z-0"
         style={{
           scale,
           opacity,
@@ -105,7 +105,15 @@ export function Ticker({ baseVelocity = -1, text, secondaryText }: TickerProps) 
           WebkitMaskImage: "radial-gradient(60% 120% at 50% 50%, black 40%, transparent 100%)",
         }}
       >
-        {/* Top Ribbon (Smaller, Reversed, Tilted Back) */}
+        {/* Top 2 Ribbon (Smallest, Furthest, Forward) */}
+        <m.div
+          className="font-display font-medium uppercase text-[clamp(1rem,3vw,2.5rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)] opacity-10 origin-bottom"
+          style={{ x, rotateX: 45, z: -100 }}
+        >
+          <RepeatedText />
+        </m.div>
+
+        {/* Top 1 Ribbon (Smaller, Reversed, Tilted Back) */}
         <m.div
           className="font-display font-medium uppercase text-[clamp(2rem,5vw,4.5rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)] opacity-30 origin-bottom"
           style={{ x: xReverse, rotateX: 20, z: -50 }}
@@ -121,12 +129,20 @@ export function Ticker({ baseVelocity = -1, text, secondaryText }: TickerProps) 
           <RepeatedText />
         </m.div>
 
-        {/* Bottom Ribbon (Smaller, Reversed, Tilted Back) */}
+        {/* Bottom 1 Ribbon (Smaller, Reversed, Tilted Back) */}
         <m.div
           className="font-display font-medium uppercase text-[clamp(2rem,5vw,4.5rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)] opacity-30 origin-top"
           style={{ x: xReverse, rotateX: -20, z: -50 }}
         >
           <RepeatedSecondaryText />
+        </m.div>
+
+        {/* Bottom 2 Ribbon (Smallest, Furthest, Forward) */}
+        <m.div
+          className="font-display font-medium uppercase text-[clamp(1rem,3vw,2.5rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)] opacity-10 origin-top"
+          style={{ x, rotateX: -45, z: -100 }}
+        >
+          <RepeatedText />
         </m.div>
       </m.div>
     </div>
