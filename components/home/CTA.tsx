@@ -47,7 +47,7 @@ export function CTA({ dict }: CTAProps) {
       <BottomCTA dict={dict} />
 
       {/* Marquee Ticker */}
-      <Ticker text={dict?.ticker_text || "/// HIGH-END EXPERIENCES /// UNCONVENTIONAL DESIGNS"} />
+      <Ticker text={dict?.ticker_text || "HIGH-END EXPERIENCES * UNCONVENTIONAL DESIGNS *"} />
     </section>
   );
 }
