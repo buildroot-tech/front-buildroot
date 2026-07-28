@@ -117,8 +117,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
             />
           </Link>
 
-          {/* Center nav */}
-          <nav className="hidden items-center gap-3 md:flex md:ml-auto md:mr-16 overflow-hidden">
+          <nav className="hidden items-center gap-3 md:flex flex-1 justify-center md:pl-[15vw] overflow-hidden">
             {navLinks.map((link, i) => (
               <span key={link.href} className="flex items-center">
                 <Link
