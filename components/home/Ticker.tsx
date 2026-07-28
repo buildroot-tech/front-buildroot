@@ -71,16 +71,25 @@ export function Ticker({ baseVelocity = -1, text }: TickerProps) {
   );
 
   return (
-    <div ref={ref} className="w-full overflow-hidden flex flex-nowrap pt-[clamp(6rem,12vw,16rem)] pb-[clamp(6rem,12vw,16rem)] bg-[var(--bg-primary)]">
+    <div ref={ref} className="relative w-full overflow-hidden flex flex-nowrap pt-[clamp(6rem,12vw,16rem)] pb-[clamp(6rem,12vw,16rem)] bg-[var(--bg-primary)]">
+      {/* 3D Lighting/Shading overlay to simulate cylinder curvature on the X axis */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-10"
+        style={{
+          background: "linear-gradient(to right, var(--bg-primary) 0%, transparent 25%, transparent 75%, var(--bg-primary) 100%)"
+        }}
+      />
+      
       <m.div 
-        className="w-full flex flex-col items-center justify-center gap-2 md:gap-4"
+        className="w-full flex flex-col items-center justify-center gap-2 md:gap-4 relative z-0"
         style={{
           scale,
           opacity,
           perspective: "1200px",
           transformStyle: "preserve-3d",
-          maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-          WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+          // Aggressive radial mask to create the optical illusion of wrapping away at the edges
+          maskImage: "radial-gradient(60% 120% at 50% 50%, black 40%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(60% 120% at 50% 50%, black 40%, transparent 100%)",
         }}
       >
         {/* Top Ribbon (Smaller, Reversed, Tilted Back) */}
