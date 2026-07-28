@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, m } from "framer-motion";
+import { AnimatePresence, m, useScroll, useMotionValueEvent } from "framer-motion";
 import {
   ScrambleText,
   ScrambleTextHandle,
@@ -33,6 +33,20 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() || 0;
+    // Don't hide if menu is open
+    if (mobileOpen) return;
+    
+    if (latest > previous && latest > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
 
   const normalizedPathname = pathname.replace(/^\/(en|es)(\/|$)/, '/').replace(/\/$/, '') || '/';
 
@@ -89,9 +103,12 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
 
   return (
     <>
-      <header
+      <m.header
         className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300"
         style={{ backgroundColor: bgColor } as React.CSSProperties}
+        initial={{ y: 0 }}
+        animate={{ y: hidden ? "-100%" : "0%" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         <div className="flex items-center justify-between px-6 md:px-12 py-5 overflow-hidden">
           {/* Logo — hover detected on the <Link>, not the inner span */}
@@ -214,7 +231,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
             />
           </button>
         </div>
-      </header>
+      </m.header>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
