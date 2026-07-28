@@ -296,7 +296,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                   </svg>
                 </div>
 
-                <div className="flex items-center gap-1 font-display text-[clamp(1.1rem,1.8vw,1.8rem)] uppercase font-semibold tracking-tighter text-[var(--text-primary)] shrink-0">
+                <div className="flex items-center gap-1 font-display text-[clamp(1.1rem,1.8vw,1.8rem)] uppercase font-semibold tracking-tighter text-[var(--text-primary)] shrink-0 self-center">
                   {/* ↗ arrow */}
                   <svg
                     viewBox="0 0 24 24"
