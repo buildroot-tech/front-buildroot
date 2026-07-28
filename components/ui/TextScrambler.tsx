@@ -88,7 +88,7 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
         setDisplay(text);
       }, totalDuration);
       timersRef.current.push(tFinal);
-    }, [text, speed, clearAll]);
+    }, [text, speed, clearAll, triggerOnce]);
 
     const reset = useCallback(() => {
       if (triggerOnce && hasScrambledRef.current) return;

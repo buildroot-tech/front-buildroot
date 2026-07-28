@@ -18,8 +18,10 @@ const getImageName = (id: string) => {
   return "polo-pantoja";
 };
 
+import type { Dictionary } from "@/lib/dictionaries";
+
 interface SelectWorkProps {
-  dict?: any;
+  dict?: Dictionary["home"]["work"];
 }
 
 export function SelectWork({ dict }: SelectWorkProps) {
@@ -42,7 +44,7 @@ export function SelectWork({ dict }: SelectWorkProps) {
       <div className="w-full px-6 md:px-12">
         {/* Header */}
         <div className="mb-2 md:mb-4">
-          <h2 className="heading text-h3 capitalize">{dict?.home?.work?.title || "Featured Projects"}</h2>
+          <h2 className="heading text-h3 capitalize">{dict?.title || "Featured Projects"}</h2>
         </div>
       </div>
 
@@ -119,7 +121,7 @@ export function SelectWork({ dict }: SelectWorkProps) {
                 <h3 className="flex items-center justify-center font-display text-4xl sm:text-5xl md:text-5xl lg:text-[4rem] font-light capitalize tracking-tighter transition-colors duration-500 text-center whitespace-nowrap text-[var(--text-primary)]">
                   <span className="w-[1ch] text-center inline-block">{ctaSymbol}</span>
                   <span className="mx-2 md:mx-4 flex items-center gap-[0.25em]">
-                    {((dict?.home?.work?.all_works || "All Works") as string).split(" ").map((w, idx) => (
+                    {(dict?.all_works || "All Works").split(" ").map((w, idx) => (
                       <ScrambleText key={idx} text={w} trigger="mount" active={hoveredCTA} speed={40} />
                     ))}
                   </span>
