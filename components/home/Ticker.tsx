@@ -64,10 +64,9 @@ export function Ticker({ baseVelocity = -1, text, secondaryText }: TickerProps) 
 
   const RepeatedText = () => (
     <>
-      <span className="block mr-8">{text}</span>
-      <span className="block mr-8">{text}</span>
-      <span className="block mr-8">{text}</span>
-      <span className="block mr-8">{text}</span>
+      {Array.from({ length: 12 }).map((_, i) => (
+        <span key={i} className="block mr-8">{text}</span>
+      ))}
     </>
   );
 
@@ -75,10 +74,9 @@ export function Ticker({ baseVelocity = -1, text, secondaryText }: TickerProps) 
     const t = secondaryText || text;
     return (
       <>
-        <span className="block mr-8">{t}</span>
-        <span className="block mr-8">{t}</span>
-        <span className="block mr-8">{t}</span>
-        <span className="block mr-8">{t}</span>
+        {Array.from({ length: 12 }).map((_, i) => (
+          <span key={i} className="block mr-8">{t}</span>
+        ))}
       </>
     );
   };
