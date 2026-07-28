@@ -14,9 +14,10 @@ import {
 interface TickerProps {
   baseVelocity?: number;
   text: string;
+  secondaryText?: string;
 }
 
-export function Ticker({ baseVelocity = -1, text }: TickerProps) {
+export function Ticker({ baseVelocity = -1, text, secondaryText }: TickerProps) {
   const baseX = useMotionValue(0);
   const baseXReverse = useMotionValue(0);
   
@@ -70,6 +71,18 @@ export function Ticker({ baseVelocity = -1, text }: TickerProps) {
     </>
   );
 
+  const RepeatedSecondaryText = () => {
+    const t = secondaryText || text;
+    return (
+      <>
+        <span className="block mr-8">{t}</span>
+        <span className="block mr-8">{t}</span>
+        <span className="block mr-8">{t}</span>
+        <span className="block mr-8">{t}</span>
+      </>
+    );
+  };
+
   return (
     <div ref={ref} className="relative w-full overflow-hidden flex flex-nowrap pt-[clamp(6rem,12vw,16rem)] pb-[clamp(6rem,12vw,16rem)] bg-[var(--bg-primary)]">
       {/* 3D Lighting/Shading overlay to simulate cylinder curvature on the X axis */}
@@ -97,7 +110,7 @@ export function Ticker({ baseVelocity = -1, text }: TickerProps) {
           className="font-display font-medium uppercase text-[clamp(2rem,5vw,4.5rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)] opacity-30 origin-bottom"
           style={{ x: xReverse, rotateX: 20, z: -50 }}
         >
-          <RepeatedText />
+          <RepeatedSecondaryText />
         </m.div>
 
         {/* Middle Ribbon (Main, Forward) */}
@@ -113,7 +126,7 @@ export function Ticker({ baseVelocity = -1, text }: TickerProps) {
           className="font-display font-medium uppercase text-[clamp(2rem,5vw,4.5rem)] leading-[0.8] tracking-tighter flex whitespace-nowrap flex-nowrap text-[var(--text-primary)] opacity-30 origin-top"
           style={{ x: xReverse, rotateX: -20, z: -50 }}
         >
-          <RepeatedText />
+          <RepeatedSecondaryText />
         </m.div>
       </m.div>
     </div>
