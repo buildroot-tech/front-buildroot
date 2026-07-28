@@ -57,6 +57,7 @@ export function SelectWork({ dict }: SelectWorkProps) {
               className="group flex flex-col justify-center min-h-[90px] md:min-h-[110px] transition-colors duration-500 w-full"
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
+              aria-label={`View project: ${project.title}`}
             >
               <div className="flex flex-row items-center justify-center w-full">
                 
