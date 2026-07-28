@@ -32,8 +32,8 @@ export function Ticker({ baseVelocity = -1, text, secondaryText }: TickerProps) 
   });
 
   // wrap between -20% and -45% to keep it seamless.
-  const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
-  const xReverse = useTransform(baseXReverse, (v) => `${wrap(-20, -45, v)}%`);
+  const x = useTransform(baseX, (v) => `${wrap(-50, -25, v)}%`);
+  const xReverse = useTransform(baseXReverse, (v) => `${wrap(-50, -25, v)}%`);
 
   const directionFactor = useRef<number>(1);
   
