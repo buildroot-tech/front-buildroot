@@ -43,8 +43,8 @@ export function SelectWork({ dict }: SelectWorkProps) {
     <section className="relative w-full bg-[var(--bg-primary)] py-24 md:py-40 overflow-hidden">
       <div className="w-full px-6 md:px-12">
         {/* Header */}
-        <div className="mb-2 md:mb-4">
-          <h2 className="heading text-h3 capitalize">{dict?.title || "Featured Projects"}</h2>
+        <div className="mb-16 md:mb-24">
+          <h2 className="font-mono text-lg md:text-xl capitalize tracking-tight text-[var(--text-muted)]">{dict?.title || "Featured Projects"}</h2>
         </div>
       </div>
 
@@ -62,7 +62,7 @@ export function SelectWork({ dict }: SelectWorkProps) {
               <div className="flex flex-row items-center justify-center w-full">
                 
                 {/* Left Line */}
-                <div className="h-[1px] bg-[var(--text-primary)] flex-1" />
+                <div className="h-[1px] bg-[var(--text-primary)] opacity-20 group-hover:opacity-100 transition-opacity duration-500 flex-1" />
                 
                 {/* Title with Inline Image */}
                 <div className="px-6 md:px-12 shrink-0 overflow-hidden">
@@ -84,7 +84,7 @@ export function SelectWork({ dict }: SelectWorkProps) {
                                 initial={{ width: 0, opacity: 0, margin: "0px 0px" }}
                                 animate={{ width: imageWidth, opacity: 1, margin: "0px 16px" }}
                                 exit={{ width: 0, opacity: 0, margin: "0px 0px" }}
-                                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                                 className="relative overflow-hidden border-2 border-[var(--border)] bg-[var(--bg-hero)] hidden md:block"
                                 style={{ height: "1.5em" }}
                               >
@@ -102,7 +102,7 @@ export function SelectWork({ dict }: SelectWorkProps) {
                 </div>
 
                 {/* Right Line */}
-                <div className="h-[1px] bg-[var(--text-primary)] flex-1" />
+                <div className="h-[1px] bg-[var(--text-primary)] opacity-20 group-hover:opacity-100 transition-opacity duration-500 flex-1" />
                 
               </div>
             </Link>
@@ -116,7 +116,7 @@ export function SelectWork({ dict }: SelectWorkProps) {
             onMouseLeave={() => setHoveredCTA(false)}
           >
             <div className="flex flex-row items-center justify-center w-full">
-              <div className="h-[1px] bg-[var(--text-primary)] flex-1" />
+              <div className="h-[1px] bg-[var(--text-primary)] opacity-20 group-hover:opacity-100 transition-opacity duration-500 flex-1" />
               
               <div className="px-6 md:px-12 shrink-0 overflow-hidden">
                 <h3 className="flex items-center justify-center font-display text-4xl sm:text-5xl md:text-5xl lg:text-[4rem] font-light capitalize tracking-tighter transition-colors duration-500 text-center whitespace-nowrap text-[var(--text-primary)]">
@@ -130,7 +130,7 @@ export function SelectWork({ dict }: SelectWorkProps) {
                 </h3>
               </div>
 
-              <div className="h-[1px] bg-[var(--text-primary)] flex-1" />
+              <div className="h-[1px] bg-[var(--text-primary)] opacity-20 group-hover:opacity-100 transition-opacity duration-500 flex-1" />
             </div>
           </Link>
         </div>
