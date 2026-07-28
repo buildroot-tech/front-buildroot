@@ -97,7 +97,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
           {/* Logo — hover detected on the <Link>, not the inner span */}
           <Link
             href="/"
-            className="group relative font-mono text-3xl font-bold tracking-tight"
+            className="group relative font-mono text-xl font-bold tracking-tight"
             style={{ color: textColor } as React.CSSProperties}
             onMouseEnter={() => logoRef.current?.scramble()}
             onMouseLeave={() => logoRef.current?.reset()}
@@ -118,16 +118,15 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
           </Link>
 
           {/* Center nav */}
-          <nav className="hidden items-center gap-0 md:flex md:ml-80 overflow-hidden">
+          <nav className="hidden items-center gap-8 md:flex flex-1 justify-center overflow-hidden">
             {navLinks.map((link, i) => (
               <span key={link.href} className="flex items-center">
                 <Link
                   href={link.href}
-                  className="group relative font-mono text-3xl md:text-2xl font-medium transition-colors hover:text-[var(--accent)]"
+                  className="group relative font-mono text-xs uppercase tracking-[0.15em] font-medium transition-colors hover:text-[var(--accent)]"
                   style={
                     {
                       color: textColor,
-                      minWidth: `${link.label.length}ch`,
                     } as React.CSSProperties
                   }
                   onMouseEnter={() =>
@@ -146,21 +145,9 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
                     key={`${link.label}-${pathname}`}
                   />
                   <span
-                    className={`absolute bottom-0 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${pathname === link.href ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+                    className={`absolute -bottom-2 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${pathname === link.href ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
                   />
                 </Link>
-                {i < navLinks.length - 1 && (
-                  <span
-                    className="text-3xl md:text-2xl font-medium"
-                    style={
-                      {
-                        color: textColor,
-                      } as React.CSSProperties
-                    }
-                  >
-                    ,
-                  </span>
-                )}
               </span>
             ))}
           </nav>
@@ -168,12 +155,10 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
           {/* Contact link */}
           <Link
             href="/contact"
-            className="group relative font-mono text-3xl md:text-2xl font-medium transition-colors hover:text-[var(--accent)] ml-8"
+            className="hidden md:inline-block group relative font-mono text-xs uppercase tracking-[0.15em] font-medium transition-colors hover:text-[var(--accent)]"
             style={
               {
                 color: textColor,
-                width: "10ch",
-                display: "inline-block",
                 textAlign: "center",
               } as React.CSSProperties
             }
@@ -188,7 +173,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
               key={`contact-${pathname}`}
             />
             <span
-              className={`absolute bottom-0 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${normalizedPathname === "/contact" ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+              className={`absolute -bottom-2 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${normalizedPathname === "/contact" ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
             />
           </Link>
 
