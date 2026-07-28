@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { useScroll, useTransform, m } from "framer-motion";
+import { useScroll, useTransform, m, MotionValue } from "framer-motion";
 
 const steps = [
   {
@@ -46,8 +46,10 @@ const steps = [
   },
 ];
 
+import type { Dictionary } from "@/lib/dictionaries";
+
 interface WorkflowStepsProps {
-  dict?: any;
+  dict?: Dictionary["home"]["process"];
 }
 
 export function WorkflowSteps({ dict }: WorkflowStepsProps) {
@@ -101,7 +103,14 @@ export function WorkflowSteps({ dict }: WorkflowStepsProps) {
   );
 }
 
-function StepCard({ step, index, scrollYProgress, dict }: any) {
+interface StepCardProps {
+  step: typeof steps[0];
+  index: number;
+  scrollYProgress: MotionValue<number>;
+  dict?: Dictionary["home"]["process"];
+}
+
+function StepCard({ step, index, scrollYProgress, dict }: StepCardProps) {
   const start = index * 0.20;
   const end = start + 0.20;
 
@@ -140,10 +149,10 @@ function StepCard({ step, index, scrollYProgress, dict }: any) {
         </div>
         <div>
           <h3 className="font-display text-3xl font-bold uppercase tracking-tight sm:text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">
-            {step.dictKey && dict?.steps?.[step.dictKey]?.title ? dict.steps[step.dictKey].title : step.title}
+            {step.dictKey && dict?.steps?.[step.dictKey as keyof typeof dict.steps]?.title ? dict.steps[step.dictKey as keyof typeof dict.steps].title : step.title}
           </h3>
           <p className="font-mono text-base md:text-xl lg:text-2xl leading-relaxed opacity-90">
-            {step.dictKey && dict?.steps?.[step.dictKey]?.description ? dict.steps[step.dictKey].description : step.description}
+            {step.dictKey && dict?.steps?.[step.dictKey as keyof typeof dict.steps]?.description ? dict.steps[step.dictKey as keyof typeof dict.steps].description : step.description}
           </p>
         </div>
       </div>
