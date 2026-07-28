@@ -136,22 +136,22 @@ function StepCard({ step, index, scrollYProgress, dict }: StepCardProps) {
       }}
     >
       <div
-        className="flex h-[85vh] md:h-[72vh] lg:h-[78vh] w-full max-w-6xl flex-col justify-between p-12 sm:p-16 md:p-24"
+        className="relative flex h-[85vh] md:h-[72vh] lg:h-[78vh] w-full max-w-6xl flex-col justify-end p-8 sm:p-12 md:p-16 lg:p-20 overflow-hidden"
         style={{
           backgroundColor: step.color,
           color: step.textColor,
         }}
       >
-        <div className="flex items-start justify-between">
-          <span className="font-display text-8xl sm:text-9xl md:text-[12rem] lg:text-[14rem] font-light leading-none tracking-tighter opacity-80">
+        <div className="absolute top-8 left-8 md:top-12 md:left-16 pointer-events-none">
+          <span className="font-display text-8xl sm:text-9xl md:text-[12rem] lg:text-[16rem] font-light leading-none tracking-tighter opacity-20">
             {step.number}
           </span>
         </div>
-        <div>
+        <div className="relative z-10 max-w-3xl">
           <h3 className="font-display text-3xl font-bold uppercase tracking-tight sm:text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">
             {step.dictKey && dict?.steps?.[step.dictKey as keyof typeof dict.steps]?.title ? dict.steps[step.dictKey as keyof typeof dict.steps].title : step.title}
           </h3>
-          <p className="font-mono text-base md:text-xl lg:text-2xl leading-relaxed opacity-90">
+          <p className="font-mono text-base md:text-lg lg:text-xl leading-relaxed opacity-90">
             {step.dictKey && dict?.steps?.[step.dictKey as keyof typeof dict.steps]?.description ? dict.steps[step.dictKey as keyof typeof dict.steps].description : step.description}
           </p>
         </div>
