@@ -18,12 +18,14 @@ export interface Project {
   indexCode: string;
   title: string;
   client: string;
+  industry: string;
   year: string;
   category: ProjectCategory;
   summary: string;
   description: string;
   featured: boolean;
   tags: string[];
+  highlights: [string, string, string];
   metrics: ProjectMetric[];
   caseStudy: CaseStudy;
   image?: string;
