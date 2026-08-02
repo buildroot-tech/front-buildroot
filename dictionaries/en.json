@@ -81,5 +81,24 @@
       "primary_btn": "START A PROJECT",
       "secondary_text": "or reach out via email"
     }
+  },
+  "work": {
+    "badge": "Selected Works",
+    "title": "Featured Projects & Architecture",
+    "subtitle": "Engineering high-performance digital products, custom web platforms, and modern cloud architectures built with technical precision, scalability, and design craftsmanship.",
+    "view_case_study": "View Case Study",
+    "cta_title": "Ready to build your next digital product?",
+    "cta_subtitle": "We partner with founders and product teams to design, engineer, and ship high-performance web platforms — from the first architecture decision to production launch. If you have a project worth building well, let's talk.",
+    "cta_button": "Start a Build",
+    "cta_email_label": "or email us directly",
+    "detail": {
+      "back_to_work": "Back to Work",
+      "problem": "Problem",
+      "solution": "Solution",
+      "architecture": "Architecture",
+      "results": "Results & Impact",
+      "stack": "Stack",
+      "live_demo": "Live Demo"
+    }
   }
 }

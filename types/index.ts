@@ -26,6 +26,7 @@ export interface Project {
   tags: string[];
   metrics: ProjectMetric[];
   caseStudy: CaseStudy;
+  image?: string;
   demoUrl?: string;
   githubUrl?: string;
   isLab?: boolean;
