@@ -10,6 +10,7 @@
   --bg-hero: #000000;
   --bg-primary: #e2e8f0;
   --bg-secondary: #f8fafc;
+  --bg-work: #f5f5f0;
 
   --text-primary: #000000;
   --text-muted: #475569;
@@ -85,6 +86,7 @@
   --color-hero: var(--bg-hero);
   --color-primary: var(--bg-primary);
   --color-secondary: var(--bg-secondary);
+  --color-work: var(--bg-work);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-text: var(--text-primary);

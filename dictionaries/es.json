@@ -81,5 +81,24 @@
       "primary_btn": "INICIAR PROYECTO",
       "secondary_text": "o contáctanos por correo electrónico"
     }
+  },
+  "work": {
+    "badge": "Trabajo Seleccionado",
+    "title": "Proyectos y Arquitectura Destacados",
+    "subtitle": "Diseñamos productos digitales de alto rendimiento, plataformas web a medida y arquitecturas cloud modernas, con precisión técnica, escalabilidad y calidad de diseño.",
+    "view_case_study": "Ver Caso de Estudio",
+    "cta_title": "¿Listo para construir tu próximo producto digital?",
+    "cta_subtitle": "Trabajamos junto a fundadores y equipos de producto para diseñar, construir y lanzar plataformas web de alto rendimiento — desde la primera decisión de arquitectura hasta producción. Si tienes un proyecto que vale la pena construir bien, hablemos.",
+    "cta_button": "Empezar un Proyecto",
+    "cta_email_label": "o escríbenos directamente",
+    "detail": {
+      "back_to_work": "Volver a Trabajo",
+      "problem": "Problema",
+      "solution": "Solución",
+      "architecture": "Arquitectura",
+      "results": "Resultados e Impacto",
+      "stack": "Stack",
+      "live_demo": "Ver Demo"
+    }
   }
 }

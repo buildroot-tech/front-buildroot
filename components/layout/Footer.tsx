@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { m } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ScrambleText } from "@/components/ui/TextScrambler";
+import { getRouteTheme, normalizeLocalePathname } from "@/lib/route-theme";
 
 import type { Dictionary } from "@/lib/dictionaries";
 
@@ -35,20 +36,6 @@ const contactInfo = {
   email: "info@buildroot.co",
 };
 
-const routeColors: Record<
-  string,
-  { bg: string; text: string; border: string }
-> = {
-  "/": {
-    bg: "var(--bg-primary)",
-    text: "var(--text-primary)",
-    border: "var(--border)",
-  },
-  "/work": { bg: "#ffffff", text: "#000000", border: "#000000" },
-  "/services": { bg: "var(--accent)", text: "#ffffff", border: "#ffffff" },
-  "/about": { bg: "#000000", text: "#ffffff", border: "#ffffff" },
-};
-
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
@@ -61,8 +48,8 @@ const fadeUp = {
 export function Footer({ dict }: FooterProps): React.ReactElement {
   const year = new Date().getFullYear();
   const pathname = usePathname();
-  const normalizedPathname = pathname === "/es" ? "/" : pathname.replace("/es/", "/");
-  const config = routeColors[normalizedPathname] || routeColors["/"];
+  const normalizedPathname = normalizeLocalePathname(pathname);
+  const theme = getRouteTheme(normalizedPathname);
   const isHome = normalizedPathname === "/";
 
   const navLinks = [
@@ -91,9 +78,9 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
         isHome
           ? undefined
           : ({
-              "--bg-primary": config.bg,
-              "--text-primary": config.text,
-              "--border": config.border,
+              "--bg-primary": theme.bg,
+              "--text-primary": theme.text,
+              "--border": theme.border,
             } as React.CSSProperties)
       }
     >

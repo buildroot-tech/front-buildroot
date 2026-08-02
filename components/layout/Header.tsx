@@ -9,23 +9,17 @@ import {
   ScrambleTextHandle,
 } from "@/components/ui/TextScrambler";
 import type { Dictionary } from "@/lib/dictionaries";
+import { getRouteTheme, normalizeLocalePathname } from "@/lib/route-theme";
 
 interface HeaderProps {
   dict?: Dictionary["header"];
   lang?: string;
 }
 
-// Route → background color config
-// text: color for text, bg: navbar background, needsScroll: only on home
-const routeColors: Record<
-  string,
-  { text: string; bg: string; needsScroll?: boolean }
-> = {
-  "/": { text: "var(--text-inverse)", bg: "transparent", needsScroll: true },
-  "/work": { text: "var(--text-primary)", bg: "white" },
-  "/services": { text: "white", bg: "var(--accent)" },
-  "/about": { text: "var(--text-inverse)", bg: "#0A0A0A" },
-};
+// Home floats transparent over the dark hero until the user scrolls past
+// it — a transient state no other route needs, so it stays local here
+// instead of living in the shared route theme.
+const HOME_HEADER_THEME = { text: "var(--text-inverse)", bg: "transparent" };
 
 const HEADER_H = 80;
 
@@ -48,7 +42,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
     }
   });
 
-  const normalizedPathname = pathname.replace(/^\/(en|es)(\/|$)/, '/').replace(/\/$/, '') || '/';
+  const normalizedPathname = normalizeLocalePathname(pathname);
 
   const navLinks = [
     { href: "/work", label: dict?.nav?.work || "work" },
@@ -81,14 +75,16 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
   const isHome = normalizedPathname === "/";
   const effectiveScrolledPastHero = isHome ? scrolledPastHero : false;
 
-  // Determine colors based on route and scroll position
-  const config = routeColors[normalizedPathname] || routeColors["/"];
+  // Determine colors based on route and scroll position. Every route but
+  // home reads straight from the shared theme (also used by the Footer),
+  // so a section's assigned color never drifts between the two.
+  const theme = isHome ? HOME_HEADER_THEME : getRouteTheme(normalizedPathname);
 
   const textColor = effectiveScrolledPastHero
     ? "var(--text-primary)"
-    : config.text;
+    : theme.text;
 
-  const bgColor = effectiveScrolledPastHero ? "var(--bg-primary)" : config.bg;
+  const bgColor = effectiveScrolledPastHero ? "var(--bg-primary)" : theme.bg;
 
   useEffect(() => {
     if (mobileOpen) {
