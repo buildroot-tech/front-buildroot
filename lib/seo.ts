@@ -23,6 +23,13 @@ export const siteConfig = {
 };
 
 export const defaultMetadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  alternates: {
+    languages: {
+      'en': '/en',
+      'es': '/es',
+    },
+  },
   title: {
     default: siteConfig.name,
     template: `%s | buildroot_`,
