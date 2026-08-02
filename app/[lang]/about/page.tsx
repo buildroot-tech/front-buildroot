@@ -1,21 +1,24 @@
-"use client";
+import type { Metadata } from "next";
+import { AboutSection } from "@/components/about/AboutSection";
+import { getDictionary, Locale } from "@/lib/dictionaries";
 
-import { ScrambleText } from "@/components/ui/TextScrambler";
+export const metadata: Metadata = {
+  title: "About — buildroot_",
+  description:
+    "buildroot_ is a two-person studio building high-performance web products. Quality over quantity, clean code, and direct communication — no account managers.",
+};
 
-export default function AboutPage() {
+export default async function AboutPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
+
   return (
-    <div className="min-h-screen bg-[#0A0A0A] pt-24 pb-16">
-      <div className="mx-auto max-w-[1400px] px-6">
-        <h1 className="font-mono text-xs uppercase tracking-[0.2em] text-white/60">
-          Who We Are
-        </h1>
-        <h2 className="mt-4 font-mono text-4xl font-bold text-white md:text-6xl">
-          <ScrambleText text="About" speed={55} trigger="mount" />
-        </h2>
-        <p className="mt-6 max-w-lg text-lg text-white/70">
-          Two developers. One mission. Build software that actually works.
-        </p>
-      </div>
+    <div className="min-h-screen bg-[var(--bg-hero)]">
+      <AboutSection dict={dict.about} />
     </div>
   );
 }

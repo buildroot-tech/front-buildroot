@@ -100,5 +100,103 @@
       "stack": "Stack",
       "live_demo": "Live Demo"
     }
+  },
+  "services": {
+    "badge": "What We Do",
+    "title": "Services",
+    "subtitle": "Three ways we work with you: we build your product, we fix what's broken, or we ship the whole thing end to end. No agencies of agencies, no account managers — you talk to the people writing the code.",
+    "items": {
+      "web": {
+        "title": "Web Development",
+        "description": "Full-stack web applications built on Next.js, React, and TypeScript. From a landing page that converts to a dashboard that handles real traffic — shipped fast, built to last.",
+        "points": [
+          "Marketing sites & product landing pages",
+          "Web apps & internal tools",
+          "API design & integrations",
+          "Performance & Core Web Vitals"
+        ]
+      },
+      "consulting": {
+        "title": "Technical Consulting",
+        "description": "Architecture reviews, migrations, audits. We read your codebase, tell you what's actually wrong, and help you fix it — not what's trendy or safest for our invoice.",
+        "points": [
+          "Architecture & system design reviews",
+          "Legacy migrations — framework, cloud, database",
+          "Codebase & security audits",
+          "CTO-as-a-service for early teams"
+        ]
+      },
+      "saas": {
+        "title": "SaaS Products",
+        "description": "We design, build, and ship SaaS products end to end — auth, billing, dashboards, infrastructure — so you can focus on customers instead of plumbing.",
+        "points": [
+          "MVP to production in weeks, not quarters",
+          "Auth, billing & multi-tenant architecture",
+          "Cloud infrastructure & CI/CD",
+          "Ongoing iteration after launch"
+        ]
+      }
+    },
+    "engage": {
+      "title": "How We Engage",
+      "models": {
+        "project": {
+          "title": "Project-Based",
+          "description": "Fixed scope, fixed price. You know exactly what you're getting before we write a line of code."
+        },
+        "retainer": {
+          "title": "Retainer",
+          "description": "Ongoing partnership for teams that ship continuously. We plug into your sprint, not the other way around."
+        },
+        "audit": {
+          "title": "Audit & Advise",
+          "description": "A one-time deep dive into your codebase or architecture. A clear report, not a sales pitch."
+        }
+      }
+    },
+    "cta": {
+      "title": "Have a project in mind?",
+      "subtitle": "Tell us what you're building. We'll tell you honestly whether we're the right fit — and if we are, how fast we can start.",
+      "button": "Start a Project",
+      "email_label": "or email us directly"
+    }
+  },
+  "about": {
+    "badge": "Who We Are",
+    "title": "About",
+    "subtitle": "Two developers. One mission. Build software that actually works.",
+    "intro": "Buildroot is a two-person studio, not an agency. No account managers, no bloated process — just the people writing your code, talking to you directly, from kickoff to launch.",
+    "principles": {
+      "title": "How We Work",
+      "items": {
+        "quality": {
+          "title": "Quality Over Quantity",
+          "description": "We take on fewer projects so each one gets our full attention. If we don't have the bandwidth to do it right, we'll say so instead of squeezing you into a sprint."
+        },
+        "clean": {
+          "title": "Clean Code, No Shortcuts",
+          "description": "Code we'd be comfortable maintaining in three years, not just shipping today. Readable, typed, documented where it matters."
+        },
+        "iterative": {
+          "title": "Iterative, Not Waterfall",
+          "description": "We ship early, gather feedback, and adjust. You see progress every week, not a reveal at the end."
+        },
+        "direct": {
+          "title": "Direct Communication",
+          "description": "You talk to the engineers building your product. No handoffs, no telephone game."
+        }
+      }
+    },
+    "stack": {
+      "title": "What We Build With",
+      "subtitle": "The tools we trust, chosen for speed and staying power.",
+      "items": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Lenis", "Vercel"]
+    },
+    "cta": {
+      "title": "Ready to work together?",
+      "subtitle": "If you've read this far, you already know whether we're a fit. Let's talk about what you're building.",
+      "button": "Get In Touch",
+      "email_label": "or email us directly"
+    }
   }
 }

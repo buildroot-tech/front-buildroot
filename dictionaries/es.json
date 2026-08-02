@@ -100,5 +100,103 @@
       "stack": "Stack",
       "live_demo": "Ver Demo"
     }
+  },
+  "services": {
+    "badge": "Qué Hacemos",
+    "title": "Servicios",
+    "subtitle": "Tres formas de trabajar juntos: construimos tu producto, arreglamos lo que está roto, o lo lanzamos de punta a punta. Nada de agencias de agencias ni gerentes de cuenta — hablás directo con quienes escriben el código.",
+    "items": {
+      "web": {
+        "title": "Desarrollo Web",
+        "description": "Aplicaciones web full-stack construidas con Next.js, React y TypeScript. Desde una landing que convierte hasta un dashboard que soporta tráfico real — entregado rápido y construido para durar.",
+        "points": [
+          "Sitios de marketing y landing pages",
+          "Aplicaciones web y herramientas internas",
+          "Diseño de APIs e integraciones",
+          "Rendimiento y Core Web Vitals"
+        ]
+      },
+      "consulting": {
+        "title": "Consultoría Técnica",
+        "description": "Revisiones de arquitectura, migraciones, auditorías. Leemos tu código, te decimos qué está realmente mal, y te ayudamos a arreglarlo — no lo que está de moda ni lo más conveniente para nuestra factura.",
+        "points": [
+          "Revisiones de arquitectura y diseño de sistemas",
+          "Migraciones legacy — framework, nube, base de datos",
+          "Auditorías de código y seguridad",
+          "CTO como servicio para equipos en etapa temprana"
+        ]
+      },
+      "saas": {
+        "title": "Productos SaaS",
+        "description": "Diseñamos, construimos y lanzamos productos SaaS de punta a punta — autenticación, facturación, dashboards, infraestructura — para que te enfoques en tus clientes y no en la plomería.",
+        "points": [
+          "De MVP a producción en semanas, no trimestres",
+          "Autenticación, facturación y arquitectura multi-tenant",
+          "Infraestructura cloud y CI/CD",
+          "Iteración continua después del lanzamiento"
+        ]
+      }
+    },
+    "engage": {
+      "title": "Cómo Trabajamos Juntos",
+      "models": {
+        "project": {
+          "title": "Por Proyecto",
+          "description": "Alcance fijo, precio fijo. Sabés exactamente qué vas a recibir antes de que escribamos una sola línea de código."
+        },
+        "retainer": {
+          "title": "Retainer",
+          "description": "Colaboración continua para equipos que lanzan seguido. Nos integramos a tu sprint, no al revés."
+        },
+        "audit": {
+          "title": "Auditoría y Asesoría",
+          "description": "Una revisión profunda y puntual de tu código o arquitectura. Un informe claro, no un pitch de ventas."
+        }
+      }
+    },
+    "cta": {
+      "title": "¿Tenés un proyecto en mente?",
+      "subtitle": "Contanos qué estás construyendo. Te decimos con honestidad si somos el equipo indicado — y si lo somos, qué tan rápido podemos arrancar.",
+      "button": "Iniciar un Proyecto",
+      "email_label": "o escríbenos directamente"
+    }
+  },
+  "about": {
+    "badge": "Quiénes Somos",
+    "title": "Nosotros",
+    "subtitle": "Dos desarrolladores. Una misión. Construir software que realmente funcione.",
+    "intro": "Buildroot es un estudio de dos personas, no una agencia. Sin gerentes de cuenta ni procesos inflados — solo las personas que escriben tu código, hablando directo con vos, desde el kickoff hasta el lanzamiento.",
+    "principles": {
+      "title": "Cómo Trabajamos",
+      "items": {
+        "quality": {
+          "title": "Calidad Antes Que Cantidad",
+          "description": "Tomamos menos proyectos para darle toda nuestra atención a cada uno. Si no tenemos la capacidad para hacerlo bien, te lo decimos en vez de meterte a la fuerza en un sprint."
+        },
+        "clean": {
+          "title": "Código Limpio, Sin Atajos",
+          "description": "Código que estaríamos cómodos manteniendo en tres años, no solo entregando hoy. Legible, tipado, documentado donde importa."
+        },
+        "iterative": {
+          "title": "Iterativo, No en Cascada",
+          "description": "Lanzamos temprano, recogemos feedback y ajustamos. Ves avances cada semana, no una revelación al final."
+        },
+        "direct": {
+          "title": "Comunicación Directa",
+          "description": "Hablás con los ingenieros que construyen tu producto. Sin traspasos, sin teléfono descompuesto."
+        }
+      }
+    },
+    "stack": {
+      "title": "Con Qué Construimos",
+      "subtitle": "Las herramientas en las que confiamos, elegidas por velocidad y permanencia.",
+      "items": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Lenis", "Vercel"]
+    },
+    "cta": {
+      "title": "¿Listos para trabajar juntos?",
+      "subtitle": "Si llegaste hasta acá, ya sabés si somos un buen fit. Hablemos de lo que estás construyendo.",
+      "button": "Hablemos",
+      "email_label": "o escríbenos directamente"
+    }
   }
 }
