@@ -3,39 +3,46 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, m } from "framer-motion";
+import { AnimatePresence, m, useScroll, useMotionValueEvent } from "framer-motion";
 import {
   ScrambleText,
   ScrambleTextHandle,
 } from "@/components/ui/TextScrambler";
-import { useRouter } from "next/navigation";
+import type { Dictionary } from "@/lib/dictionaries";
+import { getRouteTheme, normalizeLocalePathname } from "@/lib/route-theme";
 
 interface HeaderProps {
-  dict?: any;
+  dict?: Dictionary["header"];
   lang?: string;
 }
 
-// Route → background color config
-// text: color for text, bg: navbar background, needsScroll: only on home
-const routeColors: Record<
-  string,
-  { text: string; bg: string; needsScroll?: boolean }
-> = {
-  "/": { text: "var(--text-inverse)", bg: "transparent", needsScroll: true },
-  "/work": { text: "var(--text-primary)", bg: "white" },
-  "/services": { text: "white", bg: "var(--accent)" },
-  "/about": { text: "var(--text-inverse)", bg: "#0A0A0A" },
-};
+// Home floats transparent over the dark hero until the user scrolls past
+// it — a transient state no other route needs, so it stays local here
+// instead of living in the shared route theme.
+const HOME_HEADER_THEME = { text: "var(--text-inverse)", bg: "transparent" };
 
 const HEADER_H = 80;
 
 export function Header({ dict, lang = "en" }: HeaderProps) {
   const pathname = usePathname();
-  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
 
-  const normalizedPathname = pathname.replace(/^\/(en|es)(\/|$)/, '/').replace(/\/$/, '') || '/';
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() || 0;
+    // Don't hide if menu is open
+    if (mobileOpen) return;
+    
+    if (latest > previous && latest > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
+
+  const normalizedPathname = normalizeLocalePathname(pathname);
 
   const navLinks = [
     { href: "/work", label: dict?.nav?.work || "work" },
@@ -48,7 +55,6 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
   const logoRef = useRef<ScrambleTextHandle>(null);
   const navRefs = useRef<Map<string, ScrambleTextHandle>>(new Map());
   const contactRef = useRef<ScrambleTextHandle>(null);
-  const langRef = useRef<ScrambleTextHandle>(null);
 
   // Home page: detect when scrolled past hero
   useEffect(() => {
@@ -64,19 +70,21 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
     window.addEventListener("scroll", check, { passive: true });
     check();
     return () => window.removeEventListener("scroll", check);
-  }, [pathname]);
+  }, [normalizedPathname]);
 
   const isHome = normalizedPathname === "/";
   const effectiveScrolledPastHero = isHome ? scrolledPastHero : false;
 
-  // Determine colors based on route and scroll position
-  const config = routeColors[normalizedPathname] || routeColors["/"];
+  // Determine colors based on route and scroll position. Every route but
+  // home reads straight from the shared theme (also used by the Footer),
+  // so a section's assigned color never drifts between the two.
+  const theme = isHome ? HOME_HEADER_THEME : getRouteTheme(normalizedPathname);
 
   const textColor = effectiveScrolledPastHero
     ? "var(--text-primary)"
-    : config.text;
+    : theme.text;
 
-  const bgColor = effectiveScrolledPastHero ? "var(--bg-primary)" : config.bg;
+  const bgColor = effectiveScrolledPastHero ? "var(--bg-primary)" : theme.bg;
 
   useEffect(() => {
     if (mobileOpen) {
@@ -91,15 +99,18 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
 
   return (
     <>
-      <header
+      <m.header
         className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300"
         style={{ backgroundColor: bgColor } as React.CSSProperties}
+        initial={{ y: 0 }}
+        animate={{ y: hidden ? "-100%" : "0%" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         <div className="flex items-center justify-between px-6 md:px-12 py-5 overflow-hidden">
           {/* Logo — hover detected on the <Link>, not the inner span */}
           <Link
             href="/"
-            className="group relative font-mono text-3xl font-bold tracking-tight"
+            className="group relative font-mono text-xl font-bold tracking-tight"
             style={{ color: textColor } as React.CSSProperties}
             onMouseEnter={() => logoRef.current?.scramble()}
             onMouseLeave={() => logoRef.current?.reset()}
@@ -119,17 +130,15 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
             />
           </Link>
 
-          {/* Center nav */}
-          <nav className="hidden items-center gap-0 md:flex md:ml-80 overflow-hidden">
+          <nav className="hidden items-center gap-3 md:flex flex-1 justify-center md:pl-[15vw] overflow-hidden">
             {navLinks.map((link, i) => (
               <span key={link.href} className="flex items-center">
                 <Link
                   href={link.href}
-                  className="group relative font-mono text-3xl md:text-2xl font-medium transition-colors hover:text-[var(--accent)]"
+                  className="group relative font-mono text-2xl tracking-[0.1em] font-medium transition-colors hover:text-[var(--accent)]"
                   style={
                     {
                       color: textColor,
-                      minWidth: `${link.label.length}ch`,
                     } as React.CSSProperties
                   }
                   onMouseEnter={() =>
@@ -148,17 +157,13 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
                     key={`${link.label}-${pathname}`}
                   />
                   <span
-                    className={`absolute bottom-0 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${pathname === link.href ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+                    className={`absolute -bottom-2 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${pathname === link.href ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
                   />
                 </Link>
                 {i < navLinks.length - 1 && (
                   <span
-                    className="text-3xl md:text-2xl font-medium"
-                    style={
-                      {
-                        color: textColor,
-                      } as React.CSSProperties
-                    }
+                    className="font-mono text-2xl font-medium"
+                    style={{ color: textColor }}
                   >
                     ,
                   </span>
@@ -170,12 +175,10 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
           {/* Contact link */}
           <Link
             href="/contact"
-            className="group relative font-mono text-3xl md:text-2xl font-medium transition-colors hover:text-[var(--accent)] ml-8"
+            className="hidden md:inline-block group relative font-mono text-2xl tracking-[0.1em] font-medium transition-colors hover:text-[var(--accent)]"
             style={
               {
                 color: textColor,
-                width: "10ch",
-                display: "inline-block",
                 textAlign: "center",
               } as React.CSSProperties
             }
@@ -190,7 +193,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
               key={`contact-${pathname}`}
             />
             <span
-              className={`absolute bottom-0 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${normalizedPathname === "/contact" ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+              className={`absolute -bottom-2 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${normalizedPathname === "/contact" ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
             />
           </Link>
 
@@ -224,7 +227,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
             />
           </button>
         </div>
-      </header>
+      </m.header>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>

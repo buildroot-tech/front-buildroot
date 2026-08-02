@@ -3,7 +3,16 @@
 import { useEffect, useRef } from "react";
 import { animate, AnimationPlaybackControls } from "framer-motion";
 
-export function PixelImage({ src }: { src: string }) {
+interface PixelImageProps {
+  src: string;
+  // Skip the pixelation reveal and draw the crisp image immediately.
+  // Used when the same image already resolved elsewhere on screen and is
+  // just relocating (e.g. the hover preview docking into the drawer) —
+  // replaying the reveal there would read as an unwanted re-pixelation.
+  instant?: boolean;
+}
+
+export function PixelImage({ src, instant = false }: PixelImageProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -26,6 +35,12 @@ export function PixelImage({ src }: { src: string }) {
 
       const width = canvas.width;
       const height = canvas.height;
+
+      if (instant) {
+        ctx.imageSmoothingEnabled = true;
+        ctx.drawImage(img, 0, 0, width, height);
+        return;
+      }
 
       // Start with very large blocks relative to the image size (e.g. 10 blocks across)
       const initialPixelSize = Math.max(40, Math.floor(width / 10));
@@ -84,7 +99,7 @@ export function PixelImage({ src }: { src: string }) {
     return () => {
       if (animationRef) animationRef.stop();
     };
-  }, [src]);
+  }, [src, instant]);
 
   return (
     <canvas

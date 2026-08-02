@@ -7,6 +7,9 @@ const dictionaries = {
 
 export type Locale = keyof typeof dictionaries;
 
+import enDict from '@/dictionaries/en.json';
+export type Dictionary = typeof enDict;
+
 export const getDictionary = async (locale: Locale) => {
   return dictionaries[locale] ? dictionaries[locale]() : dictionaries['en']();
 };
