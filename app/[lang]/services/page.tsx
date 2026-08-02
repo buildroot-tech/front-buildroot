@@ -1,22 +1,24 @@
-"use client";
+import type { Metadata } from "next";
+import { ServicesSection } from "@/components/services/ServicesSection";
+import { getDictionary, Locale } from "@/lib/dictionaries";
 
-import { ScrambleText } from "@/components/ui/TextScrambler";
+export const metadata: Metadata = {
+  title: "Services — buildroot_",
+  description:
+    "Web development, technical consulting, and SaaS products built by buildroot_. Full-stack engineering, architecture reviews, and end-to-end product delivery.",
+};
 
-export default function ServicesPage() {
+export default async function ServicesPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
+
   return (
-    <div className="min-h-screen bg-[var(--accent)] pt-24 pb-16">
-      <div className="mx-auto max-w-[1400px] px-6">
-        <h1 className="font-mono text-xs uppercase tracking-[0.2em] text-white/60">
-          What We Do
-        </h1>
-        <h2 className="mt-4 font-mono text-4xl font-bold text-white md:text-6xl">
-          <ScrambleText text="Services" speed={55} trigger="mount" />
-        </h2>
-        <p className="mt-6 max-w-lg text-lg text-white/70">
-          Web development, technical consulting, and SaaS products for startups
-          and enterprises.
-        </p>
-      </div>
+    <div className="min-h-screen bg-[var(--accent)]">
+      <ServicesSection dict={dict.services} />
     </div>
   );
 }

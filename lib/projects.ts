@@ -6,6 +6,7 @@ export const PROJECTS: readonly Project[] = [
     title: "Polo & Pantoja",
     image: "polo-pantoja",
     client: "Polo & Pantoja Abogados",
+    industry: "Legal Services",
     year: "2026",
     category: "SaaS",
     featured: true,
@@ -21,6 +22,7 @@ export const PROJECTS: readonly Project[] = [
       "Clean Architecture",
       "JWT",
     ],
+    highlights: ["Property Marketplace", "Client Portal", "Secure Contracts"],
     metrics: [
       { label: "Contract Modalities", value: "3 (Rent/Sale/Anticres)" },
       { label: "Security", value: "Spring Sec + RBAC" },
@@ -51,6 +53,7 @@ export const PROJECTS: readonly Project[] = [
     title: "Edusur",
     image: "edusur",
     client: "Edusur Servicios Educativos",
+    industry: "Education",
     year: "2026",
     category: "Web Apps",
     featured: true,
@@ -59,6 +62,7 @@ export const PROJECTS: readonly Project[] = [
     description:
       "A fast, content-driven educational website featuring 14 custom sections, student review engines, and sub-second load times.",
     tags: ["Astro 5", "TypeScript", "Tailwind 4", "GSAP 3", "EmailJS"],
+    highlights: ["Student-Facing Site", "Fast Mobile Experience", "Engaging Design"],
     metrics: [
       { label: "Framework", value: "Astro 5.3" },
       { label: "Custom Sections", value: "14 Sections" },
@@ -89,6 +93,7 @@ export const PROJECTS: readonly Project[] = [
     title: "Salesforce Omni",
     image: "salesforce-ai",
     client: "Enterprise Consulting",
+    industry: "Customer Service",
     year: "2026",
     category: "Consulting",
     featured: true,
@@ -104,6 +109,7 @@ export const PROJECTS: readonly Project[] = [
       "Apex",
       "Flow Automation",
     ],
+    highlights: ["Faster Support", "AI-Assisted Routing", "Unified Case Handling"],
     metrics: [
       { label: "Routing Latency", value: "<1.2s" },
       { label: "Case Automation", value: "85% Auto-Routed" },
@@ -133,6 +139,7 @@ export const PROJECTS: readonly Project[] = [
     title: "Acá",
     image: "aca-diario",
     client: "Acá Medios",
+    industry: "Media",
     year: "2026",
     category: "Web Apps",
     featured: true,
@@ -141,6 +148,7 @@ export const PROJECTS: readonly Project[] = [
     description:
       "A modern local journalism platform built for fast editorial workflows (draft -> review -> publish in <4h) with self-hosted ad management.",
     tags: ["Next.js 14", "Tailwind 4", "PostgreSQL", "Monorepo", "Local CMS"],
+    highlights: ["Digital Newspaper", "Fast Publishing", "Local Ad Sales"],
     metrics: [
       { label: "Target Visits", value: "50K/mo" },
       { label: "Publish SLA", value: "<4 Hours" },
@@ -170,6 +178,7 @@ export const PROJECTS: readonly Project[] = [
     indexCode: "05",
     title: "Apex",
     client: "Apex Enterprise Systems",
+    industry: "Data Analytics",
     year: "2025",
     category: "SaaS",
     featured: false,
@@ -177,6 +186,7 @@ export const PROJECTS: readonly Project[] = [
     description:
       "Engineered an enterprise telemetry dashboard handling over 10M events/day with sub-50ms query latencies.",
     tags: ["Next.js 16", "React 19", "ClickHouse", "WebSockets", "Tailwind 4"],
+    highlights: ["Real-Time Dashboard", "Instant Load Times", "Enterprise Scale"],
     metrics: [
       { label: "Throughput Boost", value: "+340%" },
       { label: "Query Latency", value: "<50ms" },
@@ -206,6 +216,7 @@ export const PROJECTS: readonly Project[] = [
     indexCode: "06",
     title: "buildroot_ Engine",
     client: "buildroot_ Labs",
+    industry: "AI Automation",
     year: "2026",
     category: "Labs",
     featured: false,
@@ -220,6 +231,7 @@ export const PROJECTS: readonly Project[] = [
       "AI Automation",
       "Workflows",
     ],
+    highlights: ["Internal AI Tooling", "Faster Delivery", "Built-In Quality Checks"],
     metrics: [
       { label: "Agent Roles", value: "6 Specialized" },
       { label: "Cycle Speed", value: "3x Faster" },
