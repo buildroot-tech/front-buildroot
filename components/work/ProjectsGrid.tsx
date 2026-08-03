@@ -1,24 +1,40 @@
 "use client";
 
+import { useState } from "react";
 import { PROJECTS } from "@/lib/projects";
 import { ProjectRow } from "@/components/work/ProjectRow";
 import { Plus, ArrowUpRight, Mail } from "lucide-react";
 import Link from "next/link";
 import type { Dictionary } from "@/lib/dictionaries";
+import type { ProjectCategory } from "@/types";
 
 interface ProjectsGridProps {
   dict?: Dictionary["work"];
+  category?: ProjectCategory;
 }
 
-export function ProjectsGrid({ dict }: ProjectsGridProps) {
+export function ProjectsGrid({ dict, category = "All" }: ProjectsGridProps) {
+  const visibleProjects =
+    category === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === category);
+
+  // Only one row open at a time — expanding a new one closes whichever
+  // was open before. WorkSection keys this whole component on `category`,
+  // so a filter change remounts it fresh and resets this to null too,
+  // no effect needed.
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
   return (
     <div className="w-full">
       {/* Accordion Project List */}
-      {PROJECTS.map((project) => (
+      {visibleProjects.map((project) => (
         <ProjectRow
           key={project.id}
           project={project}
           viewCaseStudyLabel={dict?.view_case_study}
+          isExpanded={expandedId === project.id}
+          onToggle={() =>
+            setExpandedId((current) => (current === project.id ? null : project.id))
+          }
         />
       ))}
 
