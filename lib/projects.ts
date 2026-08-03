@@ -13,7 +13,7 @@ export const PROJECTS: readonly Project[] = [
     summary:
       "Law firm portal & specialized real estate marketplace with anticres contract management.",
     description:
-      "Full-stack legal service portal combined with a regional real estate marketplace handling rentals, sales, and Colombian anticres property contracts with role-based document access.",
+      "One platform, two businesses: a law firm's client portal and a regional real estate marketplace, working side by side — including Colombia's unique anticres contracts, handled securely from listing to signature.",
     tags: [
       "Next.js 14",
       "Spring Boot 3",
@@ -33,12 +33,6 @@ export const PROJECTS: readonly Project[] = [
         "Polo & Pantoja needed a unified solution for legal services and a regional real estate marketplace supporting anticres contracts—a unique legal modality requiring strict document verification.",
       solution:
         "Architected a modular monolith backend in Spring Boot 3 with Clean Architecture and a Next.js 14 App Router frontend. Built custom document verification workflows for law firm admins and property owners.",
-      architecture: [
-        "Spring Boot 3 + Java 17 Controller-Service-Repository clean layers",
-        "Next.js 14 App Router with server-side rendered listings",
-        "JWT Authentication + Role-Based Access Control (Admin, Owner, Client)",
-        "PostgreSQL database with soft-delete repositories",
-      ],
       results: [
         "Unified legal showcase & property management into a single platform",
         "Streamlined property verification time for law firm staff",
@@ -60,7 +54,7 @@ export const PROJECTS: readonly Project[] = [
     summary:
       "High-performance Astro 5 web experience with GSAP micro-animations.",
     description:
-      "A fast, content-driven educational website featuring 14 custom sections, student review engines, and sub-second load times.",
+      "A prospective student's first impression, redesigned: a fast, beautifully animated site that loads instantly on any phone and makes it easy to say yes.",
     tags: ["Astro 5", "TypeScript", "Tailwind 4", "GSAP 3", "EmailJS"],
     highlights: ["Student-Facing Site", "Fast Mobile Experience", "Engaging Design"],
     metrics: [
@@ -73,12 +67,6 @@ export const PROJECTS: readonly Project[] = [
         "Edusur needed a modern, highly engaging web portal for prospective students that loaded instantly on mobile networks while maintaining smooth animations.",
       solution:
         "Implemented a content-driven architecture using Astro 5 and Tailwind CSS v4, utilizing GSAP for hardware-accelerated scroll animations and zero JS runtime overhead for static content.",
-      architecture: [
-        "Astro 5 island architecture for zero JS default shipped",
-        "Tailwind CSS 4.0 for utility styling",
-        "GSAP 3 scroll-triggered timeline animations",
-        "EmailJS client-side secure lead capture",
-      ],
       results: [
         "Achieved sub-500ms First Contentful Paint on mobile",
         "98/100 Lighthouse performance rating",
@@ -100,7 +88,7 @@ export const PROJECTS: readonly Project[] = [
     summary:
       "Automated Omni-Channel customer routing & Agentforce AI integration suite.",
     description:
-      "Architecture design and custom LWC integration for enterprise Salesforce CRM deployments, automating Omni-Channel routing, case escalation flows, and AI Agentforce assistants.",
+      "Support tickets that used to sit in a queue now route themselves — the right case to the right agent, instantly, with AI handling the routine ones before a human ever sees them.",
     tags: [
       "Salesforce",
       "LWC",
@@ -120,12 +108,6 @@ export const PROJECTS: readonly Project[] = [
         "Enterprise customer support teams faced high queue wait times due to manual case categorization and fragmented digital communication channels.",
       solution:
         "Engineered an automated Omni-Channel routing matrix combined with custom Lightning Web Components (LWC) and Agentforce AI assistants to auto-triage incoming cases.",
-      architecture: [
-        "Salesforce Service Cloud Omni-Channel skill-based routing",
-        "Agentforce AI digital engagement connectors",
-        "Custom Lightning Web Component (LWC) widgets for agent dashboards",
-        "Declarative Flow automation for case status lifecycle",
-      ],
       results: [
         "Reduced average case triage time by 85%",
         "Seamless AI-to-human agent handoff for complex support inquiries",
@@ -146,7 +128,7 @@ export const PROJECTS: readonly Project[] = [
     summary:
       "High-velocity digital newspaper & self-managed advertising engine.",
     description:
-      "A modern local journalism platform built for fast editorial workflows (draft -> review -> publish in <4h) with self-hosted ad management.",
+      "A local newsroom that can break a story in hours, not days — with its own ad sales built in, so the business doesn't depend on anyone else's ad network.",
     tags: ["Next.js 14", "Tailwind 4", "PostgreSQL", "Monorepo", "Local CMS"],
     highlights: ["Digital Newspaper", "Fast Publishing", "Local Ad Sales"],
     metrics: [
@@ -159,12 +141,6 @@ export const PROJECTS: readonly Project[] = [
         "Local news in Nariño/Ecuador border region lacked modern digital publishing tools, requiring a cheap-to-operate platform supporting local ad sales without third-party ad network dependencies.",
       solution:
         "Built a lightweight monorepo application in Next.js 14 with a custom editorial rich-text workflow and a self-managed banner advertising rotation system.",
-      architecture: [
-        "Next.js 14 App Router monorepo architecture",
-        "Internal ad banner manager (weight-based rotation & date caps)",
-        "Role-based editorial workflow (Draft, Review, Scheduled, Live)",
-        "Static page generation for viral article traffic bursts",
-      ],
       results: [
         "Designed to scale to 50,000 monthly visits at near-zero hosting cost",
         "Streamlined article publishing loop to under 4 hours",
@@ -184,7 +160,7 @@ export const PROJECTS: readonly Project[] = [
     featured: false,
     summary: "High-throughput real-time telemetry and streaming data platform.",
     description:
-      "Engineered an enterprise telemetry dashboard handling over 10M events/day with sub-50ms query latencies.",
+      "A dashboard that used to freeze under its own data now updates in real time — even at ten million events a day, without anyone noticing the load.",
     tags: ["Next.js 16", "React 19", "ClickHouse", "WebSockets", "Tailwind 4"],
     highlights: ["Real-Time Dashboard", "Instant Load Times", "Enterprise Scale"],
     metrics: [
@@ -197,12 +173,6 @@ export const PROJECTS: readonly Project[] = [
         "The legacy dashboard suffered from severe rendering freezes and API bottlenecks under heavy concurrent telemetry loads.",
       solution:
         "Re-architected the frontend using React 19 concurrent features, streaming server components, and WebSocket chunking with ClickHouse analytics queries.",
-      architecture: [
-        "Next.js App Router streaming server render",
-        "ClickHouse columnar DB integration",
-        "High-performance canvas rendering engine",
-        "Real-time WebSocket data pipelines",
-      ],
       results: [
         "Reduced dashboard initial load time from 4.2s to 0.4s",
         "Supported 500+ concurrent live telemetry views",
@@ -223,7 +193,7 @@ export const PROJECTS: readonly Project[] = [
     isLab: true,
     summary: "Multi-agent autonomous software engineering lifecycle framework.",
     description:
-      "Orchestration engine coordinating 6 specialized AI agents (Requirements, Architecture, Frontend, QA, Copywriting, DevOps) with automated handoff gates.",
+      "Our own internal system for building software faster without cutting corners — six specialized roles working in sequence, each one checking the last, so nothing slips through.",
     tags: [
       "Antigravity AGY",
       "Multi-Agent",
@@ -242,12 +212,6 @@ export const PROJECTS: readonly Project[] = [
         "Traditional single-prompt AI coding assistants suffer from context drift, forgotten requirements, and lack of systematic architectural review.",
       solution:
         "Developed a structured multi-agent workflow system partitioning project phases into specialized roles with strict deliverable handoffs and automated quality validation.",
-      architecture: [
-        "Role-based agent definitions (Requirements Engineer, Solution Architect, Frontend Dev, QA Engineer, DevOps, Copywriter)",
-        "Slash command workflow orchestration (/startcycle)",
-        "Automated 5-axis code quality & accessibility audit checklists",
-        "Markdown artifact persistence & transcript traceability",
-      ],
       results: [
         "Eliminated context degradation on complex multi-step features",
         "Ensured WCAG 2.1 AA accessibility and performance target compliance",

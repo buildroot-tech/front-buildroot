@@ -9,7 +9,6 @@ export interface ProjectMetric {
 export interface CaseStudy {
   challenge: string;
   solution: string;
-  architecture: string[];
   results: string[];
 }
 
