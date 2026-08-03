@@ -41,24 +41,23 @@ export function ProjectsGrid({ dict, category = "All" }: ProjectsGridProps) {
         />
       ))}
 
-      {/* Marketing CTA — invite visitors to start a project with us. Same
-          46%/1fr split as the section header above, and the actions are
-          plain link rows (border + arrow, no fill) matching Case Study /
-          Visit Site instead of a solid button, for one consistent link
-          language across the whole page. */}
+      {/* Marketing CTA — invite visitors to start a project with us. The
+          actions are plain link rows (border + arrow, no fill) matching
+          Case Study / Visit Site instead of a solid button, for one
+          consistent link language across the whole page. */}
       <div className="w-full py-40 md:py-48 mt-8">
-        <div className="flex flex-col gap-10 lg:grid lg:grid-cols-[60%_1fr] lg:items-end">
-          <div className="lg:col-start-1">
-            <h3 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-[var(--text-primary)] tracking-tight">
+        <div className="flex flex-col gap-10">
+          <div className="w-full">
+            <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-light text-[var(--text-primary)] tracking-tight">
               {dict?.cta_title || "Ready to build your next digital product?"}
             </h3>
-            <p className="mt-4 text-3xl md:text-4xl text-[var(--text-primary)] font-sans leading-snug">
+            <p className="mt-4 w-full font-serif font-light text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tighter text-[var(--text-primary)] leading-[1.05]">
               {dict?.cta_subtitle ||
                 "We partner with founders and product teams to design, engineer, and ship high-performance web platforms — from the first architecture decision to production launch. If you have a project worth building well, let's talk."}
             </p>
           </div>
 
-          <div className="lg:col-start-2 flex flex-col font-sans text-2xl md:text-3xl">
+          <div className="flex flex-col font-display text-2xl md:text-3xl">
             <a
               href="mailto:info@buildroot.co"
               onMouseEnter={() => startBuildRef.current?.scramble()}

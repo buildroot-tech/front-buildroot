@@ -11,7 +11,7 @@ interface ProjectListRowProps {
   readonly project: Project;
 }
 
-const IMAGE_WIDTH = 240;
+const IMAGE_WIDTH = 360;
 
 export function ProjectListRow({ project }: ProjectListRowProps) {
   const [isHovered, setIsHovered] = useState(false);
@@ -21,18 +21,18 @@ export function ProjectListRow({ project }: ProjectListRowProps) {
   return (
     <Link
       href={`/work/${project.id}`}
-      className="group flex flex-col justify-center min-h-[90px] md:min-h-[110px] transition-colors duration-500 w-full"
+      className="group flex flex-col justify-center min-h-[150px] md:min-h-[180px] transition-colors duration-500 w-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       aria-label={`View project: ${project.title}`}
     >
       <div className="flex flex-row items-center justify-center w-full">
         {/* Left Line */}
-        <div className="h-[1px] bg-[var(--text-primary)] opacity-20 group-hover:opacity-100 transition-opacity duration-500 flex-1" />
+        <div className="h-[1px] bg-[var(--text-primary)] flex-1" />
 
         {/* Title with Inline Image */}
         <div className="px-6 md:px-12 shrink-0 overflow-hidden">
-          <h3 className="flex items-center justify-center font-display text-4xl sm:text-5xl md:text-5xl lg:text-[4rem] font-light capitalize tracking-tighter text-[var(--text-primary)] text-center whitespace-nowrap">
+          <h3 className="flex items-center justify-center font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] font-light capitalize tracking-tighter text-[var(--text-primary)] text-center whitespace-nowrap">
             {words.map((word, i) => (
               <span key={i} className="flex items-center">
                 {i > 0 && <span className="w-[0.25em] inline-block"></span>}
@@ -62,7 +62,7 @@ export function ProjectListRow({ project }: ProjectListRowProps) {
         </div>
 
         {/* Right Line */}
-        <div className="h-[1px] bg-[var(--text-primary)] opacity-20 group-hover:opacity-100 transition-opacity duration-500 flex-1" />
+        <div className="h-[1px] bg-[var(--text-primary)] flex-1" />
       </div>
     </Link>
   );

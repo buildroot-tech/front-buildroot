@@ -78,7 +78,7 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
             each piece its own fixed track, so industry always starts at
             the same column ("work"'s column) and category always ends at
             the same column ("about"'s), regardless of title length. */}
-        <div className="relative flex items-center justify-between gap-4 pb-2 lg:grid lg:grid-cols-[46%_22%_1fr_auto_16%] lg:justify-normal">
+        <div className="relative flex flex-col items-start gap-2 pb-2 lg:grid lg:grid-cols-[46%_22%_1fr_200px_16%] lg:items-center lg:gap-4 lg:justify-normal">
           {/* Title */}
           <div className="min-w-0 shrink overflow-hidden lg:col-start-1">
             <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-light tracking-tight text-[var(--text-primary)] capitalize truncate">
@@ -99,12 +99,12 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
               word — "SaaS", "Web Apps", "Consulting", "Labs" — starts from
               the same left edge of this column instead of hugging the
               +/- button on the right. */}
-          <div className="relative flex items-center justify-start shrink-0 min-w-[160px] h-12 lg:col-start-4">
+          <div className="relative flex items-center justify-start shrink-0 min-w-[200px] h-12 lg:col-start-4">
             <span
-              className={`font-display text-2xl sm:text-3xl md:text-4xl font-light tracking-tight text-[var(--text-primary)] capitalize transition-all duration-200 ${
+              className={`font-display text-2xl sm:text-3xl md:text-4xl font-light tracking-tight text-[var(--text-primary)] capitalize transition-opacity duration-200 ${
                 isExpanded
-                  ? "opacity-0 scale-95 pointer-events-none"
-                  : "opacity-100 group-hover:opacity-0 group-hover:scale-95"
+                  ? "opacity-0 pointer-events-none"
+                  : "opacity-100 group-hover:opacity-0"
               }`}
             >
               <ScrambleText text={project.category} trigger="mount" active={isActive} speed={40} />
@@ -191,7 +191,7 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
       <AnimatePresence>
         {isExpanded && (
           <m.div exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
-            <div className="pb-10 md:pb-14">
+            <div className="pb-20 md:pb-28">
               <div className="grid gap-4 lg:grid-cols-12 lg:gap-2">
                 {/* Small image, docked here from the hover position — same
                     fixed size in both spots, so the shared layoutId only
@@ -211,7 +211,7 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
                   {/* Three business-facing highlights — what the project
                       is and does, never framework/library names, which
                       mean nothing to a prospective client. */}
-                  <div className="flex w-full flex-col gap-2 font-mono text-xs capitalize">
+                  <div className="flex w-full flex-col gap-0 font-mono text-base capitalize leading-tight">
                     {project.highlights.map((highlight) => (
                       <span key={highlight} className="w-full text-[var(--text-primary)]">
                         {highlight}
@@ -238,15 +238,15 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
                     with the header's "−" toggle, without touching the
                     small or big image's own size or the gap between
                     them. */}
-                <div className="lg:col-start-10 lg:col-span-3 flex flex-col justify-end">
-                  <p className="text-base text-[var(--text-primary)] leading-relaxed font-sans">
+                <div className="lg:col-start-10 lg:col-span-3 flex flex-col justify-end lg:-ml-16">
+                  <p className="text-base text-[var(--text-primary)] leading-relaxed font-display">
                     {project.description}
                   </p>
 
                   {/* Stacked link rows, not buttons — plain text on a
                       top border, blending with the page instead of a
                       filled block sitting on top of it. */}
-                  <div className="mt-6 flex flex-col font-sans text-2xl md:text-3xl">
+                  <div className="mt-6 flex flex-col font-display text-2xl md:text-3xl">
                     <Link
                       href={`/work/${project.id}`}
                       onMouseEnter={() => caseStudyRef.current?.scramble()}
