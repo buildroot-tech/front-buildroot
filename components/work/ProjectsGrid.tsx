@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { PROJECTS } from "@/lib/projects";
 import { ProjectRow } from "@/components/work/ProjectRow";
-import { Plus, ArrowUpRight, Mail } from "lucide-react";
-import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { ScrambleText, type ScrambleTextHandle } from "@/components/ui/TextScrambler";
 import type { Dictionary } from "@/lib/dictionaries";
 import type { ProjectCategory } from "@/types";
 
@@ -22,6 +22,9 @@ export function ProjectsGrid({ dict, category = "All" }: ProjectsGridProps) {
   // so a filter change remounts it fresh and resets this to null too,
   // no effect needed.
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  // Same imperative scramble idiom as the row's own Case Study / Visit
+  // Site links: the hover area is the whole <a>, not just the span.
+  const startBuildRef = useRef<ScrambleTextHandle>(null);
 
   return (
     <div className="w-full">
@@ -38,38 +41,37 @@ export function ProjectsGrid({ dict, category = "All" }: ProjectsGridProps) {
         />
       ))}
 
-      {/* Marketing CTA — invite visitors to start a project with us */}
-      <div className="w-full border-t border-[var(--text-primary)]/10 py-16 mt-8">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-bold uppercase text-[var(--accent)] tracking-widest">
-              <Plus className="h-4 w-4" />
-              <span>Next Project Slot</span>
-            </div>
-            <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold mt-3 text-[var(--text-primary)] tracking-tight">
+      {/* Marketing CTA — invite visitors to start a project with us. Same
+          46%/1fr split as the section header above, and the actions are
+          plain link rows (border + arrow, no fill) matching Case Study /
+          Visit Site instead of a solid button, for one consistent link
+          language across the whole page. */}
+      <div className="w-full py-40 md:py-48 mt-8">
+        <div className="flex flex-col gap-10 lg:grid lg:grid-cols-[60%_1fr] lg:items-end">
+          <div className="lg:col-start-1">
+            <h3 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-[var(--text-primary)] tracking-tight">
               {dict?.cta_title || "Ready to build your next digital product?"}
             </h3>
-            <p className="mt-3 text-base sm:text-lg text-[var(--text-primary)] font-sans max-w-4xl leading-relaxed">
+            <p className="mt-4 text-3xl md:text-4xl text-[var(--text-primary)] font-sans leading-snug">
               {dict?.cta_subtitle ||
                 "We partner with founders and product teams to design, engineer, and ship high-performance web platforms — from the first architecture decision to production launch. If you have a project worth building well, let's talk."}
             </p>
           </div>
 
-          <div className="flex flex-col items-start lg:items-end gap-4 shrink-0">
-            <Link
-              href="/#cta"
-              className="brutalist-button brutalist-button-accent text-xs font-bold tracking-wider py-4 px-8"
-            >
-              <span>{dict?.cta_button || "Start a Build"} →</span>
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
-
+          <div className="lg:col-start-2 flex flex-col font-sans text-2xl md:text-3xl">
             <a
-              href="mailto:hello@buildroot.dev"
-              className="inline-flex items-center gap-2 font-mono text-xs text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors"
+              href="mailto:info@buildroot.co"
+              onMouseEnter={() => startBuildRef.current?.scramble()}
+              onMouseLeave={() => startBuildRef.current?.reset()}
+              className="group flex items-center justify-between border-t border-[var(--text-primary)] pt-5 text-[var(--text-primary)]"
             >
-              <Mail className="h-3.5 w-3.5" />
-              <span>{dict?.cta_email_label || "or email us directly"}</span>
+              <ScrambleText
+                ref={startBuildRef}
+                text={dict?.cta_button || "Start a Build"}
+                trigger="mount"
+                speed={40}
+              />
+              <ArrowRight className="h-7 w-7 transition-transform group-hover:translate-x-1" />
             </a>
           </div>
         </div>
