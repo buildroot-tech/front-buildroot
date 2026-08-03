@@ -42,7 +42,7 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
           <h1 className="headline text-display mt-4 text-[var(--text-primary)] tracking-tight">
             <ScrambleText text={project.title} speed={55} trigger="mount" />
           </h1>
-          <p className="mt-4 text-lg md:text-2xl text-[var(--text-primary)] max-w-3xl leading-relaxed font-sans">
+          <p className="mt-4 text-lg md:text-2xl text-[var(--text-primary)] max-w-3xl leading-relaxed font-display">
             {project.description}
           </p>
         </header>
