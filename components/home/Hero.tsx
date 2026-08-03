@@ -170,7 +170,7 @@ export function Hero({ dict }: HeroProps) {
           {/* We build */}
           <div className="overflow-hidden">
             <m.h1
-              className="block font-display text-[var(--text-inverse)] uppercase"
+              className="block font-serif font-light text-[var(--text-inverse)] uppercase"
               style={{ ...textBase, lineHeight: LH_MAIN }}
               initial={{ y: "106%" }}
               animate={{ y: 0 }}
@@ -183,7 +183,7 @@ export function Hero({ dict }: HeroProps) {
           {/* Digital */}
           <div className="overflow-hidden">
             <m.h1
-              className="block font-display text-[var(--text-inverse)] uppercase"
+              className="block font-serif font-light text-[var(--text-inverse)] uppercase"
               style={{ ...textBase, lineHeight: LH_MAIN }}
               initial={{ y: "106%" }}
               animate={{ y: 0 }}
@@ -196,7 +196,7 @@ export function Hero({ dict }: HeroProps) {
           {/* Products. — solid accent, z-10 so echo 1 goes behind */}
           <div className="overflow-hidden relative z-10">
             <m.h1
-              className="block font-display text-[var(--accent)] uppercase"
+              className="block font-serif font-light text-[var(--accent)] uppercase"
               style={{ ...textBase, lineHeight: LH_MAIN }}
               initial={{ y: "106%" }}
               animate={{ y: 0 }}
@@ -217,7 +217,7 @@ export function Hero({ dict }: HeroProps) {
             {[0.16].map((opacity, i) => (
               <span
                 key={i}
-                className="block font-display uppercase"
+                className="block font-serif font-light uppercase"
                 style={{
                   ...textBase,
                   lineHeight: 0.60,

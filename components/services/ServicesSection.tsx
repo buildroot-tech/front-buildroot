@@ -116,7 +116,7 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
               trigger="mount"
             />
           </h1>
-          <p className="mt-3 max-w-2xl text-base md:text-lg leading-relaxed text-white/80 font-sans">
+          <p className="mt-3 max-w-2xl text-base md:text-lg leading-relaxed text-white/80 font-display">
             {dict?.subtitle ||
               "Three ways we work with you: we build your product, we fix what's broken, or we ship the whole thing end to end. No agencies of agencies, no account managers — you talk to the people writing the code."}
           </p>

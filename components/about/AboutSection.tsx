@@ -80,11 +80,11 @@ export function AboutSection({ dict }: AboutSectionProps) {
               trigger="mount"
             />
           </h1>
-          <p className="mt-3 max-w-2xl text-base md:text-lg leading-relaxed text-white/80 font-sans">
+          <p className="mt-3 max-w-2xl text-base md:text-lg leading-relaxed text-white/80 font-display">
             {dict?.subtitle ||
               "Two developers. One mission. Build software that actually works."}
           </p>
-          <p className="mt-4 max-w-2xl text-sm md:text-base leading-relaxed text-white/60 font-sans">
+          <p className="mt-4 max-w-2xl text-sm md:text-base leading-relaxed text-white/60 font-display">
             {dict?.intro ||
               "Buildroot is a two-person studio, not an agency. No account managers, no bloated process — just the people writing your code, talking to you directly, from kickoff to launch."}
           </p>

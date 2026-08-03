@@ -1,13 +1,24 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Geist_Mono } from "next/font/google";
+import { Poppins, Crimson_Pro, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { Preloader } from "@/components/ui/Preloader";
 
-const bricolageGrotesque = Bricolage_Grotesque({
+// Primary typeface — body copy, navbar, footer, and everything on /work.
+const poppins = Poppins({
   variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+// Secondary typeface — reserved for home's giant display headlines only
+// (hero, the featured-work list, the CTA manifesto). Not used on /work.
+// A plain book serif — elongated, low-contrast, not editorial/decorative.
+const crimsonPro = Crimson_Pro({
+  variable: "--font-serif",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
@@ -40,7 +51,7 @@ export default async function RootLayout({
   return (
     <html
       lang={lang}
-      className={`${bricolageGrotesque.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${poppins.variable} ${crimsonPro.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Providers>
