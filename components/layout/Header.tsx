@@ -106,11 +106,11 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
         animate={{ y: hidden ? "-100%" : "0%" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
-        <div className="flex items-center justify-between px-6 md:px-12 py-5 overflow-hidden">
+        <div className="flex items-center justify-between px-6 md:px-12 py-5 overflow-hidden lg:grid lg:grid-cols-[46%_1fr] lg:gap-4 lg:justify-normal">
           {/* Logo — hover detected on the <Link>, not the inner span */}
           <Link
             href="/"
-            className="group relative font-mono text-xl font-bold tracking-tight"
+            className="group relative font-display text-xl font-bold tracking-tight lg:col-start-1"
             style={{ color: textColor } as React.CSSProperties}
             onMouseEnter={() => logoRef.current?.scramble()}
             onMouseLeave={() => logoRef.current?.reset()}
@@ -125,79 +125,76 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
             <span className="cursor-blink inline-block scale-y-75 origin-bottom">
               _
             </span>
-            <span
-              className={`absolute bottom-0 left-0 h-[1px] w-full bg-current transition-opacity duration-150 opacity-0 group-hover:opacity-100`}
-            />
           </Link>
 
-          <nav className="hidden items-center gap-3 md:flex flex-1 justify-center md:pl-[15vw] overflow-hidden">
-            {navLinks.map((link, i) => (
-              <span key={link.href} className="flex items-center">
-                <Link
-                  href={link.href}
-                  className="group relative font-mono text-2xl tracking-[0.1em] font-medium transition-colors hover:text-[var(--accent)]"
-                  style={
-                    {
-                      color: textColor,
-                    } as React.CSSProperties
-                  }
-                  onMouseEnter={() =>
-                    navRefs.current.get(link.href)?.scramble()
-                  }
-                  onMouseLeave={() => navRefs.current.get(link.href)?.reset()}
-                >
-                  <ScrambleText
-                    ref={(el) => {
-                      if (el) navRefs.current.set(link.href, el);
-                      else navRefs.current.delete(link.href);
-                    }}
-                    text={link.label}
-                    speed={68}
-                    trigger="mount"
-                    key={`${link.label}-${pathname}`}
-                  />
-                  <span
-                    className={`absolute -bottom-2 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${pathname === link.href ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
-                  />
-                </Link>
-                {i < navLinks.length - 1 && (
-                  <span
-                    className="font-mono text-2xl font-medium"
-                    style={{ color: textColor }}
+          <div className="hidden items-center md:flex flex-1 justify-between lg:col-start-2 lg:flex-none overflow-hidden">
+            <nav className="flex items-center gap-3 justify-center md:pl-[15vw] lg:pl-0 lg:justify-start overflow-hidden">
+              {navLinks.map((link, i) => (
+                <span key={link.href} className="flex items-center">
+                  <Link
+                    href={link.href}
+                    className="group relative font-display text-2xl sm:text-3xl md:text-4xl tracking-[0.1em] font-normal transition-colors hover:text-[var(--accent)]"
+                    style={
+                      {
+                        color: textColor,
+                      } as React.CSSProperties
+                    }
+                    onMouseEnter={() =>
+                      navRefs.current.get(link.href)?.scramble()
+                    }
+                    onMouseLeave={() => navRefs.current.get(link.href)?.reset()}
                   >
-                    ,
-                  </span>
-                )}
-              </span>
-            ))}
-          </nav>
+                    <ScrambleText
+                      ref={(el) => {
+                        if (el) navRefs.current.set(link.href, el);
+                        else navRefs.current.delete(link.href);
+                      }}
+                      text={link.label}
+                      speed={68}
+                      trigger="mount"
+                      key={`${link.label}-${pathname}`}
+                    />
+                    <span
+                      className={`absolute bottom-0 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${pathname === link.href ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+                    />
+                  </Link>
+                  {i < navLinks.length - 1 && (
+                    <span
+                      className="font-display text-2xl sm:text-3xl md:text-4xl font-normal"
+                      style={{ color: textColor }}
+                    >
+                      ,
+                    </span>
+                  )}
+                </span>
+              ))}
+            </nav>
 
-          {/* Contact link */}
-          <Link
-            href="/contact"
-            className="hidden md:inline-block group relative font-mono text-2xl tracking-[0.1em] font-medium transition-colors hover:text-[var(--accent)]"
-            style={
-              {
-                color: textColor,
-                textAlign: "center",
-              } as React.CSSProperties
-            }
-            onMouseEnter={() => contactRef.current?.scramble()}
-            onMouseLeave={() => contactRef.current?.reset()}
-          >
-            <ScrambleText
-              ref={contactRef}
-              text={dict?.contact || "let's talk"}
-              speed={68}
-              trigger="mount"
-              key={`contact-${pathname}`}
-            />
-            <span
-              className={`absolute -bottom-2 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${normalizedPathname === "/contact" ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
-            />
-          </Link>
-
-
+            {/* Contact link */}
+            <Link
+              href="/contact"
+              className="group relative font-display text-2xl sm:text-3xl md:text-4xl tracking-[0.1em] font-normal transition-colors hover:text-[var(--accent)]"
+              style={
+                {
+                  color: textColor,
+                  textAlign: "center",
+                } as React.CSSProperties
+              }
+              onMouseEnter={() => contactRef.current?.scramble()}
+              onMouseLeave={() => contactRef.current?.reset()}
+            >
+              <ScrambleText
+                ref={contactRef}
+                text={dict?.contact || "let's talk"}
+                speed={68}
+                trigger="mount"
+                key={`contact-${pathname}`}
+              />
+              <span
+                className={`absolute bottom-0 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${normalizedPathname === "/contact" ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+              />
+            </Link>
+          </div>
 
           {/* Mobile Burger */}
           <button
@@ -244,7 +241,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-mono text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
+                  className="font-display text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
@@ -252,14 +249,14 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
               ))}
               <Link
                 href="/contact"
-                className="font-mono text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
+                className="font-display text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
                 onClick={() => setMobileOpen(false)}
               >
                 {dict?.contact || "let's talk"}
               </Link>
               <Link
                 href={lang === "en" ? `/es${normalizedPathname === "/" ? "" : normalizedPathname}` : normalizedPathname}
-                className="font-mono text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)] mt-8"
+                className="font-display text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)] mt-8"
                 onClick={() => setMobileOpen(false)}
               >
                 {lang === "en" ? "ES" : "EN"}

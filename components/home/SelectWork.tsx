@@ -44,15 +44,15 @@ export function SelectWork({ dict }: SelectWorkProps) {
           {/* View All Projects Row */}
           <Link
             href="/work"
-            className="group flex flex-col justify-center min-h-[90px] md:min-h-[110px] transition-colors duration-500 w-full"
+            className="group flex flex-col justify-center min-h-[150px] md:min-h-[180px] transition-colors duration-500 w-full"
             onMouseEnter={() => setHoveredCTA(true)}
             onMouseLeave={() => setHoveredCTA(false)}
           >
             <div className="flex flex-row items-center justify-center w-full">
-              <div className="h-[1px] bg-[var(--text-primary)] opacity-20 group-hover:opacity-100 transition-opacity duration-500 flex-1" />
+              <div className="h-[1px] bg-[var(--text-primary)] flex-1" />
 
               <div className="px-6 md:px-12 shrink-0 overflow-hidden">
-                <h3 className="flex items-center justify-center font-display text-4xl sm:text-5xl md:text-5xl lg:text-[4rem] font-light capitalize tracking-tighter transition-colors duration-500 text-center whitespace-nowrap text-[var(--text-primary)]">
+                <h3 className="flex items-center justify-center font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] font-light capitalize tracking-tighter transition-colors duration-500 text-center whitespace-nowrap text-[var(--text-primary)]">
                   <span className="w-[1ch] text-center inline-block">{ctaSymbol}</span>
                   <span className="mx-2 md:mx-4 flex items-center gap-[0.25em]">
                     {(dict?.all_works || "All Works").split(" ").map((w, idx) => (
@@ -63,7 +63,7 @@ export function SelectWork({ dict }: SelectWorkProps) {
                 </h3>
               </div>
 
-              <div className="h-[1px] bg-[var(--text-primary)] opacity-20 group-hover:opacity-100 transition-opacity duration-500 flex-1" />
+              <div className="h-[1px] bg-[var(--text-primary)] flex-1" />
             </div>
           </Link>
         </div>

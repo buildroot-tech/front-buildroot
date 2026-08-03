@@ -32,7 +32,7 @@ export function CTA({ dict }: CTAProps) {
         Massive font, ultra-thin, edge-to-edge typography
       */}
       <div className="px-6 md:px-12 mb-12 md:mb-20">
-        <h2 className="font-display font-light text-[clamp(2.5rem,5vw,7rem)] leading-[1.1] tracking-tighter text-[var(--text-primary)] flex flex-wrap">
+        <h2 className="font-serif font-light text-[clamp(2.5rem,5vw,7rem)] leading-[1.1] tracking-tighter text-[var(--text-primary)] flex flex-wrap">
           {words.map((word: string, i: number) => {
             const start = i / words.length;
             const end = start + 1 / words.length;
@@ -98,7 +98,7 @@ const BottomCTA = ({ dict }: { dict?: Dictionary["home"]["cta"] }) => {
     <div className="flex flex-col relative w-full px-6 md:px-12 pb-0">
       <Link
         href="mailto:hello@buildroot.dev"
-        className="group flex flex-col justify-center min-h-[90px] md:min-h-[110px] transition-colors duration-500 w-full"
+        className="group flex flex-col justify-center min-h-[150px] md:min-h-[180px] transition-colors duration-500 w-full"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
@@ -106,7 +106,7 @@ const BottomCTA = ({ dict }: { dict?: Dictionary["home"]["cta"] }) => {
           <div className="h-[1px] bg-[var(--text-primary)] flex-1" />
 
           <div className="px-6 md:px-12 shrink-0 overflow-hidden">
-            <h3 className="flex items-center justify-center font-display text-4xl sm:text-5xl md:text-5xl lg:text-[4rem] font-light capitalize tracking-tighter transition-colors duration-500 text-center whitespace-nowrap text-[var(--text-primary)]">
+            <h3 className="flex items-center justify-center font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] font-light capitalize tracking-tighter transition-colors duration-500 text-center whitespace-nowrap text-[var(--text-primary)]">
               <span className="w-[1ch] text-center inline-block">
                 {hovered ? ctaSymbol : ""}
               </span>
