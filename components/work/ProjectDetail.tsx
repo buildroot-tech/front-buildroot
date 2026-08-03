@@ -6,7 +6,6 @@ import {
   ArrowRight,
   CheckSquare,
   ExternalLink,
-  Terminal,
 } from "lucide-react";
 import { ScrambleText } from "@/components/ui/TextScrambler";
 import { PixelImage } from "@/components/ui/PixelImage";
@@ -43,7 +42,7 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
           <h1 className="headline text-display mt-4 text-[var(--text-primary)] tracking-tight">
             <ScrambleText text={project.title} speed={55} trigger="mount" />
           </h1>
-          <p className="mt-4 text-base md:text-lg text-[var(--text-primary)] max-w-3xl leading-relaxed font-sans">
+          <p className="mt-4 text-lg md:text-2xl text-[var(--text-primary)] max-w-3xl leading-relaxed font-sans">
             {project.description}
           </p>
         </header>
@@ -88,25 +87,6 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
               {project.caseStudy.solution}
             </p>
           </div>
-        </div>
-
-        {/* Architecture */}
-        <div className="mt-10 md:mt-14 border-2 border-[var(--border)] bg-[var(--bg-hero)] text-[var(--text-inverse)] p-6 md:p-10">
-          <div className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--accent)] border-b border-white/20 pb-3 flex items-center gap-2">
-            <Terminal className="h-4 w-4" />
-            {dict?.architecture || "Architecture"}
-          </div>
-          <ul className="mt-6 grid gap-3 sm:grid-cols-2 font-mono text-xs">
-            {project.caseStudy.architecture.map((arch) => (
-              <li
-                key={arch}
-                className="flex items-start gap-3 border border-white/15 bg-white/5 p-3 text-slate-200"
-              >
-                <span className="text-[var(--accent)] font-bold">➔</span>
-                <span>{arch}</span>
-              </li>
-            ))}
-          </ul>
         </div>
 
         {/* Results */}
