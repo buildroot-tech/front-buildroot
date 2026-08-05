@@ -1,24 +1,26 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PROJECTS } from "@/lib/projects";
+import { getProjects } from "@/lib/projects";
 import { ProjectDetail } from "@/components/work/ProjectDetail";
 import { getDictionary, Locale } from "@/lib/dictionaries";
+import { buildAlternates } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ lang: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const project = PROJECTS.find((p) => p.id === slug);
+  const { lang, slug } = await params;
+  const project = getProjects(lang as Locale).find((p) => p.id === slug);
 
   if (!project) {
-    return { title: "Project Not Found — buildroot_" };
+    return { title: "Project Not Found" };
   }
 
   return {
-    title: `${project.title} — buildroot_`,
+    title: project.title,
     description: project.summary,
+    alternates: buildAlternates(lang as Locale, `/work/${slug}`),
   };
 }
 
@@ -28,7 +30,7 @@ export default async function ProjectDetailPage({
   params: Promise<{ lang: string; slug: string }>;
 }) {
   const { lang, slug } = await params;
-  const project = PROJECTS.find((p) => p.id === slug);
+  const project = getProjects(lang as Locale).find((p) => p.id === slug);
 
   if (!project) {
     notFound();

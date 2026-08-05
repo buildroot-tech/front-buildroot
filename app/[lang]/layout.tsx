@@ -14,27 +14,64 @@ const poppins = Poppins({
   display: "swap",
 });
 
-// Secondary typeface — reserved for home's giant display headlines only
-// (hero, the featured-work list, the CTA manifesto). Not used on /work.
+// Secondary typeface — reserved for giant display headlines only (home's
+// hero and CTA manifesto, the giant project-title lists on /work, the
+// /contact and /about statement headlines, footer contact info, giant
+// slide titles on /services). Never body copy, never small text/buttons.
 // A plain book serif — elongated, low-contrast, not editorial/decorative.
+// Only 300 (font-light, used everywhere) and 700 (Hero.tsx's inline
+// `fontWeight: 700` override on the main headline) are ever rendered.
 const crimsonPro = Crimson_Pro({
   variable: "--font-serif",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "700"],
   display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "700"],
   display: "swap",
 });
 
-import { defaultMetadata } from "@/lib/seo";
+import { defaultMetadata, buildAlternates, ogLocale, siteConfig } from "@/lib/seo";
 import { getDictionary, Locale } from "@/lib/dictionaries";
 
-export const metadata: Metadata = defaultMetadata;
+// Organization structured data (JSON-LD) — social links mirror
+// `components/layout/Footer.tsx`'s `socialLinks`/`contactInfo`.
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "buildroot_",
+  url: siteConfig.url,
+  logo: `${siteConfig.url}/icon.svg`,
+  email: siteConfig.email,
+  sameAs: [
+    siteConfig.links.instagram,
+    siteConfig.links.twitter,
+    siteConfig.links.linkedin,
+    siteConfig.links.github,
+  ],
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = lang as Locale;
+
+  return {
+    ...defaultMetadata,
+    alternates: buildAlternates(locale),
+    openGraph: {
+      ...defaultMetadata.openGraph,
+      locale: ogLocale(locale),
+    },
+  };
+}
 
 import { Providers } from "@/app/providers";
 
@@ -54,6 +91,10 @@ export default async function RootLayout({
       className={`${poppins.variable} ${crimsonPro.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <Providers>
           <Preloader dict={dict.preloader} />
           <ScrollProgress />

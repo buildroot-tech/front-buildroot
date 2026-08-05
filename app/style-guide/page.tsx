@@ -593,7 +593,7 @@ export default function StyleGuidePage() {
           </h4>
           <div className="mt-6 flex justify-center gap-3">
             <span className="brutalist-button brutalist-button-accent text-xs">
-              hello@buildroot.dev →
+              info@buildroot.co →
             </span>
             <span className="brutalist-button text-xs">See How We Work</span>
           </div>

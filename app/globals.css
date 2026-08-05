@@ -31,51 +31,15 @@
   --text-small: 14px;
   --text-caption: 12px;
 
-  /* ---- Spacing: Tight ---- */
-  --space-tight-sm: 8px;
-  --space-tight-md: 16px;
-  --space-tight-lg: 32px;
-
-  /* ---- Spacing: Normal ---- */
-  --space-normal-sm: 48px;
-  --space-normal-md: 64px;
-  --space-normal-lg: 96px;
-
   /* ---- Spacing: Generous ---- */
-  --space-generous-sm: 128px;
   --space-generous-md: 192px;
-  --space-generous-lg: 256px;
-
-  /* ---- Spacing: Hero ---- */
-  --space-hero: clamp(128px, 20vh, 320px);
-
-  /* ---- Spacing: Legacy 8-point grid (kept for compat) ---- */
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 24px;
-  --space-6: 32px;
-  --space-7: 48px;
-  --space-8: 64px;
-  --space-9: 96px;
-  --space-10: 128px;
-  --space-11: 192px;
-  --space-12: 256px;
 
   /* ---- Shadows ---- */
   --shadow-brutalist: 4px 4px 0 var(--border);
   --shadow-brutalist-hover: 2px 2px 0 var(--border);
-  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.12);
-  --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.15);
 
   /* ---- Animation ---- */
-  --ease-brutalist: cubic-bezier(0.25, 0.1, 0.25, 1);
   --duration-hover: 150ms;
-  --duration-page: 350ms;
-  --duration-reveal: 700ms;
-  --spring-config: 300;
-  --spring-damping: 20;
 }
 
 /* ============================================
@@ -152,10 +116,6 @@ body {
   font-size: var(--text-h3);
 }
 
-.text-mono {
-  font-family: var(--font-mono), monospace;
-}
-
 /* ============================================
    BRUTALIST COMPONENTS
    ============================================ */
@@ -223,27 +183,9 @@ body {
    LAYOUT UTILITIES
    ============================================ */
 
-.container-padded {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding-left: var(--space-normal-md);
-  padding-right: var(--space-normal-md);
-}
-
 .section-generous {
   padding-top: var(--space-generous-md);
   padding-bottom: var(--space-generous-md);
-}
-
-.section-normal {
-  padding-top: var(--space-normal-lg);
-  padding-bottom: var(--space-normal-lg);
-}
-
-.section-bleed {
-  padding-top: 0;
-  padding-bottom: 0;
 }
 
 /* ============================================
