@@ -148,4 +148,4 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
 ScrambleText.displayName = "ScrambleText";
 
 export { ScrambleText };
-export type { TextScramblerProps, ScrambleTextHandle };
+export type { ScrambleTextHandle };

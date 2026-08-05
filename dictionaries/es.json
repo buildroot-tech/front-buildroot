@@ -10,7 +10,6 @@
   "footer": {
     "menu": "Menú",
     "elsewhere": "En otros lados",
-    "all_rights": "Todos los derechos reservados.",
     "address": "Cl. 7 Este",
     "phone": "Teléfono",
     "legal": {
@@ -68,7 +67,6 @@
     "work": {
       "title": "Trabajo Destacado",
       "subtitle": "Proyectos recientes y experiencias digitales.",
-      "view_project": "Ver Proyecto",
       "all_works": "Todos los Proyectos"
     },
     "cta": {
@@ -77,9 +75,7 @@
       "ticker_text": "EXPERIENCIAS DE ALTO NIVEL * DISEÑOS NO CONVENCIONALES *",
       "ticker_secondary": "SISTEMAS * PRODUCTO * INFRAESTRUCTURA *",
       "title": "¿LISTO PARA CONSTRUIR?",
-      "subtitle": "Convirtamos tu visión en realidad.",
-      "primary_btn": "INICIAR PROYECTO",
-      "secondary_text": "o contáctanos por correo electrónico"
+      "subtitle": "Convirtamos tu visión en realidad."
     }
   },
   "work": {
@@ -102,11 +98,11 @@
   "services": {
     "badge": "Qué Hacemos",
     "title": "Servicios",
-    "subtitle": "Tres formas de trabajar juntos: construimos tu producto, arreglamos lo que está roto, o lo lanzamos de punta a punta. Nada de agencias de agencias ni gerentes de cuenta — hablás directo con quienes escriben el código.",
+    "subtitle": "Tres formas de trabajar juntos: construimos tu producto, arreglamos lo que está roto, o lo lanzamos de punta a punta — siempre directo con quienes escriben el código.",
     "items": {
       "web": {
         "title": "Desarrollo Web",
-        "description": "Aplicaciones web full-stack construidas con Next.js, React y TypeScript. Desde una landing que convierte hasta un dashboard que soporta tráfico real — entregado rápido y construido para durar.",
+        "description": "Un sitio o aplicación web que tus clientes realmente disfrutan usar — rápido, claro, y construido para crecer con tu negocio en vez de volverse el rediseño del próximo año.",
         "points": [
           "Sitios de marketing y landing pages",
           "Aplicaciones web y herramientas internas",
@@ -116,7 +112,7 @@
       },
       "consulting": {
         "title": "Consultoría Técnica",
-        "description": "Revisiones de arquitectura, migraciones, auditorías. Leemos tu código, te decimos qué está realmente mal, y te ayudamos a arreglarlo — no lo que está de moda ni lo más conveniente para nuestra factura.",
+        "description": "Una mirada honesta y externa a lo que ya construiste — qué funciona, qué te está costando dinero sin que lo notes, y qué arreglar primero. Sin tecnicismos, sin venta forzada.",
         "points": [
           "Revisiones de arquitectura y diseño de sistemas",
           "Migraciones legacy — framework, nube, base de datos",
@@ -126,7 +122,7 @@
       },
       "saas": {
         "title": "Productos SaaS",
-        "description": "Diseñamos, construimos y lanzamos productos SaaS de punta a punta — autenticación, facturación, dashboards, infraestructura — para que te enfoques en tus clientes y no en la plomería.",
+        "description": "Desde el primer boceto hasta los primeros clientes pagando. Nosotros nos encargamos de todo lo que pasa detrás, para que tú te enfoques en lo que realmente vende tu producto.",
         "points": [
           "De MVP a producción en semanas, no trimestres",
           "Autenticación, facturación y arquitectura multi-tenant",
@@ -164,6 +160,24 @@
     "title": "Nosotros",
     "subtitle": "Dos desarrolladores. Una misión. Construir software que realmente funcione.",
     "intro": "Buildroot es un estudio de dos personas, no una agencia. Sin gerentes de cuenta ni procesos inflados — solo las personas que escriben tu código, hablando directo con vos, desde el kickoff hasta el lanzamiento.",
+    "culture": {
+      "eyebrow": "Cultura",
+      "manifesto": "No armamos Buildroot para crecer. Lo armamos para hacer un trabajo del que estemos orgullosos, para gente que prefiere hablar con quien construye su producto y no con quien administra a quien lo construye.",
+      "items": {
+        "small": {
+          "title": "Pequeños A Propósito",
+          "description": "Podríamos contratar. No lo hicimos. Cada desarrollador que sumáramos es una decisión entre vos y la persona que realmente escribe tu código — y vimos ese cambio salir mal en estudios veinte veces más grandes que el nuestro. Quedarnos en dos significa que cada proyecto nos tiene a ambos, no a quien esté libre ese sprint."
+        },
+        "dayToDay": {
+          "title": "Cómo Trabajamos En Realidad",
+          "description": "Sin cola de tickets, sin teatro de actualizaciones de estado. Trabajamos en el mismo hilo en el que estás vos — casi siempre WhatsApp o correo, a veces una llamada cuando algo vale la pena hablarlo en voz alta. Si algo se rompe, lo vas a saber en una hora. Si algo está listo, lo vas a ver funcionando, no en una diapositiva."
+        },
+        "experience": {
+          "title": "Cómo Es Trabajar Con Nosotros",
+          "description": "Respuestas cortas y directas — incluidas las que no querés escuchar, como \"eso va a tardar más de lo que pensás\" o \"todavía no necesitás eso\". Preferimos perder la venta antes que construir algo en lo que no creemos. Los estudios que duran son los que tienen la honestidad de decir que no."
+        }
+      }
+    },
     "principles": {
       "title": "Cómo Trabajamos",
       "items": {
@@ -196,5 +210,13 @@
       "button": "Hablemos",
       "email_label": "o escríbenos directamente"
     }
+  },
+  "contact": {
+    "badge": "Hablemos",
+    "title": "Contacto",
+    "subtitle": "¿Tenés un proyecto en mente? Contanos — leemos cada mensaje nosotros mismos.",
+    "message": "Dos desarrolladores, sin account managers. Contanos qué estás construyendo y te respondemos nosotros mismos, normalmente en un día.",
+    "email_button": "info@buildroot.co",
+    "response_note": "Leemos cada mensaje nosotros mismos — normalmente respondemos en un día."
   }
 }

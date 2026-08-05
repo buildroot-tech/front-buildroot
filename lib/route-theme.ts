@@ -1,4 +1,4 @@
-export interface RouteTheme {
+interface RouteTheme {
   bg: string;
   text: string;
   border: string;
@@ -27,6 +27,11 @@ export const routeThemes: Record<string, RouteTheme> = {
     bg: "#000000",
     text: "#ffffff",
     border: "#ffffff",
+  },
+  "/contact": {
+    bg: "#fbbf24",
+    text: "#000000",
+    border: "#000000",
   },
 };
 

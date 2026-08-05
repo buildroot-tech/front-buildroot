@@ -10,7 +10,6 @@
   "footer": {
     "menu": "Menu",
     "elsewhere": "Elsewhere",
-    "all_rights": "All rights reserved.",
     "address": "7th St. East",
     "phone": "Phone",
     "legal": {
@@ -68,7 +67,6 @@
     "work": {
       "title": "Selected Work",
       "subtitle": "Recent projects and digital experiences.",
-      "view_project": "View Project",
       "all_works": "All Works"
     },
     "cta": {
@@ -77,9 +75,7 @@
       "ticker_text": "HIGH-END EXPERIENCES * UNCONVENTIONAL DESIGNS *",
       "ticker_secondary": "SYSTEMS * PRODUCT * INFRASTRUCTURE *",
       "title": "READY TO BUILD?",
-      "subtitle": "Let's turn your vision into reality.",
-      "primary_btn": "START A PROJECT",
-      "secondary_text": "or reach out via email"
+      "subtitle": "Let's turn your vision into reality."
     }
   },
   "work": {
@@ -102,11 +98,11 @@
   "services": {
     "badge": "What We Do",
     "title": "Services",
-    "subtitle": "Three ways we work with you: we build your product, we fix what's broken, or we ship the whole thing end to end. No agencies of agencies, no account managers — you talk to the people writing the code.",
+    "subtitle": "Three ways we work with you: we build your product, we fix what's broken, or we ship the whole thing end to end — always straight to the people writing the code.",
     "items": {
       "web": {
         "title": "Web Development",
-        "description": "Full-stack web applications built on Next.js, React, and TypeScript. From a landing page that converts to a dashboard that handles real traffic — shipped fast, built to last.",
+        "description": "A website or web app your customers actually enjoy using — fast, clear, and built to grow with your business instead of becoming next year's rebuild.",
         "points": [
           "Marketing sites & product landing pages",
           "Web apps & internal tools",
@@ -116,7 +112,7 @@
       },
       "consulting": {
         "title": "Technical Consulting",
-        "description": "Architecture reviews, migrations, audits. We read your codebase, tell you what's actually wrong, and help you fix it — not what's trendy or safest for our invoice.",
+        "description": "An honest, outside look at what you've already built — what's working, what's quietly costing you money, and exactly what to fix first. No jargon, no upsell.",
         "points": [
           "Architecture & system design reviews",
           "Legacy migrations — framework, cloud, database",
@@ -126,7 +122,7 @@
       },
       "saas": {
         "title": "SaaS Products",
-        "description": "We design, build, and ship SaaS products end to end — auth, billing, dashboards, infrastructure — so you can focus on customers instead of plumbing.",
+        "description": "From first sketch to paying customers. We handle everything behind the scenes so you can focus on the part of your product that actually sells.",
         "points": [
           "MVP to production in weeks, not quarters",
           "Auth, billing & multi-tenant architecture",
@@ -164,6 +160,24 @@
     "title": "About",
     "subtitle": "Two developers. One mission. Build software that actually works.",
     "intro": "Buildroot is a two-person studio, not an agency. No account managers, no bloated process — just the people writing your code, talking to you directly, from kickoff to launch.",
+    "culture": {
+      "eyebrow": "Culture",
+      "manifesto": "We didn't build Buildroot to get big. We built it to do work we're proud of, for people who'd rather talk to the person building their product than the person managing the person building it.",
+      "items": {
+        "small": {
+          "title": "Small On Purpose",
+          "description": "We could hire. We haven't. Every developer we'd add is a decision between you and the person actually writing your code — and we've watched that trade play out badly at studios twenty times our size. Staying at two means every project gets both of us, not whoever's free that sprint."
+        },
+        "dayToDay": {
+          "title": "How We Actually Work",
+          "description": "No ticket queue, no status-update theater. We work out of the same thread you're in — usually WhatsApp or email, sometimes a call when something's worth talking through out loud. If it's broken, you'll know within the hour. If it's done, you'll see it running, not a slide about it."
+        },
+        "experience": {
+          "title": "What It's Like To Work With Us",
+          "description": "Short, straight answers — including the ones you don't want, like \"that'll take longer than you think\" or \"you don't need that yet.\" We'd rather lose the sale than build something we don't believe in. The studios that last are the ones honest enough to say no."
+        }
+      }
+    },
     "principles": {
       "title": "How We Work",
       "items": {
@@ -196,5 +210,13 @@
       "button": "Get In Touch",
       "email_label": "or email us directly"
     }
+  },
+  "contact": {
+    "badge": "Get In Touch",
+    "title": "Contact",
+    "subtitle": "Have a project in mind? Tell us about it — we read every message ourselves.",
+    "message": "Two developers, no account managers. Tell us what you're building and we'll reply ourselves, usually within a day.",
+    "email_button": "info@buildroot.co",
+    "response_note": "We read every message ourselves — usually a reply within a day."
   }
 }

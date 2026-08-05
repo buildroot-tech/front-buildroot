@@ -1,21 +1,21 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { PROJECTS } from "@/lib/projects";
 import { ProjectRow } from "@/components/work/ProjectRow";
 import { ArrowRight } from "lucide-react";
 import { ScrambleText, type ScrambleTextHandle } from "@/components/ui/TextScrambler";
 import type { Dictionary } from "@/lib/dictionaries";
-import type { ProjectCategory } from "@/types";
+import type { Project, ProjectCategory } from "@/types";
 
 interface ProjectsGridProps {
   dict?: Dictionary["work"];
   category?: ProjectCategory;
+  projects: readonly Project[];
 }
 
-export function ProjectsGrid({ dict, category = "All" }: ProjectsGridProps) {
+export function ProjectsGrid({ dict, category = "All", projects }: ProjectsGridProps) {
   const visibleProjects =
-    category === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === category);
+    category === "All" ? projects : projects.filter((p) => p.category === category);
 
   // Only one row open at a time — expanding a new one closes whichever
   // was open before. WorkSection keys this whole component on `category`,
@@ -48,7 +48,7 @@ export function ProjectsGrid({ dict, category = "All" }: ProjectsGridProps) {
       <div className="w-full py-40 md:py-48 mt-8">
         <div className="flex flex-col gap-10">
           <div className="w-full">
-            <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-light text-[var(--text-primary)] tracking-tight">
+            <h3 className="font-display text-2xl md:text-3xl text-[var(--text-primary)]">
               {dict?.cta_title || "Ready to build your next digital product?"}
             </h3>
             <p className="mt-4 w-full font-serif font-light text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tighter text-[var(--text-primary)] leading-[1.05]">

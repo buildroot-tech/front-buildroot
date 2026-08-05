@@ -23,11 +23,24 @@ const HOME_HEADER_THEME = { text: "var(--text-inverse)", bg: "transparent" };
 
 const HEADER_H = 80;
 
+// Mirrors SERVICE_COLORS in components/services/ServicesSection.tsx — kept
+// in sync manually since the header has no other way to know that page's
+// per-slide colors (it's a scroll-stacking effect local to that page, not
+// part of the shared route-theme system).
+const SERVICES_SLIDE_THEMES = [
+  { text: "#ffffff", bg: "#0A0A0A" },
+  { text: "#ffffff", bg: "var(--accent)" },
+  { text: "#000000", bg: "#e2e8f0" },
+];
+
 export function Header({ dict, lang = "en" }: HeaderProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [servicesSlideTheme, setServicesSlideTheme] = useState<
+    (typeof SERVICES_SLIDE_THEMES)[number] | null
+  >(null);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -72,13 +85,55 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
     return () => window.removeEventListener("scroll", check);
   }, [normalizedPathname]);
 
+  // Services: the header borrows whichever slide's color is currently
+  // covering the screen in the scroll-stacking section (id="services-stack"
+  // in ServicesSection.tsx), same "read the DOM on scroll" idiom as the
+  // home hero check above — falls back to the static route theme outside
+  // that section (its own 100vh header, and "How We Engage"/CTA below it).
+  useEffect(() => {
+    if (normalizedPathname !== "/services") return;
+
+    const check = () => {
+      const stack = document.getElementById("services-stack");
+      if (!stack) return;
+      const rect = stack.getBoundingClientRect();
+      const isInStack = rect.top <= 0 && rect.bottom > 0;
+
+      if (!isInStack) {
+        setServicesSlideTheme(null);
+        return;
+      }
+
+      const scrollableHeight = rect.height - window.innerHeight;
+      const progress =
+        scrollableHeight > 0
+          ? Math.min(Math.max(-rect.top / scrollableHeight, 0), 1)
+          : 0;
+      const index = Math.min(
+        SERVICES_SLIDE_THEMES.length - 1,
+        Math.floor(progress * SERVICES_SLIDE_THEMES.length)
+      );
+      setServicesSlideTheme(SERVICES_SLIDE_THEMES[index]);
+    };
+
+    window.addEventListener("scroll", check, { passive: true });
+    check();
+    return () => window.removeEventListener("scroll", check);
+  }, [normalizedPathname]);
+
   const isHome = normalizedPathname === "/";
   const effectiveScrolledPastHero = isHome ? scrolledPastHero : false;
 
   // Determine colors based on route and scroll position. Every route but
   // home reads straight from the shared theme (also used by the Footer),
-  // so a section's assigned color never drifts between the two.
-  const theme = isHome ? HOME_HEADER_THEME : getRouteTheme(normalizedPathname);
+  // so a section's assigned color never drifts between the two — except
+  // /services while inside its scroll-stacking section, which overrides
+  // with whichever slide is currently in view.
+  const theme = isHome
+    ? HOME_HEADER_THEME
+    : normalizedPathname === "/services" && servicesSlideTheme
+      ? servicesSlideTheme
+      : getRouteTheme(normalizedPathname);
 
   const textColor = effectiveScrolledPastHero
     ? "var(--text-primary)"

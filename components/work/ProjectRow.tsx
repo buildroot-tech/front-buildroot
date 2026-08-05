@@ -81,15 +81,22 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
         <div className="relative flex flex-col items-start gap-2 pb-2 lg:grid lg:grid-cols-[46%_22%_1fr_200px_16%] lg:items-center lg:gap-4 lg:justify-normal">
           {/* Title */}
           <div className="min-w-0 shrink overflow-hidden lg:col-start-1">
-            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-light tracking-tight text-[var(--text-primary)] capitalize truncate">
+            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl font-light tracking-tight text-[var(--text-primary)] capitalize truncate">
               <ScrambleText text={project.title} trigger="mount" active={isActive} speed={40} />
             </h3>
           </div>
 
           {/* Industry — one or two words, same font/size/color as the
               title. Column 2 always starts exactly where column 1 ends
-              (47%), which is where "work" sits in the navbar above. */}
-          <div className="hidden lg:col-start-2 lg:block truncate font-display text-2xl sm:text-3xl md:text-4xl font-light tracking-tight text-[var(--text-primary)] capitalize">
+              (47%), which is where "work" sits in the navbar above.
+              Dialed back to text-3xl for the lg range (1024–1535px):
+              at md:text-4xl, the longest industry label ("Customer
+              Service") needed ~304px but the 22%-wide column only had
+              260–296px at laptop widths — it fit at the 1600px this was
+              designed at (331px available) but truncated to "Customer
+              Servi…" narrower than that. Back to text-4xl at 2xl
+              (1536px+) where there's room again. */}
+          <div className="hidden lg:col-start-2 lg:block truncate font-display text-2xl sm:text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl font-light tracking-tight text-[var(--text-primary)] capitalize">
             <ScrambleText text={project.industry} trigger="mount" active={isActive} speed={40} />
           </div>
 
@@ -101,7 +108,7 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
               +/- button on the right. */}
           <div className="relative flex items-center justify-start shrink-0 min-w-[200px] h-12 lg:col-start-4">
             <span
-              className={`font-display text-2xl sm:text-3xl md:text-4xl font-light tracking-tight text-[var(--text-primary)] capitalize transition-opacity duration-200 ${
+              className={`font-display text-2xl sm:text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl font-light tracking-tight text-[var(--text-primary)] capitalize transition-opacity duration-200 ${
                 isExpanded
                   ? "opacity-0 pointer-events-none"
                   : "opacity-100 group-hover:opacity-0"
