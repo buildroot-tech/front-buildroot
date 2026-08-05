@@ -129,13 +129,13 @@ function ServiceSlide({ serviceKey, index, total, item, scrollYProgress }: Servi
           scroll-up, see Header.tsx's hide/show logic) so it never gets
           clipped under it. */}
       <span
-        className="pointer-events-none absolute right-6 top-28 font-display text-[8rem] font-bold leading-none tracking-tighter sm:text-[10rem] md:right-12 md:top-32 md:text-[13rem]"
+        className="pointer-events-none absolute right-6 top-28 font-display text-[8rem] font-bold leading-none tracking-tighter sm:text-[10rem] md:right-12 md:top-32 md:text-[10rem] 2xl:text-[13rem]"
         style={{ opacity: 0.15 }}
       >
         {String.fromCharCode(65 + index)}
       </span>
 
-      <h3 className="font-display text-6xl font-light capitalize tracking-tight sm:text-7xl md:text-8xl lg:text-9xl">
+      <h3 className="font-display text-5xl font-light capitalize tracking-tight sm:text-6xl md:text-8xl 2xl:text-9xl">
         {item.title}
       </h3>
       <p className="mt-6 max-w-4xl font-display font-normal leading-snug text-2xl md:text-3xl" style={{ opacity: 0.85 }}>
@@ -180,14 +180,14 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
           transition={{ duration: 0.5 }}
         >
           <div>
-            <h1 className="float-left mr-10 mt-6 font-display text-2xl md:text-3xl text-white">
+            <h1 className="mb-4 font-display text-2xl text-white md:float-left md:mb-0 md:mr-10 md:mt-6 md:text-3xl">
               <ScrambleText
                 text={dict?.title || "Services"}
                 speed={55}
                 trigger="mount"
               />
             </h1>
-            <p className="w-full font-serif font-light leading-[0.95] tracking-tight text-white text-[clamp(2.5rem,8vw,7rem)]">
+            <p className="w-full font-serif font-light leading-[0.95] tracking-tight text-white text-[clamp(2.2rem,7vw,5rem)] 2xl:text-[clamp(2.5rem,8vw,7rem)]">
               {dict?.subtitle ||
                 "Three ways we work with you: we build your product, we fix what's broken, or we ship the whole thing end to end — always straight to the people writing the code."}
             </p>
@@ -284,10 +284,10 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
           page (was still on the old small .headline/text-h2 utility).
           Link rows now run full-width instead of being capped to a
           narrow 380px column, so they carry real weight on the page. */}
-      <section className="w-full border-t border-white/15 px-6 py-16 md:px-12 md:py-24">
-        <div className="flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:items-end lg:gap-24">
+      <section className="w-full border-t border-white/15 px-6 py-16 md:px-12 md:py-16 2xl:py-24">
+        <div className="flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:items-end lg:gap-24 2xl:gap-10">
           <div>
-            <h3 className="font-display text-5xl font-light tracking-tight text-white sm:text-6xl md:text-7xl">
+            <h3 className="font-display text-5xl font-light tracking-tight text-white sm:text-6xl md:text-6xl 2xl:text-7xl">
               {dict?.cta?.title || "Have a project in mind?"}
             </h3>
             <p className="mt-4 max-w-2xl font-display text-xl leading-relaxed text-white/90 md:text-2xl">
@@ -296,14 +296,14 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
             </p>
           </div>
 
-          <div className="flex w-full flex-col font-display text-3xl sm:text-4xl md:text-5xl">
+          <div className="flex w-full flex-col font-display text-3xl sm:text-4xl md:text-4xl 2xl:text-5xl">
             {/* Stacked link rows, not buttons — plain text on a top
                 border, matching the pattern used across /work. */}
             <Link
               href="/contact"
               onMouseEnter={() => ctaButtonRef.current?.scramble()}
               onMouseLeave={() => ctaButtonRef.current?.reset()}
-              className="group flex items-center justify-between border-t border-white py-6 text-white"
+              className="group flex items-center justify-between border-t border-white py-4 2xl:py-6 text-white"
             >
               <ScrambleText
                 ref={ctaButtonRef}
@@ -318,7 +318,7 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
               href="mailto:info@buildroot.co"
               onMouseEnter={() => ctaEmailRef.current?.scramble()}
               onMouseLeave={() => ctaEmailRef.current?.reset()}
-              className="group flex items-center justify-between border-t border-b border-white py-6 text-white"
+              className="group flex items-center justify-between border-t border-b border-white py-4 2xl:py-6 text-white"
             >
               <ScrambleText
                 ref={ctaEmailRef}

@@ -3,6 +3,12 @@
 import { useRef } from "react";
 import { useScroll, useTransform, m, MotionValue } from "framer-motion";
 
+// Colors alternate so no two ADJACENT steps ever share one — two
+// neighboring cards with the same background made the scroll-stacking
+// transition unreadable (the incoming card's edge disappears into the
+// outgoing one, and their giant ghost numbers end up visually
+// overlapping instead of one cleanly covering the other). Steps 1/2 and
+// 4/5 used to be near-identical pairs; now every handoff has contrast.
 const steps = [
   {
     number: "01",
@@ -17,8 +23,8 @@ const steps = [
     dictKey: "design",
     title: "Design",
     description: "Crafting intuitive interfaces and aesthetics that communicate your brand's unique edge, backed by strict system design.",
-    color: "var(--bg-primary)",
-    textColor: "var(--text-primary)",
+    color: "#0A0A0A",
+    textColor: "var(--text-inverse)",
   },
   {
     number: "03",
@@ -33,8 +39,8 @@ const steps = [
     dictKey: "testing",
     title: "Testing",
     description: "Rigorous quality, performance, and security validation to ensure the product is unbreakable.",
-    color: "#0A0A0A",
-    textColor: "var(--text-inverse)",
+    color: "var(--bg-primary)",
+    textColor: "var(--text-primary)",
   },
   {
     number: "05",
@@ -143,7 +149,7 @@ function StepCard({ step, index, scrollYProgress, dict }: StepCardProps) {
         }}
       >
         <div className="absolute top-8 left-8 md:top-12 md:left-16 pointer-events-none">
-          <span className="font-display text-8xl sm:text-9xl md:text-[12rem] lg:text-[16rem] font-light leading-none tracking-tighter opacity-20">
+          <span className="font-display text-8xl sm:text-9xl md:text-[12rem] lg:text-[16rem] font-light leading-none tracking-tighter opacity-20 [@media(max-height:820px)]:text-7xl [@media(max-height:820px)]:md:text-8xl [@media(max-height:820px)]:lg:text-9xl">
             {step.number}
           </span>
         </div>
@@ -151,7 +157,12 @@ function StepCard({ step, index, scrollYProgress, dict }: StepCardProps) {
           <h3 className="font-display text-3xl font-bold uppercase tracking-tight sm:text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">
             {step.dictKey && dict?.steps?.[step.dictKey as keyof typeof dict.steps]?.title ? dict.steps[step.dictKey as keyof typeof dict.steps].title : step.title}
           </h3>
-          <p className="font-mono text-base md:text-lg lg:text-xl leading-relaxed opacity-90">
+          {/* line-clamp keeps every step's text block the same height —
+              without it, longer descriptions (Requirements/Design) wrap to
+              an extra line and, since this container is bottom-anchored
+              (justify-end), push their title up into the ghost number on
+              short viewports while shorter descriptions never do. */}
+          <p className="font-mono text-base md:text-lg lg:text-xl leading-relaxed opacity-90 [@media(max-height:820px)]:line-clamp-2">
             {step.dictKey && dict?.steps?.[step.dictKey as keyof typeof dict.steps]?.description ? dict.steps[step.dictKey as keyof typeof dict.steps].description : step.description}
           </p>
         </div>
