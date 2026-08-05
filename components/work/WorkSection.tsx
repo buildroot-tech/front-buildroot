@@ -4,22 +4,22 @@ import { useState } from "react";
 import { m } from "framer-motion";
 import { X } from "lucide-react";
 import { ProjectsGrid } from "@/components/work/ProjectsGrid";
-import { PROJECTS } from "@/lib/projects";
-import type { ProjectCategory } from "@/types";
+import type { ProjectCategory, Project } from "@/types";
 import type { Dictionary } from "@/lib/dictionaries";
 
 interface WorkSectionProps {
   dict?: Dictionary["work"];
+  projects: readonly Project[];
 }
 
 const CATEGORIES: ProjectCategory[] = ["All", "SaaS", "Web Apps", "Consulting", "Labs"];
 
-export function WorkSection({ dict }: WorkSectionProps) {
+export function WorkSection({ dict, projects }: WorkSectionProps) {
   const [category, setCategory] = useState<ProjectCategory>("All");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const count =
-    category === "All" ? PROJECTS.length : PROJECTS.filter((p) => p.category === category).length;
+    category === "All" ? projects.length : projects.filter((p) => p.category === category).length;
 
   // Picking a category while scrolled down, filter open, should feel like
   // a fresh start: back to the top of the page, filter closed, and any
@@ -54,7 +54,7 @@ export function WorkSection({ dict }: WorkSectionProps) {
             <div className="mt-8 flex flex-wrap items-baseline font-display text-5xl font-light tracking-tight text-[var(--text-primary)] sm:text-6xl md:text-8xl">
               {CATEGORIES.map((cat, i) => {
                 const catCount =
-                  cat === "All" ? PROJECTS.length : PROJECTS.filter((p) => p.category === cat).length;
+                  cat === "All" ? projects.length : projects.filter((p) => p.category === cat).length;
 
                 return (
                   <span key={cat} className="inline-flex items-baseline">
@@ -109,7 +109,7 @@ export function WorkSection({ dict }: WorkSectionProps) {
         {/* Projects List — keyed on category so a filter change remounts
             it fresh, resetting which row (if any) is expanded. */}
         <div>
-          <ProjectsGrid key={category} dict={dict} category={category} />
+          <ProjectsGrid key={category} dict={dict} category={category} projects={projects} />
         </div>
       </div>
     </section>

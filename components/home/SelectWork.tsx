@@ -4,20 +4,21 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { ScrambleText } from "@/components/ui/TextScrambler";
 import { ProjectListRow } from "@/components/work/ProjectListRow";
-import { PROJECTS } from "@/lib/projects";
-
-// We dynamically pull featured projects from our central data source
-const featured = PROJECTS.filter((project) => project.featured);
-
 import type { Dictionary } from "@/lib/dictionaries";
+import type { Project } from "@/types";
 
 interface SelectWorkProps {
   dict?: Dictionary["home"]["work"];
+  projects: readonly Project[];
 }
 
-export function SelectWork({ dict }: SelectWorkProps) {
+export function SelectWork({ dict, projects }: SelectWorkProps) {
   const [hoveredCTA, setHoveredCTA] = useState(false);
   const [ctaSymbol, setCtaSymbol] = useState("*");
+
+  // Dynamically pull featured projects from the locale-aware data source
+  // passed down from the server page.
+  const featured = projects.filter((project) => project.featured);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -31,7 +32,7 @@ export function SelectWork({ dict }: SelectWorkProps) {
       <div className="w-full px-6 md:px-12">
         {/* Header */}
         <div className="mb-16 md:mb-24">
-          <h2 className="font-mono text-lg md:text-xl capitalize tracking-tight text-[var(--text-muted)]">{dict?.title || "Featured Projects"}</h2>
+          <h2 className="font-display text-2xl md:text-3xl text-[var(--text-primary)]">{dict?.title || "Featured Projects"}</h2>
         </div>
       </div>
 

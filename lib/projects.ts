@@ -1,4 +1,6 @@
 import { Project } from "@/types";
+import type { Locale } from "@/lib/dictionaries";
+
 export const PROJECTS: readonly Project[] = [
   {
     id: "polo-pantoja-platform",
@@ -179,7 +181,7 @@ export const PROJECTS: readonly Project[] = [
         "Zero UI frame drops during peak events",
       ],
     },
-    demoUrl: "https://apex.buildroot.dev",
+    demoUrl: "https://apex.buildroot.co",
   },
   {
     id: "buildroot-agent-system",
@@ -221,3 +223,166 @@ export const PROJECTS: readonly Project[] = [
     githubUrl: "https://github.com/nicommit/buildroot",
   },
 ];
+
+/**
+ * Translatable field overrides for the Spanish locale, keyed by project id.
+ * Only the human-copy fields are translated here — proper nouns (title,
+ * client), tech stack tags, the filter-driving `category` value, and the
+ * structural/data fields (year, urls, ids, metrics, etc.) are intentionally
+ * left out so they fall through to the English base via the merge in
+ * `getProjects`. Keeping this as a partial-override map (rather than a
+ * hand-duplicated full array) means it can't drift out of sync with
+ * `PROJECTS` on ids, order, or structural fields.
+ */
+type TranslatableFields = Pick<
+  Project,
+  "industry" | "summary" | "description" | "highlights"
+> & {
+  caseStudy: Pick<Project["caseStudy"], "challenge" | "solution" | "results">;
+};
+
+const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
+  "polo-pantoja-platform": {
+    industry: "Servicios Legales",
+    summary:
+      "Portal para firma de abogados y marketplace inmobiliario especializado con gestión de contratos de anticresis.",
+    description:
+      "Una sola plataforma, dos negocios: el portal de clientes de una firma de abogados y un marketplace inmobiliario regional, funcionando en conjunto — incluyendo los contratos de anticresis, propios de Colombia, gestionados de forma segura desde la publicación hasta la firma.",
+    highlights: ["Marketplace Inmobiliario", "Portal de Clientes", "Contratos Seguros"],
+    caseStudy: {
+      challenge:
+        "Polo & Pantoja necesitaba una solución unificada para sus servicios legales y un marketplace inmobiliario regional que soportara contratos de anticresis — una modalidad legal particular que exige una verificación documental estricta.",
+      solution:
+        "Se diseñó un backend monolito modular en Spring Boot 3 con Clean Architecture y un frontend en Next.js 14 con App Router. Se construyeron flujos personalizados de verificación de documentos para administradores de la firma y propietarios de inmuebles.",
+      results: [
+        "Se unificó la vitrina legal y la gestión inmobiliaria en una sola plataforma",
+        "Se redujo el tiempo de verificación de propiedades para el personal de la firma",
+        "Estrategia de seguridad multi-rol para el manejo seguro de contratos",
+      ],
+    },
+  },
+  "edusur-educational": {
+    industry: "Educación",
+    summary:
+      "Sitio web de alto rendimiento en Astro 5 con micro-animaciones GSAP.",
+    description:
+      "La primera impresión de un futuro estudiante, rediseñada: un sitio rápido y con animaciones cuidadas que carga al instante en cualquier celular y facilita decir que sí.",
+    highlights: ["Sitio para Estudiantes", "Experiencia Móvil Rápida", "Diseño Atractivo"],
+    caseStudy: {
+      challenge:
+        "Edusur necesitaba un portal web moderno y atractivo para futuros estudiantes que cargara al instante en redes móviles sin sacrificar animaciones fluidas.",
+      solution:
+        "Se implementó una arquitectura orientada a contenido con Astro 5 y Tailwind CSS v4, usando GSAP para animaciones de scroll aceleradas por hardware y sin overhead de JS en el contenido estático.",
+      results: [
+        "Se logró un First Contentful Paint menor a 500ms en móviles",
+        "Puntaje de rendimiento de 98/100 en Lighthouse",
+        "14 secciones personalizadas y responsivas, construidas con modularidad estricta",
+      ],
+    },
+  },
+  "salesforce-agentforce-omni": {
+    industry: "Servicio al Cliente",
+    summary:
+      "Suite de enrutamiento omnicanal automatizado e integración con Agentforce AI.",
+    description:
+      "Los casos de soporte que antes esperaban en cola ahora se enrutan solos — el caso correcto al agente correcto, al instante, con IA resolviendo los casos rutinarios antes de que un humano los vea.",
+    highlights: ["Soporte Más Rápido", "Enrutamiento Asistido por IA", "Gestión Unificada de Casos"],
+    caseStudy: {
+      challenge:
+        "Los equipos de soporte empresarial enfrentaban largos tiempos de espera en cola debido a la categorización manual de casos y canales de comunicación digital fragmentados.",
+      solution:
+        "Se diseñó una matriz de enrutamiento omnicanal automatizada combinada con Lightning Web Components (LWC) a medida y asistentes de Agentforce AI para clasificar automáticamente los casos entrantes.",
+      results: [
+        "Se redujo el tiempo promedio de clasificación de casos en un 85%",
+        "Traspaso fluido de IA a agente humano en consultas de soporte complejas",
+        "Se mejoró el CSAT de satisfacción del cliente en +28%",
+      ],
+    },
+  },
+  "aca-diario-digital": {
+    industry: "Medios",
+    summary:
+      "Diario digital de alta velocidad con motor de publicidad autogestionado.",
+    description:
+      "Una redacción local que puede publicar una noticia en horas, no en días — con su propia venta de publicidad integrada, para que el negocio no dependa de ninguna red publicitaria externa.",
+    highlights: ["Diario Digital", "Publicación Rápida", "Venta de Publicidad Local"],
+    caseStudy: {
+      challenge:
+        "La prensa local en la región fronteriza de Nariño/Ecuador carecía de herramientas modernas de publicación digital, y requería una plataforma económica de operar que soportara venta de publicidad local sin depender de redes publicitarias de terceros.",
+      solution:
+        "Se construyó una aplicación monorepo liviana en Next.js 14 con un flujo editorial de texto enriquecido a medida y un sistema propio de rotación de banners publicitarios.",
+      results: [
+        "Diseñado para escalar a 50.000 visitas mensuales con un costo de hosting casi nulo",
+        "Se redujo el ciclo de publicación de artículos a menos de 4 horas",
+        "Monetización directa mediante pauta publicitaria de negocios locales",
+      ],
+    },
+  },
+  "apex-analytics": {
+    industry: "Analítica de Datos",
+    summary:
+      "Plataforma de telemetría y datos en streaming de alto rendimiento en tiempo real.",
+    description:
+      "Un dashboard que antes se congelaba con su propio volumen de datos ahora se actualiza en tiempo real — incluso con diez millones de eventos al día, sin que nadie note la carga.",
+    highlights: ["Dashboard en Tiempo Real", "Cargas Instantáneas", "Escala Empresarial"],
+    caseStudy: {
+      challenge:
+        "El dashboard anterior sufría de congelamientos severos en el renderizado y cuellos de botella en la API bajo cargas de telemetría concurrentes altas.",
+      solution:
+        "Se rediseñó el frontend usando las funciones concurrentes de React 19, componentes de servidor en streaming y fragmentación de WebSocket junto con consultas analíticas en ClickHouse.",
+      results: [
+        "Se redujo el tiempo de carga inicial del dashboard de 4.2s a 0.4s",
+        "Se soportaron más de 500 vistas de telemetría en vivo concurrentes",
+        "Cero caídas de frames en la interfaz durante picos de eventos",
+      ],
+    },
+  },
+  "buildroot-agent-system": {
+    industry: "Automatización con IA",
+    summary:
+      "Framework multi-agente para el ciclo de vida autónomo de ingeniería de software.",
+    description:
+      "Nuestro propio sistema interno para construir software más rápido sin recortar calidad — seis roles especializados trabajando en secuencia, cada uno verificando al anterior, para que nada se escape.",
+    highlights: ["Herramientas Internas de IA", "Entregas Más Rápidas", "Controles de Calidad Integrados"],
+    caseStudy: {
+      challenge:
+        "Los asistentes de codificación con IA de un solo prompt sufren de pérdida de contexto, requisitos olvidados y falta de una revisión arquitectónica sistemática.",
+      solution:
+        "Se desarrolló un sistema de flujo de trabajo multi-agente estructurado que divide las fases del proyecto en roles especializados, con entregables estrictos entre etapas y validación de calidad automatizada.",
+      results: [
+        "Se eliminó la degradación de contexto en funcionalidades complejas de múltiples pasos",
+        "Se aseguró el cumplimiento de accesibilidad WCAG 2.1 AA y de los objetivos de rendimiento",
+        "Mejora continua integrada mediante persistencia de habilidades y memoria",
+      ],
+    },
+  },
+};
+
+/**
+ * Returns the project catalog for the given locale. English is the base
+ * `PROJECTS` array, unchanged. Spanish merges each project with its
+ * translated fields from `PROJECTS_ES`, falling back to the English copy
+ * for any project that doesn't (yet) have a translation entry, so a
+ * missing/partial translation never drops a project from the list.
+ */
+export function getProjects(locale: Locale): readonly Project[] {
+  if (locale !== "es") {
+    return PROJECTS;
+  }
+
+  return PROJECTS.map((project) => {
+    const translation = PROJECTS_ES[project.id];
+    if (!translation) {
+      return project;
+    }
+
+    return {
+      ...project,
+      ...translation,
+      caseStudy: {
+        ...project.caseStudy,
+        ...translation.caseStudy,
+      },
+    };
+  });
+}
