@@ -1,12 +1,22 @@
 import type { Metadata } from "next";
 import { ServicesSection } from "@/components/services/ServicesSection";
 import { getDictionary, Locale } from "@/lib/dictionaries";
+import { buildAlternates } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Services — buildroot_",
-  description:
-    "Web development, technical consulting, and SaaS products built by buildroot_. Full-stack engineering, architecture reviews, and end-to-end product delivery.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
+
+  return {
+    title: dict.services.title,
+    description: dict.services.subtitle,
+    alternates: buildAlternates(lang as Locale, "/services"),
+  };
+}
 
 export default async function ServicesPage({
   params,

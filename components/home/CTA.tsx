@@ -97,7 +97,7 @@ const BottomCTA = ({ dict }: { dict?: Dictionary["home"]["cta"] }) => {
   return (
     <div className="flex flex-col relative w-full px-6 md:px-12 pb-0">
       <Link
-        href="mailto:hello@buildroot.dev"
+        href="mailto:info@buildroot.co"
         className="group flex flex-col justify-center min-h-[150px] md:min-h-[180px] transition-colors duration-500 w-full"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}

@@ -1,12 +1,12 @@
 export type ProjectCategory =
   "All" | "SaaS" | "Web Apps" | "Consulting" | "Labs";
 
-export interface ProjectMetric {
+interface ProjectMetric {
   label: string;
   value: string;
 }
 
-export interface CaseStudy {
+interface CaseStudy {
   challenge: string;
   solution: string;
   results: string[];
