@@ -208,7 +208,7 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
                     <m.div
                       layoutId={previewLayoutId}
                       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                      className="relative w-[300px] h-[188px] overflow-hidden border-2 border-[var(--border)] bg-[var(--bg-hero)]"
+                      className="relative w-full max-w-[300px] aspect-[16/10] overflow-hidden border-2 border-[var(--border)] bg-[var(--bg-hero)]"
                     >
                       <PixelImage src={`/projects/${project.image}.jpg`} instant={hasPreviewedImage} />
                       <div className="absolute inset-0 bg-black/10 mix-blend-multiply pointer-events-none" />
