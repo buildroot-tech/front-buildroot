@@ -31,7 +31,11 @@
       "line1": "We build",
       "line2": "Digital",
       "line3": "Products.",
-      "services": ["System", "Product", "Infrastructure"]
+      "services": [
+        "System",
+        "Product",
+        "Infrastructure"
+      ]
     },
     "process": {
       "subtitle": "How We Work",
@@ -156,57 +160,42 @@
     }
   },
   "about": {
-    "badge": "Who We Are",
+    "label": "About",
     "title": "About",
-    "subtitle": "Two developers. One mission. Build software that actually works.",
-    "intro": "Buildroot is a two-person studio, not an agency. No account managers, no bloated process — just the people writing your code, talking to you directly, from kickoff to launch.",
+    "intro": "Buildroot is a deliberately small studio. We take on few clients at a time so we can stand behind every project end to end. You deal directly with the people writing the code, from the first meeting to the final deploy.",
     "culture": {
       "eyebrow": "Culture",
-      "manifesto": "We didn't build Buildroot to get big. We built it to do work we're proud of, for people who'd rather talk to the person building their product than the person managing the person building it.",
+      "manifesto": "We didn't build Buildroot to get big — we built it to be accountable for what we deliver. Growing would mean putting intermediaries between you and the work, which is precisely the problem we set out to avoid."
+    },
+    "values": {
+      "title": "What We Value",
+      "intro": "Culture isn't demonstrated on a web page. It shows in the hard calls: when a deadline gets tight, when something goes wrong, or when the honest answer costs us the contract. These four commitments define how we respond in those moments.",
       "items": {
-        "small": {
-          "title": "Small On Purpose",
-          "description": "We could hire. We haven't. Every developer we'd add is a decision between you and the person actually writing your code — and we've watched that trade play out badly at studios twenty times our size. Staying at two means every project gets both of us, not whoever's free that sprint."
+        "access": {
+          "marquee": "Direct",
+          "title": "Direct contact with who builds it",
+          "description": "There are no intermediaries between you and the technical team. Whoever answers your message wrote that part of the system, so you get precise answers without delay. It also means we take responsibility head-on: when something breaks, you're speaking directly to the person who can fix it."
         },
-        "dayToDay": {
-          "title": "How We Actually Work",
-          "description": "No ticket queue, no status-update theater. We work out of the same thread you're in — usually WhatsApp or email, sometimes a call when something's worth talking through out loud. If it's broken, you'll know within the hour. If it's done, you'll see it running, not a slide about it."
+        "honesty": {
+          "marquee": "Judgement",
+          "title": "Judgement before convenience",
+          "description": "We'll warn you when a feature doesn't justify its cost, when your budget goes further elsewhere, and when we aren't the right team for the project. We have turned down work for this reason. Recommending something you don't need would be the fastest way to lose your trust."
         },
-        "experience": {
-          "title": "What It's Like To Work With Us",
-          "description": "Short, straight answers — including the ones you don't want, like \"that'll take longer than you think\" or \"you don't need that yet.\" We'd rather lose the sale than build something we don't believe in. The studios that last are the ones honest enough to say no."
+        "pace": {
+          "marquee": "Commitment",
+          "title": "Commitments we keep",
+          "description": "We plan with real margin and hold a pace we can sustain for the length of the project, because rushed work is paid for later in defects and rework. That's why we don't accept deadlines we can't meet: we'd rather have an uncomfortable conversation up front than miss one halfway through."
+        },
+        "staying": {
+          "marquee": "Continuity",
+          "title": "Accountable long term",
+          "description": "Much of our work comes from clients we started with years ago and who are still with us. We write code for whoever has to maintain it later, with documentation and decisions that can be explained. We don't ship anything we aren't prepared to support over time."
         }
       }
-    },
-    "principles": {
-      "title": "How We Work",
-      "items": {
-        "quality": {
-          "title": "Quality Over Quantity",
-          "description": "We take on fewer projects so each one gets our full attention. If we don't have the bandwidth to do it right, we'll say so instead of squeezing you into a sprint."
-        },
-        "clean": {
-          "title": "Clean Code, No Shortcuts",
-          "description": "Code we'd be comfortable maintaining in three years, not just shipping today. Readable, typed, documented where it matters."
-        },
-        "iterative": {
-          "title": "Iterative, Not Waterfall",
-          "description": "We ship early, gather feedback, and adjust. You see progress every week, not a reveal at the end."
-        },
-        "direct": {
-          "title": "Direct Communication",
-          "description": "You talk to the engineers building your product. No handoffs, no telephone game."
-        }
-      }
-    },
-    "stack": {
-      "title": "What We Build With",
-      "subtitle": "The tools we trust, chosen for speed and staying power.",
-      "items": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"]
     },
     "cta": {
       "title": "Ready to work together?",
-      "subtitle": "If you've read this far, you already know whether we're a fit. Let's talk about what you're building.",
+      "subtitle": "If you've read this far, you have a sense of how we work. Tell us what you have in mind and we'll be straight with you about whether we can help.",
       "button": "Get In Touch",
       "email_label": "or email us directly"
     }
@@ -215,7 +204,7 @@
     "badge": "Get In Touch",
     "title": "Contact",
     "subtitle": "Have a project in mind? Tell us about it — we read every message ourselves.",
-    "message": "Two developers, no account managers. Tell us what you're building and we'll reply ourselves, usually within a day.",
+    "message": "No middlemen, no account managers. Tell us what you're building and we'll reply ourselves, usually within a day.",
     "email_button": "info@buildroot.co",
     "response_note": "We read every message ourselves — usually a reply within a day."
   }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import { AnimatePresence, m, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { ScrambleText, type ScrambleTextHandle } from "@/components/ui/TextScrambler";
@@ -135,7 +135,7 @@ function ServiceSlide({ serviceKey, index, total, item, scrollYProgress }: Servi
         {String.fromCharCode(65 + index)}
       </span>
 
-      <h3 className="font-display text-5xl font-light capitalize tracking-tight sm:text-6xl md:text-8xl 2xl:text-9xl">
+      <h3 className="font-display text-5xl font-light tracking-tight sm:text-6xl md:text-8xl 2xl:text-9xl">
         {item.title}
       </h3>
       <p className="mt-6 max-w-4xl font-display font-normal leading-snug text-2xl md:text-3xl" style={{ opacity: 0.85 }}>
@@ -147,7 +147,7 @@ function ServiceSlide({ serviceKey, index, total, item, scrollYProgress }: Servi
 
 export function ServicesSection({ dict }: ServicesSectionProps) {
   // Imperative scramble refs — same idiom as the work page's link rows: the
-  // hover area is the whole <Link>/<a>, not just the inner text span.
+  // hover area is the whole <LocaleLink>/<a>, not just the inner text span.
   const ctaButtonRef = useRef<ScrambleTextHandle>(null);
   const ctaEmailRef = useRef<ScrambleTextHandle>(null);
 
@@ -184,7 +184,7 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
               <ScrambleText
                 text={dict?.title || "Services"}
                 speed={55}
-                trigger="mount"
+                trigger="manual"
               />
             </h1>
             <p className="w-full font-serif font-light leading-[0.95] tracking-tight text-white text-[clamp(2.2rem,7vw,5rem)] 2xl:text-[clamp(2.5rem,8vw,7rem)]">
@@ -252,7 +252,7 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -60 }}
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                      className="absolute left-0 top-0 w-full font-display text-6xl font-light capitalize tracking-tight text-white sm:text-7xl md:text-8xl"
+                      className="absolute left-0 top-0 w-full font-display text-6xl font-light tracking-tight text-white sm:text-7xl md:text-8xl"
                     >
                       {model.title}
                     </m.h3>
@@ -299,7 +299,7 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
           <div className="flex w-full flex-col font-display text-3xl sm:text-4xl md:text-4xl 2xl:text-5xl">
             {/* Stacked link rows, not buttons — plain text on a top
                 border, matching the pattern used across /work. */}
-            <Link
+            <LocaleLink
               href="/contact"
               onMouseEnter={() => ctaButtonRef.current?.scramble()}
               onMouseLeave={() => ctaButtonRef.current?.reset()}
@@ -308,11 +308,11 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
               <ScrambleText
                 ref={ctaButtonRef}
                 text={dict?.cta?.button || "Start a Project"}
-                trigger="mount"
+                trigger="manual"
                 speed={40}
               />
               <ArrowRight className="h-9 w-9 transition-transform group-hover:translate-x-1" />
-            </Link>
+            </LocaleLink>
 
             <a
               href="mailto:info@buildroot.co"
@@ -323,7 +323,7 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
               <ScrambleText
                 ref={ctaEmailRef}
                 text={dict?.cta?.email_label || "or email us directly"}
-                trigger="mount"
+                trigger="manual"
                 speed={40}
               />
               <ArrowUpRight className="h-9 w-9 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
