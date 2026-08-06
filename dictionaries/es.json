@@ -31,7 +31,11 @@
       "line1": "Creamos",
       "line2": "Productos",
       "line3": "Digitales.",
-      "services": ["Sistemas", "Producto", "Infraestructura"]
+      "services": [
+        "Sistemas",
+        "Producto",
+        "Infraestructura"
+      ]
     },
     "process": {
       "subtitle": "Cómo trabajamos",
@@ -40,12 +44,12 @@
         "requirements": {
           "number": "01",
           "title": "REQUERIMIENTOS",
-          "description": "Mapeamos el problema, definimos el alcance exacto y nos alineamos perfectamente con tus objetivos. Sin suposiciones, solo claridad extrema."
+          "description": "Mapeamos el problema, definimos el alcance exacto y nos alineamos con sus objetivos. Sin suposiciones, solo claridad."
         },
         "design": {
           "number": "02",
           "title": "DISEÑO",
-          "description": "Creamos interfaces intuitivas y potentes que comunican la ventaja única de tu marca, con un diseño de sistema estricto."
+          "description": "Creamos interfaces intuitivas y potentes que comunican la ventaja única de su marca, con un diseño de sistema riguroso."
         },
         "build": {
           "number": "03",
@@ -60,49 +64,49 @@
         "production": {
           "number": "05",
           "title": "PASO A PRODUCCIÓN",
-          "description": "Desplegamos y escalamos con absoluta confianza. Tu producto sale al mercado impecablemente y listo para dominar."
+          "description": "Desplegamos y escalamos con total confianza. Su producto sale al mercado impecable y listo para competir."
         }
       }
     },
     "work": {
-      "title": "Trabajo Destacado",
+      "title": "Trabajo destacado",
       "subtitle": "Proyectos recientes y experiencias digitales.",
-      "all_works": "Todos los Proyectos"
+      "all_works": "Ver todos los proyectos"
     },
     "cta": {
-      "manifesto": "Construimos tecnología de alto rendimiento y diseñamos soluciones no convencionales. Existimos para ayudar a marcas audaces a salir de lo ordinario. Cada línea de código y cada píxel está diseñado para elevar tu presencia digital.",
-      "lets_build": "Vamos A Construir",
+      "manifesto": "Construimos tecnología de alto rendimiento y diseñamos soluciones que se salen de lo convencional. Existimos para ayudar a marcas con carácter a destacarse. Cada línea de código y cada píxel está pensado para elevar su presencia digital.",
+      "lets_build": "Construyamos algo juntos",
       "ticker_text": "EXPERIENCIAS DE ALTO NIVEL * DISEÑOS NO CONVENCIONALES *",
       "ticker_secondary": "SISTEMAS * PRODUCTO * INFRAESTRUCTURA *",
       "title": "¿LISTO PARA CONSTRUIR?",
-      "subtitle": "Convirtamos tu visión en realidad."
+      "subtitle": "Convirtamos su visión en realidad."
     }
   },
   "work": {
-    "badge": "Trabajo Seleccionado",
-    "title": "Proyectos Destacados",
-    "subtitle": "Algunos de los productos que diseñamos y construimos de punta a punta — cada uno resolviendo un problema real para un negocio real, no solo llenando un portfolio.",
-    "view_case_study": "Caso de Estudio",
-    "cta_title": "¿Listo para construir tu próximo producto digital?",
-    "cta_subtitle": "Trabajamos junto a fundadores y equipos de producto para diseñar, construir y lanzar plataformas web de alto rendimiento — desde la primera decisión de arquitectura hasta producción. Si tienes un proyecto que vale la pena construir bien, hablemos.",
-    "cta_button": "Empezar un Proyecto",
+    "badge": "Trabajo seleccionado",
+    "title": "Proyectos destacados",
+    "subtitle": "Algunos de los productos que diseñamos y construimos de punta a punta — cada uno resolviendo un problema real para un negocio real, no solo llenando un portafolio.",
+    "view_case_study": "Ver caso de estudio",
+    "cta_title": "¿Listo para construir su próximo producto digital?",
+    "cta_subtitle": "Trabajamos junto a fundadores y equipos de producto para diseñar, construir y lanzar plataformas web de alto rendimiento — desde la primera decisión de arquitectura hasta producción. Si tiene un proyecto que vale la pena construir bien, hablemos.",
+    "cta_button": "Empecemos su proyecto",
     "detail": {
-      "back_to_work": "Volver a Trabajo",
+      "back_to_work": "Volver a proyectos",
       "problem": "Problema",
       "solution": "Solución",
-      "results": "Resultados e Impacto",
+      "results": "Resultados e impacto",
       "stack": "Stack",
-      "live_demo": "Ver Demo"
+      "live_demo": "Ver el sitio"
     }
   },
   "services": {
-    "badge": "Qué Hacemos",
+    "badge": "Qué hacemos",
     "title": "Servicios",
-    "subtitle": "Tres formas de trabajar juntos: construimos tu producto, arreglamos lo que está roto, o lo lanzamos de punta a punta — siempre directo con quienes escriben el código.",
+    "subtitle": "Tres formas de trabajar juntos: construimos su producto, arreglamos lo que está roto, o lo lanzamos de punta a punta — siempre en contacto directo con quienes escriben el código.",
     "items": {
       "web": {
         "title": "Desarrollo Web",
-        "description": "Un sitio o aplicación web que tus clientes realmente disfrutan usar — rápido, claro, y construido para crecer con tu negocio en vez de volverse el rediseño del próximo año.",
+        "description": "Un sitio o aplicación web que sus clientes realmente disfruten usar — rápido, claro y construido para crecer con su negocio, en vez de convertirse en el rediseño del próximo año.",
         "points": [
           "Sitios de marketing y landing pages",
           "Aplicaciones web y herramientas internas",
@@ -111,8 +115,8 @@
         ]
       },
       "consulting": {
-        "title": "Consultoría Técnica",
-        "description": "Una mirada honesta y externa a lo que ya construiste — qué funciona, qué te está costando dinero sin que lo notes, y qué arreglar primero. Sin tecnicismos, sin venta forzada.",
+        "title": "Consultoría técnica",
+        "description": "Una mirada honesta y externa a lo que ya construyó — qué funciona, qué le está costando dinero sin que lo note, y qué conviene arreglar primero. Sin tecnicismos y sin venta forzada.",
         "points": [
           "Revisiones de arquitectura y diseño de sistemas",
           "Migraciones legacy — framework, nube, base de datos",
@@ -122,7 +126,7 @@
       },
       "saas": {
         "title": "Productos SaaS",
-        "description": "Desde el primer boceto hasta los primeros clientes pagando. Nosotros nos encargamos de todo lo que pasa detrás, para que tú te enfoques en lo que realmente vende tu producto.",
+        "description": "Desde el primer boceto hasta los primeros clientes pagando. Nosotros nos encargamos de todo lo que pasa detrás, para que usted se concentre en lo que realmente vende su producto.",
         "points": [
           "De MVP a producción en semanas, no trimestres",
           "Autenticación, facturación y arquitectura multi-tenant",
@@ -132,90 +136,75 @@
       }
     },
     "engage": {
-      "title": "Cómo Trabajamos Juntos",
+      "title": "Cómo trabajamos juntos",
       "models": {
         "project": {
-          "title": "Por Proyecto",
-          "description": "Alcance fijo, precio fijo. Sabés exactamente qué vas a recibir antes de que escribamos una sola línea de código."
+          "title": "Por proyecto",
+          "description": "Alcance fijo, precio fijo. Usted sabe exactamente qué va a recibir antes de que escribamos una sola línea de código."
         },
         "retainer": {
           "title": "Retainer",
-          "description": "Colaboración continua para equipos que lanzan seguido. Nos integramos a tu sprint, no al revés."
+          "description": "Colaboración continua para equipos que lanzan seguido. Nos integramos a su ciclo de trabajo, no al revés."
         },
         "audit": {
-          "title": "Auditoría y Asesoría",
-          "description": "Una revisión profunda y puntual de tu código o arquitectura. Un informe claro, no un pitch de ventas."
+          "title": "Auditoría y asesoría",
+          "description": "Una revisión profunda y puntual de su código o su arquitectura. Un informe claro, no una propuesta comercial disfrazada."
         }
       }
     },
     "cta": {
-      "title": "¿Tenés un proyecto en mente?",
-      "subtitle": "Contanos qué estás construyendo. Te decimos con honestidad si somos el equipo indicado — y si lo somos, qué tan rápido podemos arrancar.",
-      "button": "Iniciar un Proyecto",
-      "email_label": "o escríbenos directamente"
+      "title": "¿Tiene un proyecto en mente?",
+      "subtitle": "Cuéntenos qué está construyendo. Le decimos con honestidad si somos el equipo indicado — y si lo somos, qué tan rápido podemos empezar.",
+      "button": "Empecemos su proyecto",
+      "email_label": "o escríbanos directamente"
     }
   },
   "about": {
-    "badge": "Quiénes Somos",
+    "label": "Nosotros",
     "title": "Nosotros",
-    "subtitle": "Dos desarrolladores. Una misión. Construir software que realmente funcione.",
-    "intro": "Buildroot es un estudio de dos personas, no una agencia. Sin gerentes de cuenta ni procesos inflados — solo las personas que escriben tu código, hablando directo con vos, desde el kickoff hasta el lanzamiento.",
+    "intro": "Buildroot es un estudio pequeño por decisión propia. Trabajamos con pocos clientes a la vez para poder responder por cada proyecto de principio a fin. Usted trata directamente con quienes escriben el código, desde la primera reunión hasta el último despliegue.",
     "culture": {
       "eyebrow": "Cultura",
-      "manifesto": "No armamos Buildroot para crecer. Lo armamos para hacer un trabajo del que estemos orgullosos, para gente que prefiere hablar con quien construye su producto y no con quien administra a quien lo construye.",
+      "manifesto": "No creamos Buildroot para volvernos grandes, sino para responder por lo que entregamos. Crecer significaría poner intermediarios entre usted y el trabajo, y ese es justamente el problema que quisimos evitar."
+    },
+    "values": {
+      "title": "Lo que valoramos",
+      "intro": "La cultura no se demuestra en una página web, sino en las decisiones difíciles: cuando un plazo se complica, cuando algo sale mal, o cuando la respuesta honesta nos cuesta el contrato. Estos cuatro compromisos definen cómo respondemos en esos momentos.",
       "items": {
-        "small": {
-          "title": "Pequeños A Propósito",
-          "description": "Podríamos contratar. No lo hicimos. Cada desarrollador que sumáramos es una decisión entre vos y la persona que realmente escribe tu código — y vimos ese cambio salir mal en estudios veinte veces más grandes que el nuestro. Quedarnos en dos significa que cada proyecto nos tiene a ambos, no a quien esté libre ese sprint."
+        "access": {
+          "marquee": "Directo",
+          "title": "Trato directo con quien construye",
+          "description": "No hay intermediarios entre usted y el equipo técnico. Quien responde su mensaje es quien escribió esa parte del sistema, así que obtiene respuestas precisas y sin demoras. También significa que asumimos la responsabilidad de frente: cuando algo falla, habla directamente con quien puede resolverlo."
         },
-        "dayToDay": {
-          "title": "Cómo Trabajamos En Realidad",
-          "description": "Sin cola de tickets, sin teatro de actualizaciones de estado. Trabajamos en el mismo hilo en el que estás vos — casi siempre WhatsApp o correo, a veces una llamada cuando algo vale la pena hablarlo en voz alta. Si algo se rompe, lo vas a saber en una hora. Si algo está listo, lo vas a ver funcionando, no en una diapositiva."
+        "honesty": {
+          "marquee": "Criterio",
+          "title": "Criterio antes que conveniencia",
+          "description": "Le advertimos cuando una funcionalidad no justifica su costo, cuando el presupuesto rinde más en otra parte, y cuando no somos el equipo adecuado para el proyecto. Hemos declinado trabajo por esta razón. Recomendar algo que no necesita sería la forma más rápida de perder su confianza."
         },
-        "experience": {
-          "title": "Cómo Es Trabajar Con Nosotros",
-          "description": "Respuestas cortas y directas — incluidas las que no querés escuchar, como \"eso va a tardar más de lo que pensás\" o \"todavía no necesitás eso\". Preferimos perder la venta antes que construir algo en lo que no creemos. Los estudios que duran son los que tienen la honestidad de decir que no."
+        "pace": {
+          "marquee": "Cumplimiento",
+          "title": "Compromisos que se cumplen",
+          "description": "Planificamos con margen real y sostenemos un ritmo que podemos mantener durante todo el proyecto, porque el trabajo apresurado se paga después en fallas y retrabajo. Por eso no aceptamos plazos que no podamos cumplir: preferimos una conversación incómoda al inicio que un incumplimiento a mitad de camino."
+        },
+        "staying": {
+          "marquee": "Continuidad",
+          "title": "Respondemos a largo plazo",
+          "description": "Buena parte de nuestro trabajo viene de clientes con los que empezamos hace años y que siguen con nosotros. Escribimos el código pensando en quien deba mantenerlo después, con documentación y decisiones que se puedan explicar. No entregamos nada que no estemos dispuestos a sostener en el tiempo."
         }
       }
-    },
-    "principles": {
-      "title": "Cómo Trabajamos",
-      "items": {
-        "quality": {
-          "title": "Calidad Antes Que Cantidad",
-          "description": "Tomamos menos proyectos para darle toda nuestra atención a cada uno. Si no tenemos la capacidad para hacerlo bien, te lo decimos en vez de meterte a la fuerza en un sprint."
-        },
-        "clean": {
-          "title": "Código Limpio, Sin Atajos",
-          "description": "Código que estaríamos cómodos manteniendo en tres años, no solo entregando hoy. Legible, tipado, documentado donde importa."
-        },
-        "iterative": {
-          "title": "Iterativo, No en Cascada",
-          "description": "Lanzamos temprano, recogemos feedback y ajustamos. Ves avances cada semana, no una revelación al final."
-        },
-        "direct": {
-          "title": "Comunicación Directa",
-          "description": "Hablás con los ingenieros que construyen tu producto. Sin traspasos, sin teléfono descompuesto."
-        }
-      }
-    },
-    "stack": {
-      "title": "Con Qué Construimos",
-      "subtitle": "Las herramientas en las que confiamos, elegidas por velocidad y permanencia.",
-      "items": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"]
     },
     "cta": {
       "title": "¿Listos para trabajar juntos?",
-      "subtitle": "Si llegaste hasta acá, ya sabés si somos un buen fit. Hablemos de lo que estás construyendo.",
-      "button": "Hablemos",
-      "email_label": "o escríbenos directamente"
+      "subtitle": "Si llegó hasta acá, ya se hizo una idea de cómo trabajamos. Cuéntenos qué tiene en mente y le decimos con franqueza si podemos ayudarle.",
+      "button": "Conversemos",
+      "email_label": "o escríbanos directamente"
     }
   },
   "contact": {
     "badge": "Hablemos",
     "title": "Contacto",
-    "subtitle": "¿Tenés un proyecto en mente? Contanos — leemos cada mensaje nosotros mismos.",
-    "message": "Dos desarrolladores, sin account managers. Contanos qué estás construyendo y te respondemos nosotros mismos, normalmente en un día.",
+    "subtitle": "¿Tiene un proyecto en mente? Cuéntenos — leemos cada mensaje nosotros mismos.",
+    "message": "Sin intermediarios ni ejecutivos de cuenta. Cuéntenos qué está construyendo y le respondemos nosotros mismos, normalmente en un día.",
     "email_button": "info@buildroot.co",
     "response_note": "Leemos cada mensaje nosotros mismos — normalmente respondemos en un día."
   }

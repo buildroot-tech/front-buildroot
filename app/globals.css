@@ -207,6 +207,40 @@ body {
 }
 
 /* ============================================
+   MARQUEE (about / culture bands)
+   ============================================ */
+
+/* The track holds the same run of content twice, so shifting it exactly
+   half its width lands the copy precisely where the original started —
+   the loop point is invisible. Animating `transform` only keeps this on
+   the compositor: no layout, no paint, no main-thread work per frame. */
+@keyframes marquee-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marquee-drift var(--marquee-duration, 40s) linear infinite;
+}
+
+.marquee-track[data-direction="reverse"] {
+  animation-direction: reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* ============================================
    SCROLLBAR (brutalist)
    ============================================ */
 

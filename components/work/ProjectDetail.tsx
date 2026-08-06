@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import {
   ArrowLeft,
   ArrowRight,
@@ -22,13 +22,13 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
     <article className="w-full bg-[var(--bg-primary)]">
       <div className="w-full px-6 md:px-12 section-generous">
         {/* Back link */}
-        <Link
+        <LocaleLink
           href="/work"
           className="group inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors"
         >
           <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
           <span>{dict?.back_to_work || "Back to Work"}</span>
-        </Link>
+        </LocaleLink>
 
         {/* Header */}
         <header className="mt-8 md:mt-12">
@@ -40,7 +40,7 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
             <span>{project.year}</span>
           </div>
           <h1 className="headline text-display mt-4 text-[var(--text-primary)] tracking-tight">
-            <ScrambleText text={project.title} speed={55} trigger="mount" />
+            <ScrambleText text={project.title} speed={55} trigger="manual" />
           </h1>
           <p className="mt-4 text-lg md:text-2xl text-[var(--text-primary)] max-w-3xl leading-relaxed font-display">
             {project.description}

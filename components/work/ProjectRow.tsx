@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Minus, Plus } from "lucide-react";
-import Link from "next/link";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import { type Project } from "@/types";
 import { ScrambleText, type ScrambleTextHandle } from "@/components/ui/TextScrambler";
 import { PixelImage } from "@/components/ui/PixelImage";
@@ -81,7 +81,7 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
         <div className="relative flex flex-col items-start gap-2 pb-2 lg:grid lg:grid-cols-[46%_22%_1fr_200px_16%] lg:items-center lg:gap-4 lg:justify-normal">
           {/* Title */}
           <div className="min-w-0 shrink overflow-hidden lg:col-start-1">
-            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl font-light tracking-tight text-[var(--text-primary)] capitalize truncate">
+            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl font-light leading-[1.4] tracking-tight text-[var(--text-primary)] capitalize truncate">
               <ScrambleText text={project.title} trigger="mount" active={isActive} speed={40} />
             </h3>
           </div>
@@ -96,7 +96,7 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
               designed at (331px available) but truncated to "Customer
               Servi…" narrower than that. Back to text-4xl at 2xl
               (1536px+) where there's room again. */}
-          <div className="hidden lg:col-start-2 lg:block truncate font-display text-2xl sm:text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl font-light tracking-tight text-[var(--text-primary)] capitalize">
+          <div className="hidden lg:col-start-2 lg:block truncate font-display text-2xl sm:text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl font-light leading-[1.4] tracking-tight text-[var(--text-primary)] capitalize">
             <ScrambleText text={project.industry} trigger="mount" active={isActive} speed={40} />
           </div>
 
@@ -108,7 +108,7 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
               +/- button on the right. */}
           <div className="relative flex items-center justify-start shrink-0 h-8 lg:h-12 lg:min-w-[200px] lg:col-start-4">
             <span
-              className={`font-mono text-xs font-bold tracking-widest text-[var(--text-muted)] lg:font-display lg:text-3xl 2xl:text-4xl lg:font-light lg:tracking-tight lg:text-[var(--text-primary)] lg:capitalize transition-opacity duration-200 ${
+              className={`font-mono text-xs font-bold tracking-widest text-[var(--text-muted)] lg:font-display lg:text-3xl 2xl:text-4xl lg:font-light lg:leading-[1.4] lg:tracking-tight lg:text-[var(--text-primary)] lg:capitalize transition-opacity duration-200 ${
                 isExpanded
                   ? "opacity-0 pointer-events-none"
                   : "opacity-100 group-hover:opacity-0"
@@ -254,7 +254,7 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
                       top border, blending with the page instead of a
                       filled block sitting on top of it. */}
                   <div className="mt-6 flex flex-col font-display text-2xl md:text-3xl">
-                    <Link
+                    <LocaleLink
                       href={`/work/${project.id}`}
                       onMouseEnter={() => caseStudyRef.current?.scramble()}
                       onMouseLeave={() => caseStudyRef.current?.reset()}
@@ -263,11 +263,11 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
                       <ScrambleText
                         ref={caseStudyRef}
                         text={viewCaseStudyLabel || "Case Study"}
-                        trigger="mount"
+                        trigger="manual"
                         speed={40}
                       />
                       <ArrowRight className="h-7 w-7 transition-transform group-hover:translate-x-1" />
-                    </Link>
+                    </LocaleLink>
 
                     {project.demoUrl && (
                       <a
@@ -278,7 +278,7 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
                         onMouseLeave={() => visitSiteRef.current?.reset()}
                         className="group flex items-center justify-between border-t border-b border-[var(--text-primary)] py-5 text-[var(--text-primary)]"
                       >
-                        <ScrambleText ref={visitSiteRef} text="Visit Site" trigger="mount" speed={40} />
+                        <ScrambleText ref={visitSiteRef} text="Visit Site" trigger="manual" speed={40} />
                         <ArrowUpRight className="h-7 w-7 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </a>
                     )}

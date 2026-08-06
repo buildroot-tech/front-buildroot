@@ -27,7 +27,19 @@ export default async function AboutPage({
   const dict = await getDictionary(lang as Locale);
 
   return (
-    <div className="min-h-screen bg-[var(--bg-hero)]">
+    // Mirrors the "/about" entry in lib/route-theme.ts, which is what the
+    // Header and Footer already colour themselves from — set here as CSS
+    // vars so the page body agrees with the chrome above and below it.
+    <div
+      className="min-h-screen bg-[var(--bg-primary)]"
+      style={
+        {
+          "--bg-primary": "#000000",
+          "--text-primary": "#ffffff",
+          "--border": "#ffffff",
+        } as React.CSSProperties
+      }
+    >
       <AboutSection dict={dict.about} />
     </div>
   );

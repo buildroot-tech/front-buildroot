@@ -36,7 +36,7 @@ export function ContactSection({ dict }: ContactSectionProps) {
             {dict?.badge || "Get In Touch"}
           </h2>
           <h1 className="headline text-h1 mt-4 text-[var(--text-primary)] tracking-tight">
-            <ScrambleText text={dict?.title || "Contact"} speed={55} trigger="mount" />
+            <ScrambleText text={dict?.title || "Contact"} speed={55} trigger="manual" />
           </h1>
           <p className="mt-3 max-w-2xl text-base md:text-lg leading-relaxed text-[var(--text-primary)]/80 font-display">
             {dict?.subtitle ||
@@ -55,7 +55,7 @@ export function ContactSection({ dict }: ContactSectionProps) {
           className="mt-16 md:mt-24 max-w-4xl font-serif font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tighter text-[var(--text-primary)]"
         >
           {dict?.message ||
-            "Two developers, no account managers. Tell us what you're building and we'll reply ourselves, usually within a day."}
+            "No middlemen, no account managers. Tell us what you're building and we'll reply ourselves, usually within a day."}
         </m.p>
 
         {/* Prominent mailto link row — plain text on a border, no fill,
@@ -78,7 +78,7 @@ export function ContactSection({ dict }: ContactSectionProps) {
             <ScrambleText
               ref={emailRef}
               text={dict?.email_button || EMAIL}
-              trigger="mount"
+              trigger="manual"
               speed={40}
             />
             <ArrowUpRight className="h-8 w-8 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 md:h-10 md:w-10" />
