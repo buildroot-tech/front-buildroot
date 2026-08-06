@@ -30,7 +30,7 @@ const RepeatedText = ({ text, hidden = false }: { text: string, hidden?: boolean
 export function Ticker({ baseVelocity = -0.3, text, secondaryText }: TickerProps) {
   const baseX = useMotionValue(0);
   const baseXReverse = useMotionValue(0);
-  
+
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
   const smoothVelocity = useSpring(scrollVelocity, {
@@ -46,7 +46,7 @@ export function Ticker({ baseVelocity = -0.3, text, secondaryText }: TickerProps
   const xReverse = useTransform(baseXReverse, (v) => `${wrap(-50, -25, v)}%`);
 
   const directionFactor = useRef<number>(1);
-  
+
   useAnimationFrame((t, delta) => {
     let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
@@ -57,7 +57,7 @@ export function Ticker({ baseVelocity = -0.3, text, secondaryText }: TickerProps
     }
 
     moveBy += directionFactor.current * moveBy * velocityFactor.get();
-    
+
     baseX.set(baseX.get() + moveBy);
     // Reverse moves in the opposite direction
     baseXReverse.set(baseXReverse.get() - moveBy);
@@ -77,14 +77,14 @@ export function Ticker({ baseVelocity = -0.3, text, secondaryText }: TickerProps
   return (
     <div ref={ref} className="relative w-full overflow-hidden flex flex-nowrap pt-[clamp(6rem,12vw,16rem)] pb-[clamp(6rem,12vw,16rem)] bg-[var(--bg-primary)]">
       {/* 3D Lighting/Shading overlay to simulate cylinder curvature on the X axis */}
-      <div 
+      <div
         className="absolute inset-0 pointer-events-none z-10"
         style={{
           background: "linear-gradient(to right, var(--bg-primary) 0%, transparent 25%, transparent 75%, var(--bg-primary) 100%)"
         }}
       />
-      
-      <m.div 
+
+      <m.div
         className="w-full flex flex-col items-center justify-center gap-4 md:gap-8 relative z-0"
         style={{
           scale,

@@ -202,7 +202,7 @@
     "stack": {
       "title": "Con Qué Construimos",
       "subtitle": "Las herramientas en las que confiamos, elegidas por velocidad y permanencia.",
-      "items": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Lenis", "Vercel"]
+      "items": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"]
     },
     "cta": {
       "title": "¿Listos para trabajar juntos?",
