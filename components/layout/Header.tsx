@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, m, useScroll, useMotionValueEvent } from "framer-motion";
 import {
@@ -163,7 +164,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
       >
         <div className="flex items-center justify-between px-6 md:px-12 py-5 overflow-hidden lg:grid lg:grid-cols-[46%_1fr] lg:gap-4 lg:justify-normal">
           {/* Logo — hover detected on the <Link>, not the inner span */}
-          <Link
+          <LocaleLink
             href="/"
             className="group relative font-display text-xl font-bold tracking-tight lg:col-start-1"
             style={{ color: textColor } as React.CSSProperties}
@@ -173,20 +174,19 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
             <ScrambleText
               ref={logoRef}
               text="buildroot"
-              speed={95}
-              trigger="mount"
-              key={`logo-${pathname}`}
+              speed={40}
+              trigger="manual"
             />
             <span className="cursor-blink inline-block scale-y-75 origin-bottom">
               _
             </span>
-          </Link>
+          </LocaleLink>
 
           <div className="hidden items-center md:flex flex-1 justify-between lg:col-start-2 lg:flex-none overflow-hidden">
             <nav className="flex items-center gap-3 justify-center md:pl-8 lg:pl-0 lg:justify-start overflow-hidden">
               {navLinks.map((link, i) => (
                 <span key={link.href} className="flex items-center">
-                  <Link
+                  <LocaleLink
                     href={link.href}
                     className="group relative font-display text-2xl sm:text-3xl md:text-3xl 2xl:text-4xl tracking-[0.1em] font-normal transition-colors hover:text-[var(--accent)]"
                     style={
@@ -205,14 +205,13 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
                         else navRefs.current.delete(link.href);
                       }}
                       text={link.label}
-                      speed={68}
-                      trigger="mount"
-                      key={`${link.label}-${pathname}`}
+                      speed={40}
+                      trigger="manual"
                     />
                     <span
                       className={`absolute bottom-0 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${pathname === link.href ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
                     />
-                  </Link>
+                  </LocaleLink>
                   {i < navLinks.length - 1 && (
                     <span
                       className="font-display text-2xl sm:text-3xl md:text-3xl 2xl:text-4xl font-normal"
@@ -226,7 +225,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
             </nav>
 
             {/* Contact link */}
-            <Link
+            <LocaleLink
               href="/contact"
               className="group relative font-display text-2xl sm:text-3xl md:text-3xl 2xl:text-4xl tracking-[0.1em] font-normal transition-colors hover:text-[var(--accent)]"
               style={
@@ -241,14 +240,13 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
               <ScrambleText
                 ref={contactRef}
                 text={dict?.contact || "let's talk"}
-                speed={68}
-                trigger="mount"
-                key={`contact-${pathname}`}
+                speed={40}
+                trigger="manual"
               />
               <span
                 className={`absolute bottom-0 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${normalizedPathname === "/contact" ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
               />
-            </Link>
+            </LocaleLink>
           </div>
 
           {/* Mobile Burger */}
@@ -293,22 +291,24 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
           >
             <nav className="flex flex-col items-center justify-center gap-8 pt-32">
               {navLinks.map((link) => (
-                <Link
+                <LocaleLink
                   key={link.href}
                   href={link.href}
                   className="font-display text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
-                </Link>
+                </LocaleLink>
               ))}
-              <Link
+              <LocaleLink
                 href="/contact"
                 className="font-display text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
                 onClick={() => setMobileOpen(false)}
               >
                 {dict?.contact || "let's talk"}
-              </Link>
+              </LocaleLink>
+              {/* Plain Link on purpose — this one deliberately targets the
+                  *other* locale, so it must not be re-prefixed. */}
               <Link
                 href={lang === "en" ? `/es${normalizedPathname === "/" ? "" : normalizedPathname}` : normalizedPathname}
                 className="font-display text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)] mt-8"

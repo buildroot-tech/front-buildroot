@@ -1,8 +1,8 @@
 "use client";
 
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import { useRef } from "react";
-import Link from "next/link";
-import { m, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { ScrambleText, type ScrambleTextHandle } from "@/components/ui/TextScrambler";
 import type { Dictionary } from "@/lib/dictionaries";
@@ -11,393 +11,317 @@ interface AboutSectionProps {
   dict?: Dictionary["about"];
 }
 
-const PRINCIPLE_KEYS = ["quality", "clean", "iterative", "direct"] as const;
-type PrincipleKey = (typeof PRINCIPLE_KEYS)[number];
+// Every string the page renders, in English, so the component still reads
+// correctly if a dictionary key is ever missing.
+const FALLBACK = {
+  label: "About",
+  intro:
+    "Buildroot is a deliberately small studio. We take on few clients at a time so we can stand behind every project end to end. You deal directly with the people writing the code, from the first meeting to the final deploy.",
+  culture: {
+    eyebrow: "Culture",
+    manifesto:
+      "We didn't build Buildroot to get big — we built it to be accountable for what we deliver. Growing would mean putting intermediaries between you and the work, which is precisely the problem we set out to avoid.",
+  },
+  values: {
+    title: "What We Value",
+    intro:
+      "Culture isn't demonstrated on a web page. It shows in the hard calls: when a deadline gets tight, when something goes wrong, or when the honest answer costs us the contract. These four commitments define how we respond in those moments.",
+    items: {
+      access: {
+        marquee: "Direct",
+        title: "Direct contact with who builds it",
+        description:
+          "There are no intermediaries between you and the technical team. Whoever answers your message wrote that part of the system, so you get precise answers without delay. It also means we take responsibility head-on: when something breaks, you're speaking directly to the person who can fix it.",
+      },
+      honesty: {
+        marquee: "Judgement",
+        title: "Judgement before convenience",
+        description:
+          "We'll warn you when a feature doesn't justify its cost, when your budget goes further elsewhere, and when we aren't the right team for the project. We have turned down work for this reason. Recommending something you don't need would be the fastest way to lose your trust.",
+      },
+      pace: {
+        marquee: "Commitment",
+        title: "Commitments we keep",
+        description:
+          "We plan with real margin and hold a pace we can sustain for the length of the project, because rushed work is paid for later in defects and rework. That's why we don't accept deadlines we can't meet: we'd rather have an uncomfortable conversation up front than miss one halfway through.",
+      },
+      staying: {
+        marquee: "Continuity",
+        title: "Accountable long term",
+        description:
+          "Much of our work comes from clients we started with years ago and who are still with us. We write code for whoever has to maintain it later, with documentation and decisions that can be explained. We don't ship anything we aren't prepared to support over time.",
+      },
+    },
+  },
+  cta: {
+    title: "Ready to work together?",
+    subtitle:
+      "If you've read this far, you have a sense of how we work. Tell us what you have in mind and we'll be straight with you about whether we can help.",
+    button: "Get In Touch",
+    emailLabel: "or email us directly",
+  },
+} as const;
 
-const FALLBACK_PRINCIPLES: Record<
-  PrincipleKey,
-  { title: string; description: string }
-> = {
-  quality: {
-    title: "Quality Over Quantity",
-    description:
-      "We take on fewer projects so each one gets our full attention. If we don't have the bandwidth to do it right, we'll say so instead of squeezing you into a sprint.",
-  },
-  clean: {
-    title: "Clean Code, No Shortcuts",
-    description:
-      "Code we'd be comfortable maintaining in three years, not just shipping today. Readable, typed, documented where it matters.",
-  },
-  iterative: {
-    title: "Iterative, Not Waterfall",
-    description:
-      "We ship early, gather feedback, and adjust. You see progress every week, not a reveal at the end.",
-  },
-  direct: {
-    title: "Direct Communication",
-    description:
-      "You talk to the engineers building your product. No handoffs, no telephone game.",
-  },
+const VALUE_KEYS = ["access", "honesty", "pace", "staying"] as const;
+type ValueKey = (typeof VALUE_KEYS)[number];
+
+const EMAIL = "info@buildroot.co";
+
+// Shared reveal — content rises a little as it enters, once.
+const revealUp = {
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0 },
 };
+const revealTransition = { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const };
 
-// Three facets of studio culture — deliberately distinct from the process
-// principles above (which are about *how the work gets made*). These are
-// about the studio itself: why it's small, what a day looks like, what
-// changes for the client. One full-viewport slide each, stacking over one
-// another as you scroll — the same mechanic as Services'
-// ServiceSlide/stackRef (components/services/ServicesSection.tsx), which
-// is itself the same idea as Home's WorkflowSteps, just simplified to 3
-// beats. Colors reused verbatim from SERVICE_COLORS so a visitor moving
-// between /services and /about reads the same color language twice.
-const CULTURE_KEYS = ["small", "dayToDay", "experience"] as const;
-type CultureKey = (typeof CULTURE_KEYS)[number];
-
-const CULTURE_COLORS: Record<CultureKey, { bg: string; text: string }> = {
-  small: { bg: "#0A0A0A", text: "#ffffff" },
-  dayToDay: { bg: "var(--accent)", text: "#ffffff" },
-  experience: { bg: "#e2e8f0", text: "#000000" },
-};
-
-const FALLBACK_CULTURE: Record<
-  CultureKey,
-  { title: string; description: string }
-> = {
-  small: {
-    title: "Small On Purpose",
-    description:
-      "We could hire. We haven't. Every developer we'd add is a decision between you and the person actually writing your code — and we've watched that trade play out badly at studios twenty times our size. Staying at two means every project gets both of us, not whoever's free that sprint.",
-  },
-  dayToDay: {
-    title: "How We Actually Work",
-    description:
-      "No ticket queue, no status-update theater. We work out of the same thread you're in — usually WhatsApp or email, sometimes a call when something's worth talking through out loud. If it's broken, you'll know within the hour. If it's done, you'll see it running, not a slide about it.",
-  },
-  experience: {
-    title: "What It's Like To Work With Us",
-    description:
-      "Short, straight answers — including the ones you don't want, like \"that'll take longer than you think\" or \"you don't need that yet.\" We'd rather lose the sale than build something we don't believe in. The studios that last are the ones honest enough to say no.",
-  },
-};
-
-const FALLBACK_STACK = [
-  "Next.js",
-  "React",
-  "TypeScript",
-  "Tailwind CSS",
-  "Framer Motion",
-  "Vercel",
-];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.08, duration: 0.5, ease: "easeOut" as const },
-  }),
-};
-
-// Per-word scroll-linked opacity reveal — same idiom as Home's CTA
-// manifesto (components/home/CTA.tsx Word), recreated locally here since
-// /components/home is out of scope to touch this session.
-function Word({
-  children,
-  progress,
-  range,
+/**
+ * Edge-to-edge band of one phrase repeated forever. The phrase is rendered
+ * twice inside the track (see `.marquee-track` in globals.css) — the second
+ * copy is what's on screen by the time the first has slid out, which is why
+ * the loop has no visible seam.
+ */
+function Marquee({
+  text,
+  durationSeconds = 40,
+  reverse = false,
+  className = "",
 }: {
-  children: React.ReactNode;
-  progress: MotionValue<number>;
-  range: [number, number];
+  text: string;
+  durationSeconds?: number;
+  reverse?: boolean;
+  className?: string;
 }) {
-  const opacity = useTransform(progress, range, [0.15, 1]);
-  return (
-    <span className="relative mr-2 mt-1 inline-block md:mr-4">
-      <m.span style={{ opacity }} className="inline-block">
-        {children}
-      </m.span>
-    </span>
-  );
-}
-
-interface CultureSlideProps {
-  cultureKey: CultureKey;
-  index: number;
-  total: number;
-  item: { title: string; description: string };
-  scrollYProgress: MotionValue<number>;
-}
-
-// One full-screen panel per culture facet — slides up over the previous
-// one and settles. Structurally identical to ServiceSlide
-// (components/services/ServicesSection.tsx), the closest existing analog
-// for this exact mechanic.
-function CultureSlide({ cultureKey, index, total, item, scrollYProgress }: CultureSlideProps) {
-  const segment = 1 / total;
-  const start = index * segment;
-  const y = useTransform(
-    scrollYProgress,
-    [Math.max(0, start - segment * 0.6), start],
-    ["100%", "0%"]
-  );
-  const colors = CULTURE_COLORS[cultureKey];
-
-  return (
-    <m.div
-      className="absolute inset-0 flex flex-col justify-center px-6 md:px-12"
-      style={{
-        y: index === 0 ? "0%" : y,
-        backgroundColor: colors.bg,
-        color: colors.text,
-        zIndex: index,
-      }}
-    >
-      <span
-        className="pointer-events-none absolute right-6 top-28 font-display text-[8rem] font-light leading-none tracking-tighter sm:text-[10rem] md:right-12 md:top-32 md:text-[13rem]"
-        style={{ opacity: 0.15 }}
-      >
-        {String(index + 1).padStart(2, "0")}
+  const run = Array.from({ length: 4 }, (_, i) => (
+    <span key={i} className="flex shrink-0 items-center whitespace-nowrap">
+      <span>{text}</span>
+      <span aria-hidden="true" className="mx-8 opacity-40 md:mx-14">
+        ✳
       </span>
+    </span>
+  ));
 
-      <h3 className="font-display text-6xl font-light capitalize tracking-tight sm:text-7xl md:text-8xl lg:text-9xl">
-        {item.title}
-      </h3>
-      <p className="mt-6 max-w-4xl font-display font-normal leading-snug text-2xl md:text-3xl" style={{ opacity: 0.85 }}>
-        {item.description}
-      </p>
-    </m.div>
+  return (
+    <div className={`w-full overflow-hidden ${className}`} aria-hidden="true">
+      <div
+        className="marquee-track"
+        data-direction={reverse ? "reverse" : undefined}
+        style={{ "--marquee-duration": `${durationSeconds}s` } as React.CSSProperties}
+      >
+        {/* Two identical halves — the animation shifts exactly -50%. */}
+        <div className="flex shrink-0">{run}</div>
+        <div className="flex shrink-0">{run}</div>
+      </div>
+    </div>
   );
 }
 
 export function AboutSection({ dict }: AboutSectionProps) {
-  const stack = dict?.stack?.items?.length ? dict.stack.items : FALLBACK_STACK;
-  // Imperative scramble refs — same idiom as the work page's link rows: the
-  // hover area is the whole <Link>/<a>, not just the inner text span.
   const ctaButtonRef = useRef<ScrambleTextHandle>(null);
   const ctaEmailRef = useRef<ScrambleTextHandle>(null);
 
-  // Manifesto word reveal — tracks scroll across the statement itself,
-  // finishing once it's centered in view (same offsets as CTA.tsx).
-  const manifestoRef = useRef<HTMLElement>(null);
-  const { scrollYProgress: manifestoProgress } = useScroll({
-    target: manifestoRef,
-    offset: ["start 80%", "center center"],
-  });
-  const manifestoText =
-    dict?.culture?.manifesto ||
-    "We didn't build Buildroot to get big. We built it to do work we're proud of, for people who'd rather talk to the person building their product than the person managing the person building it.";
-  const manifestoWords = manifestoText.split(" ");
+  const dictValues = dict?.values;
 
-  // Culture stack — 3 viewport-heights of scroll room; the sticky child
-  // pins in place while that room scrolls underneath, same mechanic as
-  // Services' #services-stack.
-  const cultureStackRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: cultureStackProgress } = useScroll({
-    target: cultureStackRef,
-    offset: ["start start", "end end"],
+  const values = VALUE_KEYS.map((key, index) => {
+    const fromDict = dictValues?.items?.[key];
+    const fallback = FALLBACK.values.items[key as ValueKey];
+    return {
+      key,
+      index: index + 1,
+      marquee: fromDict?.marquee || fallback.marquee,
+      title: fromDict?.title || fallback.title,
+      description: fromDict?.description || fallback.description,
+    };
   });
 
   return (
-    <>
-      {/* Header */}
-      <section className="w-full px-6 pt-32 pb-16 md:px-12 md:pt-40 md:pb-24">
-        <m.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="font-display text-2xl md:text-3xl tracking-tight text-white">
-            {dict?.badge || "Who We Are"}
-          </h2>
-          <h1 className="mt-4 font-serif font-light uppercase leading-[0.85] tracking-tight text-white text-[clamp(3.5rem,12vw,10rem)]">
-            <ScrambleText
-              text={dict?.title || "About"}
-              speed={55}
-              trigger="mount"
-            />
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg md:text-xl leading-relaxed text-white font-display">
-            {dict?.subtitle ||
-              "Two developers. One mission. Build software that actually works."}
-          </p>
-          <p className="mt-4 max-w-2xl text-sm md:text-base leading-relaxed text-white/80 font-display">
-            {dict?.intro ||
-              "Buildroot is a two-person studio, not an agency. No account managers, no bloated process — just the people writing your code, talking to you directly, from kickoff to launch."}
-          </p>
-        </m.div>
-      </section>
+    <div className="w-full bg-[var(--bg-primary)] text-[var(--text-primary)]">
+      {/* ── HERO ───────────────────────────────────────────────
+          Label left, statement right — the same two-column opening
+          /work uses, so arriving here feels like the same site. */}
+      <section className="flex min-h-screen w-full flex-col justify-center px-6 pt-32 pb-10 md:px-12 md:pt-40">
+        <div className="lg:grid lg:grid-cols-[46%_1fr] lg:gap-8">
+          <m.h1
+            initial="hidden"
+            animate="visible"
+            variants={revealUp}
+            transition={revealTransition}
+            className="font-display text-2xl md:text-3xl"
+          >
+            {dict?.label || FALLBACK.label}
+          </m.h1>
 
-      {/* Culture manifesto — giant serif statement, revealed word by word
-          as it scrolls into view. Same mechanic as Home's CTA. */}
-      <section ref={manifestoRef} className="w-full border-t border-white/15 px-6 py-20 md:px-12 md:py-32">
-        <m.h2
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-          className="font-display text-2xl md:text-3xl tracking-tight text-white"
-        >
-          {dict?.culture?.eyebrow || "Culture"}
-        </m.h2>
-
-        <p className="mt-6 flex flex-wrap font-serif font-light leading-[1.1] tracking-tight text-white text-[clamp(2rem,5.5vw,5.5rem)]">
-          {manifestoWords.map((word, i) => (
-            <Word
-              key={i}
-              progress={manifestoProgress}
-              range={[i / manifestoWords.length, (i + 1) / manifestoWords.length]}
-            >
-              {word}
-            </Word>
-          ))}
-        </p>
-      </section>
-
-      {/* Culture stack — three full-screen facets of what it's actually
-          like to work with/at Buildroot, each its own beat with a
-          distinct background. */}
-      <section
-        id="culture-stack"
-        ref={cultureStackRef}
-        className="relative w-full"
-        style={{ height: `${CULTURE_KEYS.length * 100}vh` }}
-      >
-        <div className="sticky top-0 h-screen w-full overflow-hidden">
-          {CULTURE_KEYS.map((key, i) => (
-            <CultureSlide
-              key={key}
-              cultureKey={key}
-              index={i}
-              total={CULTURE_KEYS.length}
-              item={dict?.culture?.items?.[key] || FALLBACK_CULTURE[key]}
-              scrollYProgress={cultureStackProgress}
-            />
-          ))}
+          <m.p
+            initial="hidden"
+            animate="visible"
+            variants={revealUp}
+            transition={{ ...revealTransition, delay: 0.12 }}
+            className="mt-8 font-serif text-[clamp(1.6rem,3.4vw,3rem)] font-light leading-[1.12] tracking-tight lg:mt-0"
+          >
+            {dict?.intro || FALLBACK.intro}
+          </m.p>
         </div>
+
       </section>
 
-      {/* Principles — stacked full-width rows on a top border, matching
-          the pattern used across /work and Services' engagement models:
-          big title, description alongside, no boxed cards, no numbering. */}
-      <section className="w-full px-6 py-16 md:px-12 md:py-24">
-        <m.h2
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-          className="font-display text-2xl md:text-3xl tracking-tight text-white"
+      {/* ── CULTURE MANIFESTO ──────────────────────────────────
+          The eyebrow floats into the giant paragraph's first line
+          rather than sitting above it — below md it stacks, since at
+          phone width the paragraph wraps too many times for the float
+          to clear its second line. */}
+      <section className="w-full px-6 py-24 md:px-12 md:py-40">
+        <m.p
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={revealUp}
+          transition={revealTransition}
+          className="w-full font-serif text-[clamp(2rem,5.6vw,5.5rem)] font-light leading-[1.02] tracking-tight"
         >
-          {dict?.principles?.title || "How We Work"}
+          <span className="mb-4 block font-display text-2xl md:float-left md:mb-0 md:mr-8 md:mt-[0.9em] md:text-3xl">
+            {dict?.culture?.eyebrow || FALLBACK.culture.eyebrow}
+          </span>
+          {dict?.culture?.manifesto || FALLBACK.culture.manifesto}
+        </m.p>
+      </section>
+
+      {/* ── VALUES: title, index, statement ────────────────────── */}
+      <section className="w-full px-6 pb-16 md:px-12 md:pb-24">
+        <m.h2
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={revealUp}
+          transition={revealTransition}
+          className="text-center font-serif text-[clamp(2.6rem,7vw,7rem)] font-light leading-none tracking-tight"
+        >
+          {dictValues?.title || FALLBACK.values.title}
         </m.h2>
 
-        <div className="mt-8 border-b border-white/15">
-          {PRINCIPLE_KEYS.map((key, i) => {
-            const principle =
-              dict?.principles?.items?.[key] || FALLBACK_PRINCIPLES[key];
-
-            return (
-              <m.div
-                key={key}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-80px" }}
-                variants={fadeUp}
-                className="flex flex-col gap-3 border-t border-white/15 py-8 md:flex-row md:items-baseline md:gap-10 md:py-10"
+        <div className="mt-14 flex flex-col gap-14 lg:grid lg:grid-cols-2 lg:items-start lg:gap-16">
+          {/* Index — numbered rows on rules, a contents page for what follows */}
+          <m.ul
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={revealUp}
+            transition={revealTransition}
+            className="flex flex-col border-t border-[var(--border)]"
+          >
+            {values.map((value) => (
+              <li
+                key={value.key}
+                className="flex items-baseline gap-6 border-b border-[var(--border)] py-4 md:gap-10"
               >
-                <h3 className="font-display text-3xl font-light tracking-tight text-white md:w-1/3 md:shrink-0 md:text-4xl">
-                  {principle.title}
-                </h3>
-                <p className="max-w-2xl font-display text-base leading-relaxed text-white/80 md:text-lg">
-                  {principle.description}
-                </p>
-              </m.div>
-            );
-          })}
+                <span className="font-mono text-sm opacity-60">
+                  {String(value.index).padStart(2, "0")}
+                </span>
+                <span className="font-display text-xl md:text-2xl">{value.title}</span>
+              </li>
+            ))}
+          </m.ul>
+
+          <m.p
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={revealUp}
+            transition={{ ...revealTransition, delay: 0.1 }}
+            className="font-serif text-[clamp(1.5rem,3vw,2.6rem)] font-light leading-[1.14] tracking-tight"
+          >
+            {dictValues?.intro || FALLBACK.values.intro}
+          </m.p>
         </div>
       </section>
 
-      {/* Stack */}
-      <section className="w-full border-t border-white/15 px-6 py-16 md:px-12 md:py-24">
-        <m.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="font-display text-2xl md:text-3xl tracking-tight text-white">
-            {dict?.stack?.title || "What We Build With"}
-          </h2>
-          <p className="mt-3 max-w-xl text-sm md:text-base leading-relaxed text-white/90">
-            {dict?.stack?.subtitle ||
-              "The tools we trust, chosen for speed and staying power."}
-          </p>
-        </m.div>
+      {/* ── VALUES: one full band each ─────────────────────────── */}
+      {values.map((value, i) => (
+        <section key={value.key} className="w-full py-16 md:py-24">
+          <m.p
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={revealUp}
+            transition={revealTransition}
+            className="mb-8 text-center font-serif text-3xl font-light md:mb-12 md:text-5xl"
+          >
+            ({value.index})
+          </m.p>
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          {stack.map((tech, i) => (
-            <m.span
-              key={tech}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              variants={fadeUp}
-              className="border border-white/30 px-3 py-1.5 font-mono text-xs uppercase tracking-wider text-white"
-            >
-              {tech}
-            </m.span>
-          ))}
-        </div>
-      </section>
+          {/* Alternating direction so consecutive bands don't read as one
+              continuous strip sliding the same way down the whole page. */}
+          <Marquee
+            text={value.marquee}
+            durationSeconds={34 + i * 4}
+            reverse={i % 2 === 1}
+            className="font-serif text-[clamp(3.5rem,11vw,11rem)] font-light leading-none tracking-tight"
+          />
 
-      {/* CTA */}
-      <section className="w-full border-t border-white/15 px-6 py-16 md:px-12 md:py-24">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <h3 className="headline text-h2 text-white tracking-tight">
-              {dict?.cta?.title || "Ready to work together?"}
+          <m.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.25 }}
+            variants={revealUp}
+            transition={revealTransition}
+            className="mt-10 px-6 md:mt-16 md:px-12 lg:grid lg:grid-cols-[46%_1fr] lg:gap-8"
+          >
+            {/* No small index here — the big centred "(n)" above the band
+                already numbers this value, and repeating it a second time
+                read as clutter. */}
+            <h3 className="font-display text-2xl leading-tight md:text-3xl">
+              {value.title}
             </h3>
-            <p className="mt-4 max-w-xl text-base md:text-lg leading-relaxed text-white/90">
-              {dict?.cta?.subtitle ||
-                "If you've read this far, you already know whether we're a fit. Let's talk about what you're building."}
+            <p className="mt-5 max-w-3xl font-display text-lg font-light leading-relaxed opacity-90 md:text-xl lg:mt-0">
+              {value.description}
+            </p>
+          </m.div>
+        </section>
+      ))}
+
+      {/* ── CTA ─────────────────────────────────────────────────
+          Two-column grid matching the Footer's own, so the action
+          column lines up with the one directly beneath it. */}
+      <section className="w-full border-t border-[var(--border)] px-6 py-20 md:px-12 md:py-28">
+        <div className="flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:items-end lg:gap-24">
+          <div>
+            <h2 className="font-serif text-[clamp(2.2rem,5vw,4.5rem)] font-light leading-[1.05] tracking-tight">
+              {dict?.cta?.title || FALLBACK.cta.title}
+            </h2>
+            <p className="mt-6 max-w-xl font-display text-lg font-light leading-relaxed opacity-85 md:text-xl">
+              {dict?.cta?.subtitle || FALLBACK.cta.subtitle}
             </p>
           </div>
 
-          <div className="flex w-full flex-col shrink-0 font-display text-xl sm:text-2xl md:text-3xl lg:w-[380px]">
-            {/* Stacked link rows, not buttons — plain text on a top
-                border, matching the pattern used across /work. */}
-            <Link
+          <div className="flex flex-col font-display text-3xl sm:text-4xl">
+            <LocaleLink
               href="/contact"
               onMouseEnter={() => ctaButtonRef.current?.scramble()}
               onMouseLeave={() => ctaButtonRef.current?.reset()}
-              className="group flex items-center justify-between border-t border-white py-5 text-white"
+              className="group flex items-center justify-between border-t border-[var(--border)] py-5"
             >
               <ScrambleText
                 ref={ctaButtonRef}
-                text={dict?.cta?.button || "Get In Touch"}
-                trigger="mount"
+                text={dict?.cta?.button || FALLBACK.cta.button}
+                trigger="manual"
                 speed={40}
               />
               <ArrowRight className="h-7 w-7 transition-transform group-hover:translate-x-1" />
-            </Link>
+            </LocaleLink>
 
             <a
-              href="mailto:info@buildroot.co"
+              href={`mailto:${EMAIL}`}
               onMouseEnter={() => ctaEmailRef.current?.scramble()}
               onMouseLeave={() => ctaEmailRef.current?.reset()}
-              className="group flex items-center justify-between border-t border-b border-white py-5 text-white"
+              className="group flex items-center justify-between border-t border-b border-[var(--border)] py-5"
             >
-              <ScrambleText
-                ref={ctaEmailRef}
-                text={dict?.cta?.email_label || "or email us directly"}
-                trigger="mount"
-                speed={40}
-              />
+              <ScrambleText ref={ctaEmailRef} text={EMAIL} trigger="manual" speed={40} />
               <ArrowUpRight className="h-7 w-7 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
+            <span className="mt-3 font-mono text-xs uppercase tracking-widest opacity-60">
+              {dict?.cta?.email_label || FALLBACK.cta.emailLabel}
+            </span>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

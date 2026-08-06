@@ -62,12 +62,12 @@ export function ProjectsGrid({ dict, category = "All", projects }: ProjectsGridP
               href="mailto:info@buildroot.co"
               onMouseEnter={() => startBuildRef.current?.scramble()}
               onMouseLeave={() => startBuildRef.current?.reset()}
-              className="group flex items-center justify-between border-t border-[var(--text-primary)] pt-5 text-[var(--text-primary)]"
+              className="group flex items-center justify-between border-t border-b border-[var(--text-primary)] py-5 text-[var(--text-primary)]"
             >
               <ScrambleText
                 ref={startBuildRef}
                 text={dict?.cta_button || "Start a Build"}
-                trigger="mount"
+                trigger="manual"
                 speed={40}
               />
               <ArrowRight className="h-7 w-7 transition-transform group-hover:translate-x-1" />

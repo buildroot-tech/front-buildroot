@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, m } from "framer-motion";
-import Link from "next/link";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import { useState } from "react";
 import { ScrambleText } from "@/components/ui/TextScrambler";
 import { PixelImage } from "@/components/ui/PixelImage";
@@ -19,7 +19,7 @@ export function ProjectListRow({ project }: ProjectListRowProps) {
   const insertIndex = words.length === 1 ? 0 : Math.floor((words.length - 1) / 2);
 
   return (
-    <Link
+    <LocaleLink
       href={`/work/${project.id}`}
       className="group flex flex-col justify-center min-h-[150px] md:min-h-[180px] transition-colors duration-500 w-full"
       onMouseEnter={() => setIsHovered(true)}
@@ -32,7 +32,7 @@ export function ProjectListRow({ project }: ProjectListRowProps) {
 
         {/* Title with Inline Image */}
         <div className="px-6 md:px-12 shrink-0 overflow-hidden">
-          <h3 className="flex items-center justify-center font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] font-light capitalize tracking-tighter text-[var(--text-primary)] text-center whitespace-nowrap">
+          <h3 className="flex items-center justify-center font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] font-light capitalize leading-[1.15] tracking-tighter text-[var(--text-primary)] text-center whitespace-nowrap">
             {words.map((word, i) => (
               <span key={i} className="flex items-center">
                 {i > 0 && <span className="w-[0.25em] inline-block"></span>}
@@ -64,6 +64,6 @@ export function ProjectListRow({ project }: ProjectListRowProps) {
         {/* Right Line */}
         <div className="h-[1px] bg-[var(--text-primary)] flex-1" />
       </div>
-    </Link>
+    </LocaleLink>
   );
 }
