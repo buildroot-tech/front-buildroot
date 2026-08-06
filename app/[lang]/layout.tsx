@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { Poppins, Crimson_Pro, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "../globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { Preloader } from "@/components/ui/Preloader";
+import { RouteTextShuffle } from "@/components/ui/RouteTextShuffle";
 
 // Primary typeface — body copy, navbar, footer, and everything on /work.
 const poppins = Poppins({
@@ -97,11 +100,14 @@ export default async function RootLayout({
         />
         <Providers>
           <Preloader dict={dict.preloader} />
+          <RouteTextShuffle />
           <ScrollProgress />
           <Header dict={dict.header} lang={lang} />
           <main className="flex-1">{children}</main>
           <Footer dict={dict} />
         </Providers>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

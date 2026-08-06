@@ -102,6 +102,10 @@ export function Preloader({ dict }: PreloaderProps) {
       {isLoading && (
         <m.div
           key="preloader"
+          // Opts the whole intro out of RouteTextShuffle — it runs its own
+          // ScrambleText animation, and the two rewriting the same text
+          // nodes would leave each other's half-scrambled output behind.
+          data-no-shuffle
           initial={{ y: 0 }}
           exit={{ y: "-100%" }}
           transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}

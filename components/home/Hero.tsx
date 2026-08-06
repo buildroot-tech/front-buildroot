@@ -84,6 +84,18 @@ const HEADER_H  = 80;
 const FS        = "clamp(48px, 9vw, 220px)";
 const LH_MAIN   = 0.80;
 
+// Headline entrance — a left-to-right wipe rather than the old rise from
+// below. The mask does the work: the line is uncovered in place while
+// drifting a few percent sideways, so nothing ever travels across (or off)
+// the screen and the layout never shifts. It also reads in the same
+// direction as the route-change letter shuffle, so arriving on home the two
+// reinforce each other instead of pulling the eye two different ways.
+const HEADLINE_IN = {
+  initial: { clipPath: "inset(0 100% 0 0)", x: "-4%" },
+  animate: { clipPath: "inset(0 0% 0 0)", x: 0 },
+  transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] as const },
+};
+
 const SERVICES  = ["System", "Product", "Infrastructure"];
 
 /* ─────────────────────────────────────────────────────────
@@ -170,9 +182,9 @@ export function Hero({ dict }: HeroProps) {
             <m.h1
               className="block font-serif font-light text-[var(--text-inverse)] uppercase"
               style={{ ...textBase, lineHeight: LH_MAIN }}
-              initial={{ y: "106%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              initial={HEADLINE_IN.initial}
+              animate={HEADLINE_IN.animate}
+              transition={{ ...HEADLINE_IN.transition, delay: 0.15 }}
             >
               {dict?.line1 || "We build"}
             </m.h1>
@@ -183,9 +195,9 @@ export function Hero({ dict }: HeroProps) {
             <m.h1
               className="block font-serif font-light text-[var(--text-inverse)] uppercase"
               style={{ ...textBase, lineHeight: LH_MAIN }}
-              initial={{ y: "106%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              initial={HEADLINE_IN.initial}
+              animate={HEADLINE_IN.animate}
+              transition={{ ...HEADLINE_IN.transition, delay: 0.28 }}
             >
               {dict?.line2 || "Digital"}
             </m.h1>
@@ -196,21 +208,28 @@ export function Hero({ dict }: HeroProps) {
             <m.h1
               className="block font-serif font-light text-[var(--accent)] uppercase"
               style={{ ...textBase, lineHeight: LH_MAIN }}
-              initial={{ y: "106%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
+              initial={HEADLINE_IN.initial}
+              animate={HEADLINE_IN.animate}
+              transition={{ ...HEADLINE_IN.transition, delay: 0.42 }}
             >
               {dict?.line3 || "Products."}
             </m.h1>
           </div>
 
-          {/* Ghost echoes — h-0 so they don't consume space, bleed downward */}
+          {/* Ghost echoes — h-0 so they don't consume space, bleed downward.
+              Revealed by the same wipe as the line it echoes, on the same
+              delay, so the two move as one. It used to fade in on its own a
+              second later, which quietly made it the LCP element: it's the
+              largest painted thing on the page (~73k px² of stroked text vs
+              ~10k for the headline itself), so Largest Contentful Paint sat
+              at whenever this decoration finished fading rather than at when
+              the headline was actually readable. */}
           <m.div
             aria-hidden="true"
             className="h-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.05, duration: 0.45 }}
+            initial={HEADLINE_IN.initial}
+            animate={HEADLINE_IN.animate}
+            transition={{ ...HEADLINE_IN.transition, delay: 0.42 }}
           >
             {[0.16].map((opacity, i) => (
               <span
