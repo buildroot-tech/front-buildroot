@@ -27,8 +27,8 @@ export function CTA({ dict }: CTAProps) {
       ref={container}
       className="relative w-full bg-[var(--bg-primary)] pt-12 md:pt-20 overflow-hidden"
     >
-      {/* 
-        Manifesto Text 
+      {/*
+        Manifesto Text
         Massive font, ultra-thin, edge-to-edge typography
       */}
       <div className="px-6 md:px-12 mb-12 md:mb-20">
@@ -49,9 +49,9 @@ export function CTA({ dict }: CTAProps) {
       <BottomCTA dict={dict} />
 
       {/* Marquee Ticker */}
-      <Ticker 
-        text={dict?.ticker_text || "HIGH-END EXPERIENCES * UNCONVENTIONAL DESIGNS *"} 
-        secondaryText={dict?.ticker_secondary || "SYSTEMS * PRODUCT * INFRASTRUCTURE *"} 
+      <Ticker
+        text={dict?.ticker_text || "HIGH-END EXPERIENCES * UNCONVENTIONAL DESIGNS *"}
+        secondaryText={dict?.ticker_secondary || "SYSTEMS * PRODUCT * INFRASTRUCTURE *"}
       />
     </section>
   );

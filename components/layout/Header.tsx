@@ -47,7 +47,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
     const previous = scrollY.getPrevious() || 0;
     // Don't hide if menu is open
     if (mobileOpen) return;
-    
+
     if (latest > previous && latest > 150) {
       setHidden(true);
     } else {

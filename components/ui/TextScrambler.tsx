@@ -57,7 +57,7 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
     const scramble = useCallback(() => {
       if (triggerOnce && hasScrambledRef.current) return;
       hasScrambledRef.current = true;
-      
+
       clearAll();
 
       const letters = text.split("");

@@ -85,7 +85,6 @@ const FALLBACK_STACK = [
   "TypeScript",
   "Tailwind CSS",
   "Framer Motion",
-  "Lenis",
   "Vercel",
 ];
 

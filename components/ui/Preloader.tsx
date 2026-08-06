@@ -63,28 +63,28 @@ export function Preloader({ dict }: PreloaderProps) {
 
   useEffect(() => {
     const hasVisited = sessionStorage.getItem("buildroot_visited");
-    
+
     if (!hasVisited) {
       setTimeout(() => {
         setIsFirstVisit(true);
         setShowPreloader(true);
       }, 0);
       sessionStorage.setItem("buildroot_visited", "true");
-      
+
       const timers = floatingItems.flatMap((item) => [
         setTimeout(() => setActiveItems((prev) => [...prev, item.id]), item.start),
         setTimeout(() => setActiveItems((prev) => prev.filter((id) => id !== item.id)), item.end),
       ]);
-      
+
       timers.push(setTimeout(() => setIsLoading(false), 1800));
-      
+
       return () => timers.forEach(clearTimeout);
     } else if (window.location.pathname === "/" || window.location.pathname === "/es") {
       setTimeout(() => {
         setIsFirstVisit(false);
         setShowPreloader(true);
       }, 0);
-      
+
       const timer = setTimeout(() => setIsLoading(false), 800);
       return () => clearTimeout(timer);
     } else {

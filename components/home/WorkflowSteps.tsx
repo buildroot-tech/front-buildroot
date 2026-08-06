@@ -67,13 +67,13 @@ export function WorkflowSteps({ dict }: WorkflowStepsProps) {
 
   return (
     <section ref={containerRef} className="relative w-full bg-[var(--bg-primary)]">
-      {/* 
+      {/*
         We create a long scrollable area.
         4 steps, we can give it around 400vh so there's plenty of scroll duration.
       */}
       <div className="relative h-[500vh] w-full">
         <div className="sticky top-0 flex h-screen w-full flex-col md:flex-row overflow-hidden">
-          
+
           {/* Left Side: Sticky Title */}
           <div className="flex h-[30vh] w-full flex-col justify-center px-6 md:h-full md:w-1/3 md:pl-10 lg:pl-16">
             <m.div
