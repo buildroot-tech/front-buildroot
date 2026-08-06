@@ -106,9 +106,9 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
               word — "SaaS", "Web Apps", "Consulting", "Labs" — starts from
               the same left edge of this column instead of hugging the
               +/- button on the right. */}
-          <div className="relative flex items-center justify-start shrink-0 min-w-[200px] h-12 lg:col-start-4">
+          <div className="relative flex items-center justify-start shrink-0 h-8 lg:h-12 lg:min-w-[200px] lg:col-start-4">
             <span
-              className={`font-display text-2xl sm:text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl font-light tracking-tight text-[var(--text-primary)] capitalize transition-opacity duration-200 ${
+              className={`font-mono text-xs font-bold tracking-widest text-[var(--text-muted)] lg:font-display lg:text-3xl 2xl:text-4xl lg:font-light lg:tracking-tight lg:text-[var(--text-primary)] lg:capitalize transition-opacity duration-200 ${
                 isExpanded
                   ? "opacity-0 pointer-events-none"
                   : "opacity-100 group-hover:opacity-0"

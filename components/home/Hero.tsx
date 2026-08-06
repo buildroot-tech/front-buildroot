@@ -3,8 +3,6 @@
 import { useScroll, useTransform, m } from "framer-motion";
 import { useRef } from "react";
 
-
-
 /* ─────────────────────────────────────────────────────────
    Interweaving diagonal lines
 ───────────────────────────────────────────────────────── */
@@ -152,7 +150,7 @@ export function Hero({ dict }: HeroProps) {
             <div>LAT: 00.83 N</div>
             <div>LON: 77.64 W</div>
           </div>
-          
+
           <m.div
             className="grid grid-cols-5 gap-2.5"
             animate={{ y: [0, -7, 0], opacity: [0.12, 0.19, 0.12] }}
