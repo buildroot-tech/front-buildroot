@@ -47,7 +47,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
     const previous = scrollY.getPrevious() || 0;
     // Don't hide if menu is open
     if (mobileOpen) return;
-    
+
     if (latest > previous && latest > 150) {
       setHidden(true);
     } else {
@@ -183,12 +183,12 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
           </Link>
 
           <div className="hidden items-center md:flex flex-1 justify-between lg:col-start-2 lg:flex-none overflow-hidden">
-            <nav className="flex items-center gap-3 justify-center md:pl-[15vw] lg:pl-0 lg:justify-start overflow-hidden">
+            <nav className="flex items-center gap-3 justify-center md:pl-8 lg:pl-0 lg:justify-start overflow-hidden">
               {navLinks.map((link, i) => (
                 <span key={link.href} className="flex items-center">
                   <Link
                     href={link.href}
-                    className="group relative font-display text-2xl sm:text-3xl md:text-4xl tracking-[0.1em] font-normal transition-colors hover:text-[var(--accent)]"
+                    className="group relative font-display text-2xl sm:text-3xl md:text-3xl 2xl:text-4xl tracking-[0.1em] font-normal transition-colors hover:text-[var(--accent)]"
                     style={
                       {
                         color: textColor,
@@ -215,7 +215,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
                   </Link>
                   {i < navLinks.length - 1 && (
                     <span
-                      className="font-display text-2xl sm:text-3xl md:text-4xl font-normal"
+                      className="font-display text-2xl sm:text-3xl md:text-3xl 2xl:text-4xl font-normal"
                       style={{ color: textColor }}
                     >
                       ,
@@ -228,7 +228,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
             {/* Contact link */}
             <Link
               href="/contact"
-              className="group relative font-display text-2xl sm:text-3xl md:text-4xl tracking-[0.1em] font-normal transition-colors hover:text-[var(--accent)]"
+              className="group relative font-display text-2xl sm:text-3xl md:text-3xl 2xl:text-4xl tracking-[0.1em] font-normal transition-colors hover:text-[var(--accent)]"
               style={
                 {
                   color: textColor,
