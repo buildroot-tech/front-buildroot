@@ -173,7 +173,12 @@ export function AboutSection({ dict }: AboutSectionProps) {
 
           Kept as a background image rather than an <img> because it's
           pure decoration: nothing here should reach the accessibility
-          tree or be selectable. */}
+          tree or be selectable.
+
+          The opacity is the one number to tune here. It has to stay a
+          clearly present graphic while white body copy crosses over it —
+          at full strength the text passing in front would be unreadable
+          where the two meet. */}
       <div className="relative">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
           <div className="sticky top-[32vh] w-full px-6 md:px-12">
@@ -182,7 +187,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
               style={{
                 backgroundImage: "url(/brand/buildroot-logo-white.svg)",
                 aspectRatio: "6335 / 1067",
-                opacity: 0.07,
+                opacity: 0.32,
               }}
             />
           </div>
