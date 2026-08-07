@@ -180,14 +180,14 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
           transition={{ duration: 0.5 }}
         >
           <div>
-            <h1 className="mb-4 font-display text-2xl text-white md:float-left md:mb-0 md:mr-10 md:mt-6 md:text-3xl">
+            <h1 className="type-eyebrow mb-4 text-white md:float-left md:mb-0 md:mr-10 md:mt-[0.9em]">
               <ScrambleText
                 text={dict?.title || "Services"}
                 speed={55}
                 trigger="manual"
               />
             </h1>
-            <p className="w-full font-serif font-light leading-[0.95] tracking-tight text-white text-[clamp(2.2rem,7vw,5rem)] 2xl:text-[clamp(2.5rem,8vw,7rem)]">
+            <p className="type-manifesto w-full text-white">
               {dict?.subtitle ||
                 "Three ways we work with you: we build your product, we fix what's broken, or we ship the whole thing end to end — always straight to the people writing the code."}
             </p>
@@ -224,7 +224,7 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="font-display text-2xl md:text-3xl text-white"
+          className="type-eyebrow text-white"
         >
           {dict?.engage?.title || "How We Engage"}
         </m.h2>

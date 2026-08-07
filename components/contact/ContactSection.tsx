@@ -25,20 +25,19 @@ export function ContactSection({ dict }: ContactSectionProps) {
       className="relative w-full bg-[var(--bg-primary)] py-24 md:py-32"
     >
       <div className="w-full px-6 md:px-12">
-        {/* Header — same badge/headline/subtitle rhythm as /services and
-            /about. */}
+        {/* Header — the site-wide opening: eyebrow in the left 46% column,
+            statement opposite it. Same shape as /work and /about. */}
         <m.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          className="flex flex-col gap-4 lg:grid lg:grid-cols-[46%_1fr] lg:items-start lg:gap-8"
         >
-          <h2 className="font-mono text-lg md:text-xl capitalize tracking-tight text-[var(--text-primary)]/60">
-            {dict?.badge || "Get In Touch"}
-          </h2>
-          <h1 className="headline text-h1 mt-4 text-[var(--text-primary)] tracking-tight">
+          <h1 className="type-eyebrow text-[var(--text-primary)] lg:col-start-1">
             <ScrambleText text={dict?.title || "Contact"} speed={55} trigger="manual" />
           </h1>
-          <p className="mt-3 max-w-2xl text-base md:text-lg leading-relaxed text-[var(--text-primary)]/80 font-display">
+
+          <p className="type-statement max-w-2xl text-[var(--text-primary)] lg:col-start-2">
             {dict?.subtitle ||
               "Have a project in mind? Tell us about it — we read every message ourselves."}
           </p>
@@ -52,7 +51,7 @@ export function ContactSection({ dict }: ContactSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="mt-16 md:mt-24 max-w-4xl font-serif font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tighter text-[var(--text-primary)]"
+          className="type-manifesto mt-16 max-w-5xl text-[var(--text-primary)] md:mt-24"
         >
           {dict?.message ||
             "No middlemen, no account managers. Tell us what you're building and we'll reply ourselves, usually within a day."}

@@ -45,7 +45,7 @@ export function WorkSection({ dict, projects }: WorkSectionProps) {
             <button
               type="button"
               onClick={() => setIsFilterOpen(false)}
-              className="inline-flex cursor-pointer items-center gap-1.5 font-display text-2xl md:text-3xl text-[var(--text-primary)]"
+              className="type-eyebrow inline-flex cursor-pointer items-center gap-1.5 text-[var(--text-primary)]"
             >
               <X className="h-5 w-5 md:h-6 md:w-6" />
               <span>Close</span>
@@ -91,7 +91,7 @@ export function WorkSection({ dict, projects }: WorkSectionProps) {
               <button
                 type="button"
                 onClick={() => setIsFilterOpen(true)}
-                className="inline-flex cursor-pointer items-baseline gap-1.5 font-display text-2xl md:text-3xl text-[var(--text-primary)]"
+                className="type-eyebrow inline-flex cursor-pointer items-baseline gap-1.5 text-[var(--text-primary)]"
                 aria-expanded={isFilterOpen}
               >
                 <span>{dict?.badge || "Selected Works"}</span>
@@ -99,7 +99,7 @@ export function WorkSection({ dict, projects }: WorkSectionProps) {
               </button>
             </div>
 
-            <p className="max-w-xl text-2xl md:text-3xl text-[var(--text-primary)] leading-snug font-display lg:col-start-2">
+            <p className="type-statement max-w-2xl text-[var(--text-primary)] lg:col-start-2">
               {dict?.subtitle ||
                 "A few of the products we've designed and built end-to-end — each one solving a real problem for a real business, not just filling out a portfolio."}
             </p>
