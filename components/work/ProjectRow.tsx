@@ -81,7 +81,7 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
         <div className="relative flex flex-col items-start gap-2 pb-2 lg:grid lg:grid-cols-[46%_22%_1fr_200px_16%] lg:items-center lg:gap-4 lg:justify-normal">
           {/* Title */}
           <div className="min-w-0 shrink overflow-hidden lg:col-start-1">
-            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl font-light leading-[1.4] tracking-tight text-[var(--text-primary)] capitalize truncate">
+            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl font-light leading-[1.4] tracking-tight text-[var(--text-primary)] truncate">
               <ScrambleText text={project.title} trigger="mount" active={isActive} speed={40} />
             </h3>
           </div>
@@ -96,7 +96,7 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
               designed at (331px available) but truncated to "Customer
               Servi…" narrower than that. Back to text-4xl at 2xl
               (1536px+) where there's room again. */}
-          <div className="hidden lg:col-start-2 lg:block truncate font-display text-2xl sm:text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl font-light leading-[1.4] tracking-tight text-[var(--text-primary)] capitalize">
+          <div className="hidden lg:col-start-2 lg:block truncate font-display text-2xl sm:text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl font-light leading-[1.4] tracking-tight text-[var(--text-primary)]">
             <ScrambleText text={project.industry} trigger="mount" active={isActive} speed={40} />
           </div>
 
@@ -108,7 +108,7 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
               +/- button on the right. */}
           <div className="relative flex items-center justify-start shrink-0 h-8 lg:h-12 lg:min-w-[200px] lg:col-start-4">
             <span
-              className={`font-mono text-xs font-bold tracking-widest text-[var(--text-muted)] lg:font-display lg:text-3xl 2xl:text-4xl lg:font-light lg:leading-[1.4] lg:tracking-tight lg:text-[var(--text-primary)] lg:capitalize transition-opacity duration-200 ${
+              className={`font-mono text-xs font-bold tracking-widest text-[var(--text-muted)] lg:font-display lg:text-3xl 2xl:text-4xl lg:font-light lg:leading-[1.4] lg:tracking-tight lg:text-[var(--text-primary)] transition-opacity duration-200 ${
                 isExpanded
                   ? "opacity-0 pointer-events-none"
                   : "opacity-100 group-hover:opacity-0"
@@ -218,7 +218,7 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
                   {/* Three business-facing highlights — what the project
                       is and does, never framework/library names, which
                       mean nothing to a prospective client. */}
-                  <div className="flex w-full flex-col gap-0 font-mono text-base capitalize leading-tight">
+                  <div className="flex w-full flex-col gap-0 font-mono text-base leading-tight">
                     {project.highlights.map((highlight) => (
                       <span key={highlight} className="w-full text-[var(--text-primary)]">
                         {highlight}

@@ -85,7 +85,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
               {/* Navigation & Legal (2 columns inside Pages) */}
               <div className="flex flex-col">
                 <div className="border-b-[1px] border-[var(--border)] w-full pb-2 mb-3">
-                  <p className="font-display font-normal text-[clamp(1.35rem,1.6vw,1.8rem)] capitalize tracking-tight text-[var(--text-primary)]">
+                  <p className="font-display font-normal text-[clamp(1.35rem,1.6vw,1.8rem)] tracking-tight text-[var(--text-primary)]">
                     {dict?.footer?.menu || "Menu"}
                   </p>
                 </div>
@@ -160,7 +160,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
               {/* Social */}
               <div className="flex flex-col">
                 <div className="border-b-[1px] border-[var(--border)] w-full pb-2 mb-3">
-                  <p className="font-display font-normal text-[clamp(1.35rem,1.6vw,1.8rem)] capitalize tracking-tight text-[var(--text-primary)]">
+                  <p className="font-display font-normal text-[clamp(1.35rem,1.6vw,1.8rem)] tracking-tight text-[var(--text-primary)]">
                     {dict?.footer?.elsewhere || "Elsewhere"}
                   </p>
                 </div>

@@ -100,7 +100,6 @@
     }
   },
   "services": {
-    "badge": "What We Do",
     "title": "Services",
     "subtitle": "Three ways we work with you: we build your product, we fix what's broken, or we ship the whole thing end to end — always straight to the people writing the code.",
     "items": {
@@ -201,7 +200,6 @@
     }
   },
   "contact": {
-    "badge": "Get In Touch",
     "title": "Contact",
     "subtitle": "Have a project in mind? Tell us about it — we read every message ourselves.",
     "message": "No middlemen, no account managers. Tell us what you're building and we'll reply ourselves, usually within a day.",
