@@ -1,7 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ContactSection } from "@/components/contact/ContactSection";
 import { getDictionary, Locale } from "@/lib/dictionaries";
 import { routeThemes } from "@/lib/route-theme";
+
+// Colour behind the browser chrome on mobile — this page opens on
+// #fbbf24, so the status-bar area matches instead of falling back
+// to the browser default (a white band above a dark page on iOS).
+export const viewport: Viewport = {
+  themeColor: "#fbbf24",
+  colorScheme: "light",
+};
 
 export const metadata: Metadata = {
   title: "Contact — buildroot_",

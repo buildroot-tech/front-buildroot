@@ -31,9 +31,6 @@
   --text-small: 14px;
   --text-caption: 12px;
 
-  /* ---- Spacing: Generous ---- */
-  --space-generous-md: 192px;
-
   /* ---- Shadows ---- */
   --shadow-brutalist: 4px 4px 0 var(--border);
   --shadow-brutalist-hover: 2px 2px 0 var(--border);
@@ -70,6 +67,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* The canvas behind the page — what iOS paints in the rubber-band area
+     above the content. Without it the browser falls back to its own
+     default, which reads as a white band over a dark page. */
+  background: var(--bg-primary);
 }
 
 body {
@@ -253,15 +254,6 @@ body {
 .brutalist-button-accent:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
-}
-
-/* ============================================
-   LAYOUT UTILITIES
-   ============================================ */
-
-.section-generous {
-  padding-top: var(--space-generous-md);
-  padding-bottom: var(--space-generous-md);
 }
 
 /* ============================================
