@@ -32,7 +32,7 @@ export function ProjectListRow({ project }: ProjectListRowProps) {
 
         {/* Title with Inline Image */}
         <div className="px-6 md:px-12 shrink-0 overflow-hidden">
-          <h3 className="flex items-center justify-center font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] font-light capitalize leading-[1.15] tracking-tighter text-[var(--text-primary)] text-center whitespace-nowrap">
+          <h3 className="flex items-center justify-center font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] font-light leading-[1.15] tracking-tighter text-[var(--text-primary)] text-center whitespace-nowrap">
             {words.map((word, i) => (
               <span key={i} className="flex items-center">
                 {i > 0 && <span className="w-[0.25em] inline-block"></span>}

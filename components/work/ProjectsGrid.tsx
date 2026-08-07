@@ -48,10 +48,10 @@ export function ProjectsGrid({ dict, category = "All", projects }: ProjectsGridP
       <div className="w-full py-40 md:py-48 mt-8">
         <div className="flex flex-col gap-10">
           <div className="w-full">
-            <h3 className="font-display text-2xl md:text-3xl text-[var(--text-primary)]">
+            <h3 className="type-eyebrow text-[var(--text-primary)]">
               {dict?.cta_title || "Ready to build your next digital product?"}
             </h3>
-            <p className="mt-4 w-full font-serif font-light text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tighter text-[var(--text-primary)] leading-[1.05]">
+            <p className="type-manifesto mt-4 w-full text-[var(--text-primary)]">
               {dict?.cta_subtitle ||
                 "We partner with founders and product teams to design, engineer, and ship high-performance web platforms — from the first architecture decision to production launch. If you have a project worth building well, let's talk."}
             </p>
