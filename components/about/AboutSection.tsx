@@ -145,7 +145,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
             animate="visible"
             variants={revealUp}
             transition={revealTransition}
-            className="font-display text-2xl md:text-3xl"
+            className="type-eyebrow"
           >
             {dict?.label || FALLBACK.label}
           </m.h1>
@@ -155,7 +155,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
             animate="visible"
             variants={revealUp}
             transition={{ ...revealTransition, delay: 0.12 }}
-            className="mt-8 font-serif text-[clamp(1.6rem,3.4vw,3rem)] font-light leading-[1.12] tracking-tight lg:mt-0"
+            className="type-statement mt-8 lg:mt-0"
           >
             {dict?.intro || FALLBACK.intro}
           </m.p>
@@ -175,7 +175,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
           viewport={{ once: true, amount: 0.2 }}
           variants={revealUp}
           transition={revealTransition}
-          className="w-full font-serif text-[clamp(2rem,5.6vw,5.5rem)] font-light leading-[1.02] tracking-tight"
+          className="type-manifesto w-full"
         >
           <span className="mb-4 block font-display text-2xl md:float-left md:mb-0 md:mr-8 md:mt-[0.9em] md:text-3xl">
             {dict?.culture?.eyebrow || FALLBACK.culture.eyebrow}
@@ -192,7 +192,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
           viewport={{ once: true }}
           variants={revealUp}
           transition={revealTransition}
-          className="text-center font-serif text-[clamp(2.6rem,7vw,7rem)] font-light leading-none tracking-tight"
+          className="type-title text-center"
         >
           {dictValues?.title || FALLBACK.values.title}
         </m.h2>
@@ -226,7 +226,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
             viewport={{ once: true, amount: 0.3 }}
             variants={revealUp}
             transition={{ ...revealTransition, delay: 0.1 }}
-            className="font-serif text-[clamp(1.5rem,3vw,2.6rem)] font-light leading-[1.14] tracking-tight"
+            className="type-lead"
           >
             {dictValues?.intro || FALLBACK.values.intro}
           </m.p>
@@ -270,7 +270,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
             <h3 className="font-display text-2xl leading-tight md:text-3xl">
               {value.title}
             </h3>
-            <p className="mt-5 max-w-3xl font-display text-lg font-light leading-relaxed opacity-90 md:text-xl lg:mt-0">
+            <p className="type-body mt-5 max-w-3xl opacity-90 lg:mt-0">
               {value.description}
             </p>
           </m.div>
@@ -283,10 +283,10 @@ export function AboutSection({ dict }: AboutSectionProps) {
       <section className="w-full border-t border-[var(--border)] px-6 py-20 md:px-12 md:py-28">
         <div className="flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:items-end lg:gap-24">
           <div>
-            <h2 className="font-serif text-[clamp(2.2rem,5vw,4.5rem)] font-light leading-[1.05] tracking-tight">
+            <h2 className="type-title text-[clamp(2.2rem,5vw,4.5rem)]">
               {dict?.cta?.title || FALLBACK.cta.title}
             </h2>
-            <p className="mt-6 max-w-xl font-display text-lg font-light leading-relaxed opacity-85 md:text-xl">
+            <p className="type-body mt-6 max-w-xl opacity-85">
               {dict?.cta?.subtitle || FALLBACK.cta.subtitle}
             </p>
           </div>

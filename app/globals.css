@@ -83,6 +83,82 @@ body {
 }
 
 /* ============================================
+   TYPE SCALE
+   The rhythm set on /about, defined once so every section shares it
+   instead of each page re-inventing its own clamp() values.
+
+   Size, weight, leading and tracking only — never colour. Each route
+   themes itself through --text-primary, so these compose on top of the
+   dark /about, the light /work, the accent /services and the yellow
+   /contact without any per-page overrides.
+   ============================================ */
+
+/* Small section label: "About", "Selected Works", "Services". Sits in the
+   left 46% column opposite a statement. */
+.type-eyebrow {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  .type-eyebrow {
+    font-size: 1.875rem;
+  }
+}
+
+/* The opening statement beside the eyebrow — the page's first real
+   sentence. */
+.type-statement {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(1.6rem, 3.4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+/* Centred section headings: "What We Value". */
+.type-title {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(2.6rem, 7vw, 7rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* Full-bleed declarations — the culture manifesto, closing CTAs. */
+.type-manifesto {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(2rem, 5.6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+/* Secondary serif paragraph, a step under the manifesto. */
+.type-lead {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2.6rem);
+  font-weight: 300;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+}
+
+/* Running copy — value descriptions, service detail. */
+.type-body {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 300;
+  line-height: 1.625;
+}
+
+@media (min-width: 768px) {
+  .type-body {
+    font-size: 1.25rem;
+  }
+}
+
+/* ============================================
    TYPOGRAPHY UTILITIES
    ============================================ */
 

@@ -100,7 +100,6 @@
     }
   },
   "services": {
-    "badge": "Qué hacemos",
     "title": "Servicios",
     "subtitle": "Tres formas de trabajar juntos: construimos su producto, arreglamos lo que está roto, o lo lanzamos de punta a punta — siempre en contacto directo con quienes escriben el código.",
     "items": {
@@ -201,7 +200,6 @@
     }
   },
   "contact": {
-    "badge": "Hablemos",
     "title": "Contacto",
     "subtitle": "¿Tiene un proyecto en mente? Cuéntenos — leemos cada mensaje nosotros mismos.",
     "message": "Sin intermediarios ni ejecutivos de cuenta. Cuéntenos qué está construyendo y le respondemos nosotros mismos, normalmente en un día.",
