@@ -201,9 +201,27 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
 
         {/* ── LOWER HALF (Contact Info) ── */}
         <div className="pt-12 md:pt-8 pb-4 md:pb-6 [@media(max-height:820px)]:md:pt-3 [@media(max-height:820px)]:md:pb-3 w-full overflow-hidden flex flex-row items-end justify-between px-6 md:px-12 gap-8">
-          {/* Bottom Left: Copyright/Year — hidden on mobile, not enough
-              room next to the contact info without cramping it. */}
-          <div className="hidden md:flex font-display text-[clamp(1.2rem,1.6vw,1.8rem)] font-normal tracking-tight text-[var(--text-primary)] pointer-events-none mb-[clamp(0.1rem,0.3vw,0.4rem)] items-center gap-1 shrink-0">
+          {/* Bottom Left: mark over the year — hidden on mobile, where
+              there isn't room beside the contact block without cramping it. */}
+          <div className="hidden md:flex flex-col items-start gap-3 shrink-0 text-[var(--text-primary)] pointer-events-none mb-[clamp(0.1rem,0.3vw,0.4rem)]">
+            {/* Drawn as a mask filled with currentColor rather than an
+                <img>: the footer is black on /about, white on /work and so
+                on, and a fixed-colour SVG would need a variant per route. */}
+            <span
+              aria-hidden="true"
+              className="block w-[clamp(2.25rem,3.4vw,4rem)] bg-current"
+              style={{
+                aspectRatio: "1225 / 1027",
+                maskImage: "url(/brand/buildroot-mark-b-black.svg)",
+                WebkitMaskImage: "url(/brand/buildroot-mark-b-black.svg)",
+                maskSize: "contain",
+                WebkitMaskSize: "contain",
+                maskRepeat: "no-repeat",
+                WebkitMaskRepeat: "no-repeat",
+              }}
+            />
+
+            <div className="flex items-center gap-1 font-display text-[clamp(1.2rem,1.6vw,1.8rem)] font-normal tracking-tight">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -217,6 +235,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
               <path d="M14.83 14.83a4 4 0 1 1 0-5.66"></path>
             </svg>
             <span>{year}</span>
+            </div>
           </div>
 
           {/* Main Info Box - Right aligned */}
