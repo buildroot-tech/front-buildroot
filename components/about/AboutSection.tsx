@@ -138,7 +138,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
       {/* ── HERO ───────────────────────────────────────────────
           Label left, statement right — the same two-column opening
           /work uses, so arriving here feels like the same site. */}
-      <section className="flex min-h-screen w-full flex-col justify-center px-6 pt-32 pb-10 md:px-12 md:pt-40">
+      <section className="flex w-full flex-col justify-center px-6 pt-32 pb-16 md:px-12 md:pt-40 md:pb-20">
         <div className="lg:grid lg:grid-cols-[46%_1fr] lg:gap-8">
           <m.h1
             initial="hidden"
@@ -175,10 +175,14 @@ export function AboutSection({ dict }: AboutSectionProps) {
           pure decoration: nothing here should reach the accessibility
           tree or be selectable.
 
-          The opacity is the one number to tune here. It has to stay a
-          clearly present graphic while white body copy crosses over it —
-          at full strength the text passing in front would be unreadable
-          where the two meet. */}
+          It renders at full strength, which only works because the text
+          blocks that cross it carry their own opaque backdrop — solid
+          white behind white body copy would otherwise swallow it. The
+          backdrop is on each block rather than on the whole section: a
+          section-wide cover tiles into one unbroken sheet and the mark
+          never gets to show, whereas per-block covers leave the spacing
+          between them transparent, so the mark stays on screen and you
+          watch the content slide over it. */}
       <div className="relative">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
           <div className="sticky top-[32vh] w-full px-6 md:px-12">
@@ -187,7 +191,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
               style={{
                 backgroundImage: "url(/brand/buildroot-logo-white.svg)",
                 aspectRatio: "6335 / 1067",
-                opacity: 0.32,
+                opacity: 1,
               }}
             />
           </div>
@@ -208,7 +212,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
           viewport={{ once: true, amount: 0.2 }}
           variants={revealUp}
           transition={revealTransition}
-          className="type-manifesto w-full"
+          className="type-manifesto w-full bg-[var(--bg-primary)] py-6"
         >
           <span className="mb-4 block font-display text-2xl md:float-left md:mb-0 md:mr-8 md:mt-[0.9em] md:text-3xl">
             {dict?.culture?.eyebrow || FALLBACK.culture.eyebrow}
@@ -225,7 +229,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
           viewport={{ once: true }}
           variants={revealUp}
           transition={revealTransition}
-          className="type-title text-center"
+          className="type-title text-center bg-[var(--bg-primary)] py-6"
         >
           {dictValues?.title || FALLBACK.values.title}
         </m.h2>
@@ -238,7 +242,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
             viewport={{ once: true, amount: 0.3 }}
             variants={revealUp}
             transition={revealTransition}
-            className="flex flex-col border-t border-[var(--border)]"
+            className="flex flex-col border-t border-[var(--border)] bg-[var(--bg-primary)]"
           >
             {values.map((value) => (
               <li
@@ -259,7 +263,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
             viewport={{ once: true, amount: 0.3 }}
             variants={revealUp}
             transition={{ ...revealTransition, delay: 0.1 }}
-            className="type-lead"
+            className="type-lead bg-[var(--bg-primary)] py-4"
           >
             {dictValues?.intro || FALLBACK.values.intro}
           </m.p>
@@ -275,7 +279,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
             viewport={{ once: true }}
             variants={revealUp}
             transition={revealTransition}
-            className="mb-8 text-center font-serif text-3xl font-light md:mb-12 md:text-5xl"
+            className="mb-8 text-center font-serif text-3xl font-light md:mb-12 md:text-5xl bg-[var(--bg-primary)] py-4"
           >
             ({value.index})
           </m.p>
@@ -286,7 +290,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
             text={value.marquee}
             durationSeconds={34 + i * 4}
             reverse={i % 2 === 1}
-            className="font-serif text-[clamp(3.5rem,11vw,11rem)] font-light leading-none tracking-tight"
+            className="bg-[var(--bg-primary)] py-4 font-serif text-[clamp(3.5rem,11vw,11rem)] font-light leading-none tracking-tight"
           />
 
           <m.div
@@ -295,7 +299,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
             viewport={{ once: true, amount: 0.25 }}
             variants={revealUp}
             transition={revealTransition}
-            className="mt-10 px-6 md:mt-16 md:px-12 lg:grid lg:grid-cols-[46%_1fr] lg:gap-8"
+            className="mt-10 bg-[var(--bg-primary)] px-6 py-8 md:mt-16 md:px-12 lg:grid lg:grid-cols-[46%_1fr] lg:gap-8"
           >
             {/* No small index here — the big centred "(n)" above the band
                 already numbers this value, and repeating it a second time
@@ -355,6 +359,18 @@ export function AboutSection({ dict }: AboutSectionProps) {
           </div>
         </div>
       </section>
+
+          {/* Landing strip. Every section above is opaque so it can cover
+              the wordmark on the way down; without this the CTA — the last
+              of them — would still be sitting on top of it exactly where
+              it comes to rest. Reserving the mark's own height here leaves
+              it uncovered at the end, sitting between the CTA and the
+              footer's menu. */}
+          <div
+            aria-hidden="true"
+            className="w-full px-6 md:px-12"
+            style={{ aspectRatio: "6335 / 1067" }}
+          />
         </div>
       </div>
 
