@@ -26,15 +26,15 @@ export const PROJECTS: readonly Project[] = [
     ],
     highlights: ["Property Marketplace", "Client Portal", "Secure Contracts"],
     metrics: [
-      { label: "Contract Modalities", value: "3 (Rent/Sale/Anticres)" },
-      { label: "Security", value: "Spring Sec + RBAC" },
-      { label: "Architecture", value: "Modular Monolith" },
+      { label: "Contract Modalities", value: "3 (Rent / Sale / Anticres)" },
+      { label: "Access Control", value: "Role-based, per document" },
+      { label: "Verification", value: "Built-in approval flow" },
     ],
     caseStudy: {
       challenge:
         "Polo & Pantoja needed a unified solution for legal services and a regional real estate marketplace supporting anticres contracts—a unique legal modality requiring strict document verification.",
       solution:
-        "Architected a modular monolith backend in Spring Boot 3 with Clean Architecture and a Next.js 14 App Router frontend. Built custom document verification workflows for law firm admins and property owners.",
+      "Built one platform serving both sides of the business, with document verification workflows tailored to how the firm's staff and property owners actually work — each role seeing only what it should.",
       results: [
         "Unified legal showcase & property management into a single platform",
         "Streamlined property verification time for law firm staff",
@@ -54,21 +54,21 @@ export const PROJECTS: readonly Project[] = [
     category: "Web Apps",
     featured: true,
     summary:
-      "High-performance Astro 5 web experience with GSAP micro-animations.",
+      "A fast, polished site for prospective students that loads instantly on any phone.",
     description:
       "A prospective student's first impression, redesigned: a fast, beautifully animated site that loads instantly on any phone and makes it easy to say yes.",
     tags: ["Astro 5", "TypeScript", "Tailwind 4", "GSAP 3", "EmailJS"],
     highlights: ["Student-Facing Site", "Fast Mobile Experience", "Engaging Design"],
     metrics: [
-      { label: "Framework", value: "Astro 5.3" },
-      { label: "Custom Sections", value: "14 Sections" },
-      { label: "Lighthouse Score", value: "98/100" },
+      { label: "Load Time", value: "Under half a second" },
+      { label: "Custom Sections", value: "14 sections" },
+      { label: "Performance Score", value: "98/100" },
     ],
     caseStudy: {
       challenge:
         "Edusur needed a modern, highly engaging web portal for prospective students that loaded instantly on mobile networks while maintaining smooth animations.",
       solution:
-        "Implemented a content-driven architecture using Astro 5 and Tailwind CSS v4, utilizing GSAP for hardware-accelerated scroll animations and zero JS runtime overhead for static content.",
+      "Rebuilt the site so pages arrive almost instantly on a phone, keeping the motion and polish that make the school feel current without making visitors wait for it.",
       results: [
         "Achieved sub-500ms First Contentful Paint on mobile",
         "98/100 Lighthouse performance rating",
@@ -88,7 +88,7 @@ export const PROJECTS: readonly Project[] = [
     category: "Consulting",
     featured: true,
     summary:
-      "Automated Omni-Channel customer routing & Agentforce AI integration suite.",
+      "Automated case routing with an assistant that resolves the routine requests.",
     description:
       "Support tickets that used to sit in a queue now route themselves — the right case to the right agent, instantly, with AI handling the routine ones before a human ever sees them.",
     tags: [
@@ -101,15 +101,15 @@ export const PROJECTS: readonly Project[] = [
     ],
     highlights: ["Faster Support", "AI-Assisted Routing", "Unified Case Handling"],
     metrics: [
-      { label: "Routing Latency", value: "<1.2s" },
-      { label: "Case Automation", value: "85% Auto-Routed" },
-      { label: "Integration", value: "Agentforce AI" },
+      { label: "Routing Latency", value: "Under 1.2 seconds" },
+      { label: "Cases Auto-Routed", value: "85%" },
+      { label: "Escalation", value: "Seamless hand-off to staff" },
     ],
     caseStudy: {
       challenge:
         "Enterprise customer support teams faced high queue wait times due to manual case categorization and fragmented digital communication channels.",
       solution:
-        "Engineered an automated Omni-Channel routing matrix combined with custom Lightning Web Components (LWC) and Agentforce AI assistants to auto-triage incoming cases.",
+      "Designed automated routing that reads each incoming case and sends it straight to the right person, with an assistant resolving the routine ones and handing anything complex to staff without the customer repeating themselves.",
       results: [
         "Reduced average case triage time by 85%",
         "Seamless AI-to-human agent handoff for complex support inquiries",
@@ -134,15 +134,15 @@ export const PROJECTS: readonly Project[] = [
     tags: ["Next.js 14", "Tailwind 4", "PostgreSQL", "Monorepo", "Local CMS"],
     highlights: ["Digital Newspaper", "Fast Publishing", "Local Ad Sales"],
     metrics: [
-      { label: "Target Visits", value: "50K/mo" },
-      { label: "Publish SLA", value: "<4 Hours" },
-      { label: "Infra Cost Target", value: "$0-$5/mo" },
+      { label: "Target Traffic", value: "50k visits a month" },
+      { label: "Time to Publish", value: "Under 4 hours" },
+      { label: "Running Cost", value: "USD 0–5 a month" },
     ],
     caseStudy: {
       challenge:
         "Local news in Nariño/Ecuador border region lacked modern digital publishing tools, requiring a cheap-to-operate platform supporting local ad sales without third-party ad network dependencies.",
       solution:
-        "Built a lightweight monorepo application in Next.js 14 with a custom editorial rich-text workflow and a self-managed banner advertising rotation system.",
+      "Built an editorial workflow the newsroom can run without help, plus an ad system that sells and rotates local placements — all on infrastructure that costs almost nothing to keep online.",
       results: [
         "Designed to scale to 50,000 monthly visits at near-zero hosting cost",
         "Streamlined article publishing loop to under 4 hours",
@@ -166,15 +166,15 @@ export const PROJECTS: readonly Project[] = [
     tags: ["Next.js 16", "React 19", "ClickHouse", "WebSockets", "Tailwind 4"],
     highlights: ["Real-Time Dashboard", "Instant Load Times", "Enterprise Scale"],
     metrics: [
-      { label: "Throughput Boost", value: "+340%" },
-      { label: "Query Latency", value: "<50ms" },
-      { label: "Daily Events", value: "10M+" },
+      { label: "Throughput Gain", value: "+340%" },
+      { label: "Query Response", value: "Under 50 ms" },
+      { label: "Daily Events", value: "Over 10 million" },
     ],
     caseStudy: {
       challenge:
         "The legacy dashboard suffered from severe rendering freezes and API bottlenecks under heavy concurrent telemetry loads.",
       solution:
-        "Re-architected the frontend using React 19 concurrent features, streaming server components, and WebSocket chunking with ClickHouse analytics queries.",
+      "Rebuilt the dashboard so live data streams in continuously and the interface stays responsive while it does, even under the heaviest event volumes.",
       results: [
         "Reduced dashboard initial load time from 4.2s to 0.4s",
         "Supported 500+ concurrent live telemetry views",
@@ -205,15 +205,15 @@ export const PROJECTS: readonly Project[] = [
     ],
     highlights: ["Internal AI Tooling", "Faster Delivery", "Built-In Quality Checks"],
     metrics: [
-      { label: "Agent Roles", value: "6 Specialized" },
-      { label: "Cycle Speed", value: "3x Faster" },
-      { label: "QA Checkpoints", value: "5-Axis Audit" },
+      { label: "Specialised Roles", value: "6" },
+      { label: "Delivery Speed", value: "3× faster" },
+      { label: "Quality Checks", value: "5-axis audit" },
     ],
     caseStudy: {
       challenge:
         "Traditional single-prompt AI coding assistants suffer from context drift, forgotten requirements, and lack of systematic architectural review.",
       solution:
-        "Developed a structured multi-agent workflow system partitioning project phases into specialized roles with strict deliverable handoffs and automated quality validation.",
+      "Built a structured workflow that splits a project into specialised roles, each one checking the previous stage's work, with strict hand-offs so nothing gets lost between steps.",
       results: [
         "Eliminated context degradation on complex multi-step features",
         "Ensured WCAG 2.1 AA accessibility and performance target compliance",
@@ -236,7 +236,7 @@ export const PROJECTS: readonly Project[] = [
  */
 type TranslatableFields = Pick<
   Project,
-  "industry" | "summary" | "description" | "highlights"
+  "industry" | "summary" | "description" | "highlights" | "metrics"
 > & {
   caseStudy: Pick<Project["caseStudy"], "challenge" | "solution" | "results">;
 };
@@ -244,6 +244,11 @@ type TranslatableFields = Pick<
 const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
   "polo-pantoja-platform": {
     industry: "Servicios Legales",
+    metrics: [
+      { label: "Modalidades de contrato", value: "3 (Arriendo / Venta / Anticresis)" },
+      { label: "Control de acceso", value: "Por rol y por documento" },
+      { label: "Verificación", value: "Flujo de aprobación integrado" },
+    ],
     summary:
       "Portal para firma de abogados y marketplace inmobiliario especializado con gestión de contratos de anticresis.",
     description:
@@ -253,7 +258,7 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
       challenge:
         "Polo & Pantoja necesitaba una solución unificada para sus servicios legales y un marketplace inmobiliario regional que soportara contratos de anticresis — una modalidad legal particular que exige una verificación documental estricta.",
       solution:
-        "Se diseñó un backend monolito modular en Spring Boot 3 con Clean Architecture y un frontend en Next.js 14 con App Router. Se construyeron flujos personalizados de verificación de documentos para administradores de la firma y propietarios de inmuebles.",
+        "Se construyó una sola plataforma que atiende los dos lados del negocio, con flujos de verificación de documentos ajustados a cómo trabajan realmente el personal de la firma y los propietarios — cada rol viendo únicamente lo que le corresponde.",
       results: [
         "Se unificó la vitrina legal y la gestión inmobiliaria en una sola plataforma",
         "Se redujo el tiempo de verificación de propiedades para el personal de la firma",
@@ -263,8 +268,13 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
   },
   "edusur-educational": {
     industry: "Educación",
+    metrics: [
+      { label: "Tiempo de carga", value: "Menos de medio segundo" },
+      { label: "Secciones a medida", value: "14 secciones" },
+      { label: "Puntaje de rendimiento", value: "98/100" },
+    ],
     summary:
-      "Sitio web de alto rendimiento en Astro 5 con micro-animaciones GSAP.",
+      "Un sitio rápido y cuidado para futuros estudiantes, que carga al instante en cualquier celular.",
     description:
       "La primera impresión de un futuro estudiante, rediseñada: un sitio rápido y con animaciones cuidadas que carga al instante en cualquier celular y facilita decir que sí.",
     highlights: ["Sitio para Estudiantes", "Experiencia Móvil Rápida", "Diseño Atractivo"],
@@ -272,7 +282,7 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
       challenge:
         "Edusur necesitaba un portal web moderno y atractivo para futuros estudiantes que cargara al instante en redes móviles sin sacrificar animaciones fluidas.",
       solution:
-        "Se implementó una arquitectura orientada a contenido con Astro 5 y Tailwind CSS v4, usando GSAP para animaciones de scroll aceleradas por hardware y sin overhead de JS en el contenido estático.",
+        "Se rehízo el sitio para que las páginas aparezcan casi de inmediato en el celular, conservando el movimiento y el cuidado visual que hacen ver actual a la institución, pero sin que el visitante tenga que esperar por ellos.",
       results: [
         "Se logró un First Contentful Paint menor a 500ms en móviles",
         "Puntaje de rendimiento de 98/100 en Lighthouse",
@@ -282,8 +292,13 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
   },
   "salesforce-agentforce-omni": {
     industry: "Servicio al Cliente",
+    metrics: [
+      { label: "Latencia de enrutamiento", value: "Menos de 1,2 segundos" },
+      { label: "Casos enrutados solos", value: "85%" },
+      { label: "Escalamiento", value: "Paso a persona sin fricción" },
+    ],
     summary:
-      "Suite de enrutamiento omnicanal automatizado e integración con Agentforce AI.",
+      "Enrutamiento automático de casos con un asistente que resuelve las solicitudes rutinarias.",
     description:
       "Los casos de soporte que antes esperaban en cola ahora se enrutan solos — el caso correcto al agente correcto, al instante, con IA resolviendo los casos rutinarios antes de que un humano los vea.",
     highlights: ["Soporte Más Rápido", "Enrutamiento Asistido por IA", "Gestión Unificada de Casos"],
@@ -291,7 +306,7 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
       challenge:
         "Los equipos de soporte empresarial enfrentaban largos tiempos de espera en cola debido a la categorización manual de casos y canales de comunicación digital fragmentados.",
       solution:
-        "Se diseñó una matriz de enrutamiento omnicanal automatizada combinada con Lightning Web Components (LWC) a medida y asistentes de Agentforce AI para clasificar automáticamente los casos entrantes.",
+        "Se diseñó un enrutamiento automático que lee cada caso que entra y lo envía directo a la persona indicada, con un asistente que resuelve los casos rutinarios y entrega los complejos al equipo sin que el cliente tenga que repetir su historia.",
       results: [
         "Se redujo el tiempo promedio de clasificación de casos en un 85%",
         "Traspaso fluido de IA a agente humano en consultas de soporte complejas",
@@ -301,6 +316,11 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
   },
   "aca-diario-digital": {
     industry: "Medios",
+    metrics: [
+      { label: "Tráfico objetivo", value: "50 mil visitas al mes" },
+      { label: "Tiempo de publicación", value: "Menos de 4 horas" },
+      { label: "Costo de operación", value: "USD 0–5 al mes" },
+    ],
     summary:
       "Diario digital de alta velocidad con motor de publicidad autogestionado.",
     description:
@@ -310,7 +330,7 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
       challenge:
         "La prensa local en la región fronteriza de Nariño/Ecuador carecía de herramientas modernas de publicación digital, y requería una plataforma económica de operar que soportara venta de publicidad local sin depender de redes publicitarias de terceros.",
       solution:
-        "Se construyó una aplicación monorepo liviana en Next.js 14 con un flujo editorial de texto enriquecido a medida y un sistema propio de rotación de banners publicitarios.",
+        "Se construyó un flujo editorial que la redacción maneja sin ayuda técnica, más un sistema que vende y rota los anuncios locales — todo sobre una operación que cuesta casi nada mantener en línea.",
       results: [
         "Diseñado para escalar a 50.000 visitas mensuales con un costo de hosting casi nulo",
         "Se redujo el ciclo de publicación de artículos a menos de 4 horas",
@@ -320,6 +340,11 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
   },
   "apex-analytics": {
     industry: "Analítica de Datos",
+    metrics: [
+      { label: "Aumento de procesamiento", value: "+340%" },
+      { label: "Respuesta de consulta", value: "Menos de 50 ms" },
+      { label: "Eventos diarios", value: "Más de 10 millones" },
+    ],
     summary:
       "Plataforma de telemetría y datos en streaming de alto rendimiento en tiempo real.",
     description:
@@ -329,7 +354,7 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
       challenge:
         "El dashboard anterior sufría de congelamientos severos en el renderizado y cuellos de botella en la API bajo cargas de telemetría concurrentes altas.",
       solution:
-        "Se rediseñó el frontend usando las funciones concurrentes de React 19, componentes de servidor en streaming y fragmentación de WebSocket junto con consultas analíticas en ClickHouse.",
+        "Se rehízo el tablero para que los datos en vivo fluyan de forma continua y la interfaz siga respondiendo mientras lo hacen, incluso en los picos de mayor volumen.",
       results: [
         "Se redujo el tiempo de carga inicial del dashboard de 4.2s a 0.4s",
         "Se soportaron más de 500 vistas de telemetría en vivo concurrentes",
@@ -339,6 +364,11 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
   },
   "buildroot-agent-system": {
     industry: "Automatización con IA",
+    metrics: [
+      { label: "Roles especializados", value: "6" },
+      { label: "Velocidad de entrega", value: "3× más rápido" },
+      { label: "Controles de calidad", value: "Auditoría de 5 ejes" },
+    ],
     summary:
       "Framework multi-agente para el ciclo de vida autónomo de ingeniería de software.",
     description:
@@ -348,7 +378,7 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
       challenge:
         "Los asistentes de codificación con IA de un solo prompt sufren de pérdida de contexto, requisitos olvidados y falta de una revisión arquitectónica sistemática.",
       solution:
-        "Se desarrolló un sistema de flujo de trabajo multi-agente estructurado que divide las fases del proyecto en roles especializados, con entregables estrictos entre etapas y validación de calidad automatizada.",
+        "Se construyó un flujo estructurado que divide el proyecto en roles especializados, cada uno revisando el trabajo de la etapa anterior, con entregas estrictas entre pasos para que nada se pierda en el camino.",
       results: [
         "Se eliminó la degradación de contexto en funcionalidades complejas de múltiples pasos",
         "Se aseguró el cumplimiento de accesibilidad WCAG 2.1 AA y de los objetivos de rendimiento",

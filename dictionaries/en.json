@@ -92,10 +92,10 @@
     "cta_button": "Start a Build",
     "detail": {
       "back_to_work": "Back to Work",
+      "overview": "At a glance",
       "problem": "Problem",
       "solution": "Solution",
       "results": "Results & Impact",
-      "stack": "Stack",
       "live_demo": "Live Demo"
     }
   },
