@@ -203,6 +203,31 @@
     "title": "Contact",
     "subtitle": "Have a project in mind? Tell us about it — we read every message ourselves.",
     "message": "No middlemen, no account managers. Tell us what you're building and we'll reply ourselves, usually within a day.",
+    "compose": {
+      "hint": "Fill in the blanks. Sending opens your email with everything ready.",
+      "greeting": "Hi, I'm",
+      "name_placeholder": "your name",
+      "from": "from",
+      "company_placeholder": "your company",
+      "need": "I need",
+      "start": "and I'd like to start",
+      "extra": "Anything else we should know:",
+      "extra_placeholder": "tell us briefly",
+      "needs": {
+        "web": "a website",
+        "product": "a digital product",
+        "consulting": "technical advice",
+        "unsure": "something I'm still working out"
+      },
+      "timings": {
+        "now": "as soon as possible",
+        "soon": "in one to three months",
+        "year": "this year",
+        "exploring": "no date yet, just exploring"
+      },
+      "send": "Send message",
+      "subject": "New project"
+    },
     "email_button": "info@buildroot.co",
     "response_note": "We read every message ourselves — usually a reply within a day."
   }
