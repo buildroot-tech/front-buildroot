@@ -92,14 +92,8 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
 
   const numbered = (items: readonly string[]) => (
     <ul className="flex flex-col border-t border-[var(--border)]">
-      {items.map((item, i) => (
-        <li
-          key={item}
-          className="flex items-baseline gap-6 border-b border-[var(--border)] py-5 md:gap-10"
-        >
-          <span className="font-mono text-sm text-[var(--text-muted)]">
-            {String(i + 1).padStart(2, "0")}
-          </span>
+      {items.map((item) => (
+        <li key={item} className="border-b border-[var(--border)] py-5">
           <span className="type-lead">{item}</span>
         </li>
       ))}
@@ -112,15 +106,12 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
       label: dict?.overview || "At a glance",
       content: (
         <ul className="flex flex-col border-t border-[var(--border)]">
-          {project.metrics.map((metric, i) => (
+          {project.metrics.map((metric) => (
             <li
               key={metric.label}
               className="flex flex-col gap-1 border-b border-[var(--border)] py-5 md:flex-row md:items-baseline md:gap-10"
             >
-              <span className="font-mono text-sm text-[var(--text-muted)] md:w-16">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[var(--text-muted)] md:w-64">
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[var(--text-muted)] md:w-72">
                 {metric.label}
               </span>
               <span className="type-lead">{metric.value}</span>
