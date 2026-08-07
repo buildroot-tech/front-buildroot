@@ -48,7 +48,10 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "buildroot_",
   url: siteConfig.url,
-  logo: `${siteConfig.url}/icon.svg`,
+  // The full wordmark, not the favicon — this is what search engines and
+  // rich results render as the brand's logo, so it wants the readable
+  // "buildroot_" lockup rather than the square "b_" badge.
+  logo: `${siteConfig.url}/brand/buildroot-logo-black.svg`,
   email: siteConfig.email,
   sameAs: [
     siteConfig.links.instagram,
