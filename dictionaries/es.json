@@ -203,6 +203,31 @@
     "title": "Contacto",
     "subtitle": "¿Tiene un proyecto en mente? Cuéntenos — leemos cada mensaje nosotros mismos.",
     "message": "Sin intermediarios ni ejecutivos de cuenta. Cuéntenos qué está construyendo y le respondemos nosotros mismos, normalmente en un día.",
+    "compose": {
+      "hint": "Complete los espacios. Al enviar se abre su correo con todo listo.",
+      "greeting": "Hola, soy",
+      "name_placeholder": "su nombre",
+      "from": "de",
+      "company_placeholder": "su empresa",
+      "need": "Necesito",
+      "start": "y quisiera empezar",
+      "extra": "Algo más que debamos saber:",
+      "extra_placeholder": "cuéntenos brevemente",
+      "needs": {
+        "web": "un sitio web",
+        "product": "un producto digital",
+        "consulting": "una asesoría técnica",
+        "unsure": "algo que aún estoy definiendo"
+      },
+      "timings": {
+        "now": "cuanto antes",
+        "soon": "en uno a tres meses",
+        "year": "este año",
+        "exploring": "sin fecha aún, estoy explorando"
+      },
+      "send": "Enviar mensaje",
+      "subject": "Nuevo proyecto"
+    },
     "email_button": "info@buildroot.co",
     "response_note": "Leemos cada mensaje nosotros mismos — normalmente respondemos en un día."
   }
