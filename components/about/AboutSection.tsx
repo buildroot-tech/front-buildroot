@@ -2,7 +2,7 @@
 
 import { LocaleLink } from "@/components/ui/LocaleLink";
 import { useRef } from "react";
-import { m } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { ScrambleText, type ScrambleTextHandle } from "@/components/ui/TextScrambler";
 import type { Dictionary } from "@/lib/dictionaries";
@@ -119,6 +119,18 @@ export function AboutSection({ dict }: AboutSectionProps) {
   const ctaButtonRef = useRef<ScrambleTextHandle>(null);
   const ctaEmailRef = useRef<ScrambleTextHandle>(null);
 
+  // Drives the wordmark's brightness across its own travel.
+  const trackRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: trackProgress } = useScroll({
+    target: trackRef,
+    offset: ["start start", "end end"],
+  });
+  // Full strength while it's still in the clear under the hero, then a
+  // small step back once content starts crossing it, and back up as it
+  // settles above the footer. Just enough to keep body copy readable
+  // through it — any lower and it stops reading as a solid mark.
+  const markOpacity = useTransform(trackProgress, [0, 0.1, 0.9, 1], [1, 0.62, 0.62, 1]);
+
   const dictValues = dict?.values;
 
   const values = VALUE_KEYS.map((key, index) => {
@@ -137,8 +149,16 @@ export function AboutSection({ dict }: AboutSectionProps) {
     <div className="w-full bg-[var(--bg-primary)] text-[var(--text-primary)]">
       {/* ── HERO ───────────────────────────────────────────────
           Label left, statement right — the same two-column opening
-          /work uses, so arriving here feels like the same site. */}
-      <section className="flex w-full flex-col justify-center px-6 pt-32 pb-16 md:px-12 md:pt-40 md:pb-20">
+          /work uses, so arriving here feels like the same site.
+
+          Its height is the viewport minus the wordmark's own height, so
+          the mark lands against the bottom of the first screen on any
+          display rather than at whatever offset a fixed padding happens
+          to produce. 16.9vw is the mark's aspect ratio (1067/6335) read
+          off the full width — a hair taller than the real box once the
+          side padding is taken out, which leaves the small gap under it
+          instead of letting it touch the edge. */}
+      <section className="flex min-h-[calc(100svh-16.9vw-1rem)] w-full flex-col justify-center px-6 pt-24 pb-4 md:px-12 md:pt-28">
         <div className="lg:grid lg:grid-cols-[46%_1fr] lg:gap-8">
           <m.h1
             initial="hidden"
@@ -175,25 +195,33 @@ export function AboutSection({ dict }: AboutSectionProps) {
           pure decoration: nothing here should reach the accessibility
           tree or be selectable.
 
-          It renders at full strength, which only works because the text
-          blocks that cross it carry their own opaque backdrop — solid
-          white behind white body copy would otherwise swallow it. The
-          backdrop is on each block rather than on the whole section: a
-          section-wide cover tiles into one unbroken sheet and the mark
-          never gets to show, whereas per-block covers leave the spacing
-          between them transparent, so the mark stays on screen and you
-          watch the content slide over it. */}
-      <div className="relative">
+          Nothing is layered over it — the copy sits directly on the mark,
+          which is the look we're after. Instead of hiding it behind
+          panels, the mark itself eases back a little the moment content
+          starts crossing it, and comes back to full strength as it
+          settles above the footer. Small on purpose: enough that body
+          copy stays readable through it, not so much that it stops
+          reading as a solid mark. */}
+      <div ref={trackRef} className="relative">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
           <div className="sticky top-[32vh] w-full px-6 md:px-12">
-            <div
-              className="w-full bg-contain bg-center bg-no-repeat"
-              style={{
-                backgroundImage: "url(/brand/buildroot-logo-white.svg)",
-                aspectRatio: "6335 / 1067",
-                opacity: 1,
-              }}
-            />
+            <m.div
+              className="relative w-full"
+              style={{ aspectRatio: "6335 / 1067", opacity: markOpacity }}
+            >
+              {/* Split into letters and cursor so the underscore can blink
+                  on its own, matching the one after the logo in the navbar.
+                  Both files keep the original artwork's viewBox, so
+                  stacking them reassembles the wordmark exactly. */}
+              <div
+                className="absolute inset-0 bg-contain bg-center bg-no-repeat"
+                style={{ backgroundImage: "url(/brand/buildroot-word-white.svg)" }}
+              />
+              <div
+                className="cursor-blink absolute inset-0 bg-contain bg-center bg-no-repeat"
+                style={{ backgroundImage: "url(/brand/buildroot-underscore-white.svg)" }}
+              />
+            </m.div>
           </div>
         </div>
 
@@ -205,14 +233,14 @@ export function AboutSection({ dict }: AboutSectionProps) {
           rather than sitting above it — below md it stacks, since at
           phone width the paragraph wraps too many times for the float
           to clear its second line. */}
-      <section className="w-full px-6 py-24 md:px-12 md:py-40">
+      <section className="w-full px-6 pt-[52vh] pb-24 md:px-12 md:pt-[56vh] md:pb-40">
         <m.p
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={revealUp}
           transition={revealTransition}
-          className="type-manifesto w-full bg-[var(--bg-primary)] py-6"
+          className="type-manifesto w-full"
         >
           <span className="mb-4 block font-display text-2xl md:float-left md:mb-0 md:mr-8 md:mt-[0.9em] md:text-3xl">
             {dict?.culture?.eyebrow || FALLBACK.culture.eyebrow}
@@ -229,7 +257,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
           viewport={{ once: true }}
           variants={revealUp}
           transition={revealTransition}
-          className="type-title text-center bg-[var(--bg-primary)] py-6"
+          className="type-title text-center"
         >
           {dictValues?.title || FALLBACK.values.title}
         </m.h2>
@@ -242,7 +270,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
             viewport={{ once: true, amount: 0.3 }}
             variants={revealUp}
             transition={revealTransition}
-            className="flex flex-col border-t border-[var(--border)] bg-[var(--bg-primary)]"
+            className="flex flex-col border-t border-[var(--border)]"
           >
             {values.map((value) => (
               <li
@@ -263,7 +291,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
             viewport={{ once: true, amount: 0.3 }}
             variants={revealUp}
             transition={{ ...revealTransition, delay: 0.1 }}
-            className="type-lead bg-[var(--bg-primary)] py-4"
+            className="type-lead"
           >
             {dictValues?.intro || FALLBACK.values.intro}
           </m.p>
@@ -279,7 +307,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
             viewport={{ once: true }}
             variants={revealUp}
             transition={revealTransition}
-            className="mb-8 text-center font-serif text-3xl font-light md:mb-12 md:text-5xl bg-[var(--bg-primary)] py-4"
+            className="mb-8 text-center font-serif text-3xl font-light md:mb-12 md:text-5xl"
           >
             ({value.index})
           </m.p>
@@ -290,7 +318,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
             text={value.marquee}
             durationSeconds={34 + i * 4}
             reverse={i % 2 === 1}
-            className="bg-[var(--bg-primary)] py-4 font-serif text-[clamp(3.5rem,11vw,11rem)] font-light leading-none tracking-tight"
+            className="font-serif text-[clamp(3.5rem,11vw,11rem)] font-light leading-none tracking-tight"
           />
 
           <m.div
@@ -299,7 +327,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
             viewport={{ once: true, amount: 0.25 }}
             variants={revealUp}
             transition={revealTransition}
-            className="mt-10 bg-[var(--bg-primary)] px-6 py-8 md:mt-16 md:px-12 lg:grid lg:grid-cols-[46%_1fr] lg:gap-8"
+            className="mt-10 px-6 md:mt-16 md:px-12 lg:grid lg:grid-cols-[46%_1fr] lg:gap-8"
           >
             {/* No small index here — the big centred "(n)" above the band
                 already numbers this value, and repeating it a second time
