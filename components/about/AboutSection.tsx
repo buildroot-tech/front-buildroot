@@ -163,6 +163,34 @@ export function AboutSection({ dict }: AboutSectionProps) {
 
       </section>
 
+      {/* ── TRACKING WORDMARK ──────────────────────────────────
+          A giant buildroot_ that rides the scroll behind everything
+          from here down. It's `sticky`, so it holds its place in the
+          viewport while the culture, values and CTA scroll over the top
+          of it — and when this wrapper runs out, it unsticks and comes
+          to rest flush against the wrapper's bottom edge, which is
+          exactly the gap between the closing CTA and the footer.
+
+          Kept as a background image rather than an <img> because it's
+          pure decoration: nothing here should reach the accessibility
+          tree or be selectable. */}
+      <div className="relative">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
+          <div className="sticky top-[32vh] w-full px-6 md:px-12">
+            <div
+              className="w-full bg-contain bg-center bg-no-repeat"
+              style={{
+                backgroundImage: "url(/brand/buildroot-logo-white.svg)",
+                aspectRatio: "6335 / 1067",
+                opacity: 0.07,
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="relative z-10">
+
+
       {/* ── CULTURE MANIFESTO ──────────────────────────────────
           The eyebrow floats into the giant paragraph's first line
           rather than sitting above it — below md it stacks, since at
@@ -322,6 +350,9 @@ export function AboutSection({ dict }: AboutSectionProps) {
           </div>
         </div>
       </section>
+        </div>
+      </div>
+
     </div>
   );
 }
