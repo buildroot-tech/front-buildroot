@@ -5,7 +5,7 @@ import { PROJECTS } from "@/lib/projects";
 const LOCALES = ["en", "es"] as const;
 
 // Static routes relative to a locale prefix, e.g. "" -> /en, /es
-const STATIC_ROUTES = ["", "/work", "/services", "/about", "/contact"];
+const STATIC_ROUTES = ["", "/work", "/services", "/about", "/contact", "/privacy", "/cookies"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];

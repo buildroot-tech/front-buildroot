@@ -84,10 +84,11 @@ const BottomCTA = ({ dict }: { dict?: Dictionary["home"]["cta"] }) => {
   const [hovered, setHovered] = useState(false);
   const [ctaSymbol, setCtaSymbol] = useState("*");
 
+  // The symbol is reset where the hover starts, not inside the effect —
+  // a bare setState in an effect body trips react-hooks/set-state-in-effect
+  // and was silenced with a disable comment.
   useEffect(() => {
     if (!hovered) return;
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setCtaSymbol("*");
     const interval = setInterval(() => {
       setCtaSymbol((prev) => (prev === "*" ? "_" : "*"));
     }, 800); // 800ms to match the project list CTA
@@ -99,7 +100,10 @@ const BottomCTA = ({ dict }: { dict?: Dictionary["home"]["cta"] }) => {
       <Link
         href="mailto:info@buildroot.co"
         className="group flex flex-col justify-center min-h-[150px] md:min-h-[180px] transition-colors duration-500 w-full"
-        onMouseEnter={() => setHovered(true)}
+        onMouseEnter={() => {
+          setCtaSymbol("*");
+          setHovered(true);
+        }}
         onMouseLeave={() => setHovered(false)}
       >
         <div className="flex flex-row items-center justify-center w-full">

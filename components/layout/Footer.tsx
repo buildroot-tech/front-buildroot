@@ -7,6 +7,7 @@ import { m } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ScrambleText } from "@/components/ui/TextScrambler";
 import { getRouteTheme, normalizeLocalePathname } from "@/lib/route-theme";
+import { siteConfig } from "@/lib/seo";
 
 import type { Dictionary } from "@/lib/dictionaries";
 
@@ -14,10 +15,12 @@ interface FooterProps {
   dict?: Dictionary;
 }
 
+// Read from siteConfig so the footer and the Organization JSON-LD in the
+// root layout can't drift apart — they used to hold separate copies of the
+// same URLs. Instagram and Twitter are deliberately absent: no accounts.
 const socialLinks = [
-  { href: "https://instagram.com/buildroot", label: "instagram" },
-  { href: "https://twitter.com/buildroot_dev", label: "twitter" },
-  { href: "https://linkedin.com/company/buildroot", label: "linkedin" },
+  { href: siteConfig.links.linkedin, label: "linkedin" },
+  { href: siteConfig.links.github, label: "github" },
 ];
 
 const contactInfo = {
@@ -59,7 +62,6 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
   const legalLinks = [
     { href: "/privacy", label: dict?.footer?.legal?.privacy || "privacy" },
     { href: "/cookies", label: dict?.footer?.legal?.cookies || "cookies" },
-    { href: "/newsletter", label: dict?.footer?.legal?.newsletter || "newsletter" },
   ];
 
   return (
@@ -79,9 +81,9 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
     >
       <div className="flex flex-col">
         {/* ── UPPER HALF ── */}
-        <div className="px-6 md:px-12 py-6 md:py-8">
+        <div className="px-6 md:px-12 py-6 md:py-8 [@media(max-height:820px)]:md:py-4">
           <div className="w-full mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 [@media(max-height:820px)]:md:gap-12">
               {/* Navigation & Legal (2 columns inside Pages) */}
               <div className="flex flex-col">
                 <div className="border-b-[1px] border-[var(--border)] w-full pb-2 mb-3">
@@ -198,7 +200,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
         </div>
 
         {/* ── LOWER HALF (Contact Info) ── */}
-        <div className="pt-12 md:pt-8 pb-4 md:pb-6 w-full overflow-hidden flex flex-row items-end justify-between px-6 md:px-12 gap-8">
+        <div className="pt-12 md:pt-8 pb-4 md:pb-6 [@media(max-height:820px)]:md:pt-3 [@media(max-height:820px)]:md:pb-3 w-full overflow-hidden flex flex-row items-end justify-between px-6 md:px-12 gap-8">
           {/* Bottom Left: Copyright/Year — hidden on mobile, not enough
               room next to the contact info without cramping it. */}
           <div className="hidden md:flex font-display text-[clamp(1.2rem,1.6vw,1.8rem)] font-normal tracking-tight text-[var(--text-primary)] pointer-events-none mb-[clamp(0.1rem,0.3vw,0.4rem)] items-center gap-1 shrink-0">
@@ -222,15 +224,15 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
             <div className="w-full flex flex-col gap-0 items-end">
               {/* Row 1: Address, Street, Zip */}
               <div className="flex flex-wrap items-end justify-end w-full py-[clamp(0.1rem,0.3vw,0.4rem)] gap-2 md:gap-3">
-                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.8rem,3.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
+                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(1.6rem,10vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
                   {dict?.footer?.address || contactInfo.address}
                 </span>
 
-                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.8rem,3.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
+                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(1.6rem,10vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
                   Av. Panamericana
                 </span>
 
-                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.8rem,3.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
+                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(1.6rem,10vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
                   524060
                 </span>
               </div>
@@ -243,7 +245,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="1.5"
-                    className="text-[var(--text-primary)] shrink-0 w-[clamp(0.8rem,3.2vw,5rem)] h-[clamp(0.8rem,3.2vw,5rem)] md:w-[clamp(1.5rem,3.8vw,5rem)] md:h-[clamp(1.5rem,3.8vw,5rem)]"
+                    className="text-[var(--text-primary)] shrink-0 w-[clamp(1.6rem,10vw,5rem)] h-[clamp(1.6rem,10vw,5rem)] md:w-[clamp(1.5rem,3.8vw,5rem)] md:h-[clamp(1.5rem,3.8vw,5rem)]"
                   >
                     <path d="M3 20h18L15 8l-3 4-2-2-6 10z" />
                     <path d="M12 3v3" />
@@ -257,7 +259,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="text-[var(--text-primary)] shrink-0 w-[clamp(0.8rem,3.2vw,5rem)] h-[clamp(0.8rem,3.2vw,5rem)] md:w-[clamp(1.5rem,3.8vw,5rem)] md:h-[clamp(1.5rem,3.8vw,5rem)]"
+                    className="text-[var(--text-primary)] shrink-0 w-[clamp(1.6rem,10vw,5rem)] h-[clamp(1.6rem,10vw,5rem)] md:w-[clamp(1.5rem,3.8vw,5rem)] md:h-[clamp(1.5rem,3.8vw,5rem)]"
                   >
                     <path d="M20 17C20 13 17 10 15 10C15 7 13 7 13 10C9 10 4 13 4 17V20H18C20 20 20 18 20 17Z" />
                     <circle
@@ -271,7 +273,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                 </div>
 
                 <div className="flex items-center gap-1 md:gap-2 shrink-0">
-                  <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.8rem,3.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
+                  <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(1.6rem,10vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
                     {contactInfo.city}
                   </span>
                   <svg
@@ -281,13 +283,13 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="text-emerald-500 shrink-0 w-[clamp(0.8rem,3.2vw,5rem)] h-[clamp(0.8rem,3.2vw,5rem)] md:w-[clamp(1.5rem,3.8vw,5rem)] md:h-[clamp(1.5rem,3.8vw,5rem)]"
+                    className="text-emerald-500 shrink-0 w-[clamp(1.6rem,10vw,5rem)] h-[clamp(1.6rem,10vw,5rem)] md:w-[clamp(1.5rem,3.8vw,5rem)] md:h-[clamp(1.5rem,3.8vw,5rem)]"
                   >
                     <path d="M17.5 20H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
                   </svg>
                 </div>
 
-                <div className="flex items-center gap-1 font-display text-[clamp(1.1rem,1.8vw,1.8rem)] uppercase font-normal tracking-tighter text-[var(--text-primary)] shrink-0 self-center">
+                <div className="flex items-center gap-1 font-display text-[clamp(1.1rem,5vw,1.8rem)] md:text-[clamp(1.1rem,1.8vw,1.8rem)] uppercase font-normal tracking-tighter text-[var(--text-primary)] shrink-0 self-center">
                   {/* ↗ arrow */}
                   <svg
                     viewBox="0 0 24 24"
@@ -320,21 +322,21 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                   </svg>
                 </div>
 
-                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.8rem,3.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
+                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(1.6rem,10vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
                   {contactInfo.country}
                 </span>
               </div>
 
               {/* Row 3: Phone, Grid */}
               <div className="flex flex-wrap items-center justify-end w-full py-[clamp(0.1rem,0.3vw,0.4rem)] gap-2 md:gap-3">
-                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.8rem,3.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] leading-[0.85] capitalize tracking-tighter shrink-0">
+                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(1.6rem,10vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] leading-[0.85] capitalize tracking-tighter shrink-0">
                   {dict?.footer?.phone || "Phone"}
                 </span>
 
                 {/* Phone Grid */}
                 <div className="flex w-fit border-[2px] border-[var(--border)] min-w-0 shrink-0">
                   {/* Left Column — narrower */}
-                  <div className="flex items-center justify-center text-center font-display text-[clamp(0.9rem,1.3vw,1.7rem)] leading-none tracking-tighter font-normal text-[var(--text-primary)] py-0 md:py-0.5 px-2 md:px-3 whitespace-nowrap">
+                  <div className="flex items-center justify-center text-center font-display text-[clamp(1.1rem,4.5vw,1.7rem)] md:text-[clamp(0.9rem,1.3vw,1.7rem)] leading-none tracking-tighter font-normal text-[var(--text-primary)] py-0 md:py-0.5 px-2 md:px-3 whitespace-nowrap">
                     <span className="font-normal">+57</span>{" "}
                     <span className="ml-1">
                       {contactInfo.phone.split(" ")[0]}
@@ -346,14 +348,14 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
 
                   {/* Right Column */}
                   <div className="flex flex-col w-fit">
-                    <div className="w-full flex items-center justify-center text-center font-display text-[clamp(0.9rem,1.3vw,1.7rem)] leading-none tracking-tighter font-normal text-[var(--text-primary)] py-0 md:py-0.5 px-2 md:px-3">
+                    <div className="w-full flex items-center justify-center text-center font-display text-[clamp(1.1rem,4.5vw,1.7rem)] md:text-[clamp(0.9rem,1.3vw,1.7rem)] leading-none tracking-tighter font-normal text-[var(--text-primary)] py-0 md:py-0.5 px-2 md:px-3">
                       {contactInfo.phone.split(" ")[1]}
                     </div>
 
                     {/* Informal Horizontal Divider */}
                     <div className="h-[2px] bg-[var(--border)] mx-0.5 md:mx-1 shrink-0 rounded-full my-[1px]"></div>
 
-                    <div className="w-full flex items-center justify-center text-center font-display text-[clamp(0.9rem,1.3vw,1.7rem)] leading-none tracking-tighter font-normal text-[var(--text-primary)] py-0 md:py-0.5 px-2 md:px-3">
+                    <div className="w-full flex items-center justify-center text-center font-display text-[clamp(1.1rem,4.5vw,1.7rem)] md:text-[clamp(0.9rem,1.3vw,1.7rem)] leading-none tracking-tighter font-normal text-[var(--text-primary)] py-0 md:py-0.5 px-2 md:px-3">
                       {contactInfo.phone.split(" ")[2]}
                     </div>
                   </div>
@@ -364,7 +366,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                   href={`mailto:${contactInfo.email}`}
                   className="group flex items-center shrink-0 ml-4 md:ml-6"
                 >
-                  <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.8rem,3.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] leading-[0.85] tracking-tighter group-hover:bg-[var(--text-primary)] group-hover:text-[var(--bg-primary)] transition-colors duration-300 py-1 lowercase">
+                  <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(1.6rem,10vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] leading-[0.85] tracking-tighter group-hover:bg-[var(--text-primary)] group-hover:text-[var(--bg-primary)] transition-colors duration-300 py-1 lowercase">
                     {contactInfo.email}
                   </span>
                 </a>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Hero } from "@/components/home/Hero";
 import { HeroTransition } from "@/components/home/HeroTransition";
 import { WorkflowSteps } from "@/components/home/WorkflowSteps";
@@ -7,6 +7,14 @@ import { CTA } from "@/components/home/CTA";
 import { getDictionary, Locale } from "@/lib/dictionaries";
 import { getProjects } from "@/lib/projects";
 import { siteConfig, buildAlternates } from "@/lib/seo";
+
+// Colour behind the browser chrome on mobile — this page opens on
+// #000000, so the status-bar area matches instead of falling back
+// to the browser default (a white band above a dark page on iOS).
+export const viewport: Viewport = {
+  themeColor: "#000000",
+  colorScheme: "dark",
+};
 
 export async function generateMetadata({
   params,

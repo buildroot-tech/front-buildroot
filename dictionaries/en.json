@@ -14,8 +14,7 @@
     "phone": "Phone",
     "legal": {
       "privacy": "privacy",
-      "cookies": "cookies",
-      "newsletter": "newsletter"
+      "cookies": "cookies"
     }
   },
   "preloader": {
@@ -230,5 +229,61 @@
     },
     "email_button": "info@buildroot.co",
     "response_note": "We read every message ourselves — usually a reply within a day."
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy",
+      "intro": "This site collects the minimum needed to know whether it works. There are no forms storing your details, no advertising, and nothing is sold to anyone.",
+      "updated": "Last updated",
+      "sections": [
+        {
+          "heading": "Who we are",
+          "body": "Buildroot is a software development studio based in Ipiales, Nariño, Colombia. For anything concerning your data, write to info@buildroot.co and we'll answer ourselves."
+        },
+        {
+          "heading": "What we collect",
+          "body": "Aggregate, anonymous usage statistics through Vercel Analytics and Vercel Speed Insights: pages visited, approximate country, device type and load times. This measurement uses no cookies and cannot identify an individual."
+        },
+        {
+          "heading": "What we don't collect",
+          "body": "There are no forms on this site. When you use the contact page, the message opens in your own mail client and travels straight to our inbox — the site neither stores it nor routes it through a third party. We use no advertising, no cross-site tracking and no behavioural profiling."
+        },
+        {
+          "heading": "Emails you send us",
+          "body": "If you write to us, we keep that email in our inbox so we can reply and follow the conversation. We don't use it for anything else and we don't share it. Ask us to delete it whenever you like."
+        },
+        {
+          "heading": "Your rights",
+          "body": "Under Colombia's data protection law (Ley 1581 de 2012) you may ask us to access, update, correct or delete any information we hold about you, and to withdraw any authorisation. Writing to info@buildroot.co is enough."
+        },
+        {
+          "heading": "Changes",
+          "body": "If this policy changes, we update the date in the header. Changes apply from the moment they're published."
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Cookies",
+      "intro": "This site uses no tracking cookies, first-party or third-party. You won't see a consent banner either, because there's nothing to consent to.",
+      "updated": "Last updated",
+      "sections": [
+        {
+          "heading": "Advertising or tracking cookies",
+          "body": "None. We use no advertising, no tracking networks and no tools that follow your browsing across sites."
+        },
+        {
+          "heading": "Usage measurement",
+          "body": "We use Vercel Analytics and Vercel Speed Insights to see which pages are visited and how fast they load. Both work without cookies, on aggregate data that identifies nobody."
+        },
+        {
+          "heading": "Storage in your browser",
+          "body": "We keep a single value in your browser's session storage, called \"buildroot_visited\", so the intro animation doesn't replay on every page. It holds no personal information and disappears when you close the tab."
+        },
+        {
+          "heading": "How to clear it",
+          "body": "Closing the tab removes it automatically. You can also clear the site's data from your browser settings at any time; nothing will stop working if you do."
+        }
+      ]
+    }
   }
 }

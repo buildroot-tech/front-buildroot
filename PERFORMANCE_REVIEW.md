@@ -1,102 +1,131 @@
-# Performance Review — buildroot front-end
+# Performance & technical debt — buildroot_ site
 
-Punch list of concrete, verified findings from reading the actual source. Grouped by impact.
-
----
-
-## High Impact
-
-### 1. `PixelImage` allocates a brand-new canvas on every animation frame
-`components/ui/PixelImage.tsx` (`draw()`, ~L45-77)
-
-Every `onUpdate` tick of the 0.8s reveal tween calls `document.createElement("canvas")`, sets its width/height, and draws the **full natural-resolution** source image into it — then draws that into the visible canvas, then draws the sharp image again for the crossfade. At ~60fps that's up to ~48 offscreen canvas allocations + full-res `drawImage` calls per single image reveal, and every project row on `/work` can have 2-3 `PixelImage` instances mounted concurrently (hover preview + drawer image + big image), each running its own independent loop. This is real GC pressure and main-thread work exactly during a hover interaction, where jank is most visible.
-
-Fix:
-- Allocate one offscreen canvas per `PixelImage` instance (`useRef`), resize it once when `pixelSize` changes materially instead of recreating it every frame.
-- Downscale the *source* used for the offscreen draw — you don't need `img.naturalWidth/Height` (1024×1024 for every project photo) when the rendered box is 300×188px. Draw into an offscreen canvas sized to the CSS display size (times `devicePixelRatio`, capped), not the raw file dimensions.
-
-### 2. `PixelImage` always sets the canvas backing store to the image's raw dimensions, not the display size
-Same file, `img.onload` (~L27-34): `canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;`
-
-All 4 project photos in `public/projects/` are 1024×1024 JPEGs (700KB–1.1MB — see finding #4). They're rendered as small thumbnails (`IMAGE_WIDTH = 360` in `ProjectListRow.tsx` L14, `300×188` boxes in `ProjectRow.tsx` L176/L204) but the canvas buffer and every `drawImage` call still work at full 1024×1024 resolution. This multiplies the cost of finding #1 for no visual benefit — you're pixel-pushing ~4x more data than what's ever displayed.
-
-Fix: size the canvas backing store to the element's actual rendered CSS box (`getBoundingClientRect()` × `devicePixelRatio`, capped at e.g. 2x), not `naturalWidth/naturalHeight`.
-
-### 3. No image optimization pipeline is used anywhere — `next/image` is completely bypassed
-Verified: `grep -rn '<img'` and `grep -rln 'next/image'` across `components/` and `app/` both return **nothing**. Every image in the app (all 4 project photos) is loaded through `PixelImage`'s `new window.Image()` (L26 in `PixelImage.tsx`), which:
-- Fetches the raw file directly from `/public` with no resizing, no `srcset`/responsive variants, and no format negotiation.
-- Has no `loading="lazy"` or intersection-observer gating — the `useEffect` fires and starts the network fetch the instant the component mounts (mitigated somewhat in `ProjectListRow`/`ProjectRow` since the image only mounts on hover/expand, but the full-page detail view (`ProjectDetail.tsx`) and the grid's "big image" mount eagerly with the row).
-- Never benefits from the AVIF/WebP conversion already configured in `next.config.ts` (`images.formats: ["image/avif", "image/webp"]`) — that config is dead weight since no `next/image` component exists to use it.
-
-Fix: this is the single biggest lever available. Either (a) route `PixelImage`'s underlying `<img>`/prefetch through `next/image` (e.g. use `next/image` with `fill` + `unoptimized={false}` for the crisp final frame, keeping the canvas only for the transient pixelation effect, or preload via `next/image`'s loader to get an AVIF/WebP + correctly-sized asset URL before feeding it to the canvas `Image()`), or (b) at minimum pre-generate AVIF/WebP + multiple sizes of the 4 project images at build time and pass the right size to `PixelImage` based on where it's used (thumbnail vs. detail).
-
-### 4. Source project images are raw, oversized JPEGs
-`public/projects/*.jpg`:
-```
-salesforce-ai.jpg   1.1M   1024x1024
-aca-diario.jpg       992K  1024x1024
-polo-pantoja.jpg     756K  1024x1024
-edusur.jpg           708K  1024x1024
-```
-~3.5MB total, all JPEG (no WebP/AVIF), all fixed at 1024×1024 (a print-oriented 300 DPI export per `file`), and none of these ever need to render larger than ~360px wide anywhere in the UI (checked every `PixelImage` call site). Every one of these is 3-6x larger than it needs to be for its largest actual on-screen use.
-
-Fix: re-export at the actual max display size needed (≈720px wide covers 2x pixel density for the biggest use case) as WebP/AVIF, targeting <100KB each. Combine with finding #3 for proper responsive delivery.
+Verified against the current source and a production build. Anything listed
+here was checked, not inferred.
 
 ---
 
-## Medium Impact
+## Measured today
 
-### 5. `next/font/google` loads 5 weights of Crimson Pro; only 1 is ever used
-`app/[lang]/layout.tsx` L23-29:
-```ts
-const crimsonPro = Crimson_Pro({
-  variable: "--font-serif",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  ...
-});
-```
-Verified via `grep -rn "font-serif"` across `app/` and `components/`: every single usage (`Hero.tsx`, `CTA.tsx`, `SelectWork.tsx`, `ProjectListRow.tsx`, `ProjectsGrid.tsx`, `Footer.tsx`) pairs `font-serif` with `font-light` (weight 300) and nothing else — including the style guide page, which never demonstrates `font-serif` at all. Weights 400/500/600/700 are downloaded for zero payoff.
+Production build, desktop 1440×900:
 
-Fix: `weight: ["300"]` only (or `["300", "400"]` if you want a fallback safety margin). This alone removes 4 of 5 font files for this family from the critical path.
+| Page | LCP | CLS | Long tasks | Transfer |
+| --- | --- | --- | --- | --- |
+| `/es` | 256 ms | 0.0001 | 1 (59 ms) | 108 KB |
+| `/es/work` | 236 ms | 0.0001 | 0 | 108 KB |
+| `/es/about` | 160 ms | 0.0001 | 0 | 108 KB |
+| `/es/contact` | 216 ms | 0.0001 | 0 | 108 KB |
+| `/es/work/[slug]` | 208 ms | 0.0001 | 0 | **864 KB** |
 
-### 6. Geist Mono loads a weight that's never used
-Same file, L31-35: `weight: ["300", "400", "500", "600", "700"]`. Cross-checking every `font-mono` usage (70 call sites) against applied `font-*` weight utilities: 300/400 (default)/500/700 are all in active use, but 600 (`font-semibold`) never appears on any element under a `font-mono` ancestor.
+Route transitions: 60 fps, 0 dropped frames of 134, no long tasks.
 
-Fix: drop `"600"` from Geist Mono's `weight` array.
-
-### 7. Full-page route transition blocks on exit-then-enter (`AnimatePresence mode="wait"`)
-`components/ui/PageTransition.tsx` L10: `<AnimatePresence mode="wait">` keyed on `pathname`. Every client-side navigation waits for the outgoing page's 0.3s exit animation to fully finish before the incoming page's 0.3s enter animation starts — up to ~0.6s of mandatory animated delay stacked on top of the actual navigation/data-fetch time, on every single route change.
-
-Fix: if the crossfade is a must-have, switch to `mode="popLayout"` or drop `mode="wait"` entirely so enter/exit overlap (halves perceived nav latency). If it's purely decorative, consider a shorter duration or CSS-only fade instead of Framer Motion for this specific transition.
-
-### 8. `useMousePosition` hook does an unthrottled `setState` on every `mousemove`
-`hooks/useMousePosition.ts` L9-11: calls `setMousePosition` on raw `window.mousemove` with no throttling/rAF batching — would force a React re-render at native mouse-event frequency (can be 100+/sec) if it were mounted anywhere.
-Verified: `grep -rln "useMousePosition"` across `app/` and `components/` returns **no results** — this hook is currently dead code, not wired into any component, so it costs nothing today. Flagging it because it's a live landmine: if/when someone wires it in for a cursor-follow effect, it'll cause visible jank as-is.
-
-Fix: if/when used, throttle via `requestAnimationFrame` or update a Framer Motion `useMotionValue` directly (no React re-render) instead of `useState`. Until then, consider removing the dead file.
+The numbers are good everywhere except the transfer size of a case-study
+page, which is finding #1.
 
 ---
 
-## Low Impact / Cleanup
+## Open
 
-### 9. Duplicate, unused `ScrambleText` implementation
-`components/ui/ScrambleText.tsx` is a second, `setInterval`-based scramble-text component (different API: `isHovered` prop) that is entirely separate from `components/ui/TextScrambler.tsx` (the `setTimeout`-chain version actually used everywhere — `Header.tsx`, `Preloader.tsx`, `Footer.tsx`, `ProjectRow.tsx`, etc., which also exports a component literally named `ScrambleText`). Verified via `grep -rn "ScrambleText"`: every real call site imports from `@/components/ui/TextScrambler`; `components/ui/ScrambleText.tsx` has zero importers.
+### 1. Project images are 3.5 MB, served unoptimised — highest impact
 
-Fix: delete `components/ui/ScrambleText.tsx` (dead code, and the naming collision with `TextScrambler.tsx`'s own `ScrambleText` export is confusing for future edits).
+`public/projects/` holds four 1024×1024 JPEGs:
 
-### 10. `lenis` is a declared dependency but never imported
-`package.json` lists `"lenis": "^1.3.25"` as a dependency; the only occurrence of "Lenis" in the entire codebase is a literal string in `AboutSection.tsx`'s tech-stack list (marketing copy, not a call site). It costs nothing at runtime since it's never imported (nothing to tree-shake around), but it's unused install/audit surface.
+| File | Size |
+| --- | --- |
+| `salesforce-ai.jpg` | 1.00 MB |
+| `aca-diario.jpg` | 989 KB |
+| `polo-pantoja.jpg` | 756 KB |
+| `edusur.jpg` | 708 KB |
 
-Fix: remove from `package.json` unless smooth-scroll is planned imminently.
+This is the entire difference between a case-study page (864 KB) and every
+other page (108 KB). They are loaded through `PixelImage`, which uses
+`new Image()` directly, so `next/image` is bypassed completely: no resizing,
+no WebP/AVIF, no lazy loading, no responsive `srcset`.
 
-### 11. `public/og.jpg` referenced but not present
-`lib/seo.ts` sets `ogImage: "https://buildroot.dev/og.jpg"` for Open Graph metadata, but `public/` contains no `og.jpg`. Not a runtime perf issue, but link previews (Slack/Twitter/etc.) will show a broken image. Worth a quick fix since you're already touching this area.
+**Fix:** re-encode at the sizes actually rendered and serve modern formats.
+The largest box any of these fills is the case-study hero (16:9, full width);
+the `/work` rows render them at 300×188. A 1600 px-wide WebP would cover
+every use at a fraction of the weight.
+
+This one is deliberately left as a decision rather than done, because it
+changes source assets.
+
+### 2. `PixelImage` allocates a canvas per animation frame
+
+`components/ui/PixelImage.tsx` — `draw()` (L63) calls
+`document.createElement("canvas")` on every tick of the 0.8 s reveal, and
+L33 sizes the visible canvas to `img.naturalWidth/naturalHeight` (1024×1024)
+regardless of the box it renders into.
+
+At ~60 fps that is up to ~48 offscreen canvas allocations plus full-
+resolution `drawImage` calls per reveal, and `/work` can have two or three
+instances mounted at once during a hover.
+
+It does not currently show up in the measurements — long tasks are zero on
+`/work` — because the reveals are short and staggered by hover. It is real
+waste, but it is not hurting anyone today, so it sits below #1.
+
+**Fix:** one offscreen canvas per instance held in a ref, sized to the
+rendered CSS box × `devicePixelRatio` rather than the source file.
+
+### 3. Two type systems still coexist
+
+`globals.css` carries both the current `.type-*` scale and the older
+brutalist utilities (`.headline`, `.heading`, `.text-h1`–`.text-h3`,
+`.text-display`, `.brutalist-card`, `.brutalist-button`). The legacy set is
+now referenced **only** by `app/style-guide/page.tsx` — no shipping page uses
+it.
+
+`/style-guide` is also an internal reference that documents the *superseded*
+system. It is now excluded from indexing in `robots.ts`, but it remains
+reachable and will drift further from the real site over time.
+
+**Decision needed:** delete `app/style-guide/` and the legacy utilities with
+it, or rewrite the page against the current scale. Left in place because
+removing a page is the owner's call.
+
+### 4. Footer links point nowhere
+
+- Social links in `components/layout/Footer.tsx` are placeholders
+  (`instagram.com/buildroot`, `twitter.com/buildroot_dev`,
+  `linkedin.com/company/buildroot`).
+- `/privacy`, `/cookies` and `/newsletter` are linked from the footer and
+  **all three return 404** — verified against the running build.
+
+Both are content decisions, not code problems, but they are visible to every
+visitor.
 
 ---
 
-## Notes on things that are already in good shape (no action needed)
-- `LazyMotion` + `domAnimation` is correctly set up in `app/providers.tsx`, and every animated component consistently imports the lighter `m` from `"framer-motion"` rather than the full `motion` object — confirmed across all 18 files that import from `framer-motion`. (`PixelImage.tsx`'s import of the imperative `animate()` helper is a separate, appropriately lightweight API, not the heavy `motion` component.)
-- No raw `<img>` tags anywhere — good instinct to centralize on one image component, even though that component itself needs the fixes above.
-- `next.config.ts` already sets `poweredByHeader: false` and reasonable security headers; Turbopack (Next 16 default) build has no unusual overrides.
-- Client/server component boundaries are largely justified — most `"use client"` files use `useScroll`/`useTransform`/`m` components that genuinely require the client runtime, not accidental over-marking.
+## Closed since the last review
+
+- **LCP was pinned to a decoration.** The hero's ghost echo — the largest
+  painted element on the page — faded in a second after the headline, so
+  Largest Contentful Paint sat at whenever that decoration finished. Tying it
+  to the headline's own reveal took LCP from 2284 ms to ~250 ms.
+- **Long tasks on load: 3 (237 ms) → 0.**
+- **Route transitions are layout-stable.** The letter shuffle rearranges only
+  a word's own characters, so every word keeps its final width: CLS 0.0001.
+- **Marquees run on the compositor** — CSS `transform` only, no per-frame JS,
+  and they honour `prefers-reduced-motion`.
+- **Dead weight removed:** `create-next-app`'s leftover SVGs, an unused
+  `lenis` reference in the About stack list, a dead commented block in the
+  Footer, the unused `.section-generous` utility, and the last
+  `eslint-disable` in the codebase.
+- **`/apple-icon` 404'd in production** — metadata routes have no file
+  extension, so `proxy.ts` was rewriting them into `/en/...`. Now skipped
+  explicitly.
+- **iOS painted a white band above dark pages** — no `theme-color` or
+  `color-scheme` was declared anywhere. Each route now ships both, matching
+  the colour at the top of that page.
+
+---
+
+## Health
+
+- `npx tsc --noEmit` — clean
+- `npm run lint` — clean, no suppressions anywhere in the codebase
+- `npm run build` — clean
+- No `console.log`, `TODO`, `any`, `@ts-ignore` or orphaned modules
+- Dictionaries structurally identical across `es` and `en`
+- No horizontal overflow at 360, 390, 414, 1366, 1440 or 1920

@@ -14,8 +14,7 @@
     "phone": "Teléfono",
     "legal": {
       "privacy": "privacidad",
-      "cookies": "cookies",
-      "newsletter": "newsletter"
+      "cookies": "cookies"
     }
   },
   "preloader": {
@@ -230,5 +229,61 @@
     },
     "email_button": "info@buildroot.co",
     "response_note": "Leemos cada mensaje nosotros mismos — normalmente respondemos en un día."
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacidad",
+      "intro": "Este sitio recoge lo mínimo para saber si funciona bien. No hay formularios que guarden sus datos, no usamos publicidad ni vendemos información a nadie.",
+      "updated": "Última actualización",
+      "sections": [
+        {
+          "heading": "Quiénes somos",
+          "body": "Buildroot es un estudio de desarrollo de software con sede en Ipiales, Nariño, Colombia. Para cualquier asunto relacionado con sus datos, escríbanos a info@buildroot.co y le respondemos nosotros mismos."
+        },
+        {
+          "heading": "Qué recogemos",
+          "body": "Estadísticas de uso agregadas y anónimas a través de Vercel Analytics y Vercel Speed Insights: páginas visitadas, país aproximado, tipo de dispositivo y tiempos de carga. Esta medición no usa cookies y no permite identificar a una persona concreta."
+        },
+        {
+          "heading": "Qué no recogemos",
+          "body": "No hay formularios en el sitio. Cuando usa el contacto, el mensaje se abre en su propio programa de correo y viaja directamente a nuestra bandeja: el sitio no lo almacena ni lo envía a través de terceros. No usamos publicidad, ni rastreo entre sitios, ni perfiles de comportamiento."
+        },
+        {
+          "heading": "Correos que nos escribe",
+          "body": "Si nos escribe, conservamos ese correo en nuestra bandeja para poder responderle y dar continuidad a la conversación. No lo usamos para nada más ni lo compartimos. Puede pedirnos que lo eliminemos cuando quiera."
+        },
+        {
+          "heading": "Sus derechos",
+          "body": "Conforme a la Ley 1581 de 2012 de protección de datos personales en Colombia, puede pedirnos acceder, actualizar, corregir o eliminar la información que tengamos sobre usted, y revocar cualquier autorización. Basta con escribirnos a info@buildroot.co."
+        },
+        {
+          "heading": "Cambios",
+          "body": "Si esta política cambia, actualizamos la fecha del encabezado. Los cambios aplican desde su publicación."
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Cookies",
+      "intro": "Este sitio no usa cookies de rastreo, ni propias ni de terceros. Tampoco verá un banner de consentimiento, porque no hay nada que consentir.",
+      "updated": "Última actualización",
+      "sections": [
+        {
+          "heading": "Cookies publicitarias o de rastreo",
+          "body": "Ninguna. No usamos publicidad, ni redes de rastreo, ni herramientas que sigan su navegación entre sitios."
+        },
+        {
+          "heading": "Medición de uso",
+          "body": "Usamos Vercel Analytics y Vercel Speed Insights para saber qué páginas se visitan y qué tan rápido cargan. Ambos funcionan sin cookies y con datos agregados que no identifican a ninguna persona."
+        },
+        {
+          "heading": "Almacenamiento en su navegador",
+          "body": "Guardamos un único dato en el almacenamiento de sesión de su navegador, llamado «buildroot_visited», para no repetirle la animación de entrada en cada página. No contiene información personal y desaparece al cerrar la pestaña."
+        },
+        {
+          "heading": "Cómo borrarlo",
+          "body": "Cerrar la pestaña lo elimina automáticamente. También puede limpiar los datos del sitio desde la configuración de su navegador en cualquier momento; nada dejará de funcionar si lo hace."
+        }
+      ]
+    }
   }
 }
