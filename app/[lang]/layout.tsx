@@ -53,12 +53,10 @@ const organizationJsonLd = {
   // "buildroot_" lockup rather than the square "b_" badge.
   logo: `${siteConfig.url}/brand/buildroot-logo-black.svg`,
   email: siteConfig.email,
-  sameAs: [
-    siteConfig.links.instagram,
-    siteConfig.links.twitter,
-    siteConfig.links.linkedin,
-    siteConfig.links.github,
-  ],
+  // Only profiles that actually exist — sameAs is a claim to search
+  // engines about who this organisation is, so listing a dead handle is
+  // worse than listing nothing.
+  sameAs: [siteConfig.links.linkedin, siteConfig.links.github],
 };
 
 export async function generateMetadata({

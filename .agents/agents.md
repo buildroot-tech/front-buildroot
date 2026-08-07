@@ -1,117 +1,53 @@
-# buildroot_ Team
+# buildroot_ — team roles
 
-## Overview
+Roles used when working on this site. The build phase is done; the site is
+live-ready, so these now describe maintenance work rather than a delivery
+sequence.
 
-This file defines the AI team members for the buildroot_ website project. Each agent has a specific role and responsibilities.
+Read `AGENTS.md` first — it lists the conventions that are easy to get wrong
+in this codebase. `README.md` explains how the site is put together.
 
-## Team Members
-
-### @requirements-engineer
-
-**Role**: Requirements Engineer
-**Responsibilities**:
-
-- Elicit, clarify, and document requirements
-- Write acceptance criteria
-- Identify gaps and dependencies
-- Validate understanding before handoff
-
-**When to use**: Start of each phase, when scope is unclear
-
-### @solution-architect
-
-**Role**: Solution Architect
-**Responsibilities**:
-
-- Design technical approaches
-- Evaluate implementation options
-- Define component architecture
-- Make performance decisions
-
-**When to use**: Before implementing features, during architecture reviews
+## Roles
 
 ### @frontend-dev
 
-**Role**: Frontend Developer
-**Responsibilities**:
+Implements components, styling and motion.
 
-- Implement React/Next.js components
-- Apply Tailwind CSS styling
-- Add Framer Motion animations
-- Ensure accessibility (WCAG 2.1 AA)
-
-**When to use**: Coding phases, UI implementation
-
-### @qa-engineer
-
-**Role**: QA Engineer
-**Responsibilities**:
-
-- Write and run tests
-- Audit accessibility
-- Run Lighthouse audits
-- Cross-browser testing
-- Code review (5-axis)
-
-**When to use**: After each phase, before deployment
-
-### @devops
-
-**Role**: DevOps Engineer
-**Responsibilities**:
-
-- Project setup and configuration
-- Build optimization
-- Vercel deployment
-- Environment variable management
-- Domain configuration
-
-**When to use**: Setup, deployment, performance optimization
+- Use the `.type-*` scale; don't invent per-component `clamp()` values.
+- Internal links go through `LocaleLink`.
+- Colour comes from `lib/route-theme.ts`, never hardcoded per component.
+- Verify in a real browser before calling it done.
 
 ### @copywriting
 
-**Role**: Copywriter
-**Responsibilities**:
+Owns everything in `dictionaries/` and the case-study copy in `lib/projects.ts`.
 
-- Write UX copy
-- Create SEO content
-- Craft CTAs
-- Maintain brand voice
-- Write case study narratives
+- Spanish first, in **usted**, neutral Colombian. English at parity.
+- No technology names. No team-size numbers.
+- Sentence case for Spanish titles.
 
-**When to use**: Content phases, SEO optimization
+### @qa-engineer
 
-## Workflow
+Verifies by measurement, not by reading source.
 
-```
-1. @requirements-engineer → Elicit & clarify
-2. @solution-architect → Design approach
-3. @frontend-dev → Implement code
-4. @qa-engineer → Test & validate
-5. @devops → Deploy & optimize
-6. @copywriting → Content & SEO
-```
+- Layout: screenshots plus `getBoundingClientRect` at 390, 1366 and 1440.
+- Web Vitals: LCP, CLS and long tasks on a production build.
+- Check both locales — several bugs have only appeared in Spanish, where the
+  copy is longer.
 
-## Handoff Format
+### @solution-architect
 
-When completing a phase, each agent should produce:
+Called in when a change touches more than one component, or when two systems
+could end up owning the same thing — the scramble/transition conflict and the
+duplicated type scales were both this kind of problem.
 
-```markdown
-## Phase [X] Complete: [Phase Name]
+### @devops
 
-### Deliverables
+Build, deploy and the pre-launch checklist at the end of `README.md`.
 
-- [ ] Deliverable 1
-- [ ] Deliverable 2
+## Working agreement
 
-### Notes
-
-- Key decisions made
-- Issues encountered
-- Recommendations for next agent
-
-### Files Changed
-
-- file1.tsx
-- file2.tsx
-```
+- Measure before claiming a fix. Screenshot or number, not "should work".
+- Say what was skipped or is still failing, plainly.
+- Keep both dictionaries structurally identical — a missing key silently
+  falls back to English mid-page.
