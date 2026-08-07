@@ -1,8 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { WorkSection } from "@/components/work/WorkSection";
 import { getDictionary, Locale } from "@/lib/dictionaries";
 import { getProjects } from "@/lib/projects";
 import { buildAlternates } from "@/lib/seo";
+
+// Colour behind the browser chrome on mobile — this page opens on
+// #f5f5f0, so the status-bar area matches instead of falling back
+// to the browser default (a white band above a dark page on iOS).
+export const viewport: Viewport = {
+  themeColor: "#f5f5f0",
+  colorScheme: "light",
+};
 
 export async function generateMetadata({
   params,
