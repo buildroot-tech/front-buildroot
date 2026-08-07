@@ -92,10 +92,10 @@
     "cta_button": "Empecemos su proyecto",
     "detail": {
       "back_to_work": "Volver a proyectos",
+      "overview": "En resumen",
       "problem": "Problema",
       "solution": "Solución",
       "results": "Resultados e impacto",
-      "stack": "Stack",
       "live_demo": "Ver el sitio"
     }
   },
