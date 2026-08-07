@@ -42,7 +42,6 @@ const fadeUp = {
 };
 
 export function Footer({ dict }: FooterProps): React.ReactElement {
-  const year = new Date().getFullYear();
   const pathname = usePathname();
   const normalizedPathname = normalizeLocalePathname(pathname);
   const theme = getRouteTheme(normalizedPathname);
@@ -201,9 +200,12 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
 
         {/* ── LOWER HALF (Contact Info) ── */}
         <div className="pt-12 md:pt-8 pb-4 md:pb-6 [@media(max-height:820px)]:md:pt-3 [@media(max-height:820px)]:md:pb-3 w-full overflow-hidden flex flex-row items-end justify-between px-6 md:px-12 gap-8">
-          {/* Bottom Left: mark over the year — hidden on mobile, where
+          {/* Bottom Left: the mark on its own — hidden on mobile, where
               there isn't room beside the contact block without cramping it. */}
-          <div className="hidden md:flex flex-col items-start gap-3 shrink-0 text-[var(--text-primary)] pointer-events-none mb-[clamp(0.1rem,0.3vw,0.4rem)]">
+          <div
+            aria-label="buildroot"
+            className="hidden md:flex items-start shrink-0 text-[var(--text-primary)] pointer-events-none mb-[clamp(0.1rem,0.3vw,0.4rem)]"
+          >
             {/* Drawn as a mask filled with currentColor rather than an
                 <img>: the footer is black on /about, white on /work and so
                 on, and a fixed-colour SVG would need a variant per route. */}
@@ -220,22 +222,15 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                 WebkitMaskRepeat: "no-repeat",
               }}
             />
-
-            <div className="flex items-center gap-1 font-display text-[clamp(1.2rem,1.6vw,1.8rem)] font-normal tracking-tight">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-[1em] h-[1em]"
+            {/* Sits against the mark's top edge, the way a registered
+                symbol is normally set — sized off the mark rather than the
+                body scale so the pairing holds as the mark resizes. */}
+            <span
+              aria-hidden="true"
+              className="ml-[0.2em] mt-[0.15em] font-display text-[clamp(0.85rem,1.3vw,1.4rem)] leading-none"
             >
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M14.83 14.83a4 4 0 1 1 0-5.66"></path>
-            </svg>
-            <span>{year}</span>
-            </div>
+              ®
+            </span>
           </div>
 
           {/* Main Info Box - Right aligned */}
