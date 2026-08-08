@@ -6,7 +6,7 @@ import { SelectWork } from "@/components/home/SelectWork";
 import { CTA } from "@/components/home/CTA";
 import { getDictionary, Locale } from "@/lib/dictionaries";
 import { getProjects } from "@/lib/projects";
-import { siteConfig, buildAlternates } from "@/lib/seo";
+import { buildAlternates, localizedSeo } from "@/lib/seo";
 
 // Colour behind the browser chrome on mobile — this page opens on
 // #000000, so the status-bar area matches instead of falling back
@@ -22,12 +22,16 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang as Locale);
-  const { line1, line2, line3 } = dict.home.hero;
+  const copy = localizedSeo[lang as Locale] ?? localizedSeo.es;
 
+  // The homepage title is the strongest ranking signal the site has, so it
+  // states the service and the place. It used to repeat the hero headline
+  // ("Creamos Productos Digitales.") — good copy, but it names neither what
+  // we do nor where we are, which is what people actually search for.
   return {
-    title: `${line1} ${line2} ${line3}`,
-    description: siteConfig.description,
+    title: copy.title,
+    description: copy.description,
+    keywords: [...copy.keywords],
     alternates: buildAlternates(lang as Locale),
   };
 }
