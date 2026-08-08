@@ -38,26 +38,14 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-import { defaultMetadata, buildAlternates, ogLocale, siteConfig } from "@/lib/seo";
+import {
+  defaultMetadata,
+  buildAlternates,
+  ogLocale,
+  localizedSeo,
+  localBusinessJsonLd,
+} from "@/lib/seo";
 import { getDictionary, Locale } from "@/lib/dictionaries";
-
-// Organization structured data (JSON-LD) — social links mirror
-// `components/layout/Footer.tsx`'s `socialLinks`/`contactInfo`.
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "buildroot_",
-  url: siteConfig.url,
-  // The full wordmark, not the favicon — this is what search engines and
-  // rich results render as the brand's logo, so it wants the readable
-  // "buildroot_" lockup rather than the square "b_" badge.
-  logo: `${siteConfig.url}/brand/buildroot-logo-black.svg`,
-  email: siteConfig.email,
-  // Only profiles that actually exist — sameAs is a claim to search
-  // engines about who this organisation is, so listing a dead handle is
-  // worse than listing nothing.
-  sameAs: [siteConfig.links.linkedin, siteConfig.links.github],
-};
 
 export async function generateMetadata({
   params,
@@ -67,12 +55,26 @@ export async function generateMetadata({
   const { lang } = await params;
   const locale = lang as Locale;
 
+  // Locale-aware title and description. The Spanish pages were previously
+  // describing themselves in English — to the market we actually sell to.
+  const copy = localizedSeo[locale] ?? localizedSeo.es;
+
   return {
     ...defaultMetadata,
+    title: { default: copy.title, template: "%s | buildroot_" },
+    description: copy.description,
+    keywords: [...copy.keywords],
     alternates: buildAlternates(locale),
     openGraph: {
       ...defaultMetadata.openGraph,
+      title: copy.title,
+      description: copy.description,
       locale: ogLocale(locale),
+    },
+    twitter: {
+      ...defaultMetadata.twitter,
+      title: copy.title,
+      description: copy.description,
     },
   };
 }
@@ -97,7 +99,9 @@ export default async function RootLayout({
       <body className="min-h-full flex flex-col">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessJsonLd(lang as Locale)),
+          }}
         />
         <Providers>
           <Preloader dict={dict.preloader} />
