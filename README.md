@@ -31,13 +31,20 @@ Routes live under `app/[lang]/`, with `es` and `en` dictionaries in
 `dictionaries/`. **Spanish is the primary language**; English is kept at
 parity.
 
-`proxy.ts` rewrites un-prefixed paths to the default locale, so `/work`
-serves English and `/es/work` serves Spanish. Because of that, a plain
-`href="/work"` means _"work in English"_, not _"work in the current
-language"_ — internal links must therefore use **`LocaleLink`**
+`proxy.ts` rewrites un-prefixed paths to the default locale, which is
+**`es`** — so `buildroot.co/work` serves Spanish and `/en/work` serves
+English. The bare domain is the URL people link and share, so it points at
+the language the local market actually searches in.
+
+Because of that, a plain `href="/work"` means _"work in Spanish"_, not
+_"work in the current language"_ — internal links must use **`LocaleLink`**
 (`components/ui/LocaleLink.tsx`), which carries the active locale across
-navigation. Use plain `next/link` only for the language switcher itself,
-which deliberately targets the other locale.
+navigation. Use plain `next/link` only for the language switcher, which
+deliberately targets the other locale and prefixes it explicitly.
+
+Three places must agree on the default: `defaultLocale` in `proxy.ts`,
+`DEFAULT_LOCALE` in `LocaleLink.tsx`, and the `x-default` hreflang in
+`buildAlternates()`.
 
 Routes that live at the app root instead of under `app/[lang]` — the
 metadata routes and `/style-guide` — must be listed in `UNLOCALIZED_ROUTES`
