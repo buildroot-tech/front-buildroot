@@ -4,7 +4,12 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { LocaleLink } from "@/components/ui/LocaleLink";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, m, useScroll, useMotionValueEvent } from "framer-motion";
+import {
+  AnimatePresence,
+  m,
+  useScroll,
+  useMotionValueEvent,
+} from "framer-motion";
 import {
   ScrambleText,
   ScrambleTextHandle,
@@ -112,7 +117,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
           : 0;
       const index = Math.min(
         SERVICES_SLIDE_THEMES.length - 1,
-        Math.floor(progress * SERVICES_SLIDE_THEMES.length)
+        Math.floor(progress * SERVICES_SLIDE_THEMES.length),
       );
       setServicesSlideTheme(SERVICES_SLIDE_THEMES[index]);
     };
@@ -308,9 +313,13 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
                 {dict?.contact || "let's talk"}
               </LocaleLink>
               {/* Plain Link on purpose — this one deliberately targets the
-                  *other* locale, so it must not be re-prefixed. */}
+               *other* locale, so it must not be re-prefixed. */}
               <Link
-                href={lang === "en" ? `/es${normalizedPathname === "/" ? "" : normalizedPathname}` : normalizedPathname}
+                href={
+                  lang === "en"
+                    ? `/es${normalizedPathname === "/" ? "" : normalizedPathname}`
+                    : normalizedPathname
+                }
                 className="font-display text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)] mt-8"
                 onClick={() => setMobileOpen(false)}
               >

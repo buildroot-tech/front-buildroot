@@ -53,8 +53,10 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
     { href: "/about", label: dict?.header?.nav?.about || "about" },
     { href: "/contact", label: dict?.header?.contact || "lets talk" },
     {
-      href: pathname.startsWith("/es") ? normalizedPathname : `/es${normalizedPathname === "/" ? "" : normalizedPathname}`,
-      label: pathname.startsWith("/es") ? "english" : "spanish"
+      href: pathname.startsWith("/es")
+        ? normalizedPathname
+        : `/es${normalizedPathname === "/" ? "" : normalizedPathname}`,
+      label: pathname.startsWith("/es") ? "english" : "spanish",
     },
   ];
 
@@ -100,7 +102,8 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                       // The last entry is the language switch, which already
                       // targets the other locale — it must stay a plain Link
                       // so it isn't re-prefixed back into the current one.
-                      const Component = i === navLinks.length - 1 ? Link : LocaleLink;
+                      const Component =
+                        i === navLinks.length - 1 ? Link : LocaleLink;
                       return (
                         <m.div
                           key={i}

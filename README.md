@@ -33,28 +33,42 @@ parity.
 
 `proxy.ts` rewrites un-prefixed paths to the default locale, so `/work`
 serves English and `/es/work` serves Spanish. Because of that, a plain
-`href="/work"` means *"work in English"*, not *"work in the current
-language"* — internal links must therefore use **`LocaleLink`**
+`href="/work"` means _"work in English"_, not _"work in the current
+language"_ — internal links must therefore use **`LocaleLink`**
 (`components/ui/LocaleLink.tsx`), which carries the active locale across
 navigation. Use plain `next/link` only for the language switcher itself,
 which deliberately targets the other locale.
+
+Routes that live at the app root instead of under `app/[lang]` — the
+metadata routes and `/style-guide` — must be listed in `UNLOCALIZED_ROUTES`
+in `proxy.ts`, or that rewrite sends them to a path that does not exist.
+There is also no `app/layout.tsx`, so such a route has to ship its own root
+layout with `globals.css` and the fonts; otherwise Next hands it a bare
+default layout and it renders unstyled.
 
 ### Type scale
 
 `app/globals.css` defines the scale once, under `TYPE SCALE`:
 
-| Class | Role |
-| --- | --- |
-| `.type-eyebrow` | Section label, sits in the left 46% column |
-| `.type-statement` | The opening statement opposite it |
-| `.type-title` | Centred section headings |
-| `.type-manifesto` | Full-bleed declarations |
-| `.type-lead` | Secondary serif paragraph |
-| `.type-body` | Running copy |
+| Class             | Role                                       |
+| ----------------- | ------------------------------------------ |
+| `.type-eyebrow`   | Section label, sits in the left 46% column |
+| `.type-statement` | The opening statement opposite it          |
+| `.type-title`     | Centred section headings                   |
+| `.type-manifesto` | Full-bleed declarations                    |
+| `.type-lead`      | Secondary serif paragraph                  |
+| `.type-body`      | Running copy                               |
 
 They carry size, weight, leading and tracking only — **never colour** — so
 they compose over each route's own theme without per-page overrides. Prefer
 these over inventing new `clamp()` values.
+
+The three typefaces are declared once in `lib/fonts.ts` and shared by every
+root layout.
+
+**`/style-guide` renders all of this live** — it imports `routeThemes` and
+uses the real `.type-*` classes rather than describing them, so it shows the
+system as it actually is. Excluded from indexing.
 
 ### Route colour
 
@@ -68,7 +82,7 @@ browser chrome behind the status bar on mobile.
 
 - **Page transitions** — `components/ui/RouteTextShuffle.tsx`. On entering a
   route, the text already on screen unscrambles into place: each word shows
-  only *its own* characters rearranged, so every word keeps its final width
+  only _its own_ characters rearranged, so every word keeps its final width
   and nothing reflows.
 - **Scroll stacking** — `/services` slides and the case-study panels in
   `ProjectDetail` share one mechanic: a tall driver section, a `sticky`
@@ -129,18 +143,21 @@ while stacking back into the exact logo.
 
 Measured on a production build, desktop (1440×900):
 
-| Page | LCP | CLS | Long tasks | Transfer |
-| --- | --- | --- | --- | --- |
-| `/es` | 256 ms | 0.0001 | 1 | 108 KB |
-| `/es/work` | 236 ms | 0.0001 | 0 | 108 KB |
-| `/es/about` | 160 ms | 0.0001 | 0 | 108 KB |
-| `/es/contact` | 216 ms | 0.0001 | 0 | 108 KB |
-| `/es/work/[slug]` | 208 ms | 0.0001 | 0 | 864 KB |
+| Page              | LCP    | CLS    | Long tasks | Transfer |
+| ----------------- | ------ | ------ | ---------- | -------- |
+| `/es`             | 636 ms | 0.0001 | 0          | 109 KB   |
+| `/es/work`        | 312 ms | 0.0001 | 1 (66 ms)  | 109 KB   |
+| `/es/about`       | 124 ms | 0.0001 | 0          | 109 KB   |
+| `/es/services`    | 204 ms | 0.0001 | 0          | 109 KB   |
+| `/es/contact`     | 220 ms | 0.0001 | 0          | 109 KB   |
+| `/es/work/[slug]` | 228 ms | 0.0001 | 0          | 188 KB   |
 
 Route transitions hold 60fps with zero long tasks.
 
-See `PERFORMANCE_REVIEW.md` for the open items behind that 864 KB and the
-rest of the outstanding technical debt.
+Every page is within budget. The case-study page was the one outlier at
+864 KB until the project images were re-encoded to WebP; it is now 188 KB.
+
+See `PERFORMANCE_REVIEW.md` for the remaining technical debt.
 
 ---
 
@@ -183,10 +200,6 @@ Until steps 1–4 are decided, there is nothing to maintain.
 
 ## Before going live
 
-- [ ] **Optimise the project images.** `public/projects/` is 3.5 MB of
-      1024×1024 JPEGs served unoptimised — the single largest thing on the
-      site. This is why a case-study page transfers 864 KB against 108 KB
-      everywhere else. See `PERFORMANCE_REVIEW.md` §1.
 - [ ] **Replace the LinkedIn URL.** `lib/seo.ts` still holds a placeholder
       (`linkedin.com/company/buildroot`). It feeds both the footer and the
       Organization JSON-LD, so a wrong value is published twice. GitHub is
@@ -204,6 +217,14 @@ Until steps 1–4 are decided, there is nothing to maintain.
       already on the site supports that listing, but it cannot replace it.
 - [ ] **Submit the sitemap** in Google Search Console, and set the
       international targeting there once the profile exists.
-- [ ] **Decide what happens to `/style-guide`** — it documents the superseded
-      brutalist system and is the only thing still using those CSS utilities.
-      Currently excluded from indexing. See `PERFORMANCE_REVIEW.md` §3.
+
+### Done
+
+- [x] **Project images optimised.** The four 1024×1024 JPEGs in
+      `public/projects/` were re-encoded to WebP: 3.4 MB → 480 KB, taking a
+      case-study page from 864 KB to 188 KB.
+- [x] **`/style-guide` rewritten against the current system**, and the
+      superseded brutalist utilities deleted along with their orphaned
+      tokens. The page was also 404ing and rendering unstyled; both are
+      fixed. It stays excluded from indexing.
+- [x] **`/privacy` and `/cookies` written** in both locales.

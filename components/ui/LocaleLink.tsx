@@ -24,7 +24,11 @@ export function LocaleLink({ href, ...rest }: LocaleLinkProps) {
   const pathname = usePathname();
 
   let resolved = href;
-  if (typeof href === "string" && href.startsWith("/") && !LOCALE_PREFIX.test(href)) {
+  if (
+    typeof href === "string" &&
+    href.startsWith("/") &&
+    !LOCALE_PREFIX.test(href)
+  ) {
     const match = pathname.match(LOCALE_PREFIX);
     const locale = match?.[1];
     // "en" is what an un-prefixed path already resolves to, so only "es"

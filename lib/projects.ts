@@ -34,7 +34,7 @@ export const PROJECTS: readonly Project[] = [
       challenge:
         "Polo & Pantoja needed a unified solution for legal services and a regional real estate marketplace supporting anticres contracts—a unique legal modality requiring strict document verification.",
       solution:
-      "Built one platform serving both sides of the business, with document verification workflows tailored to how the firm's staff and property owners actually work — each role seeing only what it should.",
+        "Built one platform serving both sides of the business, with document verification workflows tailored to how the firm's staff and property owners actually work — each role seeing only what it should.",
       results: [
         "Unified legal showcase & property management into a single platform",
         "Streamlined property verification time for law firm staff",
@@ -58,7 +58,11 @@ export const PROJECTS: readonly Project[] = [
     description:
       "A prospective student's first impression, redesigned: a fast, beautifully animated site that loads instantly on any phone and makes it easy to say yes.",
     tags: ["Astro 5", "TypeScript", "Tailwind 4", "GSAP 3", "EmailJS"],
-    highlights: ["Student-Facing Site", "Fast Mobile Experience", "Engaging Design"],
+    highlights: [
+      "Student-Facing Site",
+      "Fast Mobile Experience",
+      "Engaging Design",
+    ],
     metrics: [
       { label: "Load Time", value: "Under half a second" },
       { label: "Custom Sections", value: "14 sections" },
@@ -68,7 +72,7 @@ export const PROJECTS: readonly Project[] = [
       challenge:
         "Edusur needed a modern, highly engaging web portal for prospective students that loaded instantly on mobile networks while maintaining smooth animations.",
       solution:
-      "Rebuilt the site so pages arrive almost instantly on a phone, keeping the motion and polish that make the school feel current without making visitors wait for it.",
+        "Rebuilt the site so pages arrive almost instantly on a phone, keeping the motion and polish that make the school feel current without making visitors wait for it.",
       results: [
         "Achieved sub-500ms First Contentful Paint on mobile",
         "98/100 Lighthouse performance rating",
@@ -99,7 +103,11 @@ export const PROJECTS: readonly Project[] = [
       "Apex",
       "Flow Automation",
     ],
-    highlights: ["Faster Support", "AI-Assisted Routing", "Unified Case Handling"],
+    highlights: [
+      "Faster Support",
+      "AI-Assisted Routing",
+      "Unified Case Handling",
+    ],
     metrics: [
       { label: "Routing Latency", value: "Under 1.2 seconds" },
       { label: "Cases Auto-Routed", value: "85%" },
@@ -109,7 +117,7 @@ export const PROJECTS: readonly Project[] = [
       challenge:
         "Enterprise customer support teams faced high queue wait times due to manual case categorization and fragmented digital communication channels.",
       solution:
-      "Designed automated routing that reads each incoming case and sends it straight to the right person, with an assistant resolving the routine ones and handing anything complex to staff without the customer repeating themselves.",
+        "Designed automated routing that reads each incoming case and sends it straight to the right person, with an assistant resolving the routine ones and handing anything complex to staff without the customer repeating themselves.",
       results: [
         "Reduced average case triage time by 85%",
         "Seamless AI-to-human agent handoff for complex support inquiries",
@@ -142,7 +150,7 @@ export const PROJECTS: readonly Project[] = [
       challenge:
         "Local news in Nariño/Ecuador border region lacked modern digital publishing tools, requiring a cheap-to-operate platform supporting local ad sales without third-party ad network dependencies.",
       solution:
-      "Built an editorial workflow the newsroom can run without help, plus an ad system that sells and rotates local placements — all on infrastructure that costs almost nothing to keep online.",
+        "Built an editorial workflow the newsroom can run without help, plus an ad system that sells and rotates local placements — all on infrastructure that costs almost nothing to keep online.",
       results: [
         "Designed to scale to 50,000 monthly visits at near-zero hosting cost",
         "Streamlined article publishing loop to under 4 hours",
@@ -164,7 +172,11 @@ export const PROJECTS: readonly Project[] = [
     description:
       "A dashboard that used to freeze under its own data now updates in real time — even at ten million events a day, without anyone noticing the load.",
     tags: ["Next.js 16", "React 19", "ClickHouse", "WebSockets", "Tailwind 4"],
-    highlights: ["Real-Time Dashboard", "Instant Load Times", "Enterprise Scale"],
+    highlights: [
+      "Real-Time Dashboard",
+      "Instant Load Times",
+      "Enterprise Scale",
+    ],
     metrics: [
       { label: "Throughput Gain", value: "+340%" },
       { label: "Query Response", value: "Under 50 ms" },
@@ -174,7 +186,7 @@ export const PROJECTS: readonly Project[] = [
       challenge:
         "The legacy dashboard suffered from severe rendering freezes and API bottlenecks under heavy concurrent telemetry loads.",
       solution:
-      "Rebuilt the dashboard so live data streams in continuously and the interface stays responsive while it does, even under the heaviest event volumes.",
+        "Rebuilt the dashboard so live data streams in continuously and the interface stays responsive while it does, even under the heaviest event volumes.",
       results: [
         "Reduced dashboard initial load time from 4.2s to 0.4s",
         "Supported 500+ concurrent live telemetry views",
@@ -203,7 +215,11 @@ export const PROJECTS: readonly Project[] = [
       "AI Automation",
       "Workflows",
     ],
-    highlights: ["Internal AI Tooling", "Faster Delivery", "Built-In Quality Checks"],
+    highlights: [
+      "Internal AI Tooling",
+      "Faster Delivery",
+      "Built-In Quality Checks",
+    ],
     metrics: [
       { label: "Specialised Roles", value: "6" },
       { label: "Delivery Speed", value: "3× faster" },
@@ -213,7 +229,7 @@ export const PROJECTS: readonly Project[] = [
       challenge:
         "Traditional single-prompt AI coding assistants suffer from context drift, forgotten requirements, and lack of systematic architectural review.",
       solution:
-      "Built a structured workflow that splits a project into specialised roles, each one checking the previous stage's work, with strict hand-offs so nothing gets lost between steps.",
+        "Built a structured workflow that splits a project into specialised roles, each one checking the previous stage's work, with strict hand-offs so nothing gets lost between steps.",
       results: [
         "Eliminated context degradation on complex multi-step features",
         "Ensured WCAG 2.1 AA accessibility and performance target compliance",
@@ -245,7 +261,10 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
   "polo-pantoja-platform": {
     industry: "Servicios Legales",
     metrics: [
-      { label: "Modalidades de contrato", value: "3 (Arriendo / Venta / Anticresis)" },
+      {
+        label: "Modalidades de contrato",
+        value: "3 (Arriendo / Venta / Anticresis)",
+      },
       { label: "Control de acceso", value: "Por rol y por documento" },
       { label: "Verificación", value: "Flujo de aprobación integrado" },
     ],
@@ -253,7 +272,11 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
       "Portal para firma de abogados y marketplace inmobiliario especializado con gestión de contratos de anticresis.",
     description:
       "Una sola plataforma, dos negocios: el portal de clientes de una firma de abogados y un marketplace inmobiliario regional, funcionando en conjunto — incluyendo los contratos de anticresis, propios de Colombia, gestionados de forma segura desde la publicación hasta la firma.",
-    highlights: ["Marketplace Inmobiliario", "Portal de Clientes", "Contratos Seguros"],
+    highlights: [
+      "Marketplace Inmobiliario",
+      "Portal de Clientes",
+      "Contratos Seguros",
+    ],
     caseStudy: {
       challenge:
         "Polo & Pantoja necesitaba una solución unificada para sus servicios legales y un marketplace inmobiliario regional que soportara contratos de anticresis — una modalidad legal particular que exige una verificación documental estricta.",
@@ -277,7 +300,11 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
       "Un sitio rápido y cuidado para futuros estudiantes, que carga al instante en cualquier celular.",
     description:
       "La primera impresión de un futuro estudiante, rediseñada: un sitio rápido y con animaciones cuidadas que carga al instante en cualquier celular y facilita decir que sí.",
-    highlights: ["Sitio para Estudiantes", "Experiencia Móvil Rápida", "Diseño Atractivo"],
+    highlights: [
+      "Sitio para Estudiantes",
+      "Experiencia Móvil Rápida",
+      "Diseño Atractivo",
+    ],
     caseStudy: {
       challenge:
         "Edusur necesitaba un portal web moderno y atractivo para futuros estudiantes que cargara al instante en redes móviles sin sacrificar animaciones fluidas.",
@@ -301,7 +328,11 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
       "Enrutamiento automático de casos con un asistente que resuelve las solicitudes rutinarias.",
     description:
       "Los casos de soporte que antes esperaban en cola ahora se enrutan solos — el caso correcto al agente correcto, al instante, con IA resolviendo los casos rutinarios antes de que un humano los vea.",
-    highlights: ["Soporte Más Rápido", "Enrutamiento Asistido por IA", "Gestión Unificada de Casos"],
+    highlights: [
+      "Soporte Más Rápido",
+      "Enrutamiento Asistido por IA",
+      "Gestión Unificada de Casos",
+    ],
     caseStudy: {
       challenge:
         "Los equipos de soporte empresarial enfrentaban largos tiempos de espera en cola debido a la categorización manual de casos y canales de comunicación digital fragmentados.",
@@ -325,7 +356,11 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
       "Diario digital de alta velocidad con motor de publicidad autogestionado.",
     description:
       "Una redacción local que puede publicar una noticia en horas, no en días — con su propia venta de publicidad integrada, para que el negocio no dependa de ninguna red publicitaria externa.",
-    highlights: ["Diario Digital", "Publicación Rápida", "Venta de Publicidad Local"],
+    highlights: [
+      "Diario Digital",
+      "Publicación Rápida",
+      "Venta de Publicidad Local",
+    ],
     caseStudy: {
       challenge:
         "La prensa local en la región fronteriza de Nariño/Ecuador carecía de herramientas modernas de publicación digital, y requería una plataforma económica de operar que soportara venta de publicidad local sin depender de redes publicitarias de terceros.",
@@ -349,7 +384,11 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
       "Plataforma de telemetría y datos en streaming de alto rendimiento en tiempo real.",
     description:
       "Un dashboard que antes se congelaba con su propio volumen de datos ahora se actualiza en tiempo real — incluso con diez millones de eventos al día, sin que nadie note la carga.",
-    highlights: ["Dashboard en Tiempo Real", "Cargas Instantáneas", "Escala Empresarial"],
+    highlights: [
+      "Dashboard en Tiempo Real",
+      "Cargas Instantáneas",
+      "Escala Empresarial",
+    ],
     caseStudy: {
       challenge:
         "El dashboard anterior sufría de congelamientos severos en el renderizado y cuellos de botella en la API bajo cargas de telemetría concurrentes altas.",
@@ -373,7 +412,11 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
       "Framework multi-agente para el ciclo de vida autónomo de ingeniería de software.",
     description:
       "Nuestro propio sistema interno para construir software más rápido sin recortar calidad — seis roles especializados trabajando en secuencia, cada uno verificando al anterior, para que nada se escape.",
-    highlights: ["Herramientas Internas de IA", "Entregas Más Rápidas", "Controles de Calidad Integrados"],
+    highlights: [
+      "Herramientas Internas de IA",
+      "Entregas Más Rápidas",
+      "Controles de Calidad Integrados",
+    ],
     caseStudy: {
       challenge:
         "Los asistentes de codificación con IA de un solo prompt sufren de pérdida de contexto, requisitos olvidados y falta de una revisión arquitectónica sistemática.",
@@ -395,6 +438,19 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
  * for any project that doesn't (yet) have a translation entry, so a
  * missing/partial translation never drops a project from the list.
  */
+/**
+ * Path to a project's photo. Centralised so the format lives in one place —
+ * it was repeated across five call sites, which is how a format change turns
+ * into a hunt.
+ *
+ * WebP: the source JPEGs were 700KB–1MB each at 1024×1024 and made a
+ * case-study page transfer 864KB against 108KB everywhere else. Same
+ * dimensions, ~86% smaller.
+ */
+export function projectImageSrc(image: string): string {
+  return `/projects/${image}.webp`;
+}
+
 export function getProjects(locale: Locale): readonly Project[] {
   if (locale !== "es") {
     return PROJECTS;

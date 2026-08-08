@@ -2,9 +2,18 @@
 
 import { useEffect, useRef, useState } from "react";
 import { LocaleLink } from "@/components/ui/LocaleLink";
-import { AnimatePresence, m, useScroll, useTransform, type MotionValue } from "framer-motion";
+import {
+  AnimatePresence,
+  m,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { ScrambleText, type ScrambleTextHandle } from "@/components/ui/TextScrambler";
+import {
+  ScrambleText,
+  type ScrambleTextHandle,
+} from "@/components/ui/TextScrambler";
 import type { Dictionary } from "@/lib/dictionaries";
 
 interface ServicesSectionProps {
@@ -67,7 +76,10 @@ const FALLBACK_SERVICES: Record<
 const ENGAGE_KEYS = ["project", "retainer", "audit"] as const;
 type EngageKey = (typeof ENGAGE_KEYS)[number];
 
-const FALLBACK_ENGAGE: Record<EngageKey, { title: string; description: string }> = {
+const FALLBACK_ENGAGE: Record<
+  EngageKey,
+  { title: string; description: string }
+> = {
   project: {
     title: "Project-Based",
     description:
@@ -98,7 +110,13 @@ interface ServiceSlideProps {
 // (components/home/WorkflowSteps.tsx StepCard), just with 3 beats instead
 // of 5 and no scale-down on the outgoing slide (the color change already
 // makes the handoff read clearly).
-function ServiceSlide({ serviceKey, index, total, item, scrollYProgress }: ServiceSlideProps) {
+function ServiceSlide({
+  serviceKey,
+  index,
+  total,
+  item,
+  scrollYProgress,
+}: ServiceSlideProps) {
   const segment = 1 / total;
   const start = index * segment;
   // Transition takes 60% of this slide's own segment, leaving the other
@@ -109,7 +127,7 @@ function ServiceSlide({ serviceKey, index, total, item, scrollYProgress }: Servi
   const y = useTransform(
     scrollYProgress,
     [Math.max(0, start - segment * 0.6), start],
-    ["100%", "0%"]
+    ["100%", "0%"],
   );
   const colors = SERVICE_COLORS[serviceKey];
 
@@ -138,7 +156,10 @@ function ServiceSlide({ serviceKey, index, total, item, scrollYProgress }: Servi
       <h3 className="font-display text-5xl font-light tracking-tight sm:text-6xl md:text-8xl 2xl:text-9xl">
         {item.title}
       </h3>
-      <p className="mt-6 max-w-4xl font-display font-normal leading-snug text-2xl md:text-3xl" style={{ opacity: 0.85 }}>
+      <p
+        className="mt-6 max-w-4xl font-display font-normal leading-snug text-2xl md:text-3xl"
+        style={{ opacity: 0.85 }}
+      >
         {item.description}
       </p>
     </m.div>
@@ -159,7 +180,8 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
 
   const ENGAGE_INTERVAL = 5000;
   const [engageIndex, setEngageIndex] = useState(0);
-  const goNextEngage = () => setEngageIndex((i) => (i + 1) % ENGAGE_KEYS.length);
+  const goNextEngage = () =>
+    setEngageIndex((i) => (i + 1) % ENGAGE_KEYS.length);
 
   // Auto-advances on its own — restarts the countdown every time the
   // index changes, whether from the timer itself or a manual Prev/Next
@@ -199,7 +221,12 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
           the previous one as you scroll, same mechanic as Home's process
           steps. stackRef spans 3 viewport-heights of scroll room; the
           sticky child pins in place while that room scrolls underneath. */}
-      <section id="services-stack" ref={stackRef} className="relative w-full" style={{ height: `${SERVICE_KEYS.length * 100}vh` }}>
+      <section
+        id="services-stack"
+        ref={stackRef}
+        className="relative w-full"
+        style={{ height: `${SERVICE_KEYS.length * 100}vh` }}
+      >
         <div className="sticky top-0 h-screen w-full overflow-hidden">
           {SERVICE_KEYS.map((key, i) => (
             <ServiceSlide
@@ -266,7 +293,11 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
                       initial={{ opacity: 0, x: 60 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -60 }}
-                      transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{
+                        duration: 0.6,
+                        delay: 0.08,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
                       className="absolute left-0 top-0 w-full font-display text-2xl font-normal leading-snug text-white/90 md:text-3xl"
                     >
                       {model.description}
@@ -277,7 +308,6 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
             );
           })()}
         </div>
-
       </section>
 
       {/* CTA — brought up to the same giant scale as the rest of the

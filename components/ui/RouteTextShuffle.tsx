@@ -118,30 +118,36 @@ interface Target {
 }
 
 function collectTargets(): Target[] {
-  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
-    acceptNode(node) {
-      const value = node.nodeValue;
-      if (!value || !value.trim()) return NodeFilter.FILTER_REJECT;
+  const walker = document.createTreeWalker(
+    document.body,
+    NodeFilter.SHOW_TEXT,
+    {
+      acceptNode(node) {
+        const value = node.nodeValue;
+        if (!value || !value.trim()) return NodeFilter.FILTER_REJECT;
 
-      const parent = (node as Text).parentElement;
-      if (!parent) return NodeFilter.FILTER_REJECT;
-      if (SKIP_TAGS.has(parent.tagName)) return NodeFilter.FILTER_REJECT;
-      // Never touch the transition-exempt bits (nothing today, but this is
-      // the hook for opting an element out).
-      if (parent.closest("[data-no-shuffle]")) return NodeFilter.FILTER_REJECT;
+        const parent = (node as Text).parentElement;
+        if (!parent) return NodeFilter.FILTER_REJECT;
+        if (SKIP_TAGS.has(parent.tagName)) return NodeFilter.FILTER_REJECT;
+        // Never touch the transition-exempt bits (nothing today, but this is
+        // the hook for opting an element out).
+        if (parent.closest("[data-no-shuffle]"))
+          return NodeFilter.FILTER_REJECT;
 
-      // Only what the visitor can actually see right now — scrambling text
-      // several screens down is invisible work, and on a long page there's a
-      // lot of it.
-      const rect = parent.getBoundingClientRect();
-      if (rect.bottom < 0 || rect.top > window.innerHeight) {
-        return NodeFilter.FILTER_REJECT;
-      }
-      if (rect.width === 0 || rect.height === 0) return NodeFilter.FILTER_REJECT;
+        // Only what the visitor can actually see right now — scrambling text
+        // several screens down is invisible work, and on a long page there's a
+        // lot of it.
+        const rect = parent.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        if (rect.width === 0 || rect.height === 0)
+          return NodeFilter.FILTER_REJECT;
 
-      return NodeFilter.FILTER_ACCEPT;
+        return NodeFilter.FILTER_ACCEPT;
+      },
     },
-  });
+  );
 
   const targets: Target[] = [];
   let current: Node | null;
