@@ -2,7 +2,15 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 const locales = ["en", "es"];
-const defaultLocale = "en";
+
+// Spanish, because the market is Ipiales, Nariño and northern Ecuador. The
+// bare domain is the URL people link and share, so it is the one that
+// accumulates the most authority — pointing it at English worked directly
+// against the local search the site exists for.
+//
+// This also decides what a plain href="/work" resolves to, which is why
+// internal links go through LocaleLink instead.
+const defaultLocale = "es";
 
 export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;

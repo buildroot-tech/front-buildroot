@@ -20,10 +20,17 @@ bug in this codebase.
   parity. Both dictionaries must always have identical key structures.
 - Spanish is **usted** throughout, neutral Colombian — no voseo (`tenés`,
   `contanos`), no tuteo (`tu proyecto`, `tienes`).
+- **The default locale is `es`.** An un-prefixed path resolves to Spanish;
+  English lives at `/en/...`. Three places must agree: `defaultLocale` in
+  `proxy.ts`, `DEFAULT_LOCALE` in `LocaleLink.tsx`, and the `x-default`
+  hreflang in `buildAlternates()`. Changing one alone sends visitors into
+  the wrong language mid-session.
 - **Internal links must use `LocaleLink`**, never plain `next/link`.
   Un-prefixed paths resolve to the default locale, so a plain `href="/work"`
-  silently drops a Spanish visitor into English. The one exception is the
-  language switcher, which deliberately targets the other locale.
+  silently drops an English visitor into Spanish. The one exception is the
+  language switcher, which deliberately targets the other locale — and it
+  must prefix **both** directions explicitly rather than relying on the
+  un-prefixed path to mean "the other language".
 
 ## Copy rules
 
