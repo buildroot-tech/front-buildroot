@@ -12,14 +12,22 @@ interface WorkSectionProps {
   projects: readonly Project[];
 }
 
-const CATEGORIES: ProjectCategory[] = ["All", "SaaS", "Web Apps", "Consulting", "Labs"];
+const CATEGORIES: ProjectCategory[] = [
+  "All",
+  "SaaS",
+  "Web Apps",
+  "Consulting",
+  "Labs",
+];
 
 export function WorkSection({ dict, projects }: WorkSectionProps) {
   const [category, setCategory] = useState<ProjectCategory>("All");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const count =
-    category === "All" ? projects.length : projects.filter((p) => p.category === category).length;
+    category === "All"
+      ? projects.length
+      : projects.filter((p) => p.category === category).length;
 
   // Picking a category while scrolled down, filter open, should feel like
   // a fresh start: back to the top of the page, filter closed, and any
@@ -54,7 +62,9 @@ export function WorkSection({ dict, projects }: WorkSectionProps) {
             <div className="mt-8 flex flex-wrap items-baseline font-display text-5xl font-light tracking-tight text-[var(--text-primary)] sm:text-6xl md:text-8xl">
               {CATEGORIES.map((cat, i) => {
                 const catCount =
-                  cat === "All" ? projects.length : projects.filter((p) => p.category === cat).length;
+                  cat === "All"
+                    ? projects.length
+                    : projects.filter((p) => p.category === cat).length;
 
                 return (
                   <span key={cat} className="inline-flex items-baseline">
@@ -66,9 +76,13 @@ export function WorkSection({ dict, projects }: WorkSectionProps) {
                       }`}
                     >
                       <span>{cat}</span>
-                      <sup className="text-base text-[var(--text-muted)] sm:text-lg">{catCount}</sup>
+                      <sup className="text-base text-[var(--text-muted)] sm:text-lg">
+                        {catCount}
+                      </sup>
                     </button>
-                    {i < CATEGORIES.length - 1 && <span className="mr-[0.3em]">,</span>}
+                    {i < CATEGORIES.length - 1 && (
+                      <span className="mr-[0.3em]">,</span>
+                    )}
                   </span>
                 );
               })}
@@ -109,7 +123,12 @@ export function WorkSection({ dict, projects }: WorkSectionProps) {
         {/* Projects List — keyed on category so a filter change remounts
             it fresh, resetting which row (if any) is expanded. */}
         <div>
-          <ProjectsGrid key={category} dict={dict} category={category} projects={projects} />
+          <ProjectsGrid
+            key={category}
+            dict={dict}
+            category={category}
+            projects={projects}
+          />
         </div>
       </div>
     </section>

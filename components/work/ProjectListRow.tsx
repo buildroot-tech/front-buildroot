@@ -5,6 +5,7 @@ import { LocaleLink } from "@/components/ui/LocaleLink";
 import { useState } from "react";
 import { ScrambleText } from "@/components/ui/TextScrambler";
 import { PixelImage } from "@/components/ui/PixelImage";
+import { projectImageSrc } from "@/lib/projects";
 import type { Project } from "@/types";
 
 interface ProjectListRowProps {
@@ -16,7 +17,8 @@ const IMAGE_WIDTH = 360;
 export function ProjectListRow({ project }: ProjectListRowProps) {
   const [isHovered, setIsHovered] = useState(false);
   const words = project.title.split(" ");
-  const insertIndex = words.length === 1 ? 0 : Math.floor((words.length - 1) / 2);
+  const insertIndex =
+    words.length === 1 ? 0 : Math.floor((words.length - 1) / 2);
 
   return (
     <LocaleLink
@@ -37,19 +39,28 @@ export function ProjectListRow({ project }: ProjectListRowProps) {
               <span key={i} className="flex items-center">
                 {i > 0 && <span className="w-[0.25em] inline-block"></span>}
 
-                <ScrambleText text={word} trigger="mount" active={isHovered} speed={40} />
+                <ScrambleText
+                  text={word}
+                  trigger="mount"
+                  active={isHovered}
+                  speed={40}
+                />
 
                 <AnimatePresence>
                   {isHovered && i === insertIndex && project.image && (
                     <m.div
                       initial={{ width: 0, opacity: 0, margin: "0px 0px" }}
-                      animate={{ width: IMAGE_WIDTH, opacity: 1, margin: "0px 16px" }}
+                      animate={{
+                        width: IMAGE_WIDTH,
+                        opacity: 1,
+                        margin: "0px 16px",
+                      }}
                       exit={{ width: 0, opacity: 0, margin: "0px 0px" }}
                       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                       className="relative overflow-hidden border-2 border-[var(--border)] bg-[var(--bg-hero)] hidden md:block"
                       style={{ height: "1.5em" }}
                     >
-                      <PixelImage src={`/projects/${project.image}.jpg`} />
+                      <PixelImage src={projectImageSrc(project.image)} />
 
                       {/* Black overlay for contrast */}
                       <div className="absolute inset-0 bg-black/10 mix-blend-multiply pointer-events-none" />

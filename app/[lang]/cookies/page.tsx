@@ -37,7 +37,11 @@ export default async function CookiesPage({
 
   return (
     <div className="min-h-screen pt-16 sm:pt-20">
-      <LegalSection doc={dict.legal.cookies} updatedOn={UPDATED_ON} locale={lang} />
+      <LegalSection
+        doc={dict.legal.cookies}
+        updatedOn={UPDATED_ON}
+        locale={lang}
+      />
     </div>
   );
 }

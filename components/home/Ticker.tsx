@@ -17,17 +17,31 @@ interface TickerProps {
   secondaryText?: string;
 }
 
-const RepeatedText = ({ text, hidden = false }: { text: string, hidden?: boolean }) => (
+const RepeatedText = ({
+  text,
+  hidden = false,
+}: {
+  text: string;
+  hidden?: boolean;
+}) => (
   <>
     {Array.from({ length: 12 }).map((_, i) => (
-      <span key={i} className="block mr-8" aria-hidden={hidden || i !== 0 ? "true" : undefined}>
+      <span
+        key={i}
+        className="block mr-8"
+        aria-hidden={hidden || i !== 0 ? "true" : undefined}
+      >
         {text}
       </span>
     ))}
   </>
 );
 
-export function Ticker({ baseVelocity = -0.3, text, secondaryText }: TickerProps) {
+export function Ticker({
+  baseVelocity = -0.3,
+  text,
+  secondaryText,
+}: TickerProps) {
   const baseX = useMotionValue(0);
   const baseXReverse = useMotionValue(0);
 
@@ -75,12 +89,16 @@ export function Ticker({ baseVelocity = -0.3, text, secondaryText }: TickerProps
   const t = secondaryText || text;
 
   return (
-    <div ref={ref} className="relative w-full overflow-hidden flex flex-nowrap pt-[clamp(6rem,12vw,16rem)] pb-[clamp(6rem,12vw,16rem)] bg-[var(--bg-primary)]">
+    <div
+      ref={ref}
+      className="relative w-full overflow-hidden flex flex-nowrap pt-[clamp(6rem,12vw,16rem)] pb-[clamp(6rem,12vw,16rem)] bg-[var(--bg-primary)]"
+    >
       {/* 3D Lighting/Shading overlay to simulate cylinder curvature on the X axis */}
       <div
         className="absolute inset-0 pointer-events-none z-10"
         style={{
-          background: "linear-gradient(to right, var(--bg-primary) 0%, transparent 25%, transparent 75%, var(--bg-primary) 100%)"
+          background:
+            "linear-gradient(to right, var(--bg-primary) 0%, transparent 25%, transparent 75%, var(--bg-primary) 100%)",
         }}
       />
 
@@ -92,8 +110,10 @@ export function Ticker({ baseVelocity = -0.3, text, secondaryText }: TickerProps
           perspective: "1200px",
           transformStyle: "preserve-3d",
           // Aggressive radial mask to create the optical illusion of wrapping away at the edges
-          maskImage: "radial-gradient(60% 120% at 50% 50%, black 40%, transparent 100%)",
-          WebkitMaskImage: "radial-gradient(60% 120% at 50% 50%, black 40%, transparent 100%)",
+          maskImage:
+            "radial-gradient(60% 120% at 50% 50%, black 40%, transparent 100%)",
+          WebkitMaskImage:
+            "radial-gradient(60% 120% at 50% 50%, black 40%, transparent 100%)",
         }}
       >
         {/* Top 2 Ribbon (Smallest, Furthest, Forward) */}

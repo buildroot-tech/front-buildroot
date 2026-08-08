@@ -16,6 +16,9 @@ Implements components, styling and motion.
 - Use the `.type-*` scale; don't invent per-component `clamp()` values.
 - Internal links go through `LocaleLink`.
 - Colour comes from `lib/route-theme.ts`, never hardcoded per component.
+- Fonts come from `lib/fonts.ts`; never re-declare `next/font` in a layout.
+- After changing the scale, tokens or route themes, open `/style-guide` —
+  it renders them live rather than describing them.
 - Verify in a real browser before calling it done.
 
 ### @copywriting
@@ -34,6 +37,10 @@ Verifies by measurement, not by reading source.
 - Web Vitals: LCP, CLS and long tasks on a production build.
 - Check both locales — several bugs have only appeared in Spanish, where the
   copy is longer.
+- Request every route and check the status code, not just the ones you
+  changed. `/style-guide` 404'd for a long time because nobody asked for it.
+  The only requests allowed to fail are `_vercel/insights` and
+  `_vercel/speed-insights`, which resolve only when deployed to Vercel.
 
 ### @solution-architect
 

@@ -8,38 +8,67 @@ import { useRef } from "react";
 ───────────────────────────────────────────────────────── */
 function InterweavingLines() {
   const down = [
-    { x1: "-20%", y1: "0%",  x2: "60%",  y2: "100%" },
-    { x1: "0%",   y1: "0%",  x2: "80%",  y2: "100%" },
-    { x1: "20%",  y1: "0%",  x2: "100%", y2: "100%" },
-    { x1: "40%",  y1: "0%",  x2: "120%", y2: "100%" },
-    { x1: "60%",  y1: "0%",  x2: "140%", y2: "100%" },
-    { x1: "-40%", y1: "0%",  x2: "40%",  y2: "100%" },
-    { x1: "80%",  y1: "0%",  x2: "160%", y2: "100%" },
+    { x1: "-20%", y1: "0%", x2: "60%", y2: "100%" },
+    { x1: "0%", y1: "0%", x2: "80%", y2: "100%" },
+    { x1: "20%", y1: "0%", x2: "100%", y2: "100%" },
+    { x1: "40%", y1: "0%", x2: "120%", y2: "100%" },
+    { x1: "60%", y1: "0%", x2: "140%", y2: "100%" },
+    { x1: "-40%", y1: "0%", x2: "40%", y2: "100%" },
+    { x1: "80%", y1: "0%", x2: "160%", y2: "100%" },
   ];
   const up = [
-    { x1: "-20%", y1: "100%", x2: "60%",  y2: "0%" },
-    { x1: "0%",   y1: "100%", x2: "80%",  y2: "0%" },
-    { x1: "20%",  y1: "100%", x2: "100%", y2: "0%" },
-    { x1: "40%",  y1: "100%", x2: "120%", y2: "0%" },
-    { x1: "60%",  y1: "100%", x2: "140%", y2: "0%" },
-    { x1: "-40%", y1: "100%", x2: "40%",  y2: "0%" },
-    { x1: "80%",  y1: "100%", x2: "160%", y2: "0%" },
+    { x1: "-20%", y1: "100%", x2: "60%", y2: "0%" },
+    { x1: "0%", y1: "100%", x2: "80%", y2: "0%" },
+    { x1: "20%", y1: "100%", x2: "100%", y2: "0%" },
+    { x1: "40%", y1: "100%", x2: "120%", y2: "0%" },
+    { x1: "60%", y1: "100%", x2: "140%", y2: "0%" },
+    { x1: "-40%", y1: "100%", x2: "40%", y2: "0%" },
+    { x1: "80%", y1: "100%", x2: "160%", y2: "0%" },
   ];
 
   return (
-    <svg className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true">
+    <svg
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      aria-hidden="true"
+    >
       {down.map((l, i) => (
-        <line key={`d${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
-          stroke="rgba(248,250,252,0.035)" strokeWidth="1" />
+        <line
+          key={`d${i}`}
+          x1={l.x1}
+          y1={l.y1}
+          x2={l.x2}
+          y2={l.y2}
+          stroke="rgba(248,250,252,0.035)"
+          strokeWidth="1"
+        />
       ))}
       {up.map((l, i) => (
-        <line key={`u${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
-          stroke="rgba(248,250,252,0.025)" strokeWidth="1" />
+        <line
+          key={`u${i}`}
+          x1={l.x1}
+          y1={l.y1}
+          x2={l.x2}
+          y2={l.y2}
+          stroke="rgba(248,250,252,0.025)"
+          strokeWidth="1"
+        />
       ))}
-      <line x1="8%" y1="0%" x2="92%" y2="100%"
-        stroke="rgba(37,99,235,0.08)" strokeWidth="1" />
-      <line x1="92%" y1="0%" x2="8%" y2="100%"
-        stroke="rgba(37,99,235,0.05)" strokeWidth="1" />
+      <line
+        x1="8%"
+        y1="0%"
+        x2="92%"
+        y2="100%"
+        stroke="rgba(37,99,235,0.08)"
+        strokeWidth="1"
+      />
+      <line
+        x1="92%"
+        y1="0%"
+        x2="8%"
+        y2="100%"
+        stroke="rgba(37,99,235,0.05)"
+        strokeWidth="1"
+      />
     </svg>
   );
 }
@@ -64,14 +93,54 @@ function Decorative() {
         viewBox="0 0 1000 300"
       >
         {/* Cumbal (Higher, left) */}
-        <polyline points="-50,300 300,50 650,300" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[var(--text-inverse)]" />
-        <polyline points="125,175 475,175" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-[var(--text-inverse)] opacity-40" />
-        <polyline points="300,50 300,300" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-[var(--text-inverse)] opacity-40" />
+        <polyline
+          points="-50,300 300,50 650,300"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className="text-[var(--text-inverse)]"
+        />
+        <polyline
+          points="125,175 475,175"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+          strokeDasharray="4 4"
+          className="text-[var(--text-inverse)] opacity-40"
+        />
+        <polyline
+          points="300,50 300,300"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+          strokeDasharray="4 4"
+          className="text-[var(--text-inverse)] opacity-40"
+        />
 
         {/* Chiles (Slightly lower, right) */}
-        <polyline points="350,300 700,120 1050,300" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[var(--text-inverse)]" />
-        <polyline points="525,210 875,210" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-[var(--text-inverse)] opacity-40" />
-        <polyline points="700,120 700,300" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-[var(--text-inverse)] opacity-40" />
+        <polyline
+          points="350,300 700,120 1050,300"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className="text-[var(--text-inverse)]"
+        />
+        <polyline
+          points="525,210 875,210"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+          strokeDasharray="4 4"
+          className="text-[var(--text-inverse)] opacity-40"
+        />
+        <polyline
+          points="700,120 700,300"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+          strokeDasharray="4 4"
+          className="text-[var(--text-inverse)] opacity-40"
+        />
       </svg>
     </div>
   );
@@ -80,9 +149,9 @@ function Decorative() {
 /* ─────────────────────────────────────────────────────────
    Constants
 ───────────────────────────────────────────────────────── */
-const HEADER_H  = 80;
-const FS        = "clamp(48px, 9vw, 220px)";
-const LH_MAIN   = 0.80;
+const HEADER_H = 80;
+const FS = "clamp(48px, 9vw, 220px)";
+const LH_MAIN = 0.8;
 
 // Headline entrance — a left-to-right wipe rather than the old rise from
 // below. The mask does the work: the line is uncovered in place while
@@ -96,7 +165,7 @@ const HEADLINE_IN = {
   transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] as const },
 };
 
-const SERVICES  = ["System", "Product", "Infrastructure"];
+const SERVICES = ["System", "Product", "Infrastructure"];
 
 /* ─────────────────────────────────────────────────────────
    Hero
@@ -115,7 +184,7 @@ export function Hero({ dict }: HeroProps) {
     offset: ["start start", "end start"],
   });
 
-  const y       = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 80]);
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   const textBase: React.CSSProperties = {
@@ -169,14 +238,16 @@ export function Hero({ dict }: HeroProps) {
             transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
           >
             {Array.from({ length: 25 }).map((_, i) => (
-              <div key={i} className="w-1 h-1 rounded-full bg-[var(--text-inverse)]" />
+              <div
+                key={i}
+                className="w-1 h-1 rounded-full bg-[var(--text-inverse)]"
+              />
             ))}
           </m.div>
         </m.div>
 
         {/* ── Headline — fills remaining space, anchored to bottom ── */}
         <div className="flex-1 flex flex-col justify-center pb-[12vh]">
-
           {/* We build */}
           <div className="overflow-hidden">
             <m.h1
@@ -237,7 +308,7 @@ export function Hero({ dict }: HeroProps) {
                 className="block font-serif font-light uppercase"
                 style={{
                   ...textBase,
-                  lineHeight: 0.60,
+                  lineHeight: 0.6,
                   marginTop: i === 0 ? "-0.15em" : 0,
                   WebkitTextStroke: `${i === 0 ? 2 : 1.5}px rgba(248,250,252,${opacity})`,
                   color: "transparent",

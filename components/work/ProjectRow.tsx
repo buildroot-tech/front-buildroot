@@ -4,8 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Minus, Plus } from "lucide-react";
 import { LocaleLink } from "@/components/ui/LocaleLink";
+import { projectImageSrc } from "@/lib/projects";
 import { type Project } from "@/types";
-import { ScrambleText, type ScrambleTextHandle } from "@/components/ui/TextScrambler";
+import {
+  ScrambleText,
+  type ScrambleTextHandle,
+} from "@/components/ui/TextScrambler";
 import { PixelImage } from "@/components/ui/PixelImage";
 
 interface ProjectRowProps {
@@ -20,7 +24,12 @@ interface ProjectRowProps {
 // under the sticky nav.
 const SCROLL_OFFSET = 96;
 
-export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }: ProjectRowProps) {
+export function ProjectRow({
+  project,
+  viewCaseStudyLabel,
+  isExpanded,
+  onToggle,
+}: ProjectRowProps) {
   const [isHovered, setIsHovered] = useState(false);
   // Once the hover preview has resolved once, the docked copy in the
   // drawer should just appear sharp — replaying the pixelation there
@@ -53,7 +62,10 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
 
     const timeout = setTimeout(() => {
       if (!rowRef.current) return;
-      const top = window.scrollY + rowRef.current.getBoundingClientRect().top - SCROLL_OFFSET;
+      const top =
+        window.scrollY +
+        rowRef.current.getBoundingClientRect().top -
+        SCROLL_OFFSET;
       window.scrollTo({ top, behavior: "smooth" });
     }, 320);
 
@@ -82,7 +94,12 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
           {/* Title */}
           <div className="min-w-0 shrink overflow-hidden lg:col-start-1">
             <h3 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl font-light leading-[1.4] tracking-tight text-[var(--text-primary)] truncate">
-              <ScrambleText text={project.title} trigger="mount" active={isActive} speed={40} />
+              <ScrambleText
+                text={project.title}
+                trigger="mount"
+                active={isActive}
+                speed={40}
+              />
             </h3>
           </div>
 
@@ -97,7 +114,12 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
               Servi…" narrower than that. Back to text-4xl at 2xl
               (1536px+) where there's room again. */}
           <div className="hidden lg:col-start-2 lg:block truncate font-display text-2xl sm:text-3xl md:text-4xl lg:text-3xl 2xl:text-4xl font-light leading-[1.4] tracking-tight text-[var(--text-primary)]">
-            <ScrambleText text={project.industry} trigger="mount" active={isActive} speed={40} />
+            <ScrambleText
+              text={project.industry}
+              trigger="mount"
+              active={isActive}
+              speed={40}
+            />
           </div>
 
           {/* Category label / expand toggle — matched to the title too.
@@ -114,7 +136,12 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
                   : "opacity-100 group-hover:opacity-0"
               }`}
             >
-              <ScrambleText text={project.category} trigger="mount" active={isActive} speed={40} />
+              <ScrambleText
+                text={project.category}
+                trigger="mount"
+                active={isActive}
+                speed={40}
+              />
             </span>
 
             <button
@@ -125,7 +152,11 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
               aria-expanded={isExpanded}
               aria-label={isExpanded ? "Collapse project" : "Expand project"}
             >
-              {isExpanded ? <Minus className="h-6 w-6" /> : <Plus className="h-6 w-6" />}
+              {isExpanded ? (
+                <Minus className="h-6 w-6" />
+              ) : (
+                <Plus className="h-6 w-6" />
+              )}
             </button>
           </div>
 
@@ -182,7 +213,7 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 className="pointer-events-none absolute left-1/2 bottom-0 z-20 hidden w-[300px] h-[188px] -translate-x-1/2 translate-y-1/2 overflow-hidden border-2 border-[var(--border)] bg-[var(--bg-hero)] sm:block lg:left-[46%] lg:-translate-x-[calc(100%+16px)]"
               >
-                <PixelImage src={`/projects/${project.image}.jpg`} />
+                <PixelImage src={projectImageSrc(project.image)} />
                 <div className="absolute inset-0 bg-black/10 mix-blend-multiply pointer-events-none" />
               </m.div>
             )}
@@ -210,7 +241,10 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
                       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                       className="relative w-full max-w-[300px] aspect-[16/10] overflow-hidden border-2 border-[var(--border)] bg-[var(--bg-hero)]"
                     >
-                      <PixelImage src={`/projects/${project.image}.jpg`} instant={hasPreviewedImage} />
+                      <PixelImage
+                        src={projectImageSrc(project.image)}
+                        instant={hasPreviewedImage}
+                      />
                       <div className="absolute inset-0 bg-black/10 mix-blend-multiply pointer-events-none" />
                     </m.div>
                   )}
@@ -220,7 +254,10 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
                       mean nothing to a prospective client. */}
                   <div className="flex w-full flex-col gap-0 font-mono text-base leading-tight">
                     {project.highlights.map((highlight) => (
-                      <span key={highlight} className="w-full text-[var(--text-primary)]">
+                      <span
+                        key={highlight}
+                        className="w-full text-[var(--text-primary)]"
+                      >
                         {highlight}
                       </span>
                     ))}
@@ -231,7 +268,9 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
                     close to its original size, just trimmed one column
                     narrower at xl than before. */}
                 <div className="lg:col-span-5 xl:col-span-6 lg:ml-6 relative aspect-[16/10] overflow-hidden border-2 border-[var(--border)] bg-[var(--bg-hero)]">
-                  {project.image && <PixelImage src={`/projects/${project.image}.jpg`} />}
+                  {project.image && (
+                    <PixelImage src={projectImageSrc(project.image)} />
+                  )}
                   <span className="absolute bottom-3 left-3 font-mono text-xs font-bold text-white bg-black/50 px-2 py-1 backdrop-blur-sm">
                     {project.year}
                   </span>
@@ -278,7 +317,12 @@ export function ProjectRow({ project, viewCaseStudyLabel, isExpanded, onToggle }
                         onMouseLeave={() => visitSiteRef.current?.reset()}
                         className="group flex items-center justify-between border-t border-b border-[var(--text-primary)] py-5 text-[var(--text-primary)]"
                       >
-                        <ScrambleText ref={visitSiteRef} text="Visit Site" trigger="manual" speed={40} />
+                        <ScrambleText
+                          ref={visitSiteRef}
+                          text="Visit Site"
+                          trigger="manual"
+                          speed={40}
+                        />
                         <ArrowUpRight className="h-7 w-7 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </a>
                     )}
