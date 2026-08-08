@@ -36,7 +36,11 @@ export async function generateMetadata({
   };
 }
 
-export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
   const { lang } = await params;
   const dict = await getDictionary(lang as Locale);
 
@@ -50,7 +54,10 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <WorkflowSteps dict={dict.home.process} />
       </section>
       <section id="work">
-        <SelectWork dict={dict.home.work} projects={getProjects(lang as Locale)} />
+        <SelectWork
+          dict={dict.home.work}
+          projects={getProjects(lang as Locale)}
+        />
       </section>
       <section id="cta">
         <CTA dict={dict.home.cta} />

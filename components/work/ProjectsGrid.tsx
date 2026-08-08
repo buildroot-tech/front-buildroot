@@ -3,7 +3,10 @@
 import { useRef, useState } from "react";
 import { ProjectRow } from "@/components/work/ProjectRow";
 import { ArrowRight } from "lucide-react";
-import { ScrambleText, type ScrambleTextHandle } from "@/components/ui/TextScrambler";
+import {
+  ScrambleText,
+  type ScrambleTextHandle,
+} from "@/components/ui/TextScrambler";
 import type { Dictionary } from "@/lib/dictionaries";
 import type { Project, ProjectCategory } from "@/types";
 
@@ -13,9 +16,15 @@ interface ProjectsGridProps {
   projects: readonly Project[];
 }
 
-export function ProjectsGrid({ dict, category = "All", projects }: ProjectsGridProps) {
+export function ProjectsGrid({
+  dict,
+  category = "All",
+  projects,
+}: ProjectsGridProps) {
   const visibleProjects =
-    category === "All" ? projects : projects.filter((p) => p.category === category);
+    category === "All"
+      ? projects
+      : projects.filter((p) => p.category === category);
 
   // Only one row open at a time — expanding a new one closes whichever
   // was open before. WorkSection keys this whole component on `category`,
@@ -36,7 +45,9 @@ export function ProjectsGrid({ dict, category = "All", projects }: ProjectsGridP
           viewCaseStudyLabel={dict?.view_case_study}
           isExpanded={expandedId === project.id}
           onToggle={() =>
-            setExpandedId((current) => (current === project.id ? null : project.id))
+            setExpandedId((current) =>
+              current === project.id ? null : project.id,
+            )
           }
         />
       ))}

@@ -2,7 +2,15 @@
 
 /* ============================================
    BUILDROOT DESIGN SYSTEM
-   Brutalist hybrid: raw structure, elegant execution
+
+   Editorial: serif statements over a per-route colour field, with
+   mono reserved for labels and metadata.
+
+   Two things live here and nowhere else — the colour tokens each
+   route themes itself with, and the TYPE SCALE further down.
+   Components must not invent their own clamp() values; that drift
+   is what the scale replaced. /style-guide renders this system
+   live.
    ============================================ */
 
 :root {
@@ -22,21 +30,11 @@
   --border: #000000;
   --border-muted: #cbd5e1;
 
-  /* ---- Typography ---- */
-  --text-display: clamp(72px, 10vw, 180px);
-  --text-h1: clamp(48px, 6vw, 72px);
-  --text-h2: clamp(32px, 4vw, 48px);
-  --text-h3: clamp(24px, 3vw, 32px);
+  /* ---- Typography ----
+     Only the base body size lives as a token. Heading sizes belong
+     to the TYPE SCALE below, which carries leading and tracking
+     with them — a bare font-size token cannot. */
   --text-body: 18px;
-  --text-small: 14px;
-  --text-caption: 12px;
-
-  /* ---- Shadows ---- */
-  --shadow-brutalist: 4px 4px 0 var(--border);
-  --shadow-brutalist-hover: 2px 2px 0 var(--border);
-
-  /* ---- Animation ---- */
-  --duration-hover: 150ms;
 }
 
 /* ============================================
@@ -157,103 +155,6 @@ body {
   .type-body {
     font-size: 1.25rem;
   }
-}
-
-/* ============================================
-   TYPOGRAPHY UTILITIES
-   ============================================ */
-
-.headline {
-  font-family: var(--font-display), system-ui, sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 0.95;
-}
-
-.heading {
-  font-family: var(--font-display), system-ui, sans-serif;
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-}
-
-.text-display {
-  font-size: var(--text-display);
-}
-
-.text-h1 {
-  font-size: var(--text-h1);
-}
-
-.text-h2 {
-  font-size: var(--text-h2);
-}
-
-.text-h3 {
-  font-size: var(--text-h3);
-}
-
-/* ============================================
-   BRUTALIST COMPONENTS
-   ============================================ */
-
-/* Card */
-.brutalist-card {
-  border: 2px solid var(--border);
-  box-shadow: var(--shadow-brutalist);
-  background: var(--bg-secondary);
-  transition:
-    box-shadow var(--duration-hover) ease,
-    transform var(--duration-hover) ease;
-}
-
-.brutalist-card:hover {
-  box-shadow: var(--shadow-brutalist-hover);
-  transform: translate(2px, 2px);
-}
-
-/* Button */
-.brutalist-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border: 2px solid var(--border);
-  box-shadow: var(--shadow-brutalist);
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: var(--font-display), system-ui, sans-serif;
-  font-weight: 600;
-  font-size: var(--text-small);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  transition:
-    box-shadow var(--duration-hover) ease,
-    transform var(--duration-hover) ease;
-}
-
-.brutalist-button:hover {
-  box-shadow: var(--shadow-brutalist-hover);
-  transform: translate(2px, 2px);
-}
-
-.brutalist-button:active {
-  box-shadow: none;
-  transform: translate(4px, 4px);
-}
-
-/* Accent button */
-.brutalist-button-accent {
-  background: var(--accent);
-  color: var(--text-inverse);
-  border-color: var(--accent);
-}
-
-.brutalist-button-accent:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
 }
 
 /* ============================================

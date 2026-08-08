@@ -33,11 +33,14 @@ const revealTransition = { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const };
  * showmanship on a page someone opens to check a fact.
  */
 export function LegalSection({ doc, updatedOn, locale }: LegalSectionProps) {
-  const formatted = new Intl.DateTimeFormat(locale === "es" ? "es-CO" : "en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(new Date(updatedOn));
+  const formatted = new Intl.DateTimeFormat(
+    locale === "es" ? "es-CO" : "en-GB",
+    {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    },
+  ).format(new Date(updatedOn));
 
   return (
     <section className="w-full bg-[var(--bg-primary)] px-6 py-24 text-[var(--text-primary)] md:px-12 md:py-32">

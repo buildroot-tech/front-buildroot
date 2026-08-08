@@ -3,7 +3,10 @@
 import { useMemo, useRef, useState } from "react";
 import { m } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { ScrambleText, type ScrambleTextHandle } from "@/components/ui/TextScrambler";
+import {
+  ScrambleText,
+  type ScrambleTextHandle,
+} from "@/components/ui/TextScrambler";
 import type { Dictionary } from "@/lib/dictionaries";
 
 interface ContactSectionProps {
@@ -125,10 +128,13 @@ export function ContactSection({ dict }: ContactSectionProps) {
   const [extra, setExtra] = useState("");
 
   const needs = NEED_KEYS.map((k) => c?.needs?.[k] || FALLBACK.needs[k]);
-  const timings = TIMING_KEYS.map((k) => c?.timings?.[k] || FALLBACK.timings[k]);
+  const timings = TIMING_KEYS.map(
+    (k) => c?.timings?.[k] || FALLBACK.timings[k],
+  );
 
   const namePlaceholder = c?.name_placeholder || FALLBACK.namePlaceholder;
-  const companyPlaceholder = c?.company_placeholder || FALLBACK.companyPlaceholder;
+  const companyPlaceholder =
+    c?.company_placeholder || FALLBACK.companyPlaceholder;
 
   // The mailto the composed sentence resolves to. Both parts are encoded,
   // so an apostrophe or a newline in the free-text field can't truncate the
@@ -157,7 +163,10 @@ export function ContactSection({ dict }: ContactSectionProps) {
   ]);
 
   return (
-    <section id="contact" className="relative w-full bg-[var(--bg-primary)] py-24 md:py-32">
+    <section
+      id="contact"
+      className="relative w-full bg-[var(--bg-primary)] py-24 md:py-32"
+    >
       <div className="w-full px-6 md:px-12">
         {/* Header — eyebrow in the left 46% column, statement opposite it:
             the same opening /work and /about use. */}
@@ -168,7 +177,11 @@ export function ContactSection({ dict }: ContactSectionProps) {
           className="flex flex-col gap-4 lg:grid lg:grid-cols-[46%_1fr] lg:items-start lg:gap-8"
         >
           <h1 className="type-eyebrow text-[var(--text-primary)] lg:col-start-1">
-            <ScrambleText text={dict?.title || "Contact"} speed={55} trigger="manual" />
+            <ScrambleText
+              text={dict?.title || "Contact"}
+              speed={55}
+              trigger="manual"
+            />
           </h1>
 
           <p className="type-statement max-w-2xl text-[var(--text-primary)] lg:col-start-2">

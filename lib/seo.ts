@@ -102,8 +102,8 @@ export const defaultMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   alternates: {
     languages: {
-      'en': '/en',
-      'es': '/es',
+      en: "/en",
+      es: "/es",
     },
   },
   title: {
@@ -213,7 +213,12 @@ export function localBusinessJsonLd(lang: Locale) {
       "@type": area.type,
       name: area.name,
       ...(area.type !== "Country"
-        ? { containedInPlace: { "@type": "Country", name: area.country === "EC" ? "Ecuador" : "Colombia" } }
+        ? {
+            containedInPlace: {
+              "@type": "Country",
+              name: area.country === "EC" ? "Ecuador" : "Colombia",
+            },
+          }
         : {}),
     })),
     // A radius says something `areaServed` can't: that the catchment is
