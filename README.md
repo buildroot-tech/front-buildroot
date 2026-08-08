@@ -168,11 +168,14 @@ Until steps 1–4 are decided, there is nothing to maintain.
       1024×1024 JPEGs served unoptimised — the single largest thing on the
       site. This is why a case-study page transfers 864 KB against 108 KB
       everywhere else. See `PERFORMANCE_REVIEW.md` §1.
-- [ ] **Replace the social URLs.** `lib/seo.ts` still holds placeholder
-      handles for LinkedIn and GitHub (`linkedin.com/company/buildroot`,
-      `github.com/buildroot`). They feed both the footer and the Organization
-      JSON-LD, so a wrong value is published twice. Instagram and Twitter have
-      been removed — there are no accounts.
+- [ ] **Replace the LinkedIn URL.** `lib/seo.ts` still holds a placeholder
+      (`linkedin.com/company/buildroot`). It feeds both the footer and the
+      Organization JSON-LD, so a wrong value is published twice. GitHub is
+      already correct (`github.com/buildroot-tech`); Instagram and Twitter
+      have been removed — there are no accounts.
+- [ ] **Swap ™ for ® only once the trademark is actually granted.** The
+      footer mark currently claims ™, which needs no registration. See
+      `components/layout/Footer.tsx`.
 - [ ] **Have the legal pages reviewed** by someone qualified.
 - [ ] **Verify the production domain.** `lib/seo.ts` sets `buildroot.co`,
       which drives canonical URLs, the sitemap and OG image URLs.
