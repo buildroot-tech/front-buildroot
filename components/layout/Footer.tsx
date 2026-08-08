@@ -47,16 +47,19 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
   const theme = getRouteTheme(normalizedPathname);
   const isHome = normalizedPathname === "/";
 
+  const otherLocale = pathname.startsWith("/en") ? "es" : "en";
+
   const navLinks = [
     { href: "/work", label: dict?.header?.nav?.work || "work" },
     { href: "/services", label: dict?.header?.nav?.services || "services" },
     { href: "/about", label: dict?.header?.nav?.about || "about" },
     { href: "/contact", label: dict?.header?.contact || "lets talk" },
     {
-      href: pathname.startsWith("/es")
-        ? normalizedPathname
-        : `/es${normalizedPathname === "/" ? "" : normalizedPathname}`,
-      label: pathname.startsWith("/es") ? "english" : "spanish",
+      // Always prefixed explicitly, in both directions. Relying on the
+      // un-prefixed path to mean "the other language" only held while
+      // English was the default locale; it is Spanish now.
+      href: `/${otherLocale}${normalizedPathname === "/" ? "" : normalizedPathname}`,
+      label: otherLocale === "en" ? "english" : "spanish",
     },
   ];
 

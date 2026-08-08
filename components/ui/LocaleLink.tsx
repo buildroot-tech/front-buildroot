@@ -8,13 +8,17 @@ type LocaleLinkProps = ComponentProps<typeof Link>;
 
 const LOCALE_PREFIX = /^\/(en|es)(\/|$)/;
 
+// Must match `defaultLocale` in proxy.ts. An un-prefixed path resolves to
+// this locale, so it is the one that needs no prefix.
+const DEFAULT_LOCALE = "es";
+
 /**
  * next/link that keeps you in the language you're already reading.
  *
  * Routes live under /[lang], and proxy.ts rewrites any un-prefixed path to
  * the default locale — so a plain `href="/work"` doesn't mean "work in the
- * current language", it means "work in English". Following one from /es
- * silently dropped the visitor back into English mid-session. This reads the
+ * current language", it means "work in Spanish". Following one from /en
+ * would silently drop the visitor into Spanish mid-session. This reads the
  * locale off the current pathname and carries it over.
  *
  * Use plain next/link for the language switcher itself, which deliberately
@@ -29,12 +33,12 @@ export function LocaleLink({ href, ...rest }: LocaleLinkProps) {
     href.startsWith("/") &&
     !LOCALE_PREFIX.test(href)
   ) {
-    const match = pathname.match(LOCALE_PREFIX);
-    const locale = match?.[1];
-    // "en" is what an un-prefixed path already resolves to, so only "es"
-    // needs rewriting — that keeps English URLs clean.
-    if (locale === "es") {
-      resolved = href === "/" ? "/es" : `/es${href}`;
+    const locale = pathname.match(LOCALE_PREFIX)?.[1];
+    // The default locale is what an un-prefixed path already resolves to, so
+    // only the other one needs rewriting — that keeps the primary language's
+    // URLs clean.
+    if (locale && locale !== DEFAULT_LOCALE) {
+      resolved = href === "/" ? `/${locale}` : `/${locale}${href}`;
     }
   }
 

@@ -315,11 +315,9 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
               {/* Plain Link on purpose — this one deliberately targets the
                *other* locale, so it must not be re-prefixed. */}
               <Link
-                href={
-                  lang === "en"
-                    ? `/es${normalizedPathname === "/" ? "" : normalizedPathname}`
-                    : normalizedPathname
-                }
+                href={`/${lang === "en" ? "es" : "en"}${
+                  normalizedPathname === "/" ? "" : normalizedPathname
+                }`}
                 className="font-display text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)] mt-8"
                 onClick={() => setMobileOpen(false)}
               >
