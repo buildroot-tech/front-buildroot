@@ -7,10 +7,10 @@ export const siteConfig = {
     "We build brutalist, high-performance web applications, digital products, and SaaS solutions for modern tech ventures.",
   url: "https://buildroot.co",
   email: "info@buildroot.co",
-  // TODO(pre-launch): replace both with the real company URLs. These feed
-  // the footer and the Organization JSON-LD, so a wrong value ships twice.
   links: {
-    github: "https://github.com/buildroot",
+    github: "https://github.com/buildroot-tech",
+    // TODO(pre-launch): real company LinkedIn. This feeds the footer and the
+    // Organization JSON-LD, so a wrong value ships twice.
     linkedin: "https://linkedin.com/company/buildroot",
   },
   keywords: [
