@@ -165,6 +165,10 @@ export function buildAlternates(
     languages: {
       en: `/en${path}`,
       es: `/es${path}`,
+      // Where to send a searcher whose language matches neither. Spanish,
+      // for the same reason it is the default locale: the market is
+      // Colombian and Ecuadorian.
+      "x-default": `/es${path}`,
     },
   };
 }
