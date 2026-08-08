@@ -148,10 +148,33 @@ function StepCard({ step, index, scrollYProgress, dict }: StepCardProps) {
           color: step.textColor,
         }}
       >
-        <div className="absolute top-8 left-8 md:top-12 md:left-16 pointer-events-none">
-          <span className="font-display text-8xl sm:text-9xl md:text-[12rem] lg:text-[16rem] font-light leading-none tracking-tighter opacity-20 [@media(max-height:820px)]:text-7xl [@media(max-height:820px)]:md:text-8xl [@media(max-height:820px)]:lg:text-9xl">
+        <div className="absolute top-8 left-8 md:top-12 md:left-16 pointer-events-none flex items-end gap-4 opacity-20 md:gap-6">
+          <span className="font-display text-8xl sm:text-9xl md:text-[12rem] lg:text-[16rem] font-light leading-none tracking-tighter [@media(max-height:820px)]:text-7xl [@media(max-height:820px)]:md:text-8xl [@media(max-height:820px)]:lg:text-9xl">
             {step.number}
           </span>
+
+          {/* The mark beside the number, sharing the number's opacity so the
+              two read as one watermark rather than a logo pasted on top.
+
+              Drawn as a mask filled with currentColor, not an <img>: these
+              cards alternate light, dark and accent backgrounds, and each
+              one sets its own `color`, so a fixed-colour SVG would need a
+              variant per step. Height is in `em` so it tracks the number's
+              size through every breakpoint on its own. */}
+          <span
+            aria-hidden="true"
+            className="block h-[0.4em] w-[0.48em] shrink-0 bg-current text-8xl sm:text-9xl md:text-[12rem] lg:text-[16rem] [@media(max-height:820px)]:text-7xl [@media(max-height:820px)]:md:text-8xl [@media(max-height:820px)]:lg:text-9xl"
+            style={{
+              maskImage: "url(/brand/buildroot-mark-b-black.svg)",
+              WebkitMaskImage: "url(/brand/buildroot-mark-b-black.svg)",
+              maskSize: "contain",
+              WebkitMaskSize: "contain",
+              maskRepeat: "no-repeat",
+              WebkitMaskRepeat: "no-repeat",
+              maskPosition: "center",
+              WebkitMaskPosition: "center",
+            }}
+          />
         </div>
         <div className="relative z-10 max-w-3xl">
           <h3 className="font-display text-3xl font-bold uppercase tracking-tight sm:text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">
