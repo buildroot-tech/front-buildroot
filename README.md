@@ -97,6 +97,25 @@ Section titles use sentence case, not title case — and note that the CSS
 `capitalize` utility breaks Spanish ("Servicio **A**l Cliente"), so it is
 deliberately absent from content headings.
 
+### Local SEO
+
+The market is regional and cross-border, so the site is targeted rather
+than generic:
+
+- `localizedSeo` in `lib/seo.ts` holds per-locale title, description and
+  keywords. Spanish is the primary one and its terms are the ones people
+  actually type — "desarrollo web Ipiales", not "SaaS engineering".
+- `localBusinessJsonLd()` emits a `ProfessionalService` graph with the
+  postal address, coordinates, and `areaServed` covering **Nariño and
+  northern Ecuador**: Ipiales, Pasto, Tulcán, Carchi, Ibarra, Imbabura. A
+  `GeoCircle` of 150 km around Ipiales says the catchment is continuous
+  across the border, which a list of names alone can't.
+- `og:locale` is `es_CO`, not `es_ES` — the region half of that tag is a
+  targeting signal.
+
+Every page's `description` should mention what it is and where. A page that
+never says where it is cannot rank for where it is.
+
 ### Brand assets
 
 `public/brand/` holds the full mark set. `buildroot-word-white.svg` and
@@ -179,6 +198,12 @@ Until steps 1–4 are decided, there is nothing to maintain.
 - [ ] **Have the legal pages reviewed** by someone qualified.
 - [ ] **Verify the production domain.** `lib/seo.ts` sets `buildroot.co`,
       which drives canonical URLs, the sitemap and OG image URLs.
+- [ ] **Create the Google Business Profile for Ipiales.** This is the single
+      biggest remaining lever for local search: it is what puts the studio in
+      the map pack and in "near me" results. The `ProfessionalService` markup
+      already on the site supports that listing, but it cannot replace it.
+- [ ] **Submit the sitemap** in Google Search Console, and set the
+      international targeting there once the profile exists.
 - [ ] **Decide what happens to `/style-guide`** — it documents the superseded
       brutalist system and is the only thing still using those CSS utilities.
       Currently excluded from indexing. See `PERFORMANCE_REVIEW.md` §3.
