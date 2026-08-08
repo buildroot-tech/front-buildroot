@@ -222,14 +222,19 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                 WebkitMaskRepeat: "no-repeat",
               }}
             />
-            {/* Sits against the mark's top edge, the way a registered
-                symbol is normally set — sized off the mark rather than the
-                body scale so the pairing holds as the mark resizes. */}
+            {/* ™ rather than ® on purpose: ® asserts a granted registration
+                and is an infringement to use without one. ™ claims the mark
+                without that. Swap it only once the registration is actually
+                issued.
+
+                Sits against the mark's top edge, sized off the mark rather
+                than the body scale so the pairing holds as the mark resizes.
+                A touch smaller than the ® was, since ™ is two glyphs wide. */}
             <span
               aria-hidden="true"
-              className="ml-[0.2em] mt-[0.15em] font-display text-[clamp(0.85rem,1.3vw,1.4rem)] leading-none"
+              className="ml-[0.2em] mt-[0.15em] font-display text-[clamp(0.7rem,1.05vw,1.15rem)] leading-none"
             >
-              ®
+              ™
             </span>
           </div>
 
