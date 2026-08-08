@@ -19,8 +19,26 @@ export const siteConfig = {
   /** Ipiales — matches the coordinates printed in the footer. */
   geo: { latitude: 0.827782, longitude: -77.615538 },
   /** Where we actually take work from. Drives `areaServed` in the
-   *  LocalBusiness graph, which is what local search reads. */
-  areaServed: ["Ipiales", "Pasto", "Nariño", "Colombia"],
+   *  LocalBusiness graph, which is what local search reads.
+   *
+   *  Both sides of the border on purpose: Ipiales sits ~10 km from Tulcán,
+   *  closer to it than to most of its own department, and the Carchi and
+   *  Imbabura market is a natural part of the same catchment. */
+  areaServed: [
+    { name: "Ipiales", type: "City", country: "CO" },
+    { name: "Pasto", type: "City", country: "CO" },
+    { name: "Nariño", type: "AdministrativeArea", country: "CO" },
+    { name: "Colombia", type: "Country", country: "CO" },
+    { name: "Tulcán", type: "City", country: "EC" },
+    { name: "Carchi", type: "AdministrativeArea", country: "EC" },
+    { name: "Ibarra", type: "City", country: "EC" },
+    { name: "Imbabura", type: "AdministrativeArea", country: "EC" },
+    { name: "Ecuador", type: "Country", country: "EC" },
+  ],
+  /** Radius, in metres, around the Ipiales coordinates. 150 km reaches
+   *  Pasto to the north and Ibarra to the south, which is the region we
+   *  can realistically serve in person. */
+  serviceRadiusMeters: 150000,
   links: {
     github: "https://github.com/buildroot-tech",
     // TODO(pre-launch): real company LinkedIn. This feeds the footer and the
@@ -41,7 +59,7 @@ export const localizedSeo = {
   es: {
     title: "buildroot_ | Desarrollo de software en Ipiales, Nariño",
     description:
-      "Estudio de desarrollo de software en Ipiales, Nariño. Creamos sitios y aplicaciones web, productos digitales y plataformas a medida para empresas de Ipiales, Pasto y todo Nariño.",
+      "Estudio de desarrollo de software en Ipiales, Nariño. Creamos sitios y aplicaciones web, productos digitales y plataformas a medida para empresas de Ipiales, Pasto, todo Nariño y el norte del Ecuador: Tulcán, Carchi e Ibarra.",
     keywords: [
       "desarrollo web Ipiales",
       "desarrollo de software Ipiales",
@@ -53,12 +71,18 @@ export const localizedSeo = {
       "estudio de software Ipiales",
       "programadores Ipiales",
       "consultoría técnica Nariño",
+      "desarrollo web Tulcán",
+      "desarrollo web Ibarra",
+      "páginas web Tulcán",
+      "software Carchi",
+      "diseño web norte del Ecuador",
+      "desarrollo de software Imbabura",
     ],
   },
   en: {
     title: "buildroot_ | Software studio in Ipiales, Nariño",
     description:
-      "Software development studio based in Ipiales, Nariño, Colombia. We design and build websites, web applications and custom digital products for businesses across Ipiales, Pasto and Nariño.",
+      "Software development studio based in Ipiales, Nariño, Colombia. We design and build websites, web applications and custom digital products for businesses across Nariño and northern Ecuador — Ipiales, Pasto, Tulcán, Carchi and Ibarra.",
     keywords: [
       "software development Ipiales",
       "web development Colombia",
@@ -67,6 +91,9 @@ export const localizedSeo = {
       "custom software Nariño",
       "digital products",
       "technical consulting Colombia",
+      "web development Tulcán",
+      "software development northern Ecuador",
+      "web design Ibarra",
     ],
   },
 } as const;
@@ -182,11 +209,25 @@ export function localBusinessJsonLd(lang: Locale) {
       latitude: siteConfig.geo.latitude,
       longitude: siteConfig.geo.longitude,
     },
-    areaServed: siteConfig.areaServed.map((name) => ({
-      "@type": "AdministrativeArea",
-      name,
+    areaServed: siteConfig.areaServed.map((area) => ({
+      "@type": area.type,
+      name: area.name,
+      ...(area.type !== "Country"
+        ? { containedInPlace: { "@type": "Country", name: area.country === "EC" ? "Ecuador" : "Colombia" } }
+        : {}),
     })),
-    knowsLanguage: ["es-CO", "en"],
+    // A radius says something `areaServed` can't: that the catchment is
+    // continuous across the border rather than a list of disconnected names.
+    serviceArea: {
+      "@type": "GeoCircle",
+      geoMidpoint: {
+        "@type": "GeoCoordinates",
+        latitude: siteConfig.geo.latitude,
+        longitude: siteConfig.geo.longitude,
+      },
+      geoRadius: siteConfig.serviceRadiusMeters,
+    },
+    knowsLanguage: ["es-CO", "es-EC", "en"],
     sameAs: [siteConfig.links.linkedin, siteConfig.links.github],
   };
 }
