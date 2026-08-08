@@ -4,7 +4,10 @@ import { LocaleLink } from "@/components/ui/LocaleLink";
 import { useRef } from "react";
 import { m, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { ScrambleText, type ScrambleTextHandle } from "@/components/ui/TextScrambler";
+import {
+  ScrambleText,
+  type ScrambleTextHandle,
+} from "@/components/ui/TextScrambler";
 import type { Dictionary } from "@/lib/dictionaries";
 
 interface AboutSectionProps {
@@ -105,7 +108,9 @@ function Marquee({
       <div
         className="marquee-track"
         data-direction={reverse ? "reverse" : undefined}
-        style={{ "--marquee-duration": `${durationSeconds}s` } as React.CSSProperties}
+        style={
+          { "--marquee-duration": `${durationSeconds}s` } as React.CSSProperties
+        }
       >
         {/* Two identical halves — the animation shifts exactly -50%. */}
         <div className="flex shrink-0">{run}</div>
@@ -129,7 +134,11 @@ export function AboutSection({ dict }: AboutSectionProps) {
   // small step back once content starts crossing it, and back up as it
   // settles above the footer. Just enough to keep body copy readable
   // through it — any lower and it stops reading as a solid mark.
-  const markOpacity = useTransform(trackProgress, [0, 0.1, 0.9, 1], [1, 0.62, 0.62, 1]);
+  const markOpacity = useTransform(
+    trackProgress,
+    [0, 0.1, 0.9, 1],
+    [1, 0.62, 0.62, 1],
+  );
 
   const dictValues = dict?.values;
 
@@ -180,7 +189,6 @@ export function AboutSection({ dict }: AboutSectionProps) {
             {dict?.intro || FALLBACK.intro}
           </m.p>
         </div>
-
       </section>
 
       {/* ── TRACKING WORDMARK ──────────────────────────────────
@@ -203,7 +211,10 @@ export function AboutSection({ dict }: AboutSectionProps) {
           copy stays readable through it, not so much that it stops
           reading as a solid mark. */}
       <div ref={trackRef} className="relative">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0"
+        >
           <div className="sticky top-[32vh] w-full px-6 md:px-12">
             <m.div
               className="relative w-full"
@@ -215,178 +226,187 @@ export function AboutSection({ dict }: AboutSectionProps) {
                   stacking them reassembles the wordmark exactly. */}
               <div
                 className="absolute inset-0 bg-contain bg-center bg-no-repeat"
-                style={{ backgroundImage: "url(/brand/buildroot-word-white.svg)" }}
+                style={{
+                  backgroundImage: "url(/brand/buildroot-word-white.svg)",
+                }}
               />
               <div
                 className="cursor-blink absolute inset-0 bg-contain bg-center bg-no-repeat"
-                style={{ backgroundImage: "url(/brand/buildroot-underscore-white.svg)" }}
+                style={{
+                  backgroundImage: "url(/brand/buildroot-underscore-white.svg)",
+                }}
               />
             </m.div>
           </div>
         </div>
 
         <div className="relative z-10">
-
-
-      {/* ── CULTURE MANIFESTO ──────────────────────────────────
+          {/* ── CULTURE MANIFESTO ──────────────────────────────────
           The eyebrow floats into the giant paragraph's first line
           rather than sitting above it — below md it stacks, since at
           phone width the paragraph wraps too many times for the float
           to clear its second line. */}
-      <section className="w-full px-6 pt-[52vh] pb-24 md:px-12 md:pt-[56vh] md:pb-40">
-        <m.p
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={revealUp}
-          transition={revealTransition}
-          className="type-manifesto w-full"
-        >
-          <span className="mb-4 block font-display text-2xl md:float-left md:mb-0 md:mr-8 md:mt-[0.9em] md:text-3xl">
-            {dict?.culture?.eyebrow || FALLBACK.culture.eyebrow}
-          </span>
-          {dict?.culture?.manifesto || FALLBACK.culture.manifesto}
-        </m.p>
-      </section>
+          <section className="w-full px-6 pt-[52vh] pb-24 md:px-12 md:pt-[56vh] md:pb-40">
+            <m.p
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={revealUp}
+              transition={revealTransition}
+              className="type-manifesto w-full"
+            >
+              <span className="mb-4 block font-display text-2xl md:float-left md:mb-0 md:mr-8 md:mt-[0.9em] md:text-3xl">
+                {dict?.culture?.eyebrow || FALLBACK.culture.eyebrow}
+              </span>
+              {dict?.culture?.manifesto || FALLBACK.culture.manifesto}
+            </m.p>
+          </section>
 
-      {/* ── VALUES: title, index, statement ────────────────────── */}
-      <section className="w-full px-6 pb-16 md:px-12 md:pb-24">
-        <m.h2
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={revealUp}
-          transition={revealTransition}
-          className="type-title text-center"
-        >
-          {dictValues?.title || FALLBACK.values.title}
-        </m.h2>
+          {/* ── VALUES: title, index, statement ────────────────────── */}
+          <section className="w-full px-6 pb-16 md:px-12 md:pb-24">
+            <m.h2
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={revealUp}
+              transition={revealTransition}
+              className="type-title text-center"
+            >
+              {dictValues?.title || FALLBACK.values.title}
+            </m.h2>
 
-        <div className="mt-14 flex flex-col gap-14 lg:grid lg:grid-cols-2 lg:items-start lg:gap-16">
-          {/* Index — numbered rows on rules, a contents page for what follows */}
-          <m.ul
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={revealUp}
-            transition={revealTransition}
-            className="flex flex-col border-t border-[var(--border)]"
-          >
-            {values.map((value) => (
-              <li
-                key={value.key}
-                className="flex items-baseline gap-6 border-b border-[var(--border)] py-4 md:gap-10"
+            <div className="mt-14 flex flex-col gap-14 lg:grid lg:grid-cols-2 lg:items-start lg:gap-16">
+              {/* Index — numbered rows on rules, a contents page for what follows */}
+              <m.ul
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={revealUp}
+                transition={revealTransition}
+                className="flex flex-col border-t border-[var(--border)]"
               >
-                <span className="font-mono text-sm opacity-60">
-                  {String(value.index).padStart(2, "0")}
-                </span>
-                <span className="font-display text-xl md:text-2xl">{value.title}</span>
-              </li>
-            ))}
-          </m.ul>
+                {values.map((value) => (
+                  <li
+                    key={value.key}
+                    className="flex items-baseline gap-6 border-b border-[var(--border)] py-4 md:gap-10"
+                  >
+                    <span className="font-mono text-sm opacity-60">
+                      {String(value.index).padStart(2, "0")}
+                    </span>
+                    <span className="font-display text-xl md:text-2xl">
+                      {value.title}
+                    </span>
+                  </li>
+                ))}
+              </m.ul>
 
-          <m.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={revealUp}
-            transition={{ ...revealTransition, delay: 0.1 }}
-            className="type-lead"
-          >
-            {dictValues?.intro || FALLBACK.values.intro}
-          </m.p>
-        </div>
-      </section>
+              <m.p
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={revealUp}
+                transition={{ ...revealTransition, delay: 0.1 }}
+                className="type-lead"
+              >
+                {dictValues?.intro || FALLBACK.values.intro}
+              </m.p>
+            </div>
+          </section>
 
-      {/* ── VALUES: one full band each ─────────────────────────── */}
-      {values.map((value, i) => (
-        <section key={value.key} className="w-full py-16 md:py-24">
-          <m.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={revealUp}
-            transition={revealTransition}
-            className="mb-8 text-center font-serif text-3xl font-light md:mb-12 md:text-5xl"
-          >
-            ({value.index})
-          </m.p>
+          {/* ── VALUES: one full band each ─────────────────────────── */}
+          {values.map((value, i) => (
+            <section key={value.key} className="w-full py-16 md:py-24">
+              <m.p
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={revealUp}
+                transition={revealTransition}
+                className="mb-8 text-center font-serif text-3xl font-light md:mb-12 md:text-5xl"
+              >
+                ({value.index})
+              </m.p>
 
-          {/* Alternating direction so consecutive bands don't read as one
+              {/* Alternating direction so consecutive bands don't read as one
               continuous strip sliding the same way down the whole page. */}
-          <Marquee
-            text={value.marquee}
-            durationSeconds={34 + i * 4}
-            reverse={i % 2 === 1}
-            className="font-serif text-[clamp(3.5rem,11vw,11rem)] font-light leading-none tracking-tight"
-          />
+              <Marquee
+                text={value.marquee}
+                durationSeconds={34 + i * 4}
+                reverse={i % 2 === 1}
+                className="font-serif text-[clamp(3.5rem,11vw,11rem)] font-light leading-none tracking-tight"
+              />
 
-          <m.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-            variants={revealUp}
-            transition={revealTransition}
-            className="mt-10 px-6 md:mt-16 md:px-12 lg:grid lg:grid-cols-[46%_1fr] lg:gap-8"
-          >
-            {/* No small index here — the big centred "(n)" above the band
+              <m.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.25 }}
+                variants={revealUp}
+                transition={revealTransition}
+                className="mt-10 px-6 md:mt-16 md:px-12 lg:grid lg:grid-cols-[46%_1fr] lg:gap-8"
+              >
+                {/* No small index here — the big centred "(n)" above the band
                 already numbers this value, and repeating it a second time
                 read as clutter. */}
-            <h3 className="font-display text-2xl leading-tight md:text-3xl">
-              {value.title}
-            </h3>
-            <p className="type-body mt-5 max-w-3xl opacity-90 lg:mt-0">
-              {value.description}
-            </p>
-          </m.div>
-        </section>
-      ))}
+                <h3 className="font-display text-2xl leading-tight md:text-3xl">
+                  {value.title}
+                </h3>
+                <p className="type-body mt-5 max-w-3xl opacity-90 lg:mt-0">
+                  {value.description}
+                </p>
+              </m.div>
+            </section>
+          ))}
 
-      {/* ── CTA ─────────────────────────────────────────────────
+          {/* ── CTA ─────────────────────────────────────────────────
           Two-column grid matching the Footer's own, so the action
           column lines up with the one directly beneath it. */}
-      <section className="w-full border-t border-[var(--border)] px-6 py-20 md:px-12 md:py-28">
-        <div className="flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:items-end lg:gap-24">
-          <div>
-            <h2 className="type-title text-[clamp(2.2rem,5vw,4.5rem)]">
-              {dict?.cta?.title || FALLBACK.cta.title}
-            </h2>
-            <p className="type-body mt-6 max-w-xl opacity-85">
-              {dict?.cta?.subtitle || FALLBACK.cta.subtitle}
-            </p>
-          </div>
+          <section className="w-full border-t border-[var(--border)] px-6 py-20 md:px-12 md:py-28">
+            <div className="flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:items-end lg:gap-24">
+              <div>
+                <h2 className="type-title text-[clamp(2.2rem,5vw,4.5rem)]">
+                  {dict?.cta?.title || FALLBACK.cta.title}
+                </h2>
+                <p className="type-body mt-6 max-w-xl opacity-85">
+                  {dict?.cta?.subtitle || FALLBACK.cta.subtitle}
+                </p>
+              </div>
 
-          <div className="flex flex-col font-display text-3xl sm:text-4xl">
-            <LocaleLink
-              href="/contact"
-              onMouseEnter={() => ctaButtonRef.current?.scramble()}
-              onMouseLeave={() => ctaButtonRef.current?.reset()}
-              className="group flex items-center justify-between border-t border-[var(--border)] py-5"
-            >
-              <ScrambleText
-                ref={ctaButtonRef}
-                text={dict?.cta?.button || FALLBACK.cta.button}
-                trigger="manual"
-                speed={40}
-              />
-              <ArrowRight className="h-7 w-7 transition-transform group-hover:translate-x-1" />
-            </LocaleLink>
+              <div className="flex flex-col font-display text-3xl sm:text-4xl">
+                <LocaleLink
+                  href="/contact"
+                  onMouseEnter={() => ctaButtonRef.current?.scramble()}
+                  onMouseLeave={() => ctaButtonRef.current?.reset()}
+                  className="group flex items-center justify-between border-t border-[var(--border)] py-5"
+                >
+                  <ScrambleText
+                    ref={ctaButtonRef}
+                    text={dict?.cta?.button || FALLBACK.cta.button}
+                    trigger="manual"
+                    speed={40}
+                  />
+                  <ArrowRight className="h-7 w-7 transition-transform group-hover:translate-x-1" />
+                </LocaleLink>
 
-            <a
-              href={`mailto:${EMAIL}`}
-              onMouseEnter={() => ctaEmailRef.current?.scramble()}
-              onMouseLeave={() => ctaEmailRef.current?.reset()}
-              className="group flex items-center justify-between border-t border-b border-[var(--border)] py-5"
-            >
-              <ScrambleText ref={ctaEmailRef} text={EMAIL} trigger="manual" speed={40} />
-              <ArrowUpRight className="h-7 w-7 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-            <span className="mt-3 font-mono text-xs uppercase tracking-widest opacity-60">
-              {dict?.cta?.email_label || FALLBACK.cta.emailLabel}
-            </span>
-          </div>
-        </div>
-      </section>
+                <a
+                  href={`mailto:${EMAIL}`}
+                  onMouseEnter={() => ctaEmailRef.current?.scramble()}
+                  onMouseLeave={() => ctaEmailRef.current?.reset()}
+                  className="group flex items-center justify-between border-t border-b border-[var(--border)] py-5"
+                >
+                  <ScrambleText
+                    ref={ctaEmailRef}
+                    text={EMAIL}
+                    trigger="manual"
+                    speed={40}
+                  />
+                  <ArrowUpRight className="h-7 w-7 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
+                <span className="mt-3 font-mono text-xs uppercase tracking-widest opacity-60">
+                  {dict?.cta?.email_label || FALLBACK.cta.emailLabel}
+                </span>
+              </div>
+            </div>
+          </section>
 
           {/* Landing strip. Every section above is opaque so it can cover
               the wordmark on the way down; without this the CTA — the last
@@ -401,7 +421,6 @@ export function AboutSection({ dict }: AboutSectionProps) {
           />
         </div>
       </div>
-
     </div>
   );
 }

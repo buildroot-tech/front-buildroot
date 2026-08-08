@@ -4,8 +4,12 @@ import { useRef } from "react";
 import { m, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { LocaleLink } from "@/components/ui/LocaleLink";
-import { ScrambleText, type ScrambleTextHandle } from "@/components/ui/TextScrambler";
+import {
+  ScrambleText,
+  type ScrambleTextHandle,
+} from "@/components/ui/TextScrambler";
 import { PixelImage } from "@/components/ui/PixelImage";
+import { projectImageSrc } from "@/lib/projects";
 import type { Project } from "@/types";
 import type { Dictionary } from "@/lib/dictionaries";
 
@@ -123,12 +127,16 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
     {
       key: "problem",
       label: dict?.problem || "Problem",
-      content: <p className="type-lead max-w-4xl">{project.caseStudy.challenge}</p>,
+      content: (
+        <p className="type-lead max-w-4xl">{project.caseStudy.challenge}</p>
+      ),
     },
     {
       key: "solution",
       label: dict?.solution || "Solution",
-      content: <p className="type-lead max-w-4xl">{project.caseStudy.solution}</p>,
+      content: (
+        <p className="type-lead max-w-4xl">{project.caseStudy.solution}</p>
+      ),
     },
     {
       key: "results",
@@ -177,7 +185,9 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
             </div>
           </div>
 
-          <p className="type-statement max-w-2xl lg:col-start-2">{project.description}</p>
+          <p className="type-statement max-w-2xl lg:col-start-2">
+            {project.description}
+          </p>
         </m.div>
       </section>
 
@@ -186,8 +196,11 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
           hard offset shadow — the one brutalist holdover the rest of
           the site has already dropped. */}
       {project.image && (
-        <m.div {...inView} className="relative aspect-[16/9] w-full overflow-hidden">
-          <PixelImage src={`/projects/${project.image}.jpg`} />
+        <m.div
+          {...inView}
+          className="relative aspect-[16/9] w-full overflow-hidden"
+        >
+          <PixelImage src={projectImageSrc(project.image)} />
         </m.div>
       )}
 

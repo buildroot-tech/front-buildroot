@@ -14,7 +14,8 @@ const steps = [
     number: "01",
     dictKey: "requirements",
     title: "Requirements",
-    description: "We map the problem, define the exact scope, and align perfectly on your goals. No guessing, just extreme clarity.",
+    description:
+      "We map the problem, define the exact scope, and align perfectly on your goals. No guessing, just extreme clarity.",
     color: "var(--bg-primary)",
     textColor: "var(--text-primary)",
   },
@@ -22,7 +23,8 @@ const steps = [
     number: "02",
     dictKey: "design",
     title: "Design",
-    description: "Crafting intuitive interfaces and aesthetics that communicate your brand's unique edge, backed by strict system design.",
+    description:
+      "Crafting intuitive interfaces and aesthetics that communicate your brand's unique edge, backed by strict system design.",
     color: "#0A0A0A",
     textColor: "var(--text-inverse)",
   },
@@ -30,7 +32,8 @@ const steps = [
     number: "03",
     dictKey: "build",
     title: "Build",
-    description: "Iterative, high-velocity development. We build robust, scalable architectures for maximum performance.",
+    description:
+      "Iterative, high-velocity development. We build robust, scalable architectures for maximum performance.",
     color: "var(--accent)",
     textColor: "white",
   },
@@ -38,7 +41,8 @@ const steps = [
     number: "04",
     dictKey: "testing",
     title: "Testing",
-    description: "Rigorous quality, performance, and security validation to ensure the product is unbreakable.",
+    description:
+      "Rigorous quality, performance, and security validation to ensure the product is unbreakable.",
     color: "var(--bg-primary)",
     textColor: "var(--text-primary)",
   },
@@ -46,7 +50,8 @@ const steps = [
     number: "05",
     dictKey: "production",
     title: "Go Live",
-    description: "Deploy and scale with absolute confidence. Your product hits the market flawlessly and ready to dominate.",
+    description:
+      "Deploy and scale with absolute confidence. Your product hits the market flawlessly and ready to dominate.",
     color: "#000000",
     textColor: "var(--text-inverse)",
   },
@@ -66,14 +71,16 @@ export function WorkflowSteps({ dict }: WorkflowStepsProps) {
   });
 
   return (
-    <section ref={containerRef} className="relative w-full bg-[var(--bg-primary)]">
+    <section
+      ref={containerRef}
+      className="relative w-full bg-[var(--bg-primary)]"
+    >
       {/*
         We create a long scrollable area.
         4 steps, we can give it around 400vh so there's plenty of scroll duration.
       */}
       <div className="relative h-[500vh] w-full">
         <div className="sticky top-0 flex h-screen w-full flex-col md:flex-row overflow-hidden">
-
           {/* Left Side: Sticky Title */}
           <div className="flex h-[30vh] w-full flex-col justify-center px-6 md:h-full md:w-1/3 md:pl-10 lg:pl-16">
             <m.div
@@ -110,27 +117,23 @@ export function WorkflowSteps({ dict }: WorkflowStepsProps) {
 }
 
 interface StepCardProps {
-  step: typeof steps[0];
+  step: (typeof steps)[0];
   index: number;
   scrollYProgress: MotionValue<number>;
   dict?: Dictionary["home"]["process"];
 }
 
 function StepCard({ step, index, scrollYProgress, dict }: StepCardProps) {
-  const start = index * 0.20;
-  const end = start + 0.20;
+  const start = index * 0.2;
+  const end = start + 0.2;
 
   const y = useTransform(
     scrollYProgress,
     [Math.max(0, start - 0.1), start],
-    ["100%", "0%"]
+    ["100%", "0%"],
   );
 
-  const scale = useTransform(
-    scrollYProgress,
-    [start, end],
-    [1, 0.95]
-  );
+  const scale = useTransform(scrollYProgress, [start, end], [1, 0.95]);
 
   return (
     <m.div
@@ -155,7 +158,10 @@ function StepCard({ step, index, scrollYProgress, dict }: StepCardProps) {
         </div>
         <div className="relative z-10 max-w-3xl">
           <h3 className="font-display text-3xl font-bold uppercase tracking-tight sm:text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">
-            {step.dictKey && dict?.steps?.[step.dictKey as keyof typeof dict.steps]?.title ? dict.steps[step.dictKey as keyof typeof dict.steps].title : step.title}
+            {step.dictKey &&
+            dict?.steps?.[step.dictKey as keyof typeof dict.steps]?.title
+              ? dict.steps[step.dictKey as keyof typeof dict.steps].title
+              : step.title}
           </h3>
           {/* line-clamp keeps every step's text block the same height —
               without it, longer descriptions (Requirements/Design) wrap to
@@ -163,7 +169,10 @@ function StepCard({ step, index, scrollYProgress, dict }: StepCardProps) {
               (justify-end), push their title up into the ghost number on
               short viewports while shorter descriptions never do. */}
           <p className="font-mono text-base md:text-lg lg:text-xl leading-relaxed opacity-90 [@media(max-height:820px)]:line-clamp-2">
-            {step.dictKey && dict?.steps?.[step.dictKey as keyof typeof dict.steps]?.description ? dict.steps[step.dictKey as keyof typeof dict.steps].description : step.description}
+            {step.dictKey &&
+            dict?.steps?.[step.dictKey as keyof typeof dict.steps]?.description
+              ? dict.steps[step.dictKey as keyof typeof dict.steps].description
+              : step.description}
           </p>
         </div>
       </div>

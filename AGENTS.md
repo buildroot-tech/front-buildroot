@@ -43,6 +43,22 @@ bug in this codebase.
 - Large serif headings need line-height room. At Tailwind's default
   `line-height: 1`, an `overflow-hidden` ancestor clips the descenders of
   `y`, `j`, `g` and `p`.
+- Fonts are defined once in `lib/fonts.ts` and shared by every root layout.
+  Never re-declare `next/font` calls in a layout.
+- `/style-guide` renders this system live. If you change the scale, the
+  tokens or the route themes, look at that page — it imports `routeThemes`
+  and uses the real `.type-*` classes, so it will show the change rather
+  than describe it. It went stale once by being written as prose about a
+  system instead of a rendering of it.
+
+## Colour
+
+- Route colour lives in `lib/route-theme.ts` and nowhere else. Header and
+  Footer both read it, which is what keeps a section's colour from drifting
+  between them. Nested routes inherit their parent section.
+- The codebase addresses tokens as `bg-[var(--bg-primary)]`, not via the
+  Tailwind classes `@theme inline` generates. Follow that; mixing both makes
+  it impossible to grep where a colour is used.
 
 ## Motion
 
@@ -58,11 +74,22 @@ bug in this codebase.
 - `scroll-behavior: smooth` is set globally. Any code that scrolls and then
   measures must use `behavior: "instant"`, or it will read the old offset.
 
+## Routes outside `app/[lang]`
+
+- Anything at the app root — metadata routes, `/style-guide` — must be added
+  to `UNLOCALIZED_ROUTES` in `proxy.ts`, or the proxy rewrites it into
+  `/en/...`, a path that does not exist, and it 404s. This has now bitten
+  twice: `/apple-icon` and `/style-guide`.
+- There is **no `app/layout.tsx`**. A root-level route therefore gets Next's
+  default root layout — no `globals.css`, no fonts, unstyled text — unless it
+  ships its own. `/style-guide` sat both unreachable and unpainted for a
+  while, each bug hiding the other.
+
 ## Metadata
 
 - Metadata routes (`/icon`, `/apple-icon`, `/opengraph-image`) have no file
-  extension, so `proxy.ts` has to skip them explicitly or they get rewritten
-  into `/en/...` and 404.
+  extension, so the `pathname.includes('.')` check in `proxy.ts` does not
+  catch them.
 - `ImageResponse` (OG images, app icon) renders in isolation and **cannot
   read `/public`** — geometry has to be inlined in the component.
 - Every page exports a `viewport` with a `themeColor` matching the colour at

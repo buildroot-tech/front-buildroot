@@ -13,7 +13,9 @@ interface CTAProps {
 
 export function CTA({ dict }: CTAProps) {
   const container = useRef<HTMLElement>(null);
-  const text = dict?.manifesto || "We build high-performance technology and design unconventional solutions. We exist to help bold brands break out of the ordinary. Every line of code and every pixel is crafted to elevate your digital presence.";
+  const text =
+    dict?.manifesto ||
+    "We build high-performance technology and design unconventional solutions. We exist to help bold brands break out of the ordinary. Every line of code and every pixel is crafted to elevate your digital presence.";
   const words = text.split(" ");
 
   // Track scroll progress across this specific component
@@ -50,8 +52,12 @@ export function CTA({ dict }: CTAProps) {
 
       {/* Marquee Ticker */}
       <Ticker
-        text={dict?.ticker_text || "HIGH-END EXPERIENCES * UNCONVENTIONAL DESIGNS *"}
-        secondaryText={dict?.ticker_secondary || "SYSTEMS * PRODUCT * INFRASTRUCTURE *"}
+        text={
+          dict?.ticker_text || "HIGH-END EXPERIENCES * UNCONVENTIONAL DESIGNS *"
+        }
+        secondaryText={
+          dict?.ticker_secondary || "SYSTEMS * PRODUCT * INFRASTRUCTURE *"
+        }
       />
     </section>
   );
@@ -118,7 +124,9 @@ const BottomCTA = ({ dict }: { dict?: Dictionary["home"]["cta"] }) => {
               <span className="w-[1ch] text-center inline-block">
                 {hovered ? ctaSymbol : ""}
               </span>
-              <span className="mx-2 md:mx-4">{dict?.lets_build || "Let's Build Together"}</span>
+              <span className="mx-2 md:mx-4">
+                {dict?.lets_build || "Let's Build Together"}
+              </span>
               <span className="w-[1ch] text-center inline-block">
                 {hovered ? ctaSymbol : ""}
               </span>

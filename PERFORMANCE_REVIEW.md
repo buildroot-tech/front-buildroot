@@ -7,50 +7,27 @@ here was checked, not inferred.
 
 ## Measured today
 
-Production build, desktop 1440×900:
+Production build (`next build` + `next start`), desktop 1440×900:
 
-| Page | LCP | CLS | Long tasks | Transfer |
-| --- | --- | --- | --- | --- |
-| `/es` | 256 ms | 0.0001 | 1 (59 ms) | 108 KB |
-| `/es/work` | 236 ms | 0.0001 | 0 | 108 KB |
-| `/es/about` | 160 ms | 0.0001 | 0 | 108 KB |
-| `/es/contact` | 216 ms | 0.0001 | 0 | 108 KB |
-| `/es/work/[slug]` | 208 ms | 0.0001 | 0 | **864 KB** |
+| Page              | LCP    | CLS    | Long tasks | Transfer |
+| ----------------- | ------ | ------ | ---------- | -------- |
+| `/es`             | 636 ms | 0.0001 | 0          | 109 KB   |
+| `/es/work`        | 312 ms | 0.0001 | 1 (66 ms)  | 109 KB   |
+| `/es/about`       | 124 ms | 0.0001 | 0          | 109 KB   |
+| `/es/services`    | 204 ms | 0.0001 | 0          | 109 KB   |
+| `/es/contact`     | 220 ms | 0.0001 | 0          | 109 KB   |
+| `/es/work/[slug]` | 228 ms | 0.0001 | 0          | 188 KB   |
 
 Route transitions: 60 fps, 0 dropped frames of 134, no long tasks.
 
-The numbers are good everywhere except the transfer size of a case-study
-page, which is finding #1.
+Every page is now within budget. The case-study page — previously the one
+outlier at 864 KB — is down to 188 KB.
 
 ---
 
 ## Open
 
-### 1. Project images are 3.5 MB, served unoptimised — highest impact
-
-`public/projects/` holds four 1024×1024 JPEGs:
-
-| File | Size |
-| --- | --- |
-| `salesforce-ai.jpg` | 1.00 MB |
-| `aca-diario.jpg` | 989 KB |
-| `polo-pantoja.jpg` | 756 KB |
-| `edusur.jpg` | 708 KB |
-
-This is the entire difference between a case-study page (864 KB) and every
-other page (108 KB). They are loaded through `PixelImage`, which uses
-`new Image()` directly, so `next/image` is bypassed completely: no resizing,
-no WebP/AVIF, no lazy loading, no responsive `srcset`.
-
-**Fix:** re-encode at the sizes actually rendered and serve modern formats.
-The largest box any of these fills is the case-study hero (16:9, full width);
-the `/work` rows render them at 300×188. A 1600 px-wide WebP would cover
-every use at a fraction of the weight.
-
-This one is deliberately left as a decision rather than done, because it
-changes source assets.
-
-### 2. `PixelImage` allocates a canvas per animation frame
+### 1. `PixelImage` allocates a canvas per animation frame
 
 `components/ui/PixelImage.tsx` — `draw()` (L63) calls
 `document.createElement("canvas")` on every tick of the 0.8 s reveal, and
@@ -61,48 +38,63 @@ At ~60 fps that is up to ~48 offscreen canvas allocations plus full-
 resolution `drawImage` calls per reveal, and `/work` can have two or three
 instances mounted at once during a hover.
 
-It does not currently show up in the measurements — long tasks are zero on
-`/work` — because the reveals are short and staggered by hover. It is real
-waste, but it is not hurting anyone today, so it sits below #1.
+It does not show up in the measurements — the one long task recorded on
+`/work` is 66 ms and is not attributable to this — because the reveals are
+short and staggered by hover. It is real waste that is not currently hurting
+anyone.
 
 **Fix:** one offscreen canvas per instance held in a ref, sized to the
 rendered CSS box × `devicePixelRatio` rather than the source file.
 
-### 3. Two type systems still coexist
+### 2. The LinkedIn URL is still a placeholder
 
-`globals.css` carries both the current `.type-*` scale and the older
-brutalist utilities (`.headline`, `.heading`, `.text-h1`–`.text-h3`,
-`.text-display`, `.brutalist-card`, `.brutalist-button`). The legacy set is
-now referenced **only** by `app/style-guide/page.tsx` — no shipping page uses
-it.
-
-`/style-guide` is also an internal reference that documents the *superseded*
-system. It is now excluded from indexing in `robots.ts`, but it remains
-reachable and will drift further from the real site over time.
-
-**Decision needed:** delete `app/style-guide/` and the legacy utilities with
-it, or rewrite the page against the current scale. Left in place because
-removing a page is the owner's call.
-
-### 4. Footer links point nowhere
-
-- Social links in `components/layout/Footer.tsx` are placeholders
-  (`instagram.com/buildroot`, `twitter.com/buildroot_dev`,
-  `linkedin.com/company/buildroot`).
-- `/privacy`, `/cookies` and `/newsletter` are linked from the footer and
-  **all three return 404** — verified against the running build.
-
-Both are content decisions, not code problems, but they are visible to every
-visitor.
+`lib/seo.ts` — `siteConfig.links.linkedin` points at
+`linkedin.com/company/buildroot`, which is a guess. The footer renders it on
+every page. This is a content decision, not a code problem, but it is
+visible to every visitor and it feeds the `sameAs` array in the
+`ProfessionalService` JSON-LD, where a wrong URL actively weakens the
+entity signal.
 
 ---
 
 ## Closed since the last review
 
+- **Project images were 3.5 MB served unoptimised.** The four 1024×1024
+  JPEGs in `public/projects/` were re-encoded to WebP (quality 78) at the
+  same dimensions: **3.4 MB → 480 KB**, a 82–94% reduction per file. The
+  format is now centralised in `projectImageSrc()` in `lib/projects.ts`
+  rather than repeated at five call sites. Case-study page transfer:
+  **864 KB → 188 KB**.
+- **Two type systems no longer coexist.** `globals.css` carried both the
+  current `.type-*` scale and the superseded brutalist utilities
+  (`.headline`, `.heading`, `.text-h1`–`.text-h3`, `.text-display`,
+  `.brutalist-card`, `.brutalist-button`). Nothing shipping referenced the
+  legacy set; it and its nine orphaned tokens (`--shadow-brutalist*`,
+  `--duration-hover`, `--text-display/h1/h2/h3/small/caption`) are gone.
+  `globals.css` went from 431 to 236 lines.
+- **`/style-guide` 404'd in production.** It lives at the app root rather
+  than under `app/[lang]`, so `proxy.ts` was rewriting it to
+  `/en/style-guide` — a path that does not exist. Same class of bug as the
+  `/apple-icon` 404. The skip list is now named `UNLOCALIZED_ROUTES` and
+  covers both.
+- **`/style-guide` also rendered completely unstyled.** There is no
+  `app/layout.tsx`, so Next supplied a default root layout with no
+  `globals.css` and no fonts. It now has its own root layout. The two bugs
+  masked each other: the route was unreachable, so nobody saw that it was
+  also unpainted.
+- **The style guide documented a system that no longer existed.** It has
+  been rewritten against the current scale, and now imports `routeThemes`
+  from `lib/route-theme.ts` and renders every type sample with the real
+  `.type-*` class, so it cannot silently drift again.
+- **The three typefaces are defined once**, in `lib/fonts.ts`, shared by the
+  localized layout and the style guide. A style guide rendering different
+  fonts from the pages it documents is worse than no style guide.
+- **`/privacy` and `/cookies` 404'd.** Both pages now exist in both
+  locales, with the copy in the dictionaries.
 - **LCP was pinned to a decoration.** The hero's ghost echo — the largest
   painted element on the page — faded in a second after the headline, so
   Largest Contentful Paint sat at whenever that decoration finished. Tying it
-  to the headline's own reveal took LCP from 2284 ms to ~250 ms.
+  to the headline's own reveal took LCP from 2284 ms to a few hundred ms.
 - **Long tasks on load: 3 (237 ms) → 0.**
 - **Route transitions are layout-stable.** The letter shuffle rearranges only
   a word's own characters, so every word keeps its final width: CLS 0.0001.
@@ -113,8 +105,7 @@ visitor.
   Footer, the unused `.section-generous` utility, and the last
   `eslint-disable` in the codebase.
 - **`/apple-icon` 404'd in production** — metadata routes have no file
-  extension, so `proxy.ts` was rewriting them into `/en/...`. Now skipped
-  explicitly.
+  extension, so `proxy.ts` was rewriting them into `/en/...`.
 - **iOS painted a white band above dark pages** — no `theme-color` or
   `color-scheme` was declared anywhere. Each route now ships both, matching
   the colour at the top of that page.
@@ -126,6 +117,11 @@ visitor.
 - `npx tsc --noEmit` — clean
 - `npm run lint` — clean, no suppressions anywhere in the codebase
 - `npm run build` — clean
-- No `console.log`, `TODO`, `any`, `@ts-ignore` or orphaned modules
+- No `console.log`, `any`, `@ts-ignore` or orphaned modules
+- One `TODO` in the codebase, `lib/seo.ts:44` — the LinkedIn URL above
+- No orphaned CSS custom properties
 - Dictionaries structurally identical across `es` and `en`
 - No horizontal overflow at 360, 390, 414, 1366, 1440 or 1920
+- Every route returns 200 in a production build; the only failing requests
+  are `_vercel/insights` and `_vercel/speed-insights`, which resolve only
+  when deployed to Vercel
