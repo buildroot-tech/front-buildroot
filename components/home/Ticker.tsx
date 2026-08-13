@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import {
   m,
   useScroll,
@@ -9,6 +9,7 @@ import {
   useMotionValue,
   useVelocity,
   useAnimationFrame,
+  useInView,
 } from "framer-motion";
 
 interface TickerProps {
@@ -61,7 +62,24 @@ export function Ticker({
 
   const directionFactor = useRef<number>(1);
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  // This rAF loop would otherwise run every frame for as long as the page
+  // is open, moving six 3D-transformed, masked layers even while the
+  // ticker is nowhere near the viewport — pure main-thread cost competing
+  // with the scroll compositor on the frames that matter. isInView gates
+  // the writes to when the ticker can actually be seen (plus a margin, so
+  // it's already moving by the time it scrolls into frame instead of
+  // starting from a dead stop).
+  const isInView = useInView(ref, { margin: "200px" });
+  const isInViewRef = useRef(isInView);
+  useEffect(() => {
+    isInViewRef.current = isInView;
+  }, [isInView]);
+
   useAnimationFrame((t, delta) => {
+    if (!isInViewRef.current) return;
+
     let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
     if (velocityFactor.get() < 0) {
@@ -77,7 +95,6 @@ export function Ticker({
     baseXReverse.set(baseXReverse.get() - moveBy);
   });
 
-  const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
