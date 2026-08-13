@@ -208,13 +208,17 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
           Each panel pins to the viewport and the next one slides up over
           it, so a section holds still while you read it and the rest
           stack on top. Same mechanic as /services' slides — see
-          ProjectPanel for the timing. */}
+          ProjectPanel for the timing. dvh, not vh — see the matching
+          comment in WorkflowSteps.tsx: vh is taller than what's actually
+          visible whenever a mobile browser's address bar is showing, so it
+          visibly desyncs from the sticky panel as the toolbar collapses
+          mid-scroll. */}
       <section
         ref={stackRef}
         className="relative w-full"
-        style={{ height: `${panels.length * 100}vh` }}
+        style={{ height: `${panels.length * 100}dvh` }}
       >
-        <div className="sticky top-0 h-screen w-full overflow-hidden">
+        <div className="sticky top-0 h-dvh w-full overflow-hidden">
           {panels.map((panel, i) => (
             <ProjectPanel
               key={panel.key}
