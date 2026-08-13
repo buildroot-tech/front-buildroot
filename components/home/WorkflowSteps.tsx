@@ -86,8 +86,18 @@ export function WorkflowSteps({ dict }: WorkflowStepsProps) {
           mid-scroll changes the gap between the two, and Framer's
           scrollYProgress (which watches this driver's start/end against the
           viewport) jumps to compensate. dvh tracks what's actually on
-          screen, so there's nothing to reconcile. */}
-      <div className="relative h-[500dvh] w-full">
+          screen, so there's nothing to reconcile.
+
+          Shorter on mobile (325dvh vs 500dvh desktop) — 100dvh of driver
+          per card was tuned for a mouse wheel, where that's a couple of
+          clicks. On a touchscreen it's 5-10 full swipes per card, and much
+          of each swipe lands inside the panel's 40% rest window (see
+          StepCard below), where nothing moves on purpose. That reads as
+          "I scrolled a long way and nothing happened" rather than a
+          deliberate pause. The 60/40 travel/rest split itself is a
+          fraction of scrollYProgress, so it's untouched by this — cards
+          just cover the same relative ground in less absolute scroll. */}
+      <div className="relative h-[325dvh] md:h-[500dvh] w-full">
         <div className="sticky top-0 flex h-dvh w-full flex-col md:flex-row overflow-hidden">
           {/* Left Side: Sticky Title */}
           <div className="flex h-[30dvh] w-full flex-col justify-center px-6 md:h-full md:w-1/3 md:pl-10 lg:pl-16">
