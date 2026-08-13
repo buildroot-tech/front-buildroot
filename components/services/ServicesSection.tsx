@@ -220,14 +220,18 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
       {/* Services — each one is its own full-screen slide that stacks over
           the previous one as you scroll, same mechanic as Home's process
           steps. stackRef spans 3 viewport-heights of scroll room; the
-          sticky child pins in place while that room scrolls underneath. */}
+          sticky child pins in place while that room scrolls underneath.
+          dvh, not vh — see the matching comment in WorkflowSteps.tsx for
+          why: vh is taller than what's actually visible whenever a mobile
+          browser's address bar is showing, so it visibly desyncs from the
+          sticky panel as the toolbar collapses mid-scroll. */}
       <section
         id="services-stack"
         ref={stackRef}
         className="relative w-full"
-        style={{ height: `${SERVICE_KEYS.length * 100}vh` }}
+        style={{ height: `${SERVICE_KEYS.length * 100}dvh` }}
       >
-        <div className="sticky top-0 h-screen w-full overflow-hidden">
+        <div className="sticky top-0 h-dvh w-full overflow-hidden">
           {SERVICE_KEYS.map((key, i) => (
             <ServiceSlide
               key={key}

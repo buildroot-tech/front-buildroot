@@ -79,10 +79,18 @@ export function WorkflowSteps({ dict }: WorkflowStepsProps) {
         We create a long scrollable area.
         4 steps, we can give it around 400vh so there's plenty of scroll duration.
       */}
-      <div className="relative h-[500vh] w-full">
-        <div className="sticky top-0 flex h-screen w-full flex-col md:flex-row overflow-hidden">
+      {/* dvh, not vh: this whole system pins content to the visual viewport
+          while the driver scrolls underneath. vh is the layout viewport —
+          taller than what's actually visible whenever a mobile browser's
+          address bar is showing — so a toolbar collapsing or reappearing
+          mid-scroll changes the gap between the two, and Framer's
+          scrollYProgress (which watches this driver's start/end against the
+          viewport) jumps to compensate. dvh tracks what's actually on
+          screen, so there's nothing to reconcile. */}
+      <div className="relative h-[500dvh] w-full">
+        <div className="sticky top-0 flex h-dvh w-full flex-col md:flex-row overflow-hidden">
           {/* Left Side: Sticky Title */}
-          <div className="flex h-[30vh] w-full flex-col justify-center px-6 md:h-full md:w-1/3 md:pl-10 lg:pl-16">
+          <div className="flex h-[30dvh] w-full flex-col justify-center px-6 md:h-full md:w-1/3 md:pl-10 lg:pl-16">
             <m.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -99,7 +107,7 @@ export function WorkflowSteps({ dict }: WorkflowStepsProps) {
           </div>
 
           {/* Right Side: Stacking Cards */}
-          <div className="relative flex h-[70vh] w-full items-center justify-center md:h-full md:w-2/3">
+          <div className="relative flex h-[70dvh] w-full items-center justify-center md:h-full md:w-2/3">
             {steps.map((step, index) => (
               <StepCard
                 key={step.number}
@@ -145,7 +153,7 @@ function StepCard({ step, index, scrollYProgress, dict }: StepCardProps) {
       }}
     >
       <div
-        className="relative flex h-[85vh] md:h-[72vh] lg:h-[78vh] w-full max-w-6xl flex-col justify-end p-8 sm:p-12 md:p-16 lg:p-20 overflow-hidden"
+        className="relative flex h-[85dvh] md:h-[72dvh] lg:h-[78dvh] w-full max-w-6xl flex-col justify-end p-8 sm:p-12 md:p-16 lg:p-20 overflow-hidden"
         style={{
           backgroundColor: step.color,
           color: step.textColor,
