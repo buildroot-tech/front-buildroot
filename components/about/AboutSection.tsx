@@ -215,7 +215,13 @@ export function AboutSection({ dict }: AboutSectionProps) {
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-0"
         >
-          <div className="sticky top-[32vh] w-full px-6 md:px-12">
+          {/* dvh, not vh — see the matching comment in
+              WorkflowSteps.tsx: vh is taller than what's actually visible
+              whenever a mobile browser's address bar is showing, so the
+              stick point drifts as the toolbar collapses mid-scroll. Kept
+              in sync with the pt-[Xdvh] below, since both position content
+              relative to where the wordmark actually sits. */}
+          <div className="sticky top-[32dvh] w-full px-6 md:px-12">
             <m.div
               className="relative w-full"
               style={{ aspectRatio: "6335 / 1067", opacity: markOpacity }}
@@ -246,7 +252,7 @@ export function AboutSection({ dict }: AboutSectionProps) {
           rather than sitting above it — below md it stacks, since at
           phone width the paragraph wraps too many times for the float
           to clear its second line. */}
-          <section className="w-full px-6 pt-[52vh] pb-24 md:px-12 md:pt-[56vh] md:pb-40">
+          <section className="w-full px-6 pt-[52dvh] pb-24 md:px-12 md:pt-[56dvh] md:pb-40">
             <m.p
               initial="hidden"
               whileInView="visible"
