@@ -224,12 +224,18 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
           dvh, not vh — see the matching comment in WorkflowSteps.tsx for
           why: vh is taller than what's actually visible whenever a mobile
           browser's address bar is showing, so it visibly desyncs from the
-          sticky panel as the toolbar collapses mid-scroll. */}
+          sticky panel as the toolbar collapses mid-scroll.
+
+          --seg is shorter on mobile than desktop — see the matching
+          comment on WorkflowSteps' driver div for why: 100dvh of driver
+          per slide is a couple of mouse-wheel clicks, but several full
+          touch swipes, most of which land in the slide's rest window
+          where nothing visibly moves. */}
       <section
         id="services-stack"
         ref={stackRef}
-        className="relative w-full"
-        style={{ height: `${SERVICE_KEYS.length * 100}dvh` }}
+        className="relative w-full [--seg:65dvh] md:[--seg:100dvh]"
+        style={{ height: `calc(var(--seg) * ${SERVICE_KEYS.length})` }}
       >
         <div className="sticky top-0 h-dvh w-full overflow-hidden">
           {SERVICE_KEYS.map((key, i) => (
