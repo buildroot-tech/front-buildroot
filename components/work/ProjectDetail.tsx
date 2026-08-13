@@ -212,11 +212,17 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
           comment in WorkflowSteps.tsx: vh is taller than what's actually
           visible whenever a mobile browser's address bar is showing, so it
           visibly desyncs from the sticky panel as the toolbar collapses
-          mid-scroll. */}
+          mid-scroll.
+
+          --seg is shorter on mobile than desktop — see the matching
+          comment on WorkflowSteps' driver div for why: 100dvh of driver
+          per panel is a couple of mouse-wheel clicks, but several full
+          touch swipes, most of which land in the panel's rest window
+          where nothing visibly moves. */}
       <section
         ref={stackRef}
-        className="relative w-full"
-        style={{ height: `${panels.length * 100}dvh` }}
+        className="relative w-full [--seg:65dvh] md:[--seg:100dvh]"
+        style={{ height: `calc(var(--seg) * ${panels.length})` }}
       >
         <div className="sticky top-0 h-dvh w-full overflow-hidden">
           {panels.map((panel, i) => (
