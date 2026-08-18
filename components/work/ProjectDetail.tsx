@@ -145,6 +145,16 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
     },
   ];
 
+  // The sticky stack un-pins the instant its driver's scroll room runs out
+  // — a hard, un-eased cut from "fixed in place" to "scrolling with the
+  // page," with whatever comes after (the live-site section) revealed
+  // mid-frame instead of the last panel getting a clean exit. Fading the
+  // whole stack out over the tail of the last panel's rest window turns
+  // that mechanical cut into a dissolve — starting shortly after the last
+  // panel settles, so it's still read fully opaque for a beat first.
+  const stackFadeStart = (panels.length - 1) / panels.length + 0.05;
+  const stackOpacity = useTransform(stackProgress, [stackFadeStart, 1], [1, 0]);
+
   return (
     <article className="w-full bg-[var(--bg-primary)] text-[var(--text-primary)]">
       {/* ── HEADER ─────────────────────────────────────────────
@@ -224,7 +234,10 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
         className="relative w-full [--seg:65dvh] md:[--seg:100dvh]"
         style={{ height: `calc(var(--seg) * ${panels.length})` }}
       >
-        <div className="sticky top-0 h-dvh w-full overflow-hidden">
+        <m.div
+          className="sticky top-0 h-dvh w-full overflow-hidden"
+          style={{ opacity: stackOpacity }}
+        >
           {panels.map((panel, i) => (
             <ProjectPanel
               key={panel.key}
@@ -236,7 +249,7 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
               <div className="mt-8 w-full">{panel.content}</div>
             </ProjectPanel>
           ))}
-        </div>
+        </m.div>
       </section>
 
       {/* ── LIVE SITE ──────────────────────────────────────────
