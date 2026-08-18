@@ -178,6 +178,19 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
     offset: ["start start", "end end"],
   });
 
+  // The sticky stack un-pins the instant its driver's scroll room runs out
+  // — a hard, un-eased cut from "fixed in place" to "scrolling with the
+  // page," with whatever comes after it revealed mid-frame. On this page
+  // that's especially rough: the reveal is this route's own background,
+  // which is the same accent blue as the "consulting" slide, so the cut
+  // reads as that slide reappearing from underneath rather than what it
+  // actually is. Fading the whole stack out over the tail of its own rest
+  // window turns the mechanical cut into a dissolve — starting shortly
+  // after the last slide settles, so it's still read fully opaque for a
+  // beat before dissolving.
+  const stackFadeStart = (SERVICE_KEYS.length - 1) / SERVICE_KEYS.length + 0.05;
+  const stackOpacity = useTransform(stackProgress, [stackFadeStart, 1], [1, 0]);
+
   const ENGAGE_INTERVAL = 5000;
   const [engageIndex, setEngageIndex] = useState(0);
   const goNextEngage = () =>
@@ -237,7 +250,10 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
         className="relative w-full [--seg:65dvh] md:[--seg:100dvh]"
         style={{ height: `calc(var(--seg) * ${SERVICE_KEYS.length})` }}
       >
-        <div className="sticky top-0 h-dvh w-full overflow-hidden">
+        <m.div
+          className="sticky top-0 h-dvh w-full overflow-hidden"
+          style={{ opacity: stackOpacity }}
+        >
           {SERVICE_KEYS.map((key, i) => (
             <ServiceSlide
               key={key}
@@ -248,7 +264,7 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
               scrollYProgress={stackProgress}
             />
           ))}
-        </div>
+        </m.div>
       </section>
 
       {/* Engagement models — one giant statement heading, then a slider
