@@ -131,13 +131,15 @@ export function AboutSection({ dict }: AboutSectionProps) {
     offset: ["start start", "end end"],
   });
   // Full strength while it's still in the clear under the hero, then a
-  // small step back once content starts crossing it, and back up as it
-  // settles above the footer. Just enough to keep body copy readable
-  // through it — any lower and it stops reading as a solid mark.
+  // deeper step back once content starts crossing it, and back up as it
+  // settles above the footer. It's white on this route's black background,
+  // so dropping its opacity reads as darkening it — the less of it shows
+  // through, the closer it sits to the background instead of competing
+  // with the body copy on top.
   const markOpacity = useTransform(
     trackProgress,
     [0, 0.1, 0.9, 1],
-    [1, 0.62, 0.62, 1],
+    [1, 0.28, 0.28, 1],
   );
 
   const dictValues = dict?.values;
