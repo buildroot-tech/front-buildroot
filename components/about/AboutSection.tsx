@@ -98,7 +98,7 @@ function Marquee({
     <span key={i} className="flex shrink-0 items-center whitespace-nowrap">
       <span>{text}</span>
       <span aria-hidden="true" className="mx-8 opacity-40 md:mx-14">
-        ✳
+        *
       </span>
     </span>
   ));
