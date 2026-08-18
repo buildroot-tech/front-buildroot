@@ -161,9 +161,17 @@ export function Preloader({ dict }: PreloaderProps) {
             </div>
           </div>
 
-          {/* Floating Texts - ONLY SHOW ON VERY FIRST VISIT */}
+          {/* Floating Texts - ONLY SHOW ON VERY FIRST VISIT.
+              Hidden below md: the six labels are corner-anchored with no
+              max-width, sized for desktop's spare horizontal room. On a
+              narrow phone several of them (especially the mirrored pair at
+              top-[50%] left/right, both "BASED IN / IPIALES, COLOMBIA")
+              run wide enough to cross through each other and through the
+              centered wordmark itself. There isn't a safe width to clamp
+              them to that works down to the narrowest phones, so the
+              intro is just the logo there. */}
           {isFirstVisit && (
-            <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute inset-0 pointer-events-none hidden md:block">
               <AnimatePresence>
                 {floatingItems.map(
                   (item) =>
