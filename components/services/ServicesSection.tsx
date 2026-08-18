@@ -6,6 +6,7 @@ import {
   AnimatePresence,
   m,
   useScroll,
+  useSpring,
   useTransform,
   type MotionValue,
 } from "framer-motion";
@@ -173,9 +174,22 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
   const ctaEmailRef = useRef<ScrambleTextHandle>(null);
 
   const stackRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: stackProgress } = useScroll({
+  const { scrollYProgress: rawStackProgress } = useScroll({
     target: stackRef,
     offset: ["start start", "end end"],
+  });
+  // Smooths the raw scroll position before it drives the slide transforms.
+  // Without this, the transform tracks scroll position exactly — a hard
+  // scroll (a fling, or a few aggressive wheel notches) moves scrollYProgress
+  // so far in one frame that the whole A/B/C transition snaps through in
+  // almost no visible steps. Springing it means the visual eases toward
+  // wherever the scroll lands instead of jumping straight there, so even a
+  // hard scroll still reads as motion. Same spring as the top-of-page
+  // reading bar (ScrollProgress.tsx), for a consistent feel.
+  const stackProgress = useSpring(rawStackProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
   });
 
   // The sticky stack un-pins the instant its driver's scroll room runs out
