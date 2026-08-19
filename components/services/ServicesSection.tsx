@@ -184,11 +184,17 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
   // so far in one frame that the whole A/B/C transition snaps through in
   // almost no visible steps. Springing it means the visual eases toward
   // wherever the scroll lands instead of jumping straight there, so even a
-  // hard scroll still reads as motion. Same spring as the top-of-page
-  // reading bar (ScrollProgress.tsx), for a consistent feel.
+  // hard scroll still reads as motion.
+  //
+  // Stiffer and more damped than the top-of-page reading bar it originally
+  // borrowed from (100/30, a damping ratio of 1.5 — overdamped, but still
+  // slow enough to trail visibly behind a stopped finger, which read as
+  // "elastic" rather than smooth). 400/40 is a damping ratio of exactly 1
+  // (critically damped: no bounce, fastest possible settle), so it catches
+  // up in a couple of frames instead of gliding.
   const stackProgress = useSpring(rawStackProgress, {
-    stiffness: 100,
-    damping: 30,
+    stiffness: 400,
+    damping: 40,
     restDelta: 0.001,
   });
 
