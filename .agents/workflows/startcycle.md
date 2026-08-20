@@ -2,6 +2,16 @@
 description: Start the buildroot_ development cycle for a new phase
 ---
 
+**The phase list below is the pre-build plan and does not match what
+shipped** — there is no Team/Philosophy/Stack page, no `/process` page, no
+Formspree form (contact composes a `mailto:` link), no click-pattern easter
+egg. The site is live at buildroot.co; work now is maintenance against
+`AGENTS.md`, `README.md` and `PERFORMANCE_REVIEW.md`, not phased delivery.
+This workflow is kept for the orchestration pattern (requirements →
+architecture → implementation → QA → copy → deploy) in case a large enough
+change warrants running through it again — treat the phase table as
+historical, not a task list.
+
 When the user types `/startcycle <phase>`, orchestrate the development process using the buildroot_ team.
 
 ## Execution Sequence

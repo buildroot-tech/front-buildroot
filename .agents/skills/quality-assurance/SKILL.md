@@ -44,14 +44,19 @@ Validate that all code meets buildroot_'s quality standards.
    - Provide fix recommendations
    - Hand off to @devops
 
+No axe-core, no Lighthouse CI, no automated a11y tooling is wired into this
+project — these gates are checked manually, in a real browser, against a
+production build.
+
 ## Quality Gates
 
-| Gate       | Criteria      | Tool            |
-| ---------- | ------------- | --------------- |
-| Lint       | Zero warnings | ESLint          |
-| Type Check | Zero errors   | TypeScript      |
-| Lighthouse | 95+ all       | Chrome DevTools |
-| A11y       | WCAG 2.1 AA   | axe-core        |
+| Gate       | Criteria      | Tool                          |
+| ---------- | ------------- | ------------------------------ |
+| Lint       | Zero warnings | `npm run lint`                 |
+| Type Check | Zero errors   | `npx tsc --noEmit`             |
+| Build      | Compiles clean | `npm run build`                |
+| Web Vitals | See `PERFORMANCE_REVIEW.md` | Manual, production build |
+| A11y       | WCAG 2.1 AA   | Manual review — no automated scanner configured |
 
 ## Constraints
 

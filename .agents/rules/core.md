@@ -5,85 +5,85 @@ description: Core project instructions for buildroot_ website
 
 # Core Rules — buildroot_
 
+The build is done and the site is live at buildroot.co. This file used to
+describe the pre-build plan; it now describes what actually shipped. Where
+this file and `AGENTS.md` / `README.md` (repo root) disagree, those two win —
+they're the ones kept current session to session. This file should not.
+
 ## Project Identity
 
-- **Company**: buildroot_ (tech venture, 2-3 people)
-- **Services**: Web development, technical consulting, SaaS products
-- **Style**: Brutalist hybrid (raw + elegant)
-- **Mode**: Light mode, dark hero (blue)
-- **Design Reference / Inspiration**: https://locomotive.ca/en (Massive typography, smooth scroll, high-contrast blocky layout, premium micro-interactions, brutalist-but-clean). ALL agents must use this reference for UI/UX and animation decisions.
+- **Company**: buildroot_, a software studio in Ipiales, Nariño, Colombia.
+- **Services**: Web development, technical consulting, SaaS products.
+- **Market**: Local and cross-border — Ipiales, Pasto, all of Nariño, and
+  northern Ecuador (Tulcán, Carchi, Ibarra, Imbabura).
+- **Style**: Editorial — serif statements over a per-route colour field, mono
+  reserved for labels and metadata. Not the brutalist system this file used
+  to describe; that was tried and dropped before launch (see the design
+  system's "Decisions that were reversed" section).
 
-## Impeccable Design Principles
+## Tech Stack
 
-All UI code must adhere to the *Impeccable* AI design framework (impeccable.style):
-- **`/polish`**: Strip "AI slop" (generic borders, artificial shadows, soft grays). Use harsh, deliberate contrasts.
-- **`/distill`**: Simplify component soup. Rely on negative space (whitespace) and massive typography for visual hierarchy rather than nested cards or pills.
-- **`/clarify`**: Reduce noise. Do not clutter the interface with unneeded elements or generic icons. Keep it raw, typographic, and highly functional.
+| Layer      | Technology                              |
+| ---------- | ---------------------------------------- |
+| Framework  | Next.js 16 (App Router)                  |
+| Language   | TypeScript (strict)                      |
+| Styling    | Tailwind CSS 4                           |
+| Animations | Framer Motion — `m` via `LazyMotion`, not `motion` |
+| Scroll     | Native + Framer Motion `useScroll`/`useSpring` — no Lenis |
+| Icons      | Lucide React                             |
+| Forms      | None — the contact page composes a `mailto:` link, nothing is posted anywhere |
+| Deploy     | Vercel                                   |
 
-## Tech Stack (Non-negotiable)
-
-| Layer      | Technology              |
-| ---------- | ----------------------- |
-| Framework  | Next.js 14 (App Router) |
-| Language   | TypeScript (strict)     |
-| Styling    | Tailwind CSS 4          |
-| Animations | Framer Motion           |
-| Scroll     | Lenis                   |
-| Icons      | Lucide React            |
-| Forms      | Formspree               |
-| Deploy     | Vercel (free tier)      |
+No backend, no database, no environment variables required.
 
 ## Design Tokens
 
-- **Font Display**: Space Grotesk
-- **Font Mono**: JetBrains Mono
-- **Hero**: `#0F172A` (azul marino)
-- **Body**: `#F8FAFC` (off-white frío)
-- **Secondary**: `#E2E8F0` (gris azulado)
-- **Accent**: `#2563EB` (azul vibrante)
-- **Border**: `#0F172A` (azul oscuro)
-- **Text Primary**: `#0F172A`
-- **Text Muted**: `#64748B`
-- **Text Inverse**: `#F8FAFC`
+Read from `lib/route-theme.ts` and `app/globals.css` — do not copy values
+here, they will drift. As of this writing: accent `#2563eb`, hero
+`#000000`, body `#e2e8f0`, work `#f5f5f0`. Fonts: Poppins (`--font-display`),
+Crimson Pro (`--font-serif`), Geist Mono (`--font-mono`), declared once in
+`lib/fonts.ts`. `/style-guide` renders the live system — check it instead of
+trusting a written description, including this one.
 
 ## Performance Targets
 
-| Metric                   | Target |
-| ------------------------ | ------ |
-| Lighthouse Performance   | 95+    |
-| Lighthouse Accessibility | 95+    |
-| Lighthouse SEO           | 100    |
-| FCP                      | <1.5s  |
-| LCP                      | <2.5s  |
-| TBT                      | <200ms |
-| CLS                      | <0.1   |
+| Metric     | Target | Measured (see `PERFORMANCE_REVIEW.md`) |
+| ---------- | ------ | --------------------------------------- |
+| LCP        | <2.5s  | 124–636 ms across routes                |
+| CLS        | <0.1   | 0.0001                                  |
+| Long tasks | 0      | 0 on load                               |
 
 ## File Structure
 
 ```
-buildroot/
-├── app/              # Next.js App Router pages
-├── components/       # React components (ui/, layout/, home/, work/, about/, process/)
-├── lib/              # Utilities, data, constants
-├── public/           # Static assets
-└── .agents/          # AI configuration
+front-buildroot/
+├── app/[lang]/       # Localized routes — es (default) and en
+├── app/style-guide/  # Lives at the app root, its own root layout
+├── components/       # ui/, layout/, home/, work/, services/, about/, contact/, legal/
+├── lib/               # projects.ts, seo.ts, route-theme.ts, dictionaries.ts, fonts.ts, utils.ts
+├── dictionaries/      # es.json, en.json — structurally identical
+├── public/brand/      # Wordmark split into word + underscore SVGs
+└── .agents/           # This directory
 ```
 
 ## Git Workflow
 
-See: `.agents/rules/git-workflow.md`
+See `.agents/rules/git-workflow.md`.
 
-- **Main branches**: `main` (production), `develop` (integration)
-- **Feature branches**: `feature/<name>`, `fix/<name>`, `chore/<name>`
-- **Commits**: Conventional commits format
-- **PRs**: Required for all changes to `main` and `develop`
+- **Branches**: `develop` (integration) → `main` (production), merged with
+  `--no-ff` so `main`'s history stays a readable list of merges.
+- **Commits**: Conventional commits. `.githooks/commit-msg` enforces the
+  format and `.githooks/pre-push` runs lint — but only if `core.hooksPath`
+  is set to `.githooks` locally; it is not set by default.
 
 ## Constraints
 
-- NO runtime chat agents on the site
-- NO heavy JS libraries (keep bundle small)
-- ALL content in English
-- EVERY page must be accessible (WCAG 2.1 AA)
-- EVERY component must be responsive
-- ALWAYS use conventional commits
-- ALWAYS create feature branches for new work
+- **Spanish is the primary language**, `usted`, neutral Colombian, no
+  voseo. English kept at parity. Not "all content in English" — that was
+  the old plan and it inverted before launch.
+- No technology names and no team-size numbers in client-facing copy.
+- No `any`. No unrequested comments unless they carry a non-obvious *why*
+  — a hidden constraint, a workaround, a reversed decision. This codebase
+  leans on that kind of comment heavily; "no comments unless requested"
+  undersells how much of it explains a real bug or trade-off.
+- Every page responsive and reachable in both locales.

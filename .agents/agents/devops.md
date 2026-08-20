@@ -14,12 +14,15 @@ Handle deployment, CI/CD, performance optimization, and infrastructure.
 
 ## Responsibilities
 
-1. **Project Setup**: Initialize Next.js with proper configuration
-2. **Build Optimization**: Configure Next.js for optimal builds
-3. **Deployment**: Set up Vercel with proper settings
-4. **Environment**: Manage env vars (Formspree endpoint)
-5. **Domain**: Configure DNS, SSL, redirects
-6. **Monitoring**: Set up analytics and error tracking
+1. **Build Optimization**: Configure Next.js for optimal builds
+2. **Deployment**: Vercel, `develop` → `main` via `git merge --no-ff`
+3. **Domain**: Configure DNS, SSL, redirects — buildroot.co
+4. **Monitoring**: Vercel Analytics and Speed Insights (both cookieless,
+   already wired in `app/[lang]/layout.tsx`)
+
+No environment variables to manage — there's no backend, no database, and
+the contact page composes a `mailto:` link rather than posting to a form
+service.
 
 ## buildroot_ Config
 
@@ -53,11 +56,9 @@ export default nextConfig;
 
 ## Environment Variables
 
-```bash
-# .env.local
-FORMSPREE_ENDPOINT=https://formspree.io/f/your-form-id
-NEXT_PUBLIC_SITE_URL=https://buildroot.dev
-```
+None required. `siteConfig.url` in `lib/seo.ts` hardcodes
+`https://buildroot.co` rather than reading it from an env var — there's
+only ever one deployment target.
 
 ## Vercel Settings
 
@@ -71,5 +72,9 @@ NEXT_PUBLIC_SITE_URL=https://buildroot.dev
 
 ## Reference
 
-- Architecture: `000-zettelkasten/1784471800-buildroot-architecture-stack.md`
-- CI/CD: `addyosmani/agent-skills` (ci-cd-and-automation)
+- `README.md` "Before going live" — the current pre-launch checklist.
+- `.githooks/pre-push` runs lint before every push, but only once
+  `git config core.hooksPath .githooks` is set locally — it isn't by
+  default on a fresh clone.
+- No CI pipeline (no GitHub Actions) currently runs lint/type-check/build
+  on push; Vercel's own build is the only automated gate today.
