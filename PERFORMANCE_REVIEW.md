@@ -5,9 +5,13 @@ here was checked, not inferred.
 
 ---
 
-## Measured today
+## Measured
 
-Production build (`next build` + `next start`), desktop 1440×900:
+Production build (`next build` + `next start`), desktop 1440×900. Not
+re-run since the mobile scroll/motion fixes below — those only change
+`transform`/`opacity` on already-mounted elements, which don't affect
+LCP or CLS, so the numbers should still hold; re-measure before trusting
+them for anything more specific than that.
 
 | Page              | LCP    | CLS    | Long tasks | Transfer |
 | ----------------- | ------ | ------ | ---------- | -------- |
@@ -27,26 +31,41 @@ outlier at 864 KB — is down to 188 KB.
 
 ## Open
 
-### 1. `PixelImage` allocates a canvas per animation frame
+### 1. `PixelImage`'s canvas is still sized to the source file, not the box
 
-`components/ui/PixelImage.tsx` — `draw()` (L63) calls
-`document.createElement("canvas")` on every tick of the 0.8 s reveal, and
-L33 sizes the visible canvas to `img.naturalWidth/naturalHeight` (1024×1024)
-regardless of the box it renders into.
+`components/ui/PixelImage.tsx` L33 sizes the visible canvas to
+`img.naturalWidth/naturalHeight` (1024×1024) regardless of the box it
+renders into, so a full-resolution `drawImage` runs on every frame of the
+0.8 s reveal even for a small thumbnail. The per-frame *allocation* this
+item used to describe is fixed (see Closed) — this is the remaining half:
+size the buffer to the rendered CSS box × `devicePixelRatio` instead.
 
-At ~60 fps that is up to ~48 offscreen canvas allocations plus full-
-resolution `drawImage` calls per reveal, and `/work` can have two or three
-instances mounted at once during a hover.
+Still real waste that is not currently hurting anyone — reveals are short
+and staggered by hover, and it hasn't shown up in a measurement.
 
-It does not show up in the measurements — the one long task recorded on
-`/work` is 66 ms and is not attributable to this — because the reveals are
-short and staggered by hover. It is real waste that is not currently hurting
-anyone.
+### 2. `/work`'s listing still runs the pre-redesign accordion
 
-**Fix:** one offscreen canvas per instance held in a ref, sized to the
-rendered CSS box × `devicePixelRatio` rather than the source file.
+`components/work/ProjectsGrid.tsx` mounts `ProjectRow` — expand-in-place,
+`isExpanded`/`onToggle` — while the home page's featured list
+(`SelectWork` → `ProjectListRow`) and the full case-study page
+(`ProjectDetail`, at `/work/[slug]`) both already use the newer,
+unified visual language. `ProjectRow`'s expanded state duplicates content
+that `/work/[slug]` already renders in full, and a visitor gets two
+different interaction patterns depending on which page they land on.
 
-### 2. The LinkedIn URL is still a placeholder
+**Fix:** point `ProjectsGrid` at `ProjectListRow` and drop `ProjectRow`.
+
+### 3. `SERVICES_SLIDE_THEMES` duplicates `SERVICE_COLORS` by hand
+
+`components/layout/Header.tsx` keeps its own copy of the three
+per-slide colours from `components/services/ServicesSection.tsx`, with a
+comment admitting it's "kept in sync manually." Nothing catches the two
+drifting apart if one changes and not the other.
+
+**Fix:** export `SERVICE_COLORS` from `ServicesSection.tsx`, import it in
+`Header.tsx`.
+
+### 4. The LinkedIn URL is still a placeholder
 
 `lib/seo.ts` — `siteConfig.links.linkedin` points at
 `linkedin.com/company/buildroot`, which is a guess. The footer renders it on
@@ -59,6 +78,39 @@ entity signal.
 
 ## Closed since the last review
 
+- **`PixelImage` allocated a canvas per animation frame.**
+  `document.createElement("canvas")` ran on every tick of the 0.8 s reveal
+  — up to ~48 DOM node allocations per image, times however many are
+  mounted at once during a `/work` hover. Now one offscreen canvas per
+  instance, held in a ref and resized (not recreated) each frame. The
+  buffer is still sized to the source file rather than the rendered box —
+  see Open #1.
+- **Mobile scroll on the stacked sections (`WorkflowSteps`,
+  `ServicesSection`, `ProjectDetail`) was janky, then too fast, then
+  elastic — three rounds of fixes, now settled.** In order: converted every
+  `vh` in the system to `dvh` (a mobile toolbar collapsing mid-scroll was
+  desyncing the measured driver height from the real viewport); shortened
+  the driver on mobile via `--seg`/`md:` breakpoints, since 100dvh of
+  driver per panel is a couple of mouse-wheel clicks but 5–10 full touch
+  swipes; faded the whole stack to transparent over the last panel's rest
+  window instead of letting `position: sticky` clip it the instant it
+  un-pins (the mechanical cut read as the previous slide reappearing on
+  `/services`, since that route's background matches that slide's colour);
+  spring-smoothed the scroll progress so a hard scroll eases through the
+  transition instead of snapping it, tuned to a damping ratio of exactly 1
+  after the first attempt (ratio 1.5, overdamped) read as elastic rather
+  than smooth.
+- **The header's nav-link underline never lit up on the English site.** It
+  compared the raw, locale-prefixed `pathname` against an unprefixed href;
+  the Contact link two lines below already normalized first. Now both do.
+- **The preloader's floating labels collided with the wordmark on
+  mobile.** Six corner-anchored labels with no max-width, sized for
+  desktop's spare horizontal room — on a narrow phone several ran wide
+  enough to cross into each other and into the centred logo. Hidden below
+  `md`; the mobile intro is the logo alone.
+- **`/about`'s tracking wordmark wasn't dark enough behind body copy**, and
+  a marquee separator (`✳`, U+2733) rendered as a colour emoji on mobile
+  instead of the plain asterisk it was meant to be. Both fixed.
 - **Project images were 3.5 MB served unoptimised.** The four 1024×1024
   JPEGs in `public/projects/` were re-encoded to WebP (quality 78) at the
   same dimensions: **3.4 MB → 480 KB**, a 82–94% reduction per file. The
@@ -121,6 +173,10 @@ entity signal.
 - One `TODO` in the codebase, `lib/seo.ts:44` — the LinkedIn URL above
 - No orphaned CSS custom properties
 - Dictionaries structurally identical across `es` and `en`
+- `.githooks/commit-msg` and `.githooks/pre-push` exist but `core.hooksPath`
+  isn't set on a fresh clone, so neither runs by default — see `/work`'s
+  entry above for the kind of drift a live pre-push lint would still let
+  through anyway (it's a UX/architecture split, not a lint error)
 - No horizontal overflow at 360, 390, 414, 1366, 1440 or 1920
 - Every route returns 200 in a production build; the only failing requests
   are `_vercel/insights` and `_vercel/speed-insights`, which resolve only

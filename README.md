@@ -91,10 +91,19 @@ browser chrome behind the status bar on mobile.
   route, the text already on screen unscrambles into place: each word shows
   only _its own_ characters rearranged, so every word keeps its final width
   and nothing reflows.
-- **Scroll stacking** — `/services` slides and the case-study panels in
-  `ProjectDetail` share one mechanic: a tall driver section, a `sticky`
-  wrapper, and panels that slide up over each other. The slide takes 60% of
-  a panel's segment, leaving 40% as a real rest window.
+- **Scroll stacking** — `WorkflowSteps` (home), `/services`' slides and the
+  case-study panels in `ProjectDetail` share one mechanic: a tall driver
+  section sized in `dvh` (shorter on mobile — a touch swipe covers far less
+  ground than a mouse-wheel click), a `sticky` wrapper, and panels that
+  slide up over each other. The slide takes 60% of a panel's segment,
+  leaving 40% as a real rest window. The scroll progress driving it is
+  spring-smoothed (critically damped, `stiffness: 400, damping: 40`) so a
+  hard scroll eases through the transition instead of snapping it. The
+  whole stack fades to transparent over the last panel's rest window,
+  rather than getting mechanically clipped the instant `position: sticky`
+  releases — see `AGENTS.md`'s "Scroll stacking" section for why that
+  matters. The mechanic is implemented three times, not shared; a change to
+  it needs porting to all three files.
 - **Marquees** — `.marquee-track` in `globals.css`. CSS `transform` only, so
   they run on the compositor with no per-frame JS. They honour
   `prefers-reduced-motion`.
