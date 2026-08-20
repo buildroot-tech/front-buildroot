@@ -55,13 +55,21 @@ export function Button({
 ```tsx
 // Order: React, Next.js, External libs, Internal
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 ```
 
+Import `m`, not `motion` — the app is wrapped in `LazyMotion` with
+`domAnimation` features (`app/providers.tsx`) for a smaller bundle. `m.div`
+works the same as `motion.div` under that provider; using `motion` directly
+opts a component out of the lazy-loaded bundle silently.
+
 ## Comments
 
-- NO comments unless explicitly requested
-- Code should be self-documenting
+- Default to none. Add one only when the code's *why* isn't visible from
+  reading it: a hidden constraint, a workaround for a specific bug,
+  behaviour that would surprise the next person, a decision that was tried
+  and reversed. Never explain *what* the code does — names should already
+  do that.
 - Use descriptive variable/function names

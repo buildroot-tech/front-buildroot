@@ -31,6 +31,12 @@ bug in this codebase.
   language switcher, which deliberately targets the other locale — and it
   must prefix **both** directions explicitly rather than relying on the
   un-prefixed path to mean "the other language".
+- **Compare against `normalizeLocalePathname(pathname)`, not raw
+  `pathname`, for anything that checks "is this the active route".** Raw
+  `pathname` carries the locale prefix (`/en/work`); an href in this
+  codebase never does (`/work`). Header's nav-link underline compared them
+  directly for a while and could only ever match on the Spanish site —
+  the Contact link two lines below it already normalized and was fine.
 
 ## Copy rules
 
@@ -80,6 +86,52 @@ bug in this codebase.
   continuous, and honour `prefers-reduced-motion`.
 - `scroll-behavior: smooth` is set globally. Any code that scrolls and then
   measures must use `behavior: "instant"`, or it will read the old offset.
+- **Import `m` from `framer-motion`, never `motion`.** The app runs under
+  `LazyMotion` with `domAnimation` (`app/providers.tsx`) to keep the bundle
+  small; `motion.div` bypasses that silently and ships the full library.
+- **Don't allocate inside an animation callback.** `PixelImage`'s reveal
+  used to call `document.createElement("canvas")` on every tick of an
+  0.8s animation — dozens of DOM node allocations per image. Create
+  once (a ref), mutate per frame.
+
+### Scroll stacking
+
+`WorkflowSteps`, `ServicesSection` and `ProjectDetail` all share one
+mechanic — a tall driver, a `sticky` wrapper, and panels that slide up over
+each other, tracked by `useScroll({ target, offset: ["start start", "end end"] })`.
+It's implemented three times, not shared, so a fix to the mechanic has to
+be manually ported to all three. Gotchas that hit every one of them:
+
+- **`dvh`, not `vh`, for every height in the system** — the driver, the
+  sticky wrapper, the panel heights. `vh` is the layout viewport, which is
+  taller than what's actually visible whenever a mobile browser's address
+  bar is showing. A toolbar collapsing mid-scroll then desyncs the driver's
+  measured height from what's really on screen, and `scrollYProgress` jumps
+  to compensate — this is what made the scroll feel "stuck" on mobile.
+- **`position: sticky` un-pins the instant its driver's scroll room runs
+  out — with no easing.** One frame it's fixed in place, the next it's
+  scrolling with the page, and whatever comes after in the DOM gets
+  revealed mid-frame instead of the last panel getting a clean exit. Fade
+  the whole stack's `opacity` to 0 over the tail of the last panel's rest
+  window (see `stackFadeStart` in any of the three components) so the cut
+  becomes a dissolve. Skipping this reads as a real bug, not a rough edge
+  — on `/services` it looked like the previous slide reappearing, because
+  that route's background happens to match that slide's colour.
+- **Smooth the scroll progress with `useSpring` before it drives any
+  transform**, or a hard/fast scroll snaps the whole transition through in
+  one or two frames. Target a damping ratio of exactly 1 —
+  `damping = 2 * sqrt(stiffness)` — not higher. An overdamped spring
+  (ratio > 1, e.g. the `stiffness:100, damping:30` this project shipped
+  with briefly) sounds like the cautious choice but actually settles
+  *slower* than critical damping, and reads as elastic/rubbery rather than
+  smooth. `stiffness: 400, damping: 40` is the current value.
+- On mobile, the driver needs less scroll room than desktop — `100dvh` of
+  driver per panel is a couple of mouse-wheel clicks, but 5–10 full touch
+  swipes, most of which land in the panel's rest window where nothing
+  visibly moves. Shorten it on small viewports (the `--seg` custom-property
+  pattern in `ServicesSection`/`ProjectDetail`, or the `md:` breakpoint
+  class in `WorkflowSteps`) rather than using the desktop-tuned length
+  everywhere.
 
 ## Routes outside `app/[lang]`
 

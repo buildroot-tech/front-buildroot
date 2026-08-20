@@ -2,48 +2,52 @@
 
 ## Role
 
-Ensure quality through testing, accessibility audits, and performance validation.
+Ensure quality through verification, not through tooling this project
+doesn't have. There is no automated test suite (no Vitest/Jest) and no
+Prettier or axe-core wired in — don't assume they're running. Quality is
+enforced by strict TypeScript, ESLint (zero warnings, zero suppressions
+anywhere in the codebase), and manual verification in a real browser.
 
 ## When to Use
 
 - After each development phase
 - Before deploying to production
 - When bugs are reported
-- For accessibility compliance checks
 
 ## Responsibilities
 
-1. **Testing**: Write and run unit, integration, and E2E tests
-2. **Accessibility**: Audit for WCAG 2.1 AA compliance
-3. **Performance**: Run Lighthouse audits, check Core Web Vitals
-4. **Cross-Browser**: Test on Chrome, Firefox, Safari, Edge
-5. **Responsive**: Validate mobile, tablet, desktop layouts
-6. **Code Review**: Apply the 5-axis review (correctness, readability, architecture, security, performance)
+1. **Verify by measurement, not by reading source.** Screenshot for layout,
+   `getBoundingClientRect` for position, PerformanceObserver for Web
+   Vitals. Several bugs in this codebase looked correct in source and only
+   showed up on screen — `/style-guide` 404ing while *also* rendering
+   unstyled is the canonical example, and neither bug was visible without
+   actually requesting the page.
+2. **Check both locales.** Several bugs have only appeared in Spanish,
+   where the copy runs longer.
+3. **Request every route**, not just the ones that changed. Every route
+   should return 200; the only requests allowed to fail are
+   `_vercel/insights` and `_vercel/speed-insights`, which resolve only when
+   deployed to Vercel.
+4. **Responsive**: no horizontal overflow at 360, 390, 414, 1366, 1440 or
+   1920.
+5. **Code Review**: correctness, reuse/simplification, and whether a fix in
+   one place should also apply to its siblings — the `dvh` conversion and
+   the scroll-stack fade-out both had to be manually ported across three
+   near-identical components (`WorkflowSteps`, `ServicesSection`,
+   `ProjectDetail`) because the pattern isn't shared yet.
 
 ## Quality Gates
 
-| Gate          | Criteria           | Tool              |
-| ------------- | ------------------ | ----------------- |
-| Lint          | Zero warnings      | ESLint + Prettier |
-| Type Check    | Zero errors        | TypeScript strict |
-| Tests         | All passing        | Vitest/Jest       |
-| Lighthouse    | 95+ all categories | Chrome DevTools   |
-| Accessibility | WCAG 2.1 AA        | axe-core          |
-| Bundle Size   | <200KB initial     | Next.js build     |
-
-## Lighthouse Audit Checklist
-
-- [ ] Performance: 95+
-- [ ] Accessibility: 95+
-- [ ] Best Practices: 95+
-- [ ] SEO: 100
-- [ ] FCP < 1.5s
-- [ ] LCP < 2.5s
-- [ ] TBT < 200ms
-- [ ] CLS < 0.1
+| Gate       | Criteria                     | Command                       |
+| ---------- | ----------------------------- | ------------------------------ |
+| Lint       | Zero warnings, zero suppressions | `npm run lint`              |
+| Type Check | Zero errors, strict mode      | `npx tsc --noEmit`             |
+| Build      | Compiles clean                | `npm run build`                |
+| Web Vitals | See `PERFORMANCE_REVIEW.md`   | Production build + Playwright  |
 
 ## Reference
 
-- Performance: `addyosmani/web-quality-skills`
-- Testing: `anthropics/skills` (webapp-testing)
-- Code Review: `addyosmani/agent-skills` (code-review-and-quality)
+- `AGENTS.md` (repo root), "Before claiming something works" — the actual
+  verification methodology this project uses.
+- `PERFORMANCE_REVIEW.md` — current measured numbers and open technical
+  debt.

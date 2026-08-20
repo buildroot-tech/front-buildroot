@@ -21,19 +21,19 @@ Implement React/Next.js components with Tailwind CSS and Framer Motion for the b
 
 ## Tech Stack
 
-| Layer      | Technology              |
-| ---------- | ----------------------- |
-| Framework  | Next.js 14 (App Router) |
-| Language   | TypeScript (strict)     |
-| Styling    | Tailwind CSS 4          |
-| Animations | Framer Motion           |
-| Scroll     | Lenis                   |
-| Icons      | Lucide React            |
+| Layer      | Technology                                   |
+| ---------- | --------------------------------------------- |
+| Framework  | Next.js 16 (App Router)                       |
+| Language   | TypeScript (strict)                           |
+| Styling    | Tailwind CSS 4                                |
+| Animations | Framer Motion — `m` via `LazyMotion`, not `motion` |
+| Scroll     | Native + `useScroll`/`useSpring` — no Lenis   |
+| Icons      | Lucide React                                  |
 
 ## Code Style
 
 ```typescript
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 interface ComponentProps {
@@ -43,13 +43,13 @@ interface ComponentProps {
 
 export function Component({ className, children }: ComponentProps) {
   return (
-    <motion.div
+    <m.div
       className={cn('base-styles', className)}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
       {children}
-    </motion.div>
+    </m.div>
   )
 }
 ```
@@ -72,15 +72,20 @@ const container = {
   }
 }
 
-// Spring physics (magnetic buttons)
-<motion.button
-  whileHover={{ scale: 1.05 }}
-  whileTap={{ scale: 0.95 }}
-  transition={{ type: 'spring', stiffness: 400 }}
->
+// Scroll-stacking sticky effect (WorkflowSteps, ServicesSection,
+// ProjectDetail all share this — see README's Motion section before
+// reimplementing it a fourth time)
+const smoothed = useSpring(scrollYProgress, {
+  stiffness: 400,   // critically damped: damping = 2 * sqrt(stiffness)
+  damping: 40,       // ratio > 1 trails visibly behind a stopped finger
+  restDelta: 0.001,
+})
 ```
 
 ## Reference
 
-- Design System: `000-zettelkasten/1784471801-buildroot-design-system.md`
-- Architecture: `000-zettelkasten/1784471800-buildroot-architecture-stack.md`
+- `README.md` and `AGENTS.md` (repo root) are the current source of truth —
+  read those first.
+- `/style-guide` renders the live type scale, route themes and motion
+  timings — check it before describing a value from memory.
+- Design system (vault): `000-zettelkasten/1784471801-buildroot-design-system.md`
