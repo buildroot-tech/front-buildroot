@@ -23,6 +23,11 @@ export function PixelImage({ src, instant = false }: PixelImageProps) {
     if (!ctx) return;
 
     let animationRef: AnimationPlaybackControls;
+    // One offscreen canvas for the whole reveal, reused every frame — draw()
+    // used to call document.createElement("canvas") on each tick of the
+    // 0.8s animation (~48 DOM node allocations per reveal, times however
+    // many PixelImage instances are mounted at once on /work).
+    const offscreen = document.createElement("canvas");
 
     const img = new window.Image();
     img.src = src;
@@ -59,8 +64,8 @@ export function PixelImage({ src, instant = false }: PixelImageProps) {
         const scaledW = Math.max(1, Math.floor(width / pixelSize));
         const scaledH = Math.max(1, Math.floor(height / pixelSize));
 
-        // Use offscreen canvas to create the pixel data
-        const offscreen = document.createElement("canvas");
+        // Resize the shared offscreen canvas to this frame's block grid —
+        // cheap, and clears its contents, which draw() needs anyway.
         offscreen.width = scaledW;
         offscreen.height = scaledH;
         const offCtx = offscreen.getContext("2d");

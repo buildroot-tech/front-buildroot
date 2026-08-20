@@ -214,7 +214,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
                       trigger="manual"
                     />
                     <span
-                      className={`absolute bottom-0 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${pathname === link.href ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+                      className={`absolute bottom-0 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${normalizedPathname === link.href ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
                     />
                   </LocaleLink>
                   {i < navLinks.length - 1 && (
