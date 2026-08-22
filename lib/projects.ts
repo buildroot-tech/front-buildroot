@@ -48,38 +48,38 @@ export const PROJECTS: readonly Project[] = [
     indexCode: "02",
     title: "Edusur",
     image: "edusur",
-    client: "Edusur Servicios Educativos",
+    client: "EDUSUR",
     industry: "Education",
     year: "2026",
     category: "Web Apps",
     featured: true,
     summary:
-      "A fast, polished site for prospective students that loads instantly on any phone.",
+      "A mobile-fast prospective-student site for a tutoring academy in Ipiales, built around one WhatsApp button as the way in.",
     description:
-      "A prospective student's first impression, redesigned: a fast, beautifully animated site that loads instantly on any phone and makes it easy to say yes.",
-    tags: ["Astro 5", "TypeScript", "Tailwind 4", "GSAP 3", "EmailJS"],
+      "The first thing a prospective student or family sees, rebuilt: a fast, mobile-first site carrying a video tour and real student results, with WhatsApp as the one way to reach out.",
+    tags: ["Astro 7", "Tailwind 4", "GSAP"],
     highlights: [
-      "Student-Facing Site",
-      "Fast Mobile Experience",
-      "Engaging Design",
+      "Prospective-Student Site",
+      "Real Student Testimonials",
+      "WhatsApp-First Contact",
     ],
     metrics: [
-      { label: "Load Time", value: "Under half a second" },
-      { label: "Custom Sections", value: "14 sections" },
-      { label: "Performance Score", value: "98/100" },
+      { label: "Lighthouse Performance", value: "89/100 (mobile)" },
+      { label: "Layout Shift", value: "0.037 CLS" },
+      { label: "Largest Contentful Paint", value: "~1.7s (mobile)" },
     ],
     caseStudy: {
       challenge:
-        "Edusur needed a modern, highly engaging web portal for prospective students that loaded instantly on mobile networks while maintaining smooth animations.",
+        "A tutoring academy's real pitch is its results, but a page that makes a prospective family wait to see them doesn't get a second visit. EDUSUR needed a mobile-fast site that could carry a video tour, live testimonials and animated achievement counters without any of it slowing the page down.",
       solution:
-        "Rebuilt the site so pages arrive almost instantly on a phone, keeping the motion and polish that make the school feel current without making visitors wait for it.",
+        "Built the page to load fast on a phone first, then layered in the persuasion: an embedded video tour of the school, a rotating set of real student testimonials, and achievement counters that animate into view — all pointing at one WhatsApp button as the single call to action, matching how families in Ipiales actually reach out.",
       results: [
-        "Achieved sub-500ms First Contentful Paint on mobile",
-        "98/100 Lighthouse performance rating",
-        "14 responsive custom sections built with strict modularity",
+        "89/100 Lighthouse performance score on mobile",
+        "Loads in under two seconds on a real mobile connection, with a stable layout — 0.037 cumulative layout shift",
+        "One call to action throughout the page: WhatsApp, not a form nobody fills out",
       ],
     },
-    demoUrl: "https://edusur.edu.co",
+    demoUrl: "https://edusur.vercel.app/",
   },
   {
     id: "salesforce-agentforce-omni",
@@ -292,28 +292,28 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
   "edusur-educational": {
     industry: "Educación",
     metrics: [
-      { label: "Tiempo de carga", value: "Menos de medio segundo" },
-      { label: "Secciones a medida", value: "14 secciones" },
-      { label: "Puntaje de rendimiento", value: "98/100" },
+      { label: "Rendimiento en Lighthouse", value: "89/100 (móvil)" },
+      { label: "Estabilidad visual", value: "0.037 CLS" },
+      { label: "Carga de contenido principal", value: "~1.7s (móvil)" },
     ],
     summary:
-      "Un sitio rápido y cuidado para futuros estudiantes, que carga al instante en cualquier celular.",
+      "Un sitio rápido en celular para una academia de preparación en Ipiales, construido alrededor de un solo botón de WhatsApp como puerta de entrada.",
     description:
-      "La primera impresión de un futuro estudiante, rediseñada: un sitio rápido y con animaciones cuidadas que carga al instante en cualquier celular y facilita decir que sí.",
+      "Lo primero que ve un futuro estudiante o su familia, rediseñado: un sitio rápido en celular con un video del recorrido y resultados reales de estudiantes, con WhatsApp como el único camino para escribir.",
     highlights: [
-      "Sitio para Estudiantes",
-      "Experiencia Móvil Rápida",
-      "Diseño Atractivo",
+      "Sitio para Futuros Estudiantes",
+      "Testimonios Reales de Estudiantes",
+      "Contacto por WhatsApp",
     ],
     caseStudy: {
       challenge:
-        "Edusur necesitaba un portal web moderno y atractivo para futuros estudiantes que cargara al instante en redes móviles sin sacrificar animaciones fluidas.",
+        "El verdadero argumento de venta de una academia son sus resultados, pero una página que hace esperar a una familia para verlos no consigue una segunda visita. Edusur necesitaba un sitio rápido en celular que pudiera mostrar un video del recorrido, testimonios reales y contadores de logros animados, sin que nada de eso hiciera más lenta la página.",
       solution:
-        "Se rehízo el sitio para que las páginas aparezcan casi de inmediato en el celular, conservando el movimiento y el cuidado visual que hacen ver actual a la institución, pero sin que el visitante tenga que esperar por ellos.",
+        "Se construyó la página para que cargue rápido en celular primero, y encima se fue agregando lo persuasivo: un video del recorrido por la institución, un carrusel de testimonios reales de estudiantes, y contadores de logros que se animan al aparecer — todo apuntando a un solo botón de WhatsApp como único llamado a la acción, tal como la gente en Ipiales realmente escribe.",
       results: [
-        "Se logró un First Contentful Paint menor a 500ms en móviles",
-        "Puntaje de rendimiento de 98/100 en Lighthouse",
-        "14 secciones personalizadas y responsivas, construidas con modularidad estricta",
+        "89/100 de rendimiento en Lighthouse en móvil",
+        "Carga en menos de dos segundos en una conexión móvil real, con un diseño estable — 0.037 de CLS",
+        "Un solo llamado a la acción en toda la página: WhatsApp, no un formulario que nadie llena",
       ],
     },
   },
