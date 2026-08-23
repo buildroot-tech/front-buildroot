@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/TextScrambler";
 import type { Dictionary } from "@/lib/dictionaries";
 import { getRouteTheme, normalizeLocalePathname } from "@/lib/route-theme";
+import { SERVICE_COLORS, SERVICE_KEYS } from "@/lib/service-colors";
 
 interface HeaderProps {
   dict?: Dictionary["header"];
@@ -29,15 +30,15 @@ const HOME_HEADER_THEME = { text: "var(--text-inverse)", bg: "transparent" };
 
 const HEADER_H = 80;
 
-// Mirrors SERVICE_COLORS in components/services/ServicesSection.tsx — kept
-// in sync manually since the header has no other way to know that page's
+// Read from lib/service-colors.ts, the single source of truth ServicesSection
+// itself renders from — the header has no other way to know that page's
 // per-slide colors (it's a scroll-stacking effect local to that page, not
-// part of the shared route-theme system).
-const SERVICES_SLIDE_THEMES = [
-  { text: "#ffffff", bg: "#0A0A0A" },
-  { text: "#ffffff", bg: "var(--accent)" },
-  { text: "#000000", bg: "#e2e8f0" },
-];
+// part of the shared route-theme system), so it borrows whichever slide is
+// currently in view via this ordered array.
+const SERVICES_SLIDE_THEMES = SERVICE_KEYS.map((key) => ({
+  text: SERVICE_COLORS[key].text,
+  bg: SERVICE_COLORS[key].bg,
+}));
 
 export function Header({ dict, lang = "en" }: HeaderProps) {
   const pathname = usePathname();
