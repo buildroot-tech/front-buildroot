@@ -18,12 +18,12 @@
     }
   },
   "preloader": {
-    "based_in": "BASADO EN",
-    "location": "IPIALES, COLOMBIA",
-    "system": "SISTEMA",
-    "ready": "LISTO",
-    "digital": "EXPERIENCIA",
-    "experience": "DIGITAL"
+    "based_in": "Basado en",
+    "location": "Ipiales, Colombia",
+    "system": "Sistema",
+    "ready": "Listo",
+    "digital": "Experiencia",
+    "experience": "Digital"
   },
   "home": {
     "hero": {
@@ -38,31 +38,31 @@
     },
     "process": {
       "subtitle": "Cómo trabajamos",
-      "title": "NUESTRO PROCESO",
+      "title": "Nuestro proceso",
       "steps": {
         "requirements": {
           "number": "01",
-          "title": "REQUERIMIENTOS",
+          "title": "Requerimientos",
           "description": "Mapeamos el problema, definimos el alcance exacto y nos alineamos con sus objetivos. Sin suposiciones, solo claridad."
         },
         "design": {
           "number": "02",
-          "title": "DISEÑO",
+          "title": "Diseño",
           "description": "Creamos interfaces intuitivas y potentes que comunican la ventaja única de su marca, con un diseño de sistema riguroso."
         },
         "build": {
           "number": "03",
-          "title": "CONSTRUCCIÓN",
+          "title": "Construcción",
           "description": "Desarrollo iterativo de alta velocidad. Construimos arquitecturas robustas y escalables con máximo rendimiento."
         },
         "testing": {
           "number": "04",
-          "title": "PRUEBAS",
+          "title": "Pruebas",
           "description": "Validación rigurosa de calidad, rendimiento y seguridad para asegurar que el producto sea irrompible."
         },
         "production": {
           "number": "05",
-          "title": "PASO A PRODUCCIÓN",
+          "title": "Paso a producción",
           "description": "Desplegamos y escalamos con total confianza. Su producto sale al mercado impecable y listo para competir."
         }
       }
@@ -75,10 +75,8 @@
     "cta": {
       "manifesto": "Construimos tecnología de alto rendimiento y diseñamos soluciones que se salen de lo convencional. Existimos para ayudar a marcas con carácter a destacarse. Cada línea de código y cada píxel está pensado para elevar su presencia digital.",
       "lets_build": "Construyamos algo juntos",
-      "ticker_text": "EXPERIENCIAS DE ALTO NIVEL * DISEÑOS NO CONVENCIONALES *",
-      "ticker_secondary": "SISTEMAS * PRODUCTO * INFRAESTRUCTURA *",
-      "title": "¿LISTO PARA CONSTRUIR?",
-      "subtitle": "Convirtamos su visión en realidad."
+      "ticker_text": "Experiencias de alto nivel * Diseños no convencionales *",
+      "ticker_secondary": "Sistemas * Producto * Infraestructura *"
     }
   },
   "work": {

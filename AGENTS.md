@@ -46,6 +46,18 @@ bug in this codebase.
 - Spanish titles use **sentence case**. Do not apply the Tailwind
   `capitalize` utility to content headings — it forces title case on every
   word and renders "Servicio **A**l Cliente" and "En **O**tros **L**ados".
+  This bit the Footer's contact-info spans directly (six `capitalize`
+  usages, unnoticed because the values happened not to visibly break);
+  removed rather than left "harmless."
+- **Write dictionary values in natural case, even where the display is
+  uppercase.** Visual all-caps belongs in CSS (`uppercase tracking-widest`
+  on the label/eyebrow treatment, or a display headline) — never bake it
+  into the string itself. `home.process.title` and its five step titles,
+  plus all six `preloader.*` strings and both ticker strings, were typed
+  in as literal `"NUESTRO PROCESO"` while the component already applied
+  `uppercase` — redundant, inconsistent with every other value in the same
+  files, and worse for screen readers, which can read literal all-caps
+  text letter-by-letter as if it were an acronym.
 
 ## Typography
 

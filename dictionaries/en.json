@@ -18,12 +18,12 @@
     }
   },
   "preloader": {
-    "based_in": "BASED IN",
-    "location": "IPIALES, COLOMBIA",
-    "system": "SYSTEM",
-    "ready": "READY",
-    "digital": "DIGITAL",
-    "experience": "EXPERIENCE"
+    "based_in": "Based in",
+    "location": "Ipiales, Colombia",
+    "system": "System",
+    "ready": "Ready",
+    "digital": "Digital",
+    "experience": "Experience"
   },
   "home": {
     "hero": {
@@ -38,31 +38,31 @@
     },
     "process": {
       "subtitle": "How We Work",
-      "title": "OUR PROCESS",
+      "title": "Our process",
       "steps": {
         "requirements": {
           "number": "01",
-          "title": "REQUIREMENTS",
+          "title": "Requirements",
           "description": "We map the problem, define the exact scope, and align perfectly on your goals. No guessing, just extreme clarity."
         },
         "design": {
           "number": "02",
-          "title": "DESIGN",
+          "title": "Design",
           "description": "Crafting intuitive and powerful interfaces that communicate your brand's unique edge, backed by strict system design."
         },
         "build": {
           "number": "03",
-          "title": "BUILD",
+          "title": "Build",
           "description": "Iterative, high-velocity development. We build robust, scalable architectures for maximum performance."
         },
         "testing": {
           "number": "04",
-          "title": "TESTING",
+          "title": "Testing",
           "description": "Rigorous quality, performance, and security validation to ensure the product is unbreakable."
         },
         "production": {
           "number": "05",
-          "title": "GO LIVE",
+          "title": "Go live",
           "description": "Deploy and scale with absolute confidence. Your product hits the market flawlessly and ready to dominate."
         }
       }
@@ -75,10 +75,8 @@
     "cta": {
       "manifesto": "We build high-performance technology and design unconventional solutions. We exist to help bold brands break out of the ordinary. Every line of code and every pixel is crafted to elevate your digital presence.",
       "lets_build": "Let's Build Together",
-      "ticker_text": "HIGH-END EXPERIENCES * UNCONVENTIONAL DESIGNS *",
-      "ticker_secondary": "SYSTEMS * PRODUCT * INFRASTRUCTURE *",
-      "title": "READY TO BUILD?",
-      "subtitle": "Let's turn your vision into reality."
+      "ticker_text": "High-end experiences * Unconventional designs *",
+      "ticker_secondary": "Systems * Product * Infrastructure *"
     }
   },
   "work": {
