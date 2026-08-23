@@ -9,25 +9,12 @@ import {
   type ScrambleTextHandle,
 } from "@/components/ui/TextScrambler";
 import { useScrollStack } from "@/hooks/useScrollStack";
+import { SERVICE_COLORS, SERVICE_KEYS, type ServiceKey } from "@/lib/service-colors";
 import type { Dictionary } from "@/lib/dictionaries";
 
 interface ServicesSectionProps {
   dict?: Dictionary["services"];
 }
-
-const SERVICE_KEYS = ["web", "consulting", "saas"] as const;
-type ServiceKey = (typeof SERVICE_KEYS)[number];
-
-// A distinct color per slide — same idea as Home's process steps
-// (components/home/WorkflowSteps.tsx), so each one reads as its own beat
-// instead of three identical blue screens. Hex values here are explicit
-// (not var(--bg-primary)) because that variable is already repointed to
-// this page's accent blue by the route theme.
-const SERVICE_COLORS: Record<ServiceKey, { bg: string; text: string }> = {
-  web: { bg: "#0A0A0A", text: "#ffffff" },
-  consulting: { bg: "var(--accent)", text: "#ffffff" },
-  saas: { bg: "#e2e8f0", text: "#000000" },
-};
 
 const FALLBACK_SERVICES: Record<
   ServiceKey,
