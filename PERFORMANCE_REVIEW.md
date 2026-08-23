@@ -31,41 +31,7 @@ outlier at 864 KB — is down to 188 KB.
 
 ## Open
 
-### 1. `PixelImage`'s canvas is still sized to the source file, not the box
-
-`components/ui/PixelImage.tsx` L33 sizes the visible canvas to
-`img.naturalWidth/naturalHeight` (1024×1024) regardless of the box it
-renders into, so a full-resolution `drawImage` runs on every frame of the
-0.8 s reveal even for a small thumbnail. The per-frame *allocation* this
-item used to describe is fixed (see Closed) — this is the remaining half:
-size the buffer to the rendered CSS box × `devicePixelRatio` instead.
-
-Still real waste that is not currently hurting anyone — reveals are short
-and staggered by hover, and it hasn't shown up in a measurement.
-
-### 2. `/work`'s listing still runs the pre-redesign accordion
-
-`components/work/ProjectsGrid.tsx` mounts `ProjectRow` — expand-in-place,
-`isExpanded`/`onToggle` — while the home page's featured list
-(`SelectWork` → `ProjectListRow`) and the full case-study page
-(`ProjectDetail`, at `/work/[slug]`) both already use the newer,
-unified visual language. `ProjectRow`'s expanded state duplicates content
-that `/work/[slug]` already renders in full, and a visitor gets two
-different interaction patterns depending on which page they land on.
-
-**Fix:** point `ProjectsGrid` at `ProjectListRow` and drop `ProjectRow`.
-
-### 3. `SERVICES_SLIDE_THEMES` duplicates `SERVICE_COLORS` by hand
-
-`components/layout/Header.tsx` keeps its own copy of the three
-per-slide colours from `components/services/ServicesSection.tsx`, with a
-comment admitting it's "kept in sync manually." Nothing catches the two
-drifting apart if one changes and not the other.
-
-**Fix:** export `SERVICE_COLORS` from `ServicesSection.tsx`, import it in
-`Header.tsx`.
-
-### 4. The LinkedIn URL is still a placeholder
+### 1. The LinkedIn URL is still a placeholder
 
 `lib/seo.ts` — `siteConfig.links.linkedin` points at
 `linkedin.com/company/buildroot`, which is a guess. The footer renders it on
@@ -78,13 +44,27 @@ entity signal.
 
 ## Closed since the last review
 
+- **`PixelImage`'s canvas was sized to the source file, not the box.**
+  Both the visible canvas and the offscreen preview canvas used during the
+  reveal now measure the rendered CSS box × `devicePixelRatio`, with a
+  hand-rolled cover-fit crop since the buffer no longer matches the
+  source's aspect ratio, and a `ResizeObserver` to stay correct across
+  viewport changes.
 - **`PixelImage` allocated a canvas per animation frame.**
   `document.createElement("canvas")` ran on every tick of the 0.8 s reveal
   — up to ~48 DOM node allocations per image, times however many are
   mounted at once during a `/work` hover. Now one offscreen canvas per
-  instance, held in a ref and resized (not recreated) each frame. The
-  buffer is still sized to the source file rather than the rendered box —
-  see Open #1.
+  instance, held in a ref and resized (not recreated) each frame.
+- **`/work`'s listing ran the pre-redesign accordion.**
+  `ProjectsGrid` mounted `ProjectRow` — expand-in-place, `isExpanded`/
+  `onToggle` — while the home page and the case-study page already used
+  the newer stacked-row language. `ProjectsGrid` now renders
+  `ProjectListRow`, the same component `SelectWork` uses, and `ProjectRow`
+  is deleted.
+- **`SERVICES_SLIDE_THEMES` duplicated `SERVICE_COLORS` by hand.**
+  `Header.tsx` kept its own copy of `ServicesSection`'s three per-slide
+  colours, "kept in sync manually." Both now read from
+  `lib/service-colors.ts`.
 - **Mobile scroll on the stacked sections (`WorkflowSteps`,
   `ServicesSection`, `ProjectDetail`) was janky, then too fast, then
   elastic — three rounds of fixes, now settled.** In order: converted every
