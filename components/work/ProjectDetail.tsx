@@ -9,6 +9,7 @@ import {
   type ScrambleTextHandle,
 } from "@/components/ui/TextScrambler";
 import { PixelImage } from "@/components/ui/PixelImage";
+import { ProjectGallery } from "@/components/work/ProjectGallery";
 import { projectImageSrc } from "@/lib/projects";
 import type { Project } from "@/types";
 import type { Dictionary } from "@/lib/dictionaries";
@@ -212,6 +213,17 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
         >
           <PixelImage src={projectImageSrc(project.image)} />
         </m.div>
+      )}
+
+      {/* ── GALLERY ─────────────────────────────────────────────
+          Extra views beyond the hero, for the projects that have real
+          material to show — renders nothing otherwise rather than
+          inventing filler images. */}
+      {project.gallery && project.gallery.length > 0 && (
+        <ProjectGallery
+          images={project.gallery}
+          label={dict?.gallery || "More views"}
+        />
       )}
 
       {/* ── CASE-STUDY STACK ───────────────────────────────────

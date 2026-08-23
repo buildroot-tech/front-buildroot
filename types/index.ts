@@ -12,6 +12,13 @@ interface CaseStudy {
   results: string[];
 }
 
+/** One additional view in a case study's gallery strip — a real screenshot
+ *  of a section beyond the hero, with a short caption naming what it shows. */
+export interface ProjectGalleryImage {
+  image: string;
+  caption: string;
+}
+
 export interface Project {
   id: string;
   indexCode: string;
@@ -28,6 +35,10 @@ export interface Project {
   metrics: ProjectMetric[];
   caseStudy: CaseStudy;
   image?: string;
+  /** Extra views beyond the hero — only for projects with real material to
+   *  show. Omit rather than invent images for a project that doesn't have
+   *  any. */
+  gallery?: ProjectGalleryImage[];
   demoUrl?: string;
   githubUrl?: string;
   isLab?: boolean;

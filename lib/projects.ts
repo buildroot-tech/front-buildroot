@@ -48,6 +48,16 @@ export const PROJECTS: readonly Project[] = [
     indexCode: "02",
     title: "Edusur",
     image: "edusur",
+    gallery: [
+      {
+        image: "edusur-about",
+        caption: "The about section, with real student outcomes front and centre",
+      },
+      {
+        image: "edusur-testimonials",
+        caption: "Real testimonials, with names and the scores behind them",
+      },
+    ],
     client: "EDUSUR",
     industry: "Education",
     year: "2026",
@@ -252,7 +262,7 @@ export const PROJECTS: readonly Project[] = [
  */
 type TranslatableFields = Pick<
   Project,
-  "industry" | "summary" | "description" | "highlights" | "metrics"
+  "industry" | "summary" | "description" | "highlights" | "metrics" | "gallery"
 > & {
   caseStudy: Pick<Project["caseStudy"], "challenge" | "solution" | "results">;
 };
@@ -291,6 +301,16 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
   },
   "edusur-educational": {
     industry: "Educación",
+    gallery: [
+      {
+        image: "edusur-about",
+        caption: "La sección de nosotros, con resultados reales de estudiantes al frente",
+      },
+      {
+        image: "edusur-testimonials",
+        caption: "Testimonios reales, con nombre y el puntaje detrás de cada uno",
+      },
+    ],
     metrics: [
       { label: "Rendimiento en Lighthouse", value: "89/100 (móvil)" },
       { label: "Estabilidad visual", value: "0.037 CLS" },
