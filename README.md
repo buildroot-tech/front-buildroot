@@ -21,6 +21,16 @@ npx tsc --noEmit     # type check
 Node 20+. No environment variables are required — there is no backend, no
 database and no third-party form service.
 
+One-time setup, per clone:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+This wires up `.githooks/commit-msg` (rejects commits that don't match
+`type(scope): description`) and `.githooks/pre-push` (runs `npm run lint`
+before every push).
+
 ---
 
 ## How the site is put together
