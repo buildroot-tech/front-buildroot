@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { useScroll, useTransform, m, MotionValue } from "framer-motion";
+import { useTransform, m, MotionValue } from "framer-motion";
+import { useScrollStack } from "@/hooks/useScrollStack";
 
 // Colors alternate so no two ADJACENT steps ever share one — two
 // neighboring cards with the same background made the scroll-stacking
@@ -64,21 +64,18 @@ interface WorkflowStepsProps {
 }
 
 export function WorkflowSteps({ dict }: WorkflowStepsProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  // The sticky wrapper un-pins the instant its driver's scroll room runs
-  // out — a hard, un-eased cut from "fixed in place" to "scrolling with
-  // the page," with whatever comes after (SelectWork) revealed mid-frame
-  // instead of the last card getting a clean exit. Fading the whole
-  // wrapper out over the tail of the last card's rest window turns that
-  // mechanical cut into a dissolve — starting shortly after the last card
-  // settles, so it's still read fully opaque for a beat first.
-  const stepsFadeStart = (steps.length - 1) / steps.length + 0.05;
-  const stepsOpacity = useTransform(scrollYProgress, [stepsFadeStart, 1], [1, 0]);
+  // Shared with ServicesSection and ProjectDetail — see
+  // hooks/useScrollStack.ts for the spring smoothing and the fade-out that
+  // turns the sticky wrapper's un-eased un-pin (which used to reveal
+  // SelectWork mid-frame instead of giving the last card a clean exit)
+  // into a dissolve.
+  const {
+    containerRef,
+    scrollYProgress,
+    stackOpacity: stepsOpacity,
+    driverClassName,
+    driverStyle,
+  } = useScrollStack(steps.length);
 
   return (
     <section
@@ -106,8 +103,10 @@ export function WorkflowSteps({ dict }: WorkflowStepsProps) {
           "I scrolled a long way and nothing happened" rather than a
           deliberate pause. The 60/40 travel/rest split itself is a
           fraction of scrollYProgress, so it's untouched by this — cards
-          just cover the same relative ground in less absolute scroll. */}
-      <div className="relative h-[325dvh] md:h-[500dvh] w-full">
+          just cover the same relative ground in less absolute scroll.
+          --seg is 65dvh mobile / 100dvh desktop (hooks/useScrollStack.ts),
+          same values this drove directly as 325dvh/500dvh over 5 steps. */}
+      <div className={driverClassName} style={driverStyle}>
         <m.div
           className="sticky top-0 flex h-dvh w-full flex-col md:flex-row overflow-hidden"
           style={{ opacity: stepsOpacity }}
