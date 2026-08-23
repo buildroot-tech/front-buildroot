@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { ProjectRow } from "@/components/work/ProjectRow";
+import { useRef } from "react";
+import { ProjectListRow } from "@/components/work/ProjectListRow";
 import { ArrowRight } from "lucide-react";
 import {
   ScrambleText,
@@ -26,30 +26,17 @@ export function ProjectsGrid({
       ? projects
       : projects.filter((p) => p.category === category);
 
-  // Only one row open at a time — expanding a new one closes whichever
-  // was open before. WorkSection keys this whole component on `category`,
-  // so a filter change remounts it fresh and resets this to null too,
-  // no effect needed.
-  const [expandedId, setExpandedId] = useState<string | null>(null);
-  // Same imperative scramble idiom as the row's own Case Study / Visit
-  // Site links: the hover area is the whole <a>, not just the span.
+  // Same imperative scramble idiom as the row's own hover: the trigger
+  // area is the whole <a>, not just the span.
   const startBuildRef = useRef<ScrambleTextHandle>(null);
 
   return (
     <div className="w-full">
-      {/* Accordion Project List */}
+      {/* Same list — same component — the home page's Selected Works
+          uses. A visitor clicks straight through to /work/[slug]; there's
+          no in-place expansion to keep in sync with it. */}
       {visibleProjects.map((project) => (
-        <ProjectRow
-          key={project.id}
-          project={project}
-          viewCaseStudyLabel={dict?.view_case_study}
-          isExpanded={expandedId === project.id}
-          onToggle={() =>
-            setExpandedId((current) =>
-              current === project.id ? null : project.id,
-            )
-          }
-        />
+        <ProjectListRow key={project.id} project={project} />
       ))}
 
       {/* Marketing CTA — invite visitors to start a project with us. The
