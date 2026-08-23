@@ -2,19 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { LocaleLink } from "@/components/ui/LocaleLink";
-import {
-  AnimatePresence,
-  m,
-  useScroll,
-  useSpring,
-  useTransform,
-  type MotionValue,
-} from "framer-motion";
+import { AnimatePresence, m, useTransform, type MotionValue } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import {
   ScrambleText,
   type ScrambleTextHandle,
 } from "@/components/ui/TextScrambler";
+import { useScrollStack } from "@/hooks/useScrollStack";
 import type { Dictionary } from "@/lib/dictionaries";
 
 interface ServicesSectionProps {
@@ -173,43 +167,18 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
   const ctaButtonRef = useRef<ScrambleTextHandle>(null);
   const ctaEmailRef = useRef<ScrambleTextHandle>(null);
 
-  const stackRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: rawStackProgress } = useScroll({
-    target: stackRef,
-    offset: ["start start", "end end"],
-  });
-  // Smooths the raw scroll position before it drives the slide transforms.
-  // Without this, the transform tracks scroll position exactly — a hard
-  // scroll (a fling, or a few aggressive wheel notches) moves scrollYProgress
-  // so far in one frame that the whole A/B/C transition snaps through in
-  // almost no visible steps. Springing it means the visual eases toward
-  // wherever the scroll lands instead of jumping straight there, so even a
-  // hard scroll still reads as motion.
-  //
-  // Stiffer and more damped than the top-of-page reading bar it originally
-  // borrowed from (100/30, a damping ratio of 1.5 — overdamped, but still
-  // slow enough to trail visibly behind a stopped finger, which read as
-  // "elastic" rather than smooth). 400/40 is a damping ratio of exactly 1
-  // (critically damped: no bounce, fastest possible settle), so it catches
-  // up in a couple of frames instead of gliding.
-  const stackProgress = useSpring(rawStackProgress, {
-    stiffness: 400,
-    damping: 40,
-    restDelta: 0.001,
-  });
-
-  // The sticky stack un-pins the instant its driver's scroll room runs out
-  // — a hard, un-eased cut from "fixed in place" to "scrolling with the
-  // page," with whatever comes after it revealed mid-frame. On this page
-  // that's especially rough: the reveal is this route's own background,
-  // which is the same accent blue as the "consulting" slide, so the cut
-  // reads as that slide reappearing from underneath rather than what it
-  // actually is. Fading the whole stack out over the tail of its own rest
-  // window turns the mechanical cut into a dissolve — starting shortly
-  // after the last slide settles, so it's still read fully opaque for a
-  // beat before dissolving.
-  const stackFadeStart = (SERVICE_KEYS.length - 1) / SERVICE_KEYS.length + 0.05;
-  const stackOpacity = useTransform(stackProgress, [stackFadeStart, 1], [1, 0]);
+  // Shared with WorkflowSteps and ProjectDetail — see hooks/useScrollStack.ts
+  // for the spring smoothing (a hard scroll shouldn't snap the A/B/C
+  // transition through in one frame) and the fade-out (this page's reveal
+  // is the same accent blue as the "consulting" slide, so an un-eased cut
+  // would read as that slide reappearing rather than what it actually is).
+  const {
+    containerRef: stackRef,
+    scrollYProgress: stackProgress,
+    stackOpacity,
+    driverClassName,
+    driverStyle,
+  } = useScrollStack(SERVICE_KEYS.length);
 
   const ENGAGE_INTERVAL = 5000;
   const [engageIndex, setEngageIndex] = useState(0);
@@ -267,8 +236,8 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
       <section
         id="services-stack"
         ref={stackRef}
-        className="relative w-full [--seg:65dvh] md:[--seg:100dvh]"
-        style={{ height: `calc(var(--seg) * ${SERVICE_KEYS.length})` }}
+        className={driverClassName}
+        style={driverStyle}
       >
         <m.div
           className="sticky top-0 h-dvh w-full overflow-hidden"

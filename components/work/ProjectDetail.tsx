@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { m, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { m, useTransform, type MotionValue } from "framer-motion";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { LocaleLink } from "@/components/ui/LocaleLink";
 import {
@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/TextScrambler";
 import { PixelImage } from "@/components/ui/PixelImage";
 import { ProjectGallery } from "@/components/work/ProjectGallery";
+import { useScrollStack } from "@/hooks/useScrollStack";
 import { projectImageSrc } from "@/lib/projects";
 import type { Project } from "@/types";
 import type { Dictionary } from "@/lib/dictionaries";
@@ -89,12 +90,6 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
   const backRef = useRef<ScrambleTextHandle>(null);
   const demoRef = useRef<ScrambleTextHandle>(null);
 
-  const stackRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: stackProgress } = useScroll({
-    target: stackRef,
-    offset: ["start start", "end end"],
-  });
-
   const numbered = (items: readonly string[]) => (
     <ul className="flex flex-col border-t border-[var(--border)]">
       {items.map((item) => (
@@ -146,15 +141,16 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
     },
   ];
 
-  // The sticky stack un-pins the instant its driver's scroll room runs out
-  // — a hard, un-eased cut from "fixed in place" to "scrolling with the
-  // page," with whatever comes after (the live-site section) revealed
-  // mid-frame instead of the last panel getting a clean exit. Fading the
-  // whole stack out over the tail of the last panel's rest window turns
-  // that mechanical cut into a dissolve — starting shortly after the last
-  // panel settles, so it's still read fully opaque for a beat first.
-  const stackFadeStart = (panels.length - 1) / panels.length + 0.05;
-  const stackOpacity = useTransform(stackProgress, [stackFadeStart, 1], [1, 0]);
+  // Shared with WorkflowSteps and ServicesSection — see
+  // hooks/useScrollStack.ts for the spring smoothing and the fade-out that
+  // turns the sticky stack's un-eased un-pin into a dissolve.
+  const {
+    containerRef: stackRef,
+    scrollYProgress: stackProgress,
+    stackOpacity,
+    driverClassName,
+    driverStyle,
+  } = useScrollStack(panels.length);
 
   return (
     <article className="w-full bg-[var(--bg-primary)] text-[var(--text-primary)]">
@@ -241,11 +237,7 @@ export function ProjectDetail({ project, dict }: ProjectDetailProps) {
           per panel is a couple of mouse-wheel clicks, but several full
           touch swipes, most of which land in the panel's rest window
           where nothing visibly moves. */}
-      <section
-        ref={stackRef}
-        className="relative w-full [--seg:65dvh] md:[--seg:100dvh]"
-        style={{ height: `calc(var(--seg) * ${panels.length})` }}
-      >
+      <section ref={stackRef} className={driverClassName} style={driverStyle}>
         <m.div
           className="sticky top-0 h-dvh w-full overflow-hidden"
           style={{ opacity: stackOpacity }}
