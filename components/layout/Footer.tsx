@@ -249,15 +249,15 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
             <div className="w-full flex flex-col gap-0 items-end">
               {/* Row 1: Address, Street, Zip */}
               <div className="flex flex-wrap items-end justify-end w-full py-[clamp(0.1rem,0.3vw,0.4rem)] gap-2 md:gap-3">
-                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.95rem,4.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
+                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.95rem,4.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
                   {dict?.footer?.address || contactInfo.address}
                 </span>
 
-                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.95rem,4.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
+                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.95rem,4.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
                   Av. Panamericana
                 </span>
 
-                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.95rem,4.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
+                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.95rem,4.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
                   524060
                 </span>
               </div>
@@ -298,7 +298,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                 </div>
 
                 <div className="flex items-center gap-1 md:gap-2 shrink-0">
-                  <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.95rem,4.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap">
+                  <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.95rem,4.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] leading-[0.85] tracking-tighter whitespace-nowrap">
                     {contactInfo.city}
                   </span>
                   <svg
@@ -347,14 +347,14 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                   </svg>
                 </div>
 
-                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.95rem,4.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] capitalize leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
+                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.95rem,4.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] leading-[0.85] tracking-tighter whitespace-nowrap shrink-0">
                   {contactInfo.country}
                 </span>
               </div>
 
               {/* Row 3: Phone, Grid */}
               <div className="flex flex-wrap items-center justify-end w-full py-[clamp(0.1rem,0.3vw,0.4rem)] gap-2 md:gap-3">
-                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.95rem,4.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] leading-[0.85] capitalize tracking-tighter shrink-0">
+                <span className="font-serif font-light text-[var(--text-primary)] text-[clamp(0.95rem,4.2vw,5rem)] md:text-[clamp(1.5rem,3.8vw,5rem)] leading-[0.85] tracking-tighter shrink-0">
                   {dict?.footer?.phone || "Phone"}
                 </span>
 
