@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { m, useTransform, type MotionValue } from "framer-motion";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "@/components/ui/Icons";
 import { LocaleLink } from "@/components/ui/LocaleLink";
 import {
   ScrambleText,

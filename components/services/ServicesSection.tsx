@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { LocaleLink } from "@/components/ui/LocaleLink";
 import { AnimatePresence, m, useTransform, type MotionValue } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "@/components/ui/Icons";
 import {
   ScrambleText,
   type ScrambleTextHandle,
@@ -167,18 +167,11 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
     driverStyle,
   } = useScrollStack(SERVICE_KEYS.length);
 
-  const ENGAGE_INTERVAL = 5000;
   const [engageIndex, setEngageIndex] = useState(0);
   const goNextEngage = () =>
     setEngageIndex((i) => (i + 1) % ENGAGE_KEYS.length);
-
-  // Auto-advances on its own — restarts the countdown every time the
-  // index changes, whether from the timer itself or a manual Prev/Next
-  // click, so it never fights the visitor's own navigation.
-  useEffect(() => {
-    const timer = setTimeout(goNextEngage, ENGAGE_INTERVAL);
-    return () => clearTimeout(timer);
-  }, [engageIndex]);
+  const goPrevEngage = () =>
+    setEngageIndex((i) => (i - 1 + ENGAGE_KEYS.length) % ENGAGE_KEYS.length);
 
   return (
     <>
@@ -309,6 +302,49 @@ export function ServicesSection({ dict }: ServicesSectionProps) {
               </>
             );
           })()}
+        </div>
+
+        {/* Navigation — prev/next arrows matching the project gallery
+            pattern, plus a dot indicator. No auto-advance — the visitor
+            controls when to move between engagement models. */}
+        <div className="mt-12 flex items-center gap-6 md:mt-16">
+          <button
+            type="button"
+            onClick={goPrevEngage}
+            aria-label={dict?.engage?.prev || "Previous"}
+            className="p-3 -ml-3 text-white/50 transition-colors hover:text-white"
+          >
+            <ArrowRight className="h-5 w-5 rotate-180" />
+          </button>
+
+          <div className="flex items-center gap-3">
+            {ENGAGE_KEYS.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setEngageIndex(i)}
+                aria-label={dict?.engage?.models?.[ENGAGE_KEYS[i]]?.title || ENGAGE_KEYS[i]}
+                className="p-2"
+              >
+                <span
+                  className={`block h-1.5 rounded-full transition-all duration-300 ${
+                    i === engageIndex
+                      ? "w-6 bg-white"
+                      : "w-1.5 bg-white/30 hover:bg-white/50"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={goNextEngage}
+            aria-label={dict?.engage?.next || "Next"}
+            className="p-3 -mr-3 text-white/50 transition-colors hover:text-white"
+          >
+            <ArrowRight className="h-5 w-5" />
+          </button>
         </div>
       </section>
 

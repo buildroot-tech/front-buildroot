@@ -2,6 +2,7 @@
 
 import { useScroll, useTransform, m } from "framer-motion";
 import { useRef } from "react";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 
 /* ─────────────────────────────────────────────────────────
    Interweaving diagonal lines
@@ -88,7 +89,7 @@ function Decorative() {
       />
       {/* Wireframe Volcanes (Cumbal & Chiles) - Brutalist Geometry */}
       <svg
-        className="absolute bottom-0 left-0 w-full h-[30vh] opacity-25 pointer-events-none"
+        className="absolute bottom-0 left-0 w-full h-[30vh] opacity-[0.11] pointer-events-none"
         preserveAspectRatio="none"
         viewBox="0 0 1000 300"
       >
@@ -192,6 +193,9 @@ export function Hero({ dict }: HeroProps) {
     letterSpacing: "-0.03em",
     fontWeight: 700,
   };
+
+  const ctaText = dict?.cta || "See our work";
+  const ctaHref = dict?.cta_href || "/work";
 
   return (
     <section
@@ -322,7 +326,7 @@ export function Hero({ dict }: HeroProps) {
 
         {/* Services — bottom right */}
         <m.div
-          className="flex justify-end pt-4 pb-24"
+          className="flex flex-col items-end gap-6 pt-4 pb-24"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.3, duration: 0.6 }}
@@ -339,6 +343,16 @@ export function Hero({ dict }: HeroProps) {
               </span>
             ))}
           </div>
+
+          <LocaleLink
+            href={ctaHref}
+            className="group inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--text-inverse)] opacity-60 hover:opacity-100 transition-opacity duration-300"
+          >
+            <span>{ctaText}</span>
+            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </LocaleLink>
         </m.div>
       </m.div>
 

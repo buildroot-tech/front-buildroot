@@ -1,10 +1,17 @@
 #!/bin/sh
-# pre-push: Run type check and lint before push
+# pre-push: Run type check, lint, and locale validation before push
 
 echo "🔍 Running type check..."
 npm run lint 2>/dev/null
 if [ $? -ne 0 ]; then
   echo "❌ Lint failed. Fix errors before pushing."
+  exit 1
+fi
+
+echo "🔍 Checking locale agreement..."
+./scripts/validate-locale.sh
+if [ $? -ne 0 ]; then
+  echo "❌ Locale agreement check failed."
   exit 1
 fi
 

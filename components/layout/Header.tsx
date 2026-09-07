@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { LocaleLink } from "@/components/ui/LocaleLink";
 import { usePathname } from "next/navigation";
@@ -159,6 +159,28 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
     };
   }, [mobileOpen]);
 
+  const menuOverlayRef = useRef<HTMLDivElement>(null);
+  const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
+
+  // Focus trap: when menu opens, focus the first link; when Escape/close,
+  // return focus to the hamburger.
+  useEffect(() => {
+    if (mobileOpen) {
+      firstMenuLinkRef.current?.focus();
+    }
+  }, [mobileOpen]);
+
+  const closeMenu = useCallback(() => setMobileOpen(false), []);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeMenu();
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [mobileOpen, closeMenu]);
+
   return (
     <>
       <m.header
@@ -222,6 +244,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
                     <span
                       className="font-display text-2xl sm:text-3xl md:text-3xl 2xl:text-4xl font-normal"
                       style={{ color: textColor }}
+                      aria-hidden="true"
                     >
                       ,
                     </span>
@@ -253,13 +276,27 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
                 className={`absolute bottom-0 left-0 h-[1px] w-full bg-current transition-opacity duration-150 ${normalizedPathname === "/contact" ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
               />
             </LocaleLink>
+
+            {/* Language switch — small, mono, subtle. Plain Link on purpose:
+                deliberately targets the *other* locale. */}
+            <Link
+              href={`/${lang === "en" ? "es" : "en"}${
+                normalizedPathname === "/" ? "" : normalizedPathname
+              }`}
+              className="ml-4 font-mono text-xs uppercase tracking-widest transition-colors hover:text-[var(--accent)]"
+              style={{ color: textColor, opacity: 0.6 } as React.CSSProperties}
+            >
+              {lang === "en" ? "ES" : "EN"}
+            </Link>
           </div>
 
-          {/* Mobile Burger */}
+          {/* Mobile Burger — 44×44px touch target per WCAG 2.5.8 */}
           <button
-            className="flex flex-col gap-1.5 md:hidden"
+            className="flex flex-col gap-1.5 md:hidden p-4 -mr-4"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
           >
             <m.span
               className="block h-0.5 w-6"
@@ -285,10 +322,15 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
         </div>
       </m.header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay — role=dialog + aria-modal for screen readers */}
       <AnimatePresence>
         {mobileOpen && (
           <m.div
+            ref={menuOverlayRef}
+            id="mobile-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -296,12 +338,13 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
             className="fixed inset-0 z-40 bg-[var(--bg-primary)] md:hidden"
           >
             <nav className="flex flex-col items-center justify-center gap-8 pt-32">
-              {navLinks.map((link) => (
+              {navLinks.map((link, i) => (
                 <LocaleLink
                   key={link.href}
+                  ref={i === 0 ? firstMenuLinkRef : undefined}
                   href={link.href}
                   className="font-display text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={closeMenu}
                 >
                   {link.label}
                 </LocaleLink>
@@ -309,7 +352,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
               <LocaleLink
                 href="/contact"
                 className="font-display text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
-                onClick={() => setMobileOpen(false)}
+                onClick={closeMenu}
               >
                 {dict?.contact || "let's talk"}
               </LocaleLink>
@@ -320,7 +363,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
                   normalizedPathname === "/" ? "" : normalizedPathname
                 }`}
                 className="font-display text-4xl font-medium tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)] mt-8"
-                onClick={() => setMobileOpen(false)}
+                onClick={closeMenu}
               >
                 {lang === "en" ? "ES" : "EN"}
               </Link>

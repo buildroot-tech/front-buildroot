@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { ArrowLeft, ArrowRight } from "@/components/ui/Icons";
 import { PixelImage } from "@/components/ui/PixelImage";
 import { projectImageSrc } from "@/lib/projects";
 import type { ProjectGalleryImage } from "@/types";
@@ -21,6 +22,8 @@ interface ProjectGalleryProps {
  */
 export function ProjectGallery({ images, label }: ProjectGalleryProps) {
   const trackRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const isEn = pathname.startsWith("/en");
   // Only two images today, which already fit without scrolling on a wide
   // desktop viewport — arrows that click and visibly do nothing read as
   // broken, so they only render once the track actually has somewhere to
@@ -61,7 +64,7 @@ export function ProjectGallery({ images, label }: ProjectGalleryProps) {
             <button
               type="button"
               onClick={() => scrollByCard(-1)}
-              aria-label="Anterior"
+              aria-label={isEn ? "Previous" : "Anterior"}
               className="text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -69,7 +72,7 @@ export function ProjectGallery({ images, label }: ProjectGalleryProps) {
             <button
               type="button"
               onClick={() => scrollByCard(1)}
-              aria-label="Siguiente"
+              aria-label={isEn ? "Next" : "Siguiente"}
               className="text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
             >
               <ArrowRight className="h-4 w-4" />

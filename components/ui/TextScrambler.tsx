@@ -13,10 +13,8 @@ interface TextScramblerProps {
   text: string;
   className?: string;
   speed?: number;
-  trigger?: "hover" | "mount" | "both" | "manual";
-  triggerOnce?: boolean;
+  trigger?: "hover" | "manual" | "mount";
   active?: boolean;
-  as?: "span" | "div" | "p" | "h1" | "h2" | "h3";
   style?: React.CSSProperties;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
@@ -35,9 +33,7 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
       className,
       speed = 80,
       trigger = "hover",
-      triggerOnce = false,
       active = true,
-      as: Tag = "span",
       style,
       onMouseEnter,
       onMouseLeave,
@@ -47,7 +43,6 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
   ) {
     const [display, setDisplay] = useState(text);
     const timersRef = useRef<NodeJS.Timeout[]>([]);
-    const hasScrambledRef = useRef(false);
 
     const clearAll = useCallback(() => {
       timersRef.current.forEach(clearTimeout);
@@ -55,9 +50,6 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
     }, []);
 
     const scramble = useCallback(() => {
-      if (triggerOnce && hasScrambledRef.current) return;
-      hasScrambledRef.current = true;
-
       clearAll();
 
       const letters = text.split("");
@@ -88,13 +80,12 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
         setDisplay(text);
       }, totalDuration);
       timersRef.current.push(tFinal);
-    }, [text, speed, clearAll, triggerOnce]);
+    }, [text, speed, clearAll]);
 
     const reset = useCallback(() => {
-      if (triggerOnce && hasScrambledRef.current) return;
       clearAll();
       setDisplay(text);
-    }, [clearAll, text, triggerOnce]);
+    }, [clearAll, text]);
 
     // Expose scramble/reset imperatively so parent elements can trigger from
     // a wider hover area (e.g. the full <Link> rather than just the inner span)
@@ -105,7 +96,7 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
     }, [clearAll]);
 
     useEffect(() => {
-      if (trigger === "mount" || trigger === "both") {
+      if (trigger === "mount") {
         if (active) scramble();
         else reset();
       }
@@ -120,19 +111,17 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
     }, [text, scramble]);
 
     const handleMouseEnter = () => {
-      if (trigger === "hover" || trigger === "both") scramble();
+      if (trigger === "hover") scramble();
       onMouseEnter?.();
     };
 
     const handleMouseLeave = () => {
-      if (trigger === "hover" || trigger === "both") {
-        reset();
-      }
+      if (trigger === "hover") reset();
       onMouseLeave?.();
     };
 
     return (
-      <Tag
+      <span
         className={className}
         style={style}
         onMouseEnter={handleMouseEnter}
@@ -140,7 +129,7 @@ const ScrambleText = forwardRef<ScrambleTextHandle, TextScramblerProps>(
         onClick={onClick}
       >
         {display}
-      </Tag>
+      </span>
     );
   },
 );

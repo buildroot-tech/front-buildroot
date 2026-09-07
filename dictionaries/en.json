@@ -34,7 +34,9 @@
         "System",
         "Product",
         "Infrastructure"
-      ]
+      ],
+      "cta": "See our work",
+      "cta_href": "/work"
     },
     "process": {
       "subtitle": "How We Work",
@@ -43,27 +45,27 @@
         "requirements": {
           "number": "01",
           "title": "Requirements",
-          "description": "We map the problem, define the exact scope, and align perfectly on your goals. No guessing, just extreme clarity."
+          "description": "We sit down with you — in Ipiales, over video, wherever — to understand the actual business problem before writing anything."
         },
         "design": {
           "number": "02",
           "title": "Design",
-          "description": "Crafting intuitive and powerful interfaces that communicate your brand's unique edge, backed by strict system design."
+          "description": "Interfaces shaped around your users and your regional context, not borrowed from a template that works somewhere else."
         },
         "build": {
           "number": "03",
           "title": "Build",
-          "description": "Iterative, high-velocity development. We build robust, scalable architectures for maximum performance."
+          "description": "You get direct access to the developers writing your code — no intermediaries, no lost-in-translation handoffs."
         },
         "testing": {
           "number": "04",
           "title": "Testing",
-          "description": "Rigorous quality, performance, and security validation to ensure the product is unbreakable."
+          "description": "We validate performance, security, and reliability in conditions that match where your product actually runs."
         },
         "production": {
           "number": "05",
           "title": "Go live",
-          "description": "Deploy and scale with absolute confidence. Your product hits the market flawlessly and ready to dominate."
+          "description": "We deploy alongside you and stay reachable afterward — because going live is the start, not the finish."
         }
       }
     },
@@ -133,6 +135,8 @@
     },
     "engage": {
       "title": "How We Engage",
+      "prev": "Previous",
+      "next": "Next",
       "models": {
         "project": {
           "title": "Project-Based",
@@ -226,7 +230,9 @@
       "subject": "New project"
     },
     "email_button": "info@buildroot.co",
-    "response_note": "We read every message ourselves — usually a reply within a day."
+    "response_note": "We read every message ourselves — usually a reply within a day.",
+    "fallback": "If your email didn't open, copy this address:",
+    "copied": "Copied"
   },
   "legal": {
     "privacy": {

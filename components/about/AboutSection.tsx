@@ -3,7 +3,7 @@
 import { LocaleLink } from "@/components/ui/LocaleLink";
 import { useRef } from "react";
 import { m, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "@/components/ui/Icons";
 import {
   ScrambleText,
   type ScrambleTextHandle,

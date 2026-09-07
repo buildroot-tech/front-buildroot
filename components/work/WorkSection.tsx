@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { m } from "framer-motion";
-import { X } from "lucide-react";
+import { X } from "@/components/ui/Icons";
 import { ProjectsGrid } from "@/components/work/ProjectsGrid";
 import type { ProjectCategory, Project } from "@/types";
 import type { Dictionary } from "@/lib/dictionaries";

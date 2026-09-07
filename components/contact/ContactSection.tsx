@@ -2,7 +2,7 @@
 
 import { useMemo, useRef, useState } from "react";
 import { m } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "@/components/ui/Icons";
 import {
   ScrambleText,
   type ScrambleTextHandle,
@@ -126,6 +126,25 @@ export function ContactSection({ dict }: ContactSectionProps) {
   const [needIndex, setNeedIndex] = useState(0);
   const [timingIndex, setTimingIndex] = useState(0);
   const [extra, setExtra] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fallback: select the text for manual copy
+      const range = document.createRange();
+      const el = document.getElementById("buildroot-email");
+      if (el) {
+        range.selectNodeContents(el);
+        const sel = window.getSelection();
+        sel?.removeAllRanges();
+        sel?.addRange(range);
+      }
+    }
+  };
 
   const needs = NEED_KEYS.map((k) => c?.needs?.[k] || FALLBACK.needs[k]);
   const timings = TIMING_KEYS.map(
@@ -297,6 +316,32 @@ export function ContactSection({ dict }: ContactSectionProps) {
                 speed={40}
               />
             </a>
+
+            {/* Fallback — for visitors whose mail client didn't open */}
+            <div className="mt-6 flex flex-col gap-2">
+              <p className="font-mono text-xs uppercase tracking-wider text-[var(--text-primary)]/60">
+                {dict?.fallback ||
+                  "If your email didn't open, copy this address:"}
+              </p>
+              <div className="inline-flex items-center gap-3">
+                <span
+                  id="buildroot-email"
+                  className="font-mono text-sm tracking-wide text-[var(--text-primary)]/80"
+                >
+                  {EMAIL}
+                </span>
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className="font-mono text-xs uppercase tracking-widest text-[var(--text-primary)]/50 transition-colors hover:text-[var(--accent)] focus-visible:text-[var(--accent)]"
+                  aria-label={`Copy ${EMAIL} to clipboard`}
+                >
+                  {copied
+                    ? dict?.copied || "Copied"
+                    : "[copy]"}
+                </button>
+              </div>
+            </div>
           </div>
 
           <p className="mt-6 font-mono text-xs uppercase tracking-wider text-[var(--text-primary)]/60">

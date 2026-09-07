@@ -28,8 +28,10 @@ const contactInfo = {
   city: "Ipiales",
   country: "Colombia",
   zip: "524060",
-  phone: "310 425 2781",
-  email: "info@buildroot.co",
+  // Derived from siteConfig so the footer and the Organization JSON-LD
+  // can't drift apart — strip the "+57 " prefix for the display grid.
+  phone: siteConfig.phone.replace(/^\+57\s*/, ""),
+  email: siteConfig.email,
 };
 
 const fadeUp = {
@@ -191,7 +193,7 @@ export function Footer({ dict }: FooterProps): React.ReactElement {
                           "text-[var(--text-primary)]",
                         )}
                         style={{ minWidth: `${link.label.length}ch` }}
-                        aria-label={`Visita buildroot en ${link.label}`}
+                        aria-label={pathname.startsWith("/en") ? `Visit buildroot on ${link.label}` : `Visita buildroot en ${link.label}`}
                       >
                         <ScrambleText text={link.label} speed={40} />
                         <span className="absolute -bottom-1 left-0 h-[1px] w-full bg-current opacity-0 transition-opacity duration-150 group-hover:opacity-100" />

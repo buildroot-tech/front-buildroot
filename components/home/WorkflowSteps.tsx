@@ -15,7 +15,7 @@ const steps = [
     dictKey: "requirements",
     title: "Requirements",
     description:
-      "We map the problem, define the exact scope, and align perfectly on your goals. No guessing, just extreme clarity.",
+      "We sit down with you — in Ipiales, over video, wherever — to understand the actual business problem before writing anything.",
     color: "var(--bg-primary)",
     textColor: "var(--text-primary)",
   },
@@ -24,7 +24,7 @@ const steps = [
     dictKey: "design",
     title: "Design",
     description:
-      "Crafting intuitive interfaces and aesthetics that communicate your brand's unique edge, backed by strict system design.",
+      "Interfaces shaped around your users and your regional context, not borrowed from a template that works somewhere else.",
     color: "#0A0A0A",
     textColor: "var(--text-inverse)",
   },
@@ -33,7 +33,7 @@ const steps = [
     dictKey: "build",
     title: "Build",
     description:
-      "Iterative, high-velocity development. We build robust, scalable architectures for maximum performance.",
+      "You get direct access to the developers writing your code — no intermediaries, no lost-in-translation handoffs.",
     color: "var(--accent)",
     textColor: "white",
   },
@@ -42,7 +42,7 @@ const steps = [
     dictKey: "testing",
     title: "Testing",
     description:
-      "Rigorous quality, performance, and security validation to ensure the product is unbreakable.",
+      "We validate performance, security, and reliability in conditions that match where your product actually runs.",
     color: "var(--bg-primary)",
     textColor: "var(--text-primary)",
   },
@@ -51,7 +51,7 @@ const steps = [
     dictKey: "production",
     title: "Go Live",
     description:
-      "Deploy and scale with absolute confidence. Your product hits the market flawlessly and ready to dominate.",
+      "We deploy alongside you and stay reachable afterward — because going live is the start, not the finish.",
     color: "#000000",
     textColor: "var(--text-inverse)",
   },

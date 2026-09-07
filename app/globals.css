@@ -207,6 +207,11 @@ body {
   .marquee-track {
     animation: none;
   }
+
+  .cursor-blink {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 /* ============================================

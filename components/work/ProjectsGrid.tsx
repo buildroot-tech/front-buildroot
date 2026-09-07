@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { ProjectListRow } from "@/components/work/ProjectListRow";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "@/components/ui/Icons";
 import {
   ScrambleText,
   type ScrambleTextHandle,

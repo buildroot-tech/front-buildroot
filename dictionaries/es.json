@@ -34,7 +34,9 @@
         "Sistemas",
         "Producto",
         "Infraestructura"
-      ]
+      ],
+      "cta": "Veamos su proyecto",
+      "cta_href": "/work"
     },
     "process": {
       "subtitle": "Cómo trabajamos",
@@ -43,27 +45,27 @@
         "requirements": {
           "number": "01",
           "title": "Requerimientos",
-          "description": "Mapeamos el problema, definimos el alcance exacto y nos alineamos con sus objetivos. Sin suposiciones, solo claridad."
+          "description": "Nos sentamos con usted — en Ipiales, por video, donde sea — para entender el problema de negocio real antes de escribir una línea."
         },
         "design": {
           "number": "02",
           "title": "Diseño",
-          "description": "Creamos interfaces intuitivas y potentes que comunican la ventaja única de su marca, con un diseño de sistema riguroso."
+          "description": "Interfaces diseñadas para sus usuarios y su contexto regional, no copiadas de una plantilla que funciona en otro lado."
         },
         "build": {
           "number": "03",
           "title": "Construcción",
-          "description": "Desarrollo iterativo de alta velocidad. Construimos arquitecturas robustas y escalables con máximo rendimiento."
+          "description": "Usted tiene acceso directo a los desarrolladores que escriben su código — sin intermediarios, sin traducciones perdidas."
         },
         "testing": {
           "number": "04",
           "title": "Pruebas",
-          "description": "Validación rigurosa de calidad, rendimiento y seguridad para asegurar que el producto sea irrompible."
+          "description": "Validamos rendimiento, seguridad y confiabilidad en condiciones que coinciden con donde su producto realmente funciona."
         },
         "production": {
           "number": "05",
           "title": "Paso a producción",
-          "description": "Desplegamos y escalamos con total confianza. Su producto sale al mercado impecable y listo para competir."
+          "description": "Desplegamos junto a usted y seguimos disponibles después — porque lanzar es el comienzo, no el final."
         }
       }
     },
@@ -133,6 +135,8 @@
     },
     "engage": {
       "title": "Cómo trabajamos juntos",
+      "prev": "Anterior",
+      "next": "Siguiente",
       "models": {
         "project": {
           "title": "Por proyecto",
@@ -226,7 +230,9 @@
       "subject": "Nuevo proyecto"
     },
     "email_button": "info@buildroot.co",
-    "response_note": "Leemos cada mensaje nosotros mismos — normalmente respondemos en un día."
+    "response_note": "Leemos cada mensaje nosotros mismos — normalmente respondemos en un día.",
+    "fallback": "Si su correo no se abrió, copie esta dirección:",
+    "copied": "Copiado"
   },
   "legal": {
     "privacy": {
