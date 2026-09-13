@@ -190,7 +190,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
         animate={{ y: hidden ? "-100%" : "0%" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
-        <div className="flex items-center justify-between px-6 md:px-12 py-5 overflow-hidden lg:grid lg:grid-cols-[46%_1fr] lg:gap-4 lg:justify-normal">
+        <div className="flex items-center justify-between px-6 md:px-12 py-5 overflow-hidden lg:grid lg:grid-cols-[38%_1fr] lg:gap-4 lg:justify-normal xl:grid-cols-[46%_1fr]">
           {/* Logo — hover detected on the <Link>, not the inner span */}
           <LocaleLink
             href="/"
@@ -210,13 +210,13 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
             </span>
           </LocaleLink>
 
-          <div className="hidden items-center md:flex flex-1 justify-between lg:col-start-2 lg:flex-none overflow-hidden">
+          <div className="hidden items-center gap-3 md:flex flex-1 justify-between lg:col-start-2 lg:flex-none overflow-hidden">
             <nav className="flex items-center gap-3 justify-center md:pl-8 lg:pl-0 lg:justify-start overflow-hidden">
               {navLinks.map((link, i) => (
                 <span key={link.href} className="flex items-center">
                   <LocaleLink
                     href={link.href}
-                    className="group relative font-display text-2xl sm:text-3xl md:text-3xl 2xl:text-4xl tracking-[0.1em] font-normal transition-colors hover:text-[var(--accent)]"
+                    className="group relative font-display text-2xl sm:text-3xl md:text-3xl lg:text-xl xl:text-2xl 2xl:text-3xl tracking-[0.1em] font-normal transition-colors hover:text-[var(--accent)]"
                     style={
                       {
                         color: textColor,
@@ -242,7 +242,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
                   </LocaleLink>
                   {i < navLinks.length - 1 && (
                     <span
-                      className="font-display text-2xl sm:text-3xl md:text-3xl 2xl:text-4xl font-normal"
+                      className="font-display text-2xl sm:text-3xl md:text-3xl lg:text-xl xl:text-2xl 2xl:text-3xl font-normal"
                       style={{ color: textColor }}
                       aria-hidden="true"
                     >
@@ -256,7 +256,7 @@ export function Header({ dict, lang = "en" }: HeaderProps) {
             {/* Contact link */}
             <LocaleLink
               href="/contact"
-              className="group relative font-display text-2xl sm:text-3xl md:text-3xl 2xl:text-4xl tracking-[0.1em] font-normal transition-colors hover:text-[var(--accent)]"
+              className="group relative font-display text-2xl sm:text-3xl md:text-3xl lg:text-xl xl:text-2xl 2xl:text-3xl tracking-[0.1em] font-normal transition-colors hover:text-[var(--accent)]"
               style={
                 {
                   color: textColor,
