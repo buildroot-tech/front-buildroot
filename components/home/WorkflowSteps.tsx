@@ -1,6 +1,6 @@
 "use client";
 
-import { useTransform, m, MotionValue } from "framer-motion";
+import { useTransform, m, MotionValue, easeInOut } from "framer-motion";
 import { useScrollStack } from "@/hooks/useScrollStack";
 
 // Colors alternate so no two ADJACENT steps ever share one — two
@@ -135,6 +135,7 @@ export function WorkflowSteps({ dict }: WorkflowStepsProps) {
                 key={step.number}
                 step={step}
                 index={index}
+                total={steps.length}
                 scrollYProgress={scrollYProgress}
                 dict={dict}
               />
@@ -149,21 +150,39 @@ export function WorkflowSteps({ dict }: WorkflowStepsProps) {
 interface StepCardProps {
   step: (typeof steps)[0];
   index: number;
+  total: number;
   scrollYProgress: MotionValue<number>;
   dict?: Dictionary["home"]["process"];
 }
 
-function StepCard({ step, index, scrollYProgress, dict }: StepCardProps) {
-  const start = index * 0.2;
-  const end = start + 0.2;
+function StepCard({ step, index, total, scrollYProgress, dict }: StepCardProps) {
+  const segment = 1 / total;
+  const start = index * segment;
+  const end = start + segment;
 
+  // 60% of this card's own segment is travel, the other 40% a genuine rest
+  // period — the same split ServicesSection and ProjectDetail use (see
+  // hooks/useScrollStack.ts's docs and AGENTS.md's "Scroll stacking"
+  // section). This one had drifted to a flat 0.1, which is *shorter* than
+  // 60% of a 5-card segment (0.12) — the slide covered less scroll
+  // distance than its siblings, so it looked and felt more sudden.
+  //
+  // `ease: easeInOut` is the other half of the fix: a plain linear
+  // scroll-to-position map has an instant velocity jump at both ends of
+  // the window — stopped, then suddenly moving at full scroll-speed, then
+  // suddenly stopped again. Easing ramps that in and out, which is what
+  // actually reads as "smooth" rather than the raw duration of the ramp.
+  const travelWindow = segment * 0.6;
   const y = useTransform(
     scrollYProgress,
-    [Math.max(0, start - 0.1), start],
+    [Math.max(0, start - travelWindow), start],
     ["100%", "0%"],
+    { ease: easeInOut },
   );
 
-  const scale = useTransform(scrollYProgress, [start, end], [1, 0.95]);
+  const scale = useTransform(scrollYProgress, [start, end], [1, 0.95], {
+    ease: easeInOut,
+  });
 
   return (
     <m.div

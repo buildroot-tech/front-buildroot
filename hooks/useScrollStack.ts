@@ -49,12 +49,17 @@ export function useScrollStack(total: number): UseScrollStackResult {
   // `position: sticky` un-pins the instant the driver's scroll room runs
   // out, with no easing of its own — fading the stack out over the tail of
   // the last panel's rest window turns that hard cut into a dissolve.
+  //
+  // Driven off `rawProgress`, not the spring above — sticky un-pins based
+  // on the real, unsmoothed scroll position, and on a fast flick the
+  // spring lags behind it. Tying the fade to the spring instead meant the
+  // browser could already un-pin the card (raw progress at 1) while the
+  // spring — and the opacity it drove — was still mid-catch-up, so the
+  // still-partly-opaque card got carried off by native scroll a frame
+  // ahead of its own fade, flashing whatever sat underneath. Raw progress
+  // hits 1 at the exact instant sticky releases, so this can't lag it.
   const stackFadeStart = (total - 1) / total + 0.05;
-  const stackOpacity = useTransform(
-    scrollYProgress,
-    [stackFadeStart, 1],
-    [1, 0],
-  );
+  const stackOpacity = useTransform(rawProgress, [stackFadeStart, 1], [1, 0]);
 
   return {
     containerRef,
