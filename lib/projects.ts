@@ -50,12 +50,24 @@ export const PROJECTS: readonly Project[] = [
     image: "edusur",
     gallery: [
       {
+        image: "edusur-pricing",
+        caption: "Program pricing, laid out with no hidden fees",
+      },
+      {
         image: "edusur-about",
         caption: "The about section, with real student outcomes front and centre",
       },
       {
+        image: "edusur-contact",
+        caption: "A direct contact form alongside every other way to reach the school",
+      },
+      {
         image: "edusur-testimonials",
         caption: "Real testimonials, with names and the scores behind them",
+      },
+      {
+        image: "edusur-enrollment",
+        caption: "The enrollment call to action, plus the footer with hours and contact info",
       },
     ],
     client: "EDUSUR",
@@ -303,12 +315,24 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
     industry: "Educación",
     gallery: [
       {
+        image: "edusur-pricing",
+        caption: "Precios de los programas, sin costos ocultos",
+      },
+      {
         image: "edusur-about",
         caption: "La sección de nosotros, con resultados reales de estudiantes al frente",
       },
       {
+        image: "edusur-contact",
+        caption: "Un formulario de contacto directo junto a todos los otros canales para escribir",
+      },
+      {
         image: "edusur-testimonials",
         caption: "Testimonios reales, con nombre y el puntaje detrás de cada uno",
+      },
+      {
+        image: "edusur-enrollment",
+        caption: "El llamado a inscribirse, junto al pie de página con horarios y contacto",
       },
     ],
     metrics: [
