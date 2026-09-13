@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { ArrowLeft, ArrowRight } from "@/components/ui/Icons";
+import { AnimatePresence, m } from "framer-motion";
+import { ArrowLeft, ArrowRight, Expand, X } from "@/components/ui/Icons";
 import { PixelImage } from "@/components/ui/PixelImage";
 import { projectImageSrc } from "@/lib/projects";
 import type { ProjectGalleryImage } from "@/types";
@@ -19,6 +20,10 @@ interface ProjectGalleryProps {
  * arrow/ScrambleText slider used elsewhere (Services' engagement models):
  * that pattern shows one item at a time, this one deliberately peeks the
  * next card as its own scroll affordance, which is a different job.
+ *
+ * Each thumbnail opens a full-screen lightbox on click — the strip's own
+ * cards are deliberately small (to keep several peeking on screen at
+ * once), so reading fine detail in one needs a bigger stage.
  */
 export function ProjectGallery({ images, label }: ProjectGalleryProps) {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -30,6 +35,7 @@ export function ProjectGallery({ images, label }: ProjectGalleryProps) {
   // go. Re-checked on resize, since a viewport change can flip this either
   // way (a wide window narrowing, or more images added later).
   const [canScroll, setCanScroll] = useState(false);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -52,6 +58,44 @@ export function ProjectGallery({ images, label }: ProjectGalleryProps) {
     const step = card ? card.offsetWidth + 24 : track.clientWidth * 0.8;
     track.scrollBy({ left: direction * step, behavior: "smooth" });
   };
+
+  const closeLightbox = useCallback(() => setOpenIndex(null), []);
+  const showPrev = useCallback(
+    () =>
+      setOpenIndex((i) =>
+        i === null ? i : (i - 1 + images.length) % images.length,
+      ),
+    [images.length],
+  );
+  const showNext = useCallback(
+    () => setOpenIndex((i) => (i === null ? i : (i + 1) % images.length)),
+    [images.length],
+  );
+
+  // Body scroll lock + keyboard nav while the lightbox is open — same
+  // pattern as the mobile menu overlay in Header.tsx.
+  useEffect(() => {
+    if (openIndex === null) return;
+
+    document.body.style.overflow = "hidden";
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") showPrev();
+      if (e.key === "ArrowRight") showNext();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKey);
+    };
+  }, [openIndex, closeLightbox, showPrev, showNext]);
+
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (openIndex !== null) closeButtonRef.current?.focus();
+  }, [openIndex]);
+
+  const active = openIndex !== null ? images[openIndex] : null;
 
   return (
     <section className="w-full py-16 md:py-24">
@@ -91,9 +135,19 @@ export function ProjectGallery({ images, label }: ProjectGalleryProps) {
             data-gallery-item
             className="relative w-[280px] shrink-0 snap-start sm:w-[360px] md:w-[420px]"
           >
-            <div className="relative aspect-[16/10] w-full overflow-hidden border border-[var(--border)]">
-              <PixelImage src={projectImageSrc(item.image)} />
-            </div>
+            <button
+              type="button"
+              onClick={() => setOpenIndex(i)}
+              aria-label={`${isEn ? "Enlarge" : "Ampliar"}: ${item.caption}`}
+              className="group relative block aspect-[16/9] w-full cursor-zoom-in overflow-hidden border border-[var(--border)]"
+            >
+              <div className="relative h-full w-full transition-transform duration-500 ease-out group-hover:scale-105">
+                <PixelImage src={projectImageSrc(item.image)} />
+              </div>
+              <span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/25 group-hover:opacity-100">
+                <Expand className="h-6 w-6 text-white" />
+              </span>
+            </button>
             <figcaption className="mt-3 flex items-baseline gap-3">
               <span className="font-mono text-xs font-bold text-[var(--text-muted)]">
                 {String(i + 1).padStart(2, "0")}
@@ -105,6 +159,85 @@ export function ProjectGallery({ images, label }: ProjectGalleryProps) {
           </figure>
         ))}
       </div>
+
+      {/* Lightbox — click a thumbnail (or its Expand affordance on hover)
+          to open, arrows/keyboard to browse the rest of the gallery, Esc
+          or a backdrop click to leave. `instant` on the PixelImage skips
+          the pixelation reveal, since this is the same source image the
+          thumbnail already resolved a moment ago — replaying it here
+          would read as the image loading twice. */}
+      <AnimatePresence>
+        {active && (
+          <m.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={isEn ? "Image preview" : "Vista ampliada de la imagen"}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[60] flex flex-col bg-black/95 p-4 md:p-8"
+            onClick={closeLightbox}
+          >
+            <div className="flex items-center justify-between text-white">
+              <span className="font-mono text-xs font-bold uppercase tracking-widest opacity-70">
+                {String((openIndex ?? 0) + 1).padStart(2, "0")} /{" "}
+                {String(images.length).padStart(2, "0")}
+              </span>
+              <button
+                ref={closeButtonRef}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  closeLightbox();
+                }}
+                aria-label={isEn ? "Close" : "Cerrar"}
+                className="-m-2 p-2 transition-colors hover:text-[var(--accent)]"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div
+              className="relative flex flex-1 items-center justify-center py-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {images.length > 1 && (
+                <button
+                  type="button"
+                  onClick={showPrev}
+                  aria-label={isEn ? "Previous" : "Anterior"}
+                  className="absolute left-0 z-10 p-3 text-white transition-colors hover:text-[var(--accent)] md:left-4"
+                >
+                  <ArrowLeft className="h-6 w-6 md:h-8 md:w-8" />
+                </button>
+              )}
+
+              <div className="relative aspect-[16/9] w-full max-w-5xl overflow-hidden">
+                <PixelImage src={projectImageSrc(active.image)} instant />
+              </div>
+
+              {images.length > 1 && (
+                <button
+                  type="button"
+                  onClick={showNext}
+                  aria-label={isEn ? "Next" : "Siguiente"}
+                  className="absolute right-0 z-10 p-3 text-white transition-colors hover:text-[var(--accent)] md:right-4"
+                >
+                  <ArrowRight className="h-6 w-6 md:h-8 md:w-8" />
+                </button>
+              )}
+            </div>
+
+            <p
+              className="text-center font-display text-sm text-white opacity-75"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {active.caption}
+            </p>
+          </m.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
