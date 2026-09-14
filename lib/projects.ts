@@ -3,45 +3,63 @@ import type { Locale } from "@/lib/dictionaries";
 
 export const PROJECTS: readonly Project[] = [
   {
-    id: "polo-pantoja-platform",
+    id: "plaet-restaurant-saas",
     indexCode: "01",
-    title: "Polo & Pantoja",
-    image: "polo-pantoja",
-    client: "Polo & Pantoja Abogados",
-    industry: "Legal Services",
-    year: "2026",
+    title: "Plaet",
+    image: "plaet",
+    gallery: [
+      {
+        image: "plaet-features",
+        caption: "The feature grid — menu, floor plan, kitchen board, stock and roles in one place",
+      },
+      {
+        image: "plaet-benefits",
+        caption: "The onboarding pitch: three steps from an empty menu to a running system",
+      },
+      {
+        image: "plaet-pricing",
+        caption: "Three tiers priced in Colombian pesos, from a single restaurant to multi-location chains",
+      },
+    ],
+    client: "buildroot_",
+    industry: "Restaurant Tech",
+    year: "2025",
     category: "SaaS",
     featured: true,
     summary:
-      "Law firm portal & specialized real estate marketplace with anticres contract management.",
+      "A multi-tenant restaurant management platform — menus, floor, kitchen and cash register in one system, built to run more than one restaurant at once.",
     description:
-      "One platform, two businesses: a law firm's client portal and a regional real estate marketplace, working side by side — including Colombia's unique anticres contracts, handled securely from listing to signature.",
+      "Our own restaurant-management SaaS, grown from a single-location tool into a multi-tenant platform: one system now runs the floor, the kitchen and the register for several restaurants at once, each one walled off from the others.",
     tags: [
-      "Next.js 14",
-      "Spring Boot 3",
-      "Java 17",
+      "React 19",
+      "Node.js",
+      "Express 5",
+      "Prisma",
       "PostgreSQL",
-      "Clean Architecture",
-      "JWT",
+      "Zustand",
     ],
-    highlights: ["Property Marketplace", "Client Portal", "Secure Contracts"],
+    highlights: [
+      "Multi-Tenant Architecture",
+      "Real-Time Kitchen Kanban",
+      "Prepaid Ticket Books",
+    ],
     metrics: [
-      { label: "Contract Modalities", value: "3 (Rent / Sale / Anticres)" },
-      { label: "Access Control", value: "Role-based, per document" },
-      { label: "Verification", value: "Built-in approval flow" },
+      { label: "Backend Modules", value: "15 modules, 109 endpoints" },
+      { label: "Access Control", value: "21 permissions, 5 roles" },
+      { label: "Database Models", value: "22 (Prisma)" },
     ],
     caseStudy: {
       challenge:
-        "Polo & Pantoja needed a unified solution for legal services and a regional real estate marketplace supporting anticres contracts—a unique legal modality requiring strict document verification.",
+        "The original tool only ever ran one restaurant's floor. Turning it into something worth selling meant the data model, the auth system and every query in the app had to become tenant-aware — without any one restaurant ever seeing another's orders, menu or staff.",
       solution:
-        "Built one platform serving both sides of the business, with document verification workflows tailored to how the firm's staff and property owners actually work — each role seeing only what it should.",
+        "Rebuilt the core around a tenant id carried automatically through every request via AsyncLocalStorage, rather than a parameter every developer has to remember to pass, plus a granular role-permission system covering five staff roles — from cashier to super-admin — and a kitchen board staff actually use during service, not just for demos.",
       results: [
-        "Unified legal showcase & property management into a single platform",
-        "Streamlined property verification time for law firm staff",
-        "Multi-role security strategy for secure contract handling",
+        "One codebase now runs any number of restaurants, each fully isolated at the query level",
+        "A real-time kitchen Kanban replaced the paper ticket rail, with drag-and-drop and swipe support for tablets",
+        "A prepaid \"ticket book\" system — common in Colombian workplace cafeterias — built in as a first-class payment method, not bolted on",
       ],
     },
-    demoUrl: "https://polopantoja.co",
+    demoUrl: "https://plaet.cloud",
   },
   {
     id: "edusur-educational",
@@ -104,8 +122,94 @@ export const PROJECTS: readonly Project[] = [
     demoUrl: "https://edusur.vercel.app/",
   },
   {
-    id: "salesforce-agentforce-omni",
+    id: "vereda-digital-daily",
     indexCode: "03",
+    title: "Vereda",
+    image: "vereda",
+    client: "Vereda",
+    industry: "Media",
+    year: "2026",
+    category: "Web Apps",
+    featured: true,
+    summary:
+      "High-velocity digital newspaper & self-managed advertising engine for Nariño, Colombia.",
+    description:
+      "A local newsroom that can break a story in hours, not days — with its own ad sales built in, so the business doesn't depend on anyone else's ad network. Renamed from an early working title, Acá, to Vereda after a naming study grounded it in something more locally rooted.",
+    tags: ["Next.js 16", "Sanity CMS", "Tailwind 4", "TypeScript"],
+    highlights: ["Digital Newspaper", "Fast Publishing", "Local Ad Sales"],
+    metrics: [
+      { label: "Target Traffic", value: "50k visits a month" },
+      { label: "Time to Publish", value: "Under 4 hours" },
+      { label: "Running Cost", value: "USD 0–5 a month" },
+    ],
+    caseStudy: {
+      challenge:
+        "Local news in Nariño/Ecuador border region lacked modern digital publishing tools, requiring a cheap-to-operate platform supporting local ad sales without third-party ad network dependencies.",
+      solution:
+        "Built an editorial workflow the newsroom can run without help, on Sanity so non-technical columnists can publish without a developer in the loop, plus an ad system that sells and rotates local placements — all on infrastructure that costs almost nothing to keep online.",
+      results: [
+        "Designed to scale to 50,000 monthly visits at near-zero hosting cost",
+        "Streamlined article publishing loop to under 4 hours",
+        "Direct monetization via local business ad placements",
+      ],
+    },
+  },
+  {
+    id: "precepto-legal-realestate",
+    indexCode: "04",
+    title: "Precepto",
+    image: "precepto",
+    gallery: [
+      {
+        image: "precepto-services",
+        caption: "Three ways to transact — rent, sale or anticres — each with its own legal checklist",
+      },
+      {
+        image: "precepto-legal-areas",
+        caption: "The firm's other practice areas, alongside the real estate marketplace",
+      },
+    ],
+    client: "Precepto Consultores Jurídicos",
+    industry: "Legal Services",
+    year: "2026",
+    category: "SaaS",
+    featured: true,
+    summary:
+      "A law firm's real estate marketplace with built-in legal verification — listings a firm can actually stand behind.",
+    description:
+      "A property marketplace and legal-services site for a family law firm in Ipiales — rentals, sales and anticres listings that carry the firm's own verification, not just an open board anyone can post to.",
+    tags: [
+      "Next.js 16",
+      "TypeScript",
+      "Supabase",
+      "Tailwind 4",
+      "shadcn/ui",
+    ],
+    highlights: [
+      "Property Marketplace",
+      "Bilingual (ES/EN)",
+      "Document Workflow",
+    ],
+    metrics: [
+      { label: "Access Control", value: "3 roles via Supabase RLS" },
+      { label: "Database", value: "19 migrations, PostgreSQL" },
+      { label: "Languages", value: "Spanish / English (next-intl)" },
+    ],
+    caseStudy: {
+      challenge:
+        "A law firm's real product is trust, but a property marketplace where anyone can list anything erodes exactly that. Precepto needed to open its real estate marketplace to public listings — arriendos, ventas, anticres — without giving up the legal verification that's the actual service being sold.",
+      solution:
+        "Built a hybrid model instead of a fully open one: owners publish their own properties, but every listing enters a reversible verification queue — pending, approved or rejected — with the firm's own document workflow sitting behind it, private storage and contracts carried through to signature. Three roles — admin, owner, client — each see only their own slice through Postgres row-level security, not application-layer checks that are easy to get wrong.",
+      results: [
+        "A bilingual (ES/EN) marketplace and legal-services site running on one Next.js codebase",
+        "A reversible property-verification workflow — pending, approved, rejected — instead of a one-way gate",
+        "A private-bucket document module covering contracts from draft to signature",
+      ],
+    },
+  },
+  {
+    id: "salesforce-agentforce-omni",
+    indexCode: "05",
     title: "Salesforce Omni",
     image: "salesforce-ai",
     client: "Enterprise Consulting",
@@ -148,42 +252,8 @@ export const PROJECTS: readonly Project[] = [
     },
   },
   {
-    id: "aca-diario-digital",
-    indexCode: "04",
-    title: "Acá",
-    image: "aca-diario",
-    client: "Acá Medios",
-    industry: "Media",
-    year: "2026",
-    category: "Web Apps",
-    featured: true,
-    summary:
-      "High-velocity digital newspaper & self-managed advertising engine.",
-    description:
-      "A local newsroom that can break a story in hours, not days — with its own ad sales built in, so the business doesn't depend on anyone else's ad network.",
-    tags: ["Next.js 14", "Tailwind 4", "PostgreSQL", "Monorepo", "Local CMS"],
-    highlights: ["Digital Newspaper", "Fast Publishing", "Local Ad Sales"],
-    metrics: [
-      { label: "Target Traffic", value: "50k visits a month" },
-      { label: "Time to Publish", value: "Under 4 hours" },
-      { label: "Running Cost", value: "USD 0–5 a month" },
-    ],
-    caseStudy: {
-      challenge:
-        "Local news in Nariño/Ecuador border region lacked modern digital publishing tools, requiring a cheap-to-operate platform supporting local ad sales without third-party ad network dependencies.",
-      solution:
-        "Built an editorial workflow the newsroom can run without help, plus an ad system that sells and rotates local placements — all on infrastructure that costs almost nothing to keep online.",
-      results: [
-        "Designed to scale to 50,000 monthly visits at near-zero hosting cost",
-        "Streamlined article publishing loop to under 4 hours",
-        "Direct monetization via local business ad placements",
-      ],
-    },
-    demoUrl: "https://diarioaca.co",
-  },
-  {
     id: "apex-analytics",
-    indexCode: "05",
+    indexCode: "06",
     title: "Apex",
     client: "Apex Enterprise Systems",
     industry: "Data Analytics",
@@ -219,7 +289,7 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     id: "buildroot-agent-system",
-    indexCode: "06",
+    indexCode: "07",
     title: "buildroot_ Engine",
     client: "buildroot_ Labs",
     industry: "AI Automation",
@@ -280,37 +350,6 @@ type TranslatableFields = Pick<
 };
 
 const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
-  "polo-pantoja-platform": {
-    industry: "Servicios Legales",
-    metrics: [
-      {
-        label: "Modalidades de contrato",
-        value: "3 (Arriendo / Venta / Anticresis)",
-      },
-      { label: "Control de acceso", value: "Por rol y por documento" },
-      { label: "Verificación", value: "Flujo de aprobación integrado" },
-    ],
-    summary:
-      "Portal para firma de abogados y marketplace inmobiliario especializado con gestión de contratos de anticresis.",
-    description:
-      "Una sola plataforma, dos negocios: el portal de clientes de una firma de abogados y un marketplace inmobiliario regional, funcionando en conjunto — incluyendo los contratos de anticresis, propios de Colombia, gestionados de forma segura desde la publicación hasta la firma.",
-    highlights: [
-      "Marketplace Inmobiliario",
-      "Portal de Clientes",
-      "Contratos Seguros",
-    ],
-    caseStudy: {
-      challenge:
-        "Polo & Pantoja necesitaba una solución unificada para sus servicios legales y un marketplace inmobiliario regional que soportara contratos de anticresis — una modalidad legal particular que exige una verificación documental estricta.",
-      solution:
-        "Se construyó una sola plataforma que atiende los dos lados del negocio, con flujos de verificación de documentos ajustados a cómo trabajan realmente el personal de la firma y los propietarios — cada rol viendo únicamente lo que le corresponde.",
-      results: [
-        "Se unificó la vitrina legal y la gestión inmobiliaria en una sola plataforma",
-        "Se redujo el tiempo de verificación de propiedades para el personal de la firma",
-        "Estrategia de seguridad multi-rol para el manejo seguro de contratos",
-      ],
-    },
-  },
   "edusur-educational": {
     industry: "Educación",
     gallery: [
@@ -389,7 +428,7 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
       ],
     },
   },
-  "aca-diario-digital": {
+  "vereda-digital-daily": {
     industry: "Medios",
     metrics: [
       { label: "Tráfico objetivo", value: "50 mil visitas al mes" },
@@ -397,9 +436,9 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
       { label: "Costo de operación", value: "USD 0–5 al mes" },
     ],
     summary:
-      "Diario digital de alta velocidad con motor de publicidad autogestionado.",
+      "Diario digital de alta velocidad con motor de publicidad autogestionado para Nariño, Colombia.",
     description:
-      "Una redacción local que puede publicar una noticia en horas, no en días — con su propia venta de publicidad integrada, para que el negocio no dependa de ninguna red publicitaria externa.",
+      "Una redacción local que puede publicar una noticia en horas, no en días — con su propia venta de publicidad integrada, para que el negocio no dependa de ninguna red publicitaria externa. Renombrado de un título de trabajo inicial, Acá, a Vereda tras un estudio de naming que lo ancló en algo más local.",
     highlights: [
       "Diario Digital",
       "Publicación Rápida",
@@ -409,7 +448,7 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
       challenge:
         "La prensa local en la región fronteriza de Nariño/Ecuador carecía de herramientas modernas de publicación digital, y requería una plataforma económica de operar que soportara venta de publicidad local sin depender de redes publicitarias de terceros.",
       solution:
-        "Se construyó un flujo editorial que la redacción maneja sin ayuda técnica, más un sistema que vende y rota los anuncios locales — todo sobre una operación que cuesta casi nada mantener en línea.",
+        "Se construyó un flujo editorial que la redacción maneja sin ayuda técnica, sobre Sanity para que columnistas sin perfil técnico puedan publicar sin depender de un desarrollador, más un sistema que vende y rota los anuncios locales — todo sobre una operación que cuesta casi nada mantener en línea.",
       results: [
         "Diseñado para escalar a 50.000 visitas mensuales con un costo de hosting casi nulo",
         "Se redujo el ciclo de publicación de artículos a menos de 4 horas",
@@ -470,6 +509,86 @@ const PROJECTS_ES: Readonly<Record<string, TranslatableFields>> = {
         "Se eliminó la degradación de contexto en funcionalidades complejas de múltiples pasos",
         "Se aseguró el cumplimiento de accesibilidad WCAG 2.1 AA y de los objetivos de rendimiento",
         "Mejora continua integrada mediante persistencia de habilidades y memoria",
+      ],
+    },
+  },
+  "plaet-restaurant-saas": {
+    gallery: [
+      {
+        image: "plaet-features",
+        caption: "La grilla de funciones — menú, mesas, cocina, inventario y roles en un solo lugar",
+      },
+      {
+        image: "plaet-benefits",
+        caption: "El discurso de onboarding: tres pasos de un menú vacío a un sistema funcionando",
+      },
+      {
+        image: "plaet-pricing",
+        caption: "Tres planes en pesos colombianos, desde un restaurante único hasta cadenas multi-sede",
+      },
+    ],
+    industry: "Tecnología para Restaurantes",
+    metrics: [
+      { label: "Módulos de backend", value: "15 módulos, 109 endpoints" },
+      { label: "Control de acceso", value: "21 permisos, 5 roles" },
+      { label: "Modelos de base de datos", value: "22 (Prisma)" },
+    ],
+    summary:
+      "Una plataforma multi-tenant de gestión de restaurantes — menú, salón, cocina y caja en un solo sistema, hecho para operar más de un restaurante a la vez.",
+    description:
+      "Nuestro propio SaaS de gestión de restaurantes, evolucionado de una herramienta de un solo local a una plataforma multi-tenant: un mismo sistema opera hoy el salón, la cocina y la caja de varios restaurantes a la vez, cada uno aislado del resto.",
+    highlights: [
+      "Arquitectura Multi-Tenant",
+      "Kanban de Cocina en Tiempo Real",
+      "Tiqueteras Prepagadas",
+    ],
+    caseStudy: {
+      challenge:
+        "La herramienta original solo operaba el salón de un restaurante. Convertirla en algo vendible significaba que el modelo de datos, el sistema de autenticación y cada consulta de la aplicación tenían que volverse conscientes del inquilino (tenant) — sin que un restaurante viera jamás los pedidos, el menú o el personal de otro.",
+      solution:
+        "Se reconstruyó el núcleo alrededor de un id de inquilino que viaja automáticamente en cada solicitud vía AsyncLocalStorage, en vez de un parámetro que cada desarrollador debe recordar pasar, junto con un sistema de roles y permisos granular que cubre cinco roles de personal — de cajero a super-administrador — y un tablero de cocina que el personal realmente usa durante el servicio, no solo para demos.",
+      results: [
+        "Un mismo código base opera hoy cualquier cantidad de restaurantes, cada uno completamente aislado a nivel de consulta",
+        "Un Kanban de cocina en tiempo real reemplazó el riel de comandas en papel, con arrastrar y soltar y gestos táctiles para tablets",
+        "Un sistema de \"tiquetera\" prepagada — común en cafeterías de trabajo en Colombia — integrado como método de pago de primera clase, no agregado después",
+      ],
+    },
+  },
+  "precepto-legal-realestate": {
+    gallery: [
+      {
+        image: "precepto-services",
+        caption: "Tres formas de hacer negocio con una propiedad — arriendo, venta o anticresis, cada una con su propio checklist legal",
+      },
+      {
+        image: "precepto-legal-areas",
+        caption: "Las otras áreas de práctica de la firma, junto al mercado inmobiliario",
+      },
+    ],
+    industry: "Servicios Legales",
+    metrics: [
+      { label: "Control de acceso", value: "3 roles vía Supabase RLS" },
+      { label: "Base de datos", value: "19 migraciones, PostgreSQL" },
+      { label: "Idiomas", value: "Español / Inglés (next-intl)" },
+    ],
+    summary:
+      "El mercado inmobiliario de una firma legal, con verificación jurídica integrada — publicaciones que la firma realmente puede respaldar.",
+    description:
+      "Un mercado de propiedades y sitio de servicios legales para una consultora jurídica familiar en Ipiales — arriendos, ventas y anticresis que llevan la verificación de la firma, no solo una cartelera abierta donde cualquiera publica.",
+    highlights: [
+      "Mercado Inmobiliario",
+      "Bilingüe (ES/EN)",
+      "Flujo Documental",
+    ],
+    caseStudy: {
+      challenge:
+        "El producto real de una firma legal es la confianza, pero un mercado inmobiliario donde cualquiera publica lo que sea erosiona justamente eso. Precepto necesitaba abrir su mercado inmobiliario a publicaciones públicas — arriendos, ventas, anticresis — sin renunciar a la verificación legal que es el servicio que realmente vende.",
+      solution:
+        "Se construyó un modelo híbrido en vez de uno completamente abierto: los propietarios publican sus propias propiedades, pero cada publicación entra a una cola de verificación reversible — pendiente, aprobada o rechazada — con el propio flujo documental de la firma detrás: almacenamiento privado y contratos llevados hasta la firma. Tres roles — administrador, propietario, cliente — ven solo su propia porción mediante seguridad a nivel de fila en Postgres, no validaciones en la capa de aplicación, fáciles de hacer mal.",
+      results: [
+        "Un sitio bilingüe (ES/EN) de mercado inmobiliario y servicios legales corriendo en un solo código base de Next.js",
+        "Un flujo de verificación de propiedades reversible — pendiente, aprobada, rechazada — en vez de una puerta de un solo sentido",
+        "Un módulo documental con almacenamiento privado que cubre contratos desde el borrador hasta la firma",
       ],
     },
   },
