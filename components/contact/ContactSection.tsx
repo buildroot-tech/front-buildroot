@@ -24,15 +24,21 @@ type NeedKey = (typeof NEED_KEYS)[number];
 type TimingKey = (typeof TIMING_KEYS)[number];
 
 const FALLBACK = {
-  hint: "Fill in the blanks. Sending opens your email with everything ready.",
+  hint: "Fill in the blanks — we'll get it directly, no email client required.",
   greeting: "Hi, I'm",
   namePlaceholder: "your name",
   from: "from",
   companyPlaceholder: "your company",
   need: "I need",
   start: "and I'd like to start",
+  reachAt: "You can reach me at",
+  emailPlaceholder: "your@email.com",
+  emailInvalid: "Enter a valid email so we can reply",
   extra: "Anything else we should know:",
   extraPlaceholder: "tell us briefly",
+  sending: "Sending…",
+  sent: "Message sent",
+  error: "Something went wrong — try again, or email us directly below.",
   needs: {
     web: "a website",
     product: "a digital product",
@@ -122,11 +128,17 @@ export function ContactSection({ dict }: ContactSectionProps) {
   const c = dict?.compose;
 
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
   const [needIndex, setNeedIndex] = useState(0);
   const [timingIndex, setTimingIndex] = useState(0);
   const [extra, setExtra] = useState("");
   const [copied, setCopied] = useState(false);
+  const [website, setWebsite] = useState(""); // honeypot — real visitors never see this field
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  );
+  const [showEmailError, setShowEmailError] = useState(false);
 
   const handleCopyEmail = async () => {
     try {
@@ -155,10 +167,10 @@ export function ContactSection({ dict }: ContactSectionProps) {
   const companyPlaceholder =
     c?.company_placeholder || FALLBACK.companyPlaceholder;
 
-  // The mailto the composed sentence resolves to. Both parts are encoded,
-  // so an apostrophe or a newline in the free-text field can't truncate the
-  // body the way a plain concatenation would.
-  const mailtoHref = useMemo(() => {
+  // Same sentence either way: fed to /api/contact for the primary "Send
+  // message" button, and to a plain mailto: kept as a fallback for anyone
+  // who'd rather it open in their own mail client.
+  const composed = useMemo(() => {
     const subject = `${c?.subject || FALLBACK.subject} — ${name || namePlaceholder}`;
     const lines = [
       `${c?.greeting || FALLBACK.greeting} ${name || namePlaceholder} ${c?.from || FALLBACK.from} ${company || companyPlaceholder}.`,
@@ -167,7 +179,7 @@ export function ContactSection({ dict }: ContactSectionProps) {
     if (extra.trim()) {
       lines.push("", `${c?.extra || FALLBACK.extra} ${extra.trim()}`);
     }
-    return `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+    return { subject, body: lines.join("\n") };
   }, [
     c,
     name,
@@ -180,6 +192,42 @@ export function ContactSection({ dict }: ContactSectionProps) {
     namePlaceholder,
     companyPlaceholder,
   ]);
+
+  // Both parts are encoded, so an apostrophe or a newline in the free-text
+  // field can't truncate the body the way a plain concatenation would.
+  const mailtoHref = useMemo(
+    () =>
+      `mailto:${EMAIL}?subject=${encodeURIComponent(composed.subject)}&body=${encodeURIComponent(composed.body)}`,
+    [composed],
+  );
+
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+
+  const handleSubmit = async () => {
+    if (!isEmailValid) {
+      setShowEmailError(true);
+      return;
+    }
+    setShowEmailError(false);
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name || namePlaceholder,
+          email: email.trim(),
+          subject: composed.subject,
+          body: composed.body,
+          website, // honeypot
+        }),
+      });
+      if (!res.ok) throw new Error("send failed");
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
+  };
 
   return (
     <section
@@ -263,8 +311,45 @@ export function ContactSection({ dict }: ContactSectionProps) {
                 tightRight
               />
               <span>.</span>
+            </span>{" "}
+            <span>{c?.reach_at || FALLBACK.reachAt}</span>
+            <span className="whitespace-nowrap">
+              <Blank
+                value={email}
+                onChange={(next) => {
+                  setEmail(next);
+                  if (showEmailError) setShowEmailError(false);
+                }}
+                placeholder={c?.email_placeholder || FALLBACK.emailPlaceholder}
+                label={c?.email_placeholder || FALLBACK.emailPlaceholder}
+                tightRight
+              />
+              <span>.</span>
             </span>
           </div>
+
+          {showEmailError && (
+            <p
+              role="alert"
+              className="mt-3 font-mono text-xs text-[var(--accent)]"
+            >
+              {c?.email_invalid || FALLBACK.emailInvalid}
+            </p>
+          )}
+
+          {/* Honeypot — off-screen rather than display:none, since some
+              bots skip fields CSS visibly hides but still fill anything
+              reachable in the DOM. Real visitors never see or reach it. */}
+          <input
+            type="text"
+            name="website"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="absolute -left-[9999px] h-0 w-0 opacity-0"
+          />
 
           {/* Free text, optional — the sentence covers the shape of the
               enquiry, this covers whatever it can't. */}
@@ -288,23 +373,40 @@ export function ContactSection({ dict }: ContactSectionProps) {
           {/* Send, with the plain address underneath for anyone who'd
               rather just write to us directly. */}
           <div className="mt-14 flex max-w-3xl flex-col font-display text-3xl sm:text-4xl md:text-5xl">
-            <a
-              href={mailtoHref}
+            <button
+              type="button"
+              onClick={handleSubmit}
+              disabled={status === "sending" || status === "sent"}
               onMouseEnter={() => sendRef.current?.scramble()}
               onMouseLeave={() => sendRef.current?.reset()}
-              className="group flex items-center justify-between border-t border-b border-[var(--text-primary)] py-6 text-[var(--text-primary)]"
+              className="group flex items-center justify-between border-t border-b border-[var(--text-primary)] py-6 text-left text-[var(--text-primary)] disabled:cursor-default disabled:opacity-60"
             >
               <ScrambleText
                 ref={sendRef}
-                text={c?.send || FALLBACK.send}
+                text={
+                  status === "sending"
+                    ? c?.sending || FALLBACK.sending
+                    : status === "sent"
+                      ? c?.sent || FALLBACK.sent
+                      : c?.send || FALLBACK.send
+                }
                 trigger="manual"
                 speed={40}
               />
               <ArrowUpRight className="h-8 w-8 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 md:h-10 md:w-10" />
-            </a>
+            </button>
+
+            {status === "error" && (
+              <p
+                role="alert"
+                className="mt-4 font-mono text-xs uppercase tracking-wider text-[var(--accent)]"
+              >
+                {c?.error || FALLBACK.error}
+              </p>
+            )}
 
             <a
-              href={`mailto:${EMAIL}`}
+              href={mailtoHref}
               onMouseEnter={() => emailRef.current?.scramble()}
               onMouseLeave={() => emailRef.current?.reset()}
               className="group mt-8 inline-flex items-center gap-3 self-start font-mono text-sm uppercase tracking-widest text-[var(--text-primary)]/70 transition-colors hover:text-[var(--text-primary)]"
@@ -317,11 +419,11 @@ export function ContactSection({ dict }: ContactSectionProps) {
               />
             </a>
 
-            {/* Fallback — for visitors whose mail client didn't open */}
+            {/* Alternative for visitors who'd rather write from their own
+                mail client than use the form above. */}
             <div className="mt-6 flex flex-col gap-2">
               <p className="font-mono text-xs uppercase tracking-wider text-[var(--text-primary)]/60">
-                {dict?.fallback ||
-                  "If your email didn't open, copy this address:"}
+                {dict?.fallback || "Prefer to write directly? Copy this address:"}
               </p>
               <div className="inline-flex items-center gap-3">
                 <span

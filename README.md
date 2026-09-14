@@ -18,8 +18,9 @@ npm run lint
 npx tsc --noEmit     # type check
 ```
 
-Node 20+. No environment variables are required — there is no backend, no
-database and no third-party form service.
+Node 20+. Copy `.env.example` to `.env.local` and set `RESEND_API_KEY` to
+run the contact form locally — everything else on the site still has no
+backend and no database. See `app/api/contact/route.ts`.
 
 One-time setup, per clone:
 
